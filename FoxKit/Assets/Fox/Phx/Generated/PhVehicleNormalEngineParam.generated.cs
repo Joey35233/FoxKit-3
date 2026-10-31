@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Phx
@@ -16,14 +17,14 @@ namespace Fox.Phx
 	public partial class PhVehicleNormalEngineParam : Fox.Core.Entity
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<float> specPointAngularVelocity { get; private set; } = new CsSystem.Collections.Generic.List<float>();
+		[UnityEngine.SerializeField]
+		private List<float> specPointAngularVelocity = new List<float>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<float> specPointTorque { get; private set; } = new CsSystem.Collections.Generic.List<float>();
+		[UnityEngine.SerializeField]
+		private List<float> specPointTorque = new List<float>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<float> specPointBreakTorque { get; private set; } = new CsSystem.Collections.Generic.List<float>();
+		[UnityEngine.SerializeField]
+		private List<float> specPointBreakTorque = new List<float>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -43,9 +44,9 @@ namespace Fox.Phx
 		{
 			if (Fox.Core.Entity.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("PhVehicleNormalEngineParam", typeof(PhVehicleNormalEngineParam), Fox.Core.Entity.ClassInfo, 72, "Phx", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("specPointAngularVelocity", Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("specPointTorque", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("specPointBreakTorque", Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("specPointAngularVelocity", Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("specPointTorque", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("specPointBreakTorque", Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

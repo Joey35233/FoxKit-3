@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Core
@@ -16,35 +17,35 @@ namespace Fox.Core
 	public partial class Bucket : Fox.Core.Entity
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected Fox.Core.Entity collector { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.Entity collector;
 		
-		[field: UnityEngine.SerializeField]
-		private new string name { get; set; }
+		[UnityEngine.SerializeField]
+		private new string name;
 		
-		[field: UnityEngine.SerializeField]
-		public string sceneName { get; protected set; }
+		[UnityEngine.SerializeField]
+		private string sceneName;
 		
-		[field: UnityEngine.SerializeField]
-		protected CsSystem.Collections.Generic.List<Fox.Core.Actor> actors { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.Actor>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Core.Actor> actors = new List<Fox.Core.Actor>();
 		
-		[field: UnityEngine.SerializeField]
-		protected Fox.StringMap<Fox.Core.FilePtr> dataSetFiles { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<Fox.Core.FilePtr> dataSetFiles = new Fox.StringMap<Fox.Core.FilePtr>();
 		
-		[field: UnityEngine.SerializeField]
-		protected Fox.StringMap<Fox.Core.DataBodySet> dataBodySets { get; private set; } = new Fox.StringMap<Fox.Core.DataBodySet>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<Fox.Core.DataBodySet> dataBodySets = new Fox.StringMap<Fox.Core.DataBodySet>();
 		
-		[field: UnityEngine.SerializeField]
-		protected Fox.Core.DataSet editableDataSet { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.DataSet editableDataSet;
 		
-		[field: UnityEngine.SerializeField]
-		protected Fox.Path editableDataSetPath { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Path editableDataSetPath;
 		
-		[field: UnityEngine.SerializeField]
-		protected Fox.Core.DataBodySet editableDataBodySet { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.DataBodySet editableDataBodySet;
 		
-		[field: UnityEngine.SerializeField]
-		protected bool editableDataSetChanged { get; set; }
+		[UnityEngine.SerializeField]
+		private bool editableDataSetChanged;
 		
 		public bool isEditableLocked { get => isEditableLocked_Get(); set => isEditableLocked_Set(value); }
 		private partial bool isEditableLocked_Get();
@@ -68,17 +69,17 @@ namespace Fox.Core
 		{
 			if (Fox.Core.Entity.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("Bucket", typeof(Bucket), Fox.Core.Entity.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collector", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("name", Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sceneName", Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("actors", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 88, 1, Fox.Core.PropertyInfo.ContainerType.List, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.Actor), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dataSetFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dataBodySets", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.DataBodySet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("editableDataSet", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.DataSet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("editableDataSetPath", Fox.Core.PropertyInfo.PropertyType.Path, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("editableDataBodySet", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.DataBodySet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("editableDataSetChanged", Fox.Core.PropertyInfo.PropertyType.Bool, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isEditableLocked", Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collector", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("name", Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sceneName", Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("actors", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 88, 1, Fox.Core.PropertyInfo.ContainerType.List, typeof(Fox.Core.Actor), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dataSetFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dataBodySets", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, typeof(Fox.Core.DataBodySet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("editableDataSet", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, typeof(Fox.Core.DataSet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("editableDataSetPath", Fox.Core.PropertyInfo.PropertyType.Path, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("editableDataBodySet", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, typeof(Fox.Core.DataBodySet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("editableDataSetChanged", Fox.Core.PropertyInfo.PropertyType.Bool, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isEditableLocked", Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

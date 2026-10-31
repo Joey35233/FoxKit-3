@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameService
@@ -16,8 +17,8 @@ namespace Fox.GameService
 	public partial class GsRouteDataEdge : Fox.Graphx.GraphxSpatialGraphDataEdge
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.GameService.GsRouteDataEdgeEvent @event { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.GameService.GsRouteDataEdgeEvent @event;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.GameService
 		{
 			if (Fox.Graphx.GraphxSpatialGraphDataEdge.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GsRouteDataEdge", typeof(GsRouteDataEdge), Fox.Graphx.GraphxSpatialGraphDataEdge.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("event", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, typeof(Fox.GameService.GsRouteDataEdgeEvent), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("event", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, typeof(Fox.GameService.GsRouteDataEdgeEvent), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

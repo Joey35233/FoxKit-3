@@ -28,7 +28,7 @@ namespace Fox.EdGraphx
             if (graph == null)
                 return;
 
-            IReadOnlyList<GraphxSpatialGraphDataNode> nodes = graph.nodes;
+            IReadOnlyList<GraphxSpatialGraphDataNode> nodes = graph.Nodes;
 
             if (nodes.Count == 0 || !graph.IsVisibleInFrustum(Camera.current))
                 return;
@@ -74,7 +74,7 @@ namespace Fox.EdGraphx
         private void OnAddNodeButtonClicked()
         {
             int undoGroup = Undo.GetCurrentGroup();
-            bool wasEmpty = Target.nodes.Count == 0;
+            bool wasEmpty = Target.Nodes.Count == 0;
             GraphxSpatialGraphDataNode node = Target.AddNode();
 
             if (wasEmpty && node != null)

@@ -20,10 +20,10 @@ namespace Tpp.EdGameKit
             if (isSelected)
             {
                 Gizmos.color = EditorColors.HostileColor;
-                Gizmos.DrawWireSphere(Vector3.zero, locatorData.radius);
+                Gizmos.DrawWireSphere(Vector3.zero, locatorData.Radius);
 
                 Gizmos.color = EditorColors.HostileColorDeselected;
-                Gizmos.DrawWireSphere(Vector3.zero, locatorData.lostSearchRadius);
+                Gizmos.DrawWireSphere(Vector3.zero, locatorData.LostSearchRadius);
             }
 
             Gizmos.color = isSelected ? EditorColors.HostileColor : Color.white;

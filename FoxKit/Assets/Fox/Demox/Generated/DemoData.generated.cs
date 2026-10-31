@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Demox
@@ -16,146 +17,146 @@ namespace Fox.Demox
 	public partial class DemoData : Fox.Core.TransformData
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Core.FilePtr> evfFiles { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Core.FilePtr> evfFiles = new List<Fox.Core.FilePtr>();
 		
-		[field: UnityEngine.SerializeField]
-		public bool onMemory { get; set; }
+		[UnityEngine.SerializeField]
+		private bool onMemory;
 		
-		[field: UnityEngine.SerializeField]
-		public int demoLength { get; set; }
+		[UnityEngine.SerializeField]
+		private int demoLength;
 		
-		[field: UnityEngine.SerializeField]
-		public int priority { get; set; }
+		[UnityEngine.SerializeField]
+		private int priority;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Path scriptPath { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Path scriptPath;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<Fox.Core.FilePtr> fmdlFiles { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<Fox.Core.FilePtr> fmdlFiles = new Fox.StringMap<Fox.Core.FilePtr>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<Fox.Core.FilePtr> helpBoneFiles { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<Fox.Core.FilePtr> helpBoneFiles = new Fox.StringMap<Fox.Core.FilePtr>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<Fox.Demo.PartsDesc> partsDesc { get; private set; } = new Fox.StringMap<Fox.Demo.PartsDesc>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<Fox.Demo.PartsDesc> partsDesc = new Fox.StringMap<Fox.Demo.PartsDesc>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Demo.ClipData> clipDatas { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Demo.ClipData>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Demo.ClipData> clipDatas = new List<Fox.Demo.ClipData>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Path> loadFiles { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Path>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Path> loadFiles = new List<Fox.Path>();
 		
-		[field: UnityEngine.SerializeField]
-		public string demoId { get; set; }
+		[UnityEngine.SerializeField]
+		private string demoId;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityLink playingRoot { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.EntityLink playingRoot;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityLink streamAnimation { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.EntityLink streamAnimation;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Path demoStreamPath { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Path demoStreamPath;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Path motionPath { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Path motionPath;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.FilePtr motionFile { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.FilePtr motionFile;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Path audioPath { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Path audioPath;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.FilePtr subtitleFile { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.FilePtr subtitleFile;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.FilePtr subtitleBinaryFile { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.FilePtr subtitleBinaryFile;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.FilePtr nodeDataFile { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.FilePtr nodeDataFile;
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<string> stringParams { get; private set; } = new CsSystem.Collections.Generic.List<string>();
+		[UnityEngine.SerializeField]
+		private List<string> stringParams = new List<string>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<Fox.Core.EntityLink> entityParams { get; private set; } = new Fox.StringMap<Fox.Core.EntityLink>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<Fox.Core.EntityLink> entityParams = new Fox.StringMap<Fox.Core.EntityLink>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<Fox.Core.FilePtr> fileParams { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<Fox.Core.FilePtr> fileParams = new Fox.StringMap<Fox.Core.FilePtr>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<Fox.Demo.DemoControlCharacterDesc> controlCharacters { get; private set; } = new Fox.StringMap<Fox.Demo.DemoControlCharacterDesc>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<Fox.Demo.DemoControlCharacterDesc> controlCharacters = new Fox.StringMap<Fox.Demo.DemoControlCharacterDesc>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<Fox.Core.EntityLink> controlDatas { get; private set; } = new Fox.StringMap<Fox.Core.EntityLink>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<Fox.Core.EntityLink> controlDatas = new Fox.StringMap<Fox.Core.EntityLink>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<string> controlCollectibles { get; private set; } = new Fox.StringMap<string>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<string> controlCollectibles = new Fox.StringMap<string>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<Fox.Demo.DemoParameter> parameters { get; private set; } = new Fox.StringMap<Fox.Demo.DemoParameter>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<Fox.Demo.DemoParameter> parameters = new Fox.StringMap<Fox.Demo.DemoParameter>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<string> setupLights { get; private set; } = new Fox.StringMap<string>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<string> setupLights = new Fox.StringMap<string>();
 		
-		[field: UnityEngine.SerializeField]
-		public Utility_InterpType cameraInterpType { get; set; }
+		[UnityEngine.SerializeField]
+		private Utility_InterpType cameraInterpType;
 		
-		[field: UnityEngine.SerializeField]
-		public int cameraInterpFrame { get; set; }
+		[UnityEngine.SerializeField]
+		private int cameraInterpFrame;
 		
-		[field: UnityEngine.SerializeField]
-		public float cameraInterpCurveRate { get; set; }
+		[UnityEngine.SerializeField]
+		private float cameraInterpCurveRate;
 		
-		[field: UnityEngine.SerializeField]
-		public float cameraInterpScurveCenter { get; set; }
+		[UnityEngine.SerializeField]
+		private float cameraInterpScurveCenter;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Vector3 cameraTranslation { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 cameraTranslation;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Quaternion cameraRotation { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Quaternion cameraRotation;
 		
-		[field: UnityEngine.SerializeField]
-		public float cameraParam { get; set; }
+		[UnityEngine.SerializeField]
+		private float cameraParam;
 		
-		[field: UnityEngine.SerializeField]
-		public float cameraDistanceToLookAt { get; set; }
+		[UnityEngine.SerializeField]
+		private float cameraDistanceToLookAt;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Vector3 cameraStartTranslation { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 cameraStartTranslation;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Quaternion cameraStartRotation { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Quaternion cameraStartRotation;
 		
-		[field: UnityEngine.SerializeField]
-		public float cameraStartParam { get; set; }
+		[UnityEngine.SerializeField]
+		private float cameraStartParam;
 		
-		[field: UnityEngine.SerializeField]
-		public float cameraStartDistanceToLookAt { get; set; }
+		[UnityEngine.SerializeField]
+		private float cameraStartDistanceToLookAt;
 		
-		[field: UnityEngine.SerializeField]
-		public int eventCacheNum { get; set; }
+		[UnityEngine.SerializeField]
+		private int eventCacheNum;
 		
-		[field: UnityEngine.SerializeField]
-		public int eventInterpCacheNum { get; set; }
+		[UnityEngine.SerializeField]
+		private int eventInterpCacheNum;
 		
-		[field: UnityEngine.SerializeField]
-		public int eventSkipCacheNum { get; set; }
+		[UnityEngine.SerializeField]
+		private int eventSkipCacheNum;
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<string> highestTextureStreamModel { get; private set; } = new CsSystem.Collections.Generic.List<string>();
+		[UnityEngine.SerializeField]
+		private List<string> highestTextureStreamModel = new List<string>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Path> highestTexture { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Path>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Path> highestTexture = new List<Fox.Path>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<int> objectNum { get; private set; } = new Fox.StringMap<int>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<int> objectNum = new Fox.StringMap<int>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityLink blockPositionSetter { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.EntityLink blockPositionSetter;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -175,53 +176,53 @@ namespace Fox.Demox
 		{
 			if (Fox.Core.TransformData.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("DemoData", typeof(DemoData), Fox.Core.TransformData.ClassInfo, 1264, null, 36);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("evfFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("onMemory", Fox.Core.PropertyInfo.PropertyType.Bool, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("demoLength", Fox.Core.PropertyInfo.PropertyType.Int32, 324, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("priority", Fox.Core.PropertyInfo.PropertyType.Int32, 328, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scriptPath", Fox.Core.PropertyInfo.PropertyType.Path, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fmdlFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 344, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("helpBoneFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 392, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("partsDesc", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 440, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demo.PartsDesc), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clipDatas", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 488, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demo.ClipData), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("loadFiles", Fox.Core.PropertyInfo.PropertyType.Path, 504, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("demoId", Fox.Core.PropertyInfo.PropertyType.String, 608, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("playingRoot", Fox.Core.PropertyInfo.PropertyType.EntityLink, 616, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("streamAnimation", Fox.Core.PropertyInfo.PropertyType.EntityLink, 656, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("demoStreamPath", Fox.Core.PropertyInfo.PropertyType.Path, 696, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("motionPath", Fox.Core.PropertyInfo.PropertyType.Path, 704, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("motionFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 712, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("audioPath", Fox.Core.PropertyInfo.PropertyType.Path, 736, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitleFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 744, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitleBinaryFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 768, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("nodeDataFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 792, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("stringParams", Fox.Core.PropertyInfo.PropertyType.String, 816, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("entityParams", Fox.Core.PropertyInfo.PropertyType.EntityLink, 832, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fileParams", Fox.Core.PropertyInfo.PropertyType.FilePtr, 880, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlCharacters", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 928, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demo.DemoControlCharacterDesc), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlDatas", Fox.Core.PropertyInfo.PropertyType.EntityLink, 976, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlCollectibles", Fox.Core.PropertyInfo.PropertyType.String, 1024, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("parameters", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 1072, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demo.DemoParameter), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("setupLights", Fox.Core.PropertyInfo.PropertyType.String, 560, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraInterpType", Fox.Core.PropertyInfo.PropertyType.Int32, 1152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(Utility_InterpType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraInterpFrame", Fox.Core.PropertyInfo.PropertyType.Int32, 1156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraInterpCurveRate", Fox.Core.PropertyInfo.PropertyType.Float, 1160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraInterpScurveCenter", Fox.Core.PropertyInfo.PropertyType.Float, 1164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraTranslation", Fox.Core.PropertyInfo.PropertyType.Vector3, 1168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraRotation", Fox.Core.PropertyInfo.PropertyType.Quat, 1184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraParam", Fox.Core.PropertyInfo.PropertyType.Float, 1200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraDistanceToLookAt", Fox.Core.PropertyInfo.PropertyType.Float, 1204, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraStartTranslation", Fox.Core.PropertyInfo.PropertyType.Vector3, 1216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraStartRotation", Fox.Core.PropertyInfo.PropertyType.Quat, 1232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraStartParam", Fox.Core.PropertyInfo.PropertyType.Float, 1248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraStartDistanceToLookAt", Fox.Core.PropertyInfo.PropertyType.Float, 1252, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("eventCacheNum", Fox.Core.PropertyInfo.PropertyType.Int32, 1256, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("eventInterpCacheNum", Fox.Core.PropertyInfo.PropertyType.Int32, 1260, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("eventSkipCacheNum", Fox.Core.PropertyInfo.PropertyType.Int32, 1264, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("highestTextureStreamModel", Fox.Core.PropertyInfo.PropertyType.String, 1120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("highestTexture", Fox.Core.PropertyInfo.PropertyType.Path, 1136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objectNum", Fox.Core.PropertyInfo.PropertyType.Int32, 1272, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blockPositionSetter", Fox.Core.PropertyInfo.PropertyType.EntityLink, 520, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("evfFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("onMemory", Fox.Core.PropertyInfo.PropertyType.Bool, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("demoLength", Fox.Core.PropertyInfo.PropertyType.Int32, 324, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("priority", Fox.Core.PropertyInfo.PropertyType.Int32, 328, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scriptPath", Fox.Core.PropertyInfo.PropertyType.Path, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fmdlFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 344, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("helpBoneFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 392, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("partsDesc", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 440, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, typeof(Fox.Demo.PartsDesc), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clipDatas", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 488, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, typeof(Fox.Demo.ClipData), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("loadFiles", Fox.Core.PropertyInfo.PropertyType.Path, 504, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("demoId", Fox.Core.PropertyInfo.PropertyType.String, 608, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("playingRoot", Fox.Core.PropertyInfo.PropertyType.EntityLink, 616, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("streamAnimation", Fox.Core.PropertyInfo.PropertyType.EntityLink, 656, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("demoStreamPath", Fox.Core.PropertyInfo.PropertyType.Path, 696, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("motionPath", Fox.Core.PropertyInfo.PropertyType.Path, 704, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("motionFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 712, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("audioPath", Fox.Core.PropertyInfo.PropertyType.Path, 736, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitleFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 744, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitleBinaryFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 768, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("nodeDataFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 792, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("stringParams", Fox.Core.PropertyInfo.PropertyType.String, 816, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("entityParams", Fox.Core.PropertyInfo.PropertyType.EntityLink, 832, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fileParams", Fox.Core.PropertyInfo.PropertyType.FilePtr, 880, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlCharacters", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 928, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, typeof(Fox.Demo.DemoControlCharacterDesc), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlDatas", Fox.Core.PropertyInfo.PropertyType.EntityLink, 976, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlCollectibles", Fox.Core.PropertyInfo.PropertyType.String, 1024, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("parameters", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 1072, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, typeof(Fox.Demo.DemoParameter), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("setupLights", Fox.Core.PropertyInfo.PropertyType.String, 560, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraInterpType", Fox.Core.PropertyInfo.PropertyType.Int32, 1152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(Utility_InterpType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraInterpFrame", Fox.Core.PropertyInfo.PropertyType.Int32, 1156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraInterpCurveRate", Fox.Core.PropertyInfo.PropertyType.Float, 1160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraInterpScurveCenter", Fox.Core.PropertyInfo.PropertyType.Float, 1164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraTranslation", Fox.Core.PropertyInfo.PropertyType.Vector3, 1168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraRotation", Fox.Core.PropertyInfo.PropertyType.Quat, 1184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraParam", Fox.Core.PropertyInfo.PropertyType.Float, 1200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraDistanceToLookAt", Fox.Core.PropertyInfo.PropertyType.Float, 1204, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraStartTranslation", Fox.Core.PropertyInfo.PropertyType.Vector3, 1216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraStartRotation", Fox.Core.PropertyInfo.PropertyType.Quat, 1232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraStartParam", Fox.Core.PropertyInfo.PropertyType.Float, 1248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraStartDistanceToLookAt", Fox.Core.PropertyInfo.PropertyType.Float, 1252, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("eventCacheNum", Fox.Core.PropertyInfo.PropertyType.Int32, 1256, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("eventInterpCacheNum", Fox.Core.PropertyInfo.PropertyType.Int32, 1260, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("eventSkipCacheNum", Fox.Core.PropertyInfo.PropertyType.Int32, 1264, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("highestTextureStreamModel", Fox.Core.PropertyInfo.PropertyType.String, 1120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("highestTexture", Fox.Core.PropertyInfo.PropertyType.Path, 1136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objectNum", Fox.Core.PropertyInfo.PropertyType.Int32, 1272, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blockPositionSetter", Fox.Core.PropertyInfo.PropertyType.EntityLink, 520, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

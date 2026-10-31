@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameKit
@@ -16,17 +17,17 @@ namespace Fox.GameKit
 	public partial class ObjectBrushBlock : Fox.Core.Data
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.Path filePath { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Path filePath;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.FilePtr obrbFile { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.FilePtr obrbFile;
 		
-		[field: UnityEngine.SerializeField]
-		public uint blockId { get; set; }
+		[UnityEngine.SerializeField]
+		private uint blockId;
 		
-		[field: UnityEngine.SerializeField]
-		public string objectBrushName { get; set; }
+		[UnityEngine.SerializeField]
+		private string objectBrushName;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -46,10 +47,10 @@ namespace Fox.GameKit
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("ObjectBrushBlock", typeof(ObjectBrushBlock), Fox.Core.Data.ClassInfo, 128, null, 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("filePath", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("obrbFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blockId", Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objectBrushName", Fox.Core.PropertyInfo.PropertyType.String, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("filePath", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("obrbFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blockId", Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objectBrushName", Fox.Core.PropertyInfo.PropertyType.String, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.GameCore
@@ -16,14 +17,14 @@ namespace Tpp.GameCore
 	public partial class TppRat2Parameter : Fox.Core.DataElement
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.FilePtr partsFile { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.FilePtr partsFile;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.FilePtr mtarFile { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.FilePtr mtarFile;
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Core.FilePtr> fovaFiles { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Core.FilePtr> fovaFiles = new List<Fox.Core.FilePtr>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -43,9 +44,9 @@ namespace Tpp.GameCore
 		{
 			if (Fox.Core.DataElement.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppRat2Parameter", typeof(TppRat2Parameter), Fox.Core.DataElement.ClassInfo, 96, null, 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("partsFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("mtarFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fovaFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 112, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("partsFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("mtarFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fovaFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 112, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

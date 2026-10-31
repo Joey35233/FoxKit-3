@@ -15,7 +15,7 @@ namespace Fox.EdGeox
             Gizmos.matrix = polygon.transform.localToWorldMatrix;
             Gizmos.color = isSelected ? EditorColors.GenericSelectedColor : EditorColors.GenericUnselectedColor;
 
-            var vertices = polygon.vertices;
+            var vertices = polygon.Vertices;
             for (int i = 0; i < vertices.Count - 1; i++)
                 Gizmos.DrawLine(vertices[i], vertices[i + 1]);
         }

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.GameKit
@@ -16,32 +17,32 @@ namespace Tpp.GameKit
 	public partial class TppPermanentGimmickSearchLightParameter : Fox.Core.DataElement
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public float rotationLimitLeftRight { get; set; }
+		[UnityEngine.SerializeField]
+		private float rotationLimitLeftRight;
 		
-		[field: UnityEngine.SerializeField]
-		public float rotationLimitUp { get; set; }
+		[UnityEngine.SerializeField]
+		private float rotationLimitUp;
 		
-		[field: UnityEngine.SerializeField]
-		public float rotationLimitDown { get; set; }
+		[UnityEngine.SerializeField]
+		private float rotationLimitDown;
 		
-		[field: UnityEngine.SerializeField]
-		public float rangeDiscovery { get; set; }
+		[UnityEngine.SerializeField]
+		private float rangeDiscovery;
 		
-		[field: UnityEngine.SerializeField]
-		public float rangeLeftRightDiscovery { get; set; }
+		[UnityEngine.SerializeField]
+		private float rangeLeftRightDiscovery;
 		
-		[field: UnityEngine.SerializeField]
-		public float rangeUpDownDiscovery { get; set; }
+		[UnityEngine.SerializeField]
+		private float rangeUpDownDiscovery;
 		
-		[field: UnityEngine.SerializeField]
-		public float rangeDim { get; set; }
+		[UnityEngine.SerializeField]
+		private float rangeDim;
 		
-		[field: UnityEngine.SerializeField]
-		public float rangeLeftRightDim { get; set; }
+		[UnityEngine.SerializeField]
+		private float rangeLeftRightDim;
 		
-		[field: UnityEngine.SerializeField]
-		public float rangeUpDownDim { get; set; }
+		[UnityEngine.SerializeField]
+		private float rangeUpDownDim;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -61,15 +62,15 @@ namespace Tpp.GameKit
 		{
 			if (Fox.Core.DataElement.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppPermanentGimmickSearchLightParameter", typeof(TppPermanentGimmickSearchLightParameter), Fox.Core.DataElement.ClassInfo, 64, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotationLimitLeftRight", Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotationLimitUp", Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotationLimitDown", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeDiscovery", Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeLeftRightDiscovery", Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeUpDownDiscovery", Fox.Core.PropertyInfo.PropertyType.Float, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeDim", Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeLeftRightDim", Fox.Core.PropertyInfo.PropertyType.Float, 84, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeUpDownDim", Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotationLimitLeftRight", Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotationLimitUp", Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotationLimitDown", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeDiscovery", Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeLeftRightDiscovery", Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeUpDownDiscovery", Fox.Core.PropertyInfo.PropertyType.Float, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeDim", Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeLeftRightDim", Fox.Core.PropertyInfo.PropertyType.Float, 84, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rangeUpDownDim", Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

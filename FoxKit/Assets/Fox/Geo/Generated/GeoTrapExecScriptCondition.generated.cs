@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Geo
@@ -16,17 +17,17 @@ namespace Fox.Geo
 	public partial class GeoTrapExecScriptCondition : Fox.Geo.GeoCheckModuleCondition
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public bool execEnter { get; set; }
+		[UnityEngine.SerializeField]
+		private bool execEnter;
 		
-		[field: UnityEngine.SerializeField]
-		public bool execStay { get; set; }
+		[UnityEngine.SerializeField]
+		private bool execStay;
 		
-		[field: UnityEngine.SerializeField]
-		public bool execExit { get; set; }
+		[UnityEngine.SerializeField]
+		private bool execExit;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Path execScriptPath { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Path execScriptPath;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -46,10 +47,10 @@ namespace Fox.Geo
 		{
 			if (Fox.Geo.GeoCheckModuleCondition.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GeoTrapExecScriptCondition", typeof(GeoTrapExecScriptCondition), Fox.Geo.GeoCheckModuleCondition.ClassInfo, 0, "Trap", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("execEnter", Fox.Core.PropertyInfo.PropertyType.Bool, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("execStay", Fox.Core.PropertyInfo.PropertyType.Bool, 369, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("execExit", Fox.Core.PropertyInfo.PropertyType.Bool, 370, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("execScriptPath", Fox.Core.PropertyInfo.PropertyType.Path, 376, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("execEnter", Fox.Core.PropertyInfo.PropertyType.Bool, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("execStay", Fox.Core.PropertyInfo.PropertyType.Bool, 369, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("execExit", Fox.Core.PropertyInfo.PropertyType.Bool, 370, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("execScriptPath", Fox.Core.PropertyInfo.PropertyType.Path, 376, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

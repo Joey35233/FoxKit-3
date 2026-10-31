@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameKit
@@ -16,77 +17,77 @@ namespace Fox.GameKit
 	public partial class Camera : Fox.Core.Entity
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected string priorityName { get; set; }
+		[UnityEngine.SerializeField]
+		private string priorityName;
 		
-		[field: UnityEngine.SerializeField]
-		protected bool enable { get; set; }
+		[UnityEngine.SerializeField]
+		private bool enable;
 		
-		[field: UnityEngine.SerializeField]
-		protected UnityEngine.Quaternion transform_rotation_quat { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Quaternion transform_rotation_quat;
 		
-		[field: UnityEngine.SerializeField]
-		protected UnityEngine.Vector3 transform_translation { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 transform_translation;
 		
-		[field: UnityEngine.SerializeField]
-		protected float focusDistance { get; set; }
+		[UnityEngine.SerializeField]
+		private float focusDistance;
 		
-		[field: UnityEngine.SerializeField]
-		public float focalLength { get; set; }
+		[UnityEngine.SerializeField]
+		private float focalLength;
 		
-		[field: UnityEngine.SerializeField]
-		protected bool useEffectiveFocalLength { get; set; }
+		[UnityEngine.SerializeField]
+		private bool useEffectiveFocalLength;
 		
-		[field: UnityEngine.SerializeField]
-		protected float effectiveFocalLengthRatio { get; set; }
+		[UnityEngine.SerializeField]
+		private float effectiveFocalLengthRatio;
 		
-		[field: UnityEngine.SerializeField]
-		public float aperture { get; set; }
+		[UnityEngine.SerializeField]
+		private float aperture;
 		
-		[field: UnityEngine.SerializeField]
-		protected UnityEngine.Quaternion listenerVirtualTrans_rotation_quat { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Quaternion listenerVirtualTrans_rotation_quat;
 		
-		[field: UnityEngine.SerializeField]
-		protected UnityEngine.Vector3 listenerVirtualTrans_translation { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 listenerVirtualTrans_translation;
 		
-		[field: UnityEngine.SerializeField]
-		protected bool listenerVirtualFlag { get; set; }
+		[UnityEngine.SerializeField]
+		private bool listenerVirtualFlag;
 		
-		[field: UnityEngine.SerializeField]
-		public float nearClipDistance { get; set; }
+		[UnityEngine.SerializeField]
+		private float nearClipDistance;
 		
-		[field: UnityEngine.SerializeField]
-		public float farClipDistance { get; set; }
+		[UnityEngine.SerializeField]
+		private float farClipDistance;
 		
-		[field: UnityEngine.SerializeField]
-		protected float shutterSpeed { get; set; }
+		[UnityEngine.SerializeField]
+		private float shutterSpeed;
 		
-		[field: UnityEngine.SerializeField]
-		protected bool useDefaultExposureValue { get; set; }
+		[UnityEngine.SerializeField]
+		private bool useDefaultExposureValue;
 		
-		[field: UnityEngine.SerializeField]
-		protected float minExposure { get; set; }
+		[UnityEngine.SerializeField]
+		private float minExposure;
 		
-		[field: UnityEngine.SerializeField]
-		protected float maxExposure { get; set; }
+		[UnityEngine.SerializeField]
+		private float maxExposure;
 		
-		[field: UnityEngine.SerializeField]
-		protected float exposureCompensation { get; set; }
+		[UnityEngine.SerializeField]
+		private float exposureCompensation;
 		
-		[field: UnityEngine.SerializeField]
-		protected bool useDefaultBloom { get; set; }
+		[UnityEngine.SerializeField]
+		private bool useDefaultBloom;
 		
-		[field: UnityEngine.SerializeField]
-		protected float bloomSize { get; set; }
+		[UnityEngine.SerializeField]
+		private float bloomSize;
 		
-		[field: UnityEngine.SerializeField]
-		protected float bloomWeight { get; set; }
+		[UnityEngine.SerializeField]
+		private float bloomWeight;
 		
-		[field: UnityEngine.SerializeField]
-		protected float bloomBrightnessExtraction { get; set; }
+		[UnityEngine.SerializeField]
+		private float bloomBrightnessExtraction;
 		
-		[field: UnityEngine.SerializeField]
-		protected bool cancelCameraBlur { get; set; }
+		[UnityEngine.SerializeField]
+		private bool cancelCameraBlur;
 		
 		public float keyValue { get => keyValue_Get(); set => keyValue_Set(value); }
 		private partial float keyValue_Get();
@@ -110,31 +111,31 @@ namespace Fox.GameKit
 		{
 			if (Fox.Core.Entity.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("Camera", typeof(Camera), Fox.Core.Entity.ClassInfo, 0, null, 10);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("priorityName", Fox.Core.PropertyInfo.PropertyType.String, 264, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("enable", Fox.Core.PropertyInfo.PropertyType.Bool, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("transform_rotation_quat", Fox.Core.PropertyInfo.PropertyType.Quat, 288, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("transform_translation", Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("focusDistance", Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("focalLength", Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("useEffectiveFocalLength", Fox.Core.PropertyInfo.PropertyType.Bool, 227, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("effectiveFocalLengthRatio", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("aperture", Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("listenerVirtualTrans_rotation_quat", Fox.Core.PropertyInfo.PropertyType.Quat, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("listenerVirtualTrans_translation", Fox.Core.PropertyInfo.PropertyType.Vector3, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("listenerVirtualFlag", Fox.Core.PropertyInfo.PropertyType.Bool, 226, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("nearClipDistance", Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("farClipDistance", Fox.Core.PropertyInfo.PropertyType.Float, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shutterSpeed", Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("useDefaultExposureValue", Fox.Core.PropertyInfo.PropertyType.Bool, 229, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("minExposure", Fox.Core.PropertyInfo.PropertyType.Float, 84, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxExposure", Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("exposureCompensation", Fox.Core.PropertyInfo.PropertyType.Float, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("useDefaultBloom", Fox.Core.PropertyInfo.PropertyType.Bool, 230, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bloomSize", Fox.Core.PropertyInfo.PropertyType.Float, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bloomWeight", Fox.Core.PropertyInfo.PropertyType.Float, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bloomBrightnessExtraction", Fox.Core.PropertyInfo.PropertyType.Float, 100, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cancelCameraBlur", Fox.Core.PropertyInfo.PropertyType.Bool, 228, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("keyValue", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("priorityName", Fox.Core.PropertyInfo.PropertyType.String, 264, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("enable", Fox.Core.PropertyInfo.PropertyType.Bool, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("transform_rotation_quat", Fox.Core.PropertyInfo.PropertyType.Quat, 288, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("transform_translation", Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("focusDistance", Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("focalLength", Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("useEffectiveFocalLength", Fox.Core.PropertyInfo.PropertyType.Bool, 227, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("effectiveFocalLengthRatio", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("aperture", Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("listenerVirtualTrans_rotation_quat", Fox.Core.PropertyInfo.PropertyType.Quat, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("listenerVirtualTrans_translation", Fox.Core.PropertyInfo.PropertyType.Vector3, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("listenerVirtualFlag", Fox.Core.PropertyInfo.PropertyType.Bool, 226, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("nearClipDistance", Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("farClipDistance", Fox.Core.PropertyInfo.PropertyType.Float, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shutterSpeed", Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("useDefaultExposureValue", Fox.Core.PropertyInfo.PropertyType.Bool, 229, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("minExposure", Fox.Core.PropertyInfo.PropertyType.Float, 84, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxExposure", Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("exposureCompensation", Fox.Core.PropertyInfo.PropertyType.Float, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("useDefaultBloom", Fox.Core.PropertyInfo.PropertyType.Bool, 230, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bloomSize", Fox.Core.PropertyInfo.PropertyType.Float, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bloomWeight", Fox.Core.PropertyInfo.PropertyType.Float, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bloomBrightnessExtraction", Fox.Core.PropertyInfo.PropertyType.Float, 100, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cancelCameraBlur", Fox.Core.PropertyInfo.PropertyType.Bool, 228, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("keyValue", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

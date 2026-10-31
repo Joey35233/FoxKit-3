@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Core
@@ -16,11 +17,11 @@ namespace Fox.Core
 	public partial class ColorArrayPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<UnityEngine.Color> originalValues { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Color>();
+		[UnityEngine.SerializeField]
+		private List<UnityEngine.Color> originalValues = new List<UnityEngine.Color>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<UnityEngine.Color> values { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Color>();
+		[UnityEngine.SerializeField]
+		private List<UnityEngine.Color> values = new List<UnityEngine.Color>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Core
 		{
 			if (Fox.Core.PropertyDifference.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("ColorArrayPropertyDifference", typeof(ColorArrayPropertyDifference), Fox.Core.PropertyDifference.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("originalValues", Fox.Core.PropertyInfo.PropertyType.Color, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("values", Fox.Core.PropertyInfo.PropertyType.Color, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("originalValues", Fox.Core.PropertyInfo.PropertyType.Color, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("values", Fox.Core.PropertyInfo.PropertyType.Color, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Sdx
@@ -16,11 +17,11 @@ namespace Fox.Sdx
 	public partial class SoundPackage : Fox.Core.Data
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.FilePtr soundDataFile { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.FilePtr soundDataFile;
 		
-		[field: UnityEngine.SerializeField]
-		public bool syncLoad { get; set; }
+		[UnityEngine.SerializeField]
+		private bool syncLoad;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Sdx
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("SoundPackage", typeof(SoundPackage), Fox.Core.Data.ClassInfo, 96, "Sound", 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("soundDataFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("syncLoad", Fox.Core.PropertyInfo.PropertyType.Bool, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("soundDataFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("syncLoad", Fox.Core.PropertyInfo.PropertyType.Bool, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

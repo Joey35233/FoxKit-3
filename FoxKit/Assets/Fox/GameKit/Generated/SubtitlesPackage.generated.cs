@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameKit
@@ -16,14 +17,14 @@ namespace Fox.GameKit
 	public partial class SubtitlesPackage : Fox.Core.Data
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Core.FilePtr> subtitlesPackage { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Core.FilePtr> subtitlesPackage = new List<Fox.Core.FilePtr>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Core.FilePtr> subtitlesStreamData { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Core.FilePtr> subtitlesStreamData = new List<Fox.Core.FilePtr>();
 		
-		[field: UnityEngine.SerializeField]
-		protected CsSystem.Collections.Generic.List<Fox.Path> subtitlesStreamPath { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Path>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Path> subtitlesStreamPath = new List<Fox.Path>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -43,9 +44,9 @@ namespace Fox.GameKit
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("SubtitlesPackage", typeof(SubtitlesPackage), Fox.Core.Data.ClassInfo, 112, "Subtitles", 2);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitlesPackage", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitlesStreamData", Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitlesStreamPath", Fox.Core.PropertyInfo.PropertyType.Path, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitlesPackage", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitlesStreamData", Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitlesStreamPath", Fox.Core.PropertyInfo.PropertyType.Path, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

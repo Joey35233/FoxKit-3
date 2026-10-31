@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameKit
@@ -16,8 +17,8 @@ namespace Fox.GameKit
 	public partial class TexturePackLoadConditioner : Fox.Core.Data
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.Path texturePackPath { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Path texturePackPath;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.GameKit
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TexturePackLoadConditioner", typeof(TexturePackLoadConditioner), Fox.Core.Data.ClassInfo, 72, "Texture", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("texturePackPath", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("texturePackPath", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

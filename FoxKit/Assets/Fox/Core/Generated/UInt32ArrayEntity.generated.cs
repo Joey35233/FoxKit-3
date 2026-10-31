@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Core
@@ -16,8 +17,8 @@ namespace Fox.Core
 	public partial class UInt32ArrayEntity : Fox.Core.Entity
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<uint> array { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
+		[UnityEngine.SerializeField]
+		private List<uint> array = new List<uint>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Core
 		{
 			if (Fox.Core.Entity.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("UInt32ArrayEntity", typeof(UInt32ArrayEntity), Fox.Core.Entity.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("array", Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("array", Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

@@ -17,16 +17,17 @@ namespace Fox.EdGameService
         protected override void DrawExtraSceneGUI()
         {
             base.DrawExtraSceneGUI();
+
             
             Vector3 nodePosition = Target.transform.position;
 
-            for (int i = 0; i < Target.events.Count; i++)
+            for (int i = 0; i < Target.Events.Count; i++)
             {
-                GsRouteDataNodeEvent @event = Target.events[i];
+                GsRouteDataNodeEvent @event = Target.Events[i];
                 if (@event == null)
                     continue;
                 
-                Quaternion dir = @event.dir;
+                Quaternion dir = @event.Dir;
 
                 float handleSize = HandleUtility.GetHandleSize(nodePosition);
                 
@@ -42,7 +43,7 @@ namespace Fox.EdGameService
                 if (EditorGUI.EndChangeCheck())
                 {
                     Undo.RecordObject(@event, "Set Node Event Direction");
-                    @event.dir = newRot;
+                    @event.Dir = newRot;
                 }
             }
         }
@@ -97,9 +98,10 @@ namespace Fox.EdGameService
         {
             section.Clear();
 
-            for (int i = 0; i < Target.events.Count; i++)
+
+            for (int i = 0; i < Target.Events.Count; i++)
             {
-                string currentName = Target.events[i].id;
+                string currentName = Target.Events[i].Id;
 
                 int selected = GameServiceModule.RouteNodeEvents.IndexOf(currentName);
 

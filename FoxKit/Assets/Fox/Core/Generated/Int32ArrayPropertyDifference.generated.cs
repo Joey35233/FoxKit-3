@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Core
@@ -16,11 +17,11 @@ namespace Fox.Core
 	public partial class Int32ArrayPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<int> originalValues { get; private set; } = new CsSystem.Collections.Generic.List<int>();
+		[UnityEngine.SerializeField]
+		private List<int> originalValues = new List<int>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<int> values { get; private set; } = new CsSystem.Collections.Generic.List<int>();
+		[UnityEngine.SerializeField]
+		private List<int> values = new List<int>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Core
 		{
 			if (Fox.Core.PropertyDifference.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("Int32ArrayPropertyDifference", typeof(Int32ArrayPropertyDifference), Fox.Core.PropertyDifference.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("originalValues", Fox.Core.PropertyInfo.PropertyType.Int32, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("values", Fox.Core.PropertyInfo.PropertyType.Int32, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("originalValues", Fox.Core.PropertyInfo.PropertyType.Int32, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("values", Fox.Core.PropertyInfo.PropertyType.Int32, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

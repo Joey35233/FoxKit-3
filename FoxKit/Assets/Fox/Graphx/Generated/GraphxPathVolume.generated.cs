@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Graphx
@@ -16,8 +17,8 @@ namespace Fox.Graphx
 	public partial class GraphxPathVolume : Fox.Graphx.GraphxPathData
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Vector3 topPos { get; set; }
+		[UnityEngine.SerializeField]
+		protected UnityEngine.Vector3 topPos;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Graphx
 		{
 			if (Fox.Graphx.GraphxPathData.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GraphxPathVolume", typeof(GraphxPathVolume), Fox.Graphx.GraphxPathData.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("topPos", Fox.Core.PropertyInfo.PropertyType.Vector3, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("topPos", Fox.Core.PropertyInfo.PropertyType.Vector3, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

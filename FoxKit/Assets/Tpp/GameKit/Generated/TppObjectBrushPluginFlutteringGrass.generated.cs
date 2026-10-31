@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.GameKit
@@ -16,17 +17,17 @@ namespace Tpp.GameKit
 	public partial class TppObjectBrushPluginFlutteringGrass : Fox.GameKit.ObjectBrushPluginClone
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public float baseCycleSpeedRate { get; set; }
+		[UnityEngine.SerializeField]
+		private float baseCycleSpeedRate;
 		
-		[field: UnityEngine.SerializeField]
-		public float windAmplitude { get; set; }
+		[UnityEngine.SerializeField]
+		private float windAmplitude;
 		
-		[field: UnityEngine.SerializeField]
-		public float windOffsetFactor { get; set; }
+		[UnityEngine.SerializeField]
+		private float windOffsetFactor;
 		
-		[field: UnityEngine.SerializeField]
-		public bool windDirYAxisFixZero { get; set; }
+		[UnityEngine.SerializeField]
+		private bool windDirYAxisFixZero;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -46,10 +47,10 @@ namespace Tpp.GameKit
 		{
 			if (Fox.GameKit.ObjectBrushPluginClone.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppObjectBrushPluginFlutteringGrass", typeof(TppObjectBrushPluginFlutteringGrass), Fox.GameKit.ObjectBrushPluginClone.ClassInfo, 136, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("baseCycleSpeedRate", Fox.Core.PropertyInfo.PropertyType.Float, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windAmplitude", Fox.Core.PropertyInfo.PropertyType.Float, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windOffsetFactor", Fox.Core.PropertyInfo.PropertyType.Float, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windDirYAxisFixZero", Fox.Core.PropertyInfo.PropertyType.Bool, 196, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("baseCycleSpeedRate", Fox.Core.PropertyInfo.PropertyType.Float, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windAmplitude", Fox.Core.PropertyInfo.PropertyType.Float, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windOffsetFactor", Fox.Core.PropertyInfo.PropertyType.Float, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windDirYAxisFixZero", Fox.Core.PropertyInfo.PropertyType.Bool, 196, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

@@ -19,7 +19,7 @@ namespace Fox.GameService
             for (uint i = 0; i < routeCount; i++)
             {
                 GsRouteData route = routes[(int)i];
-                int routeNodeCount = route.nodes.Count;
+                int routeNodeCount = route.Nodes.Count;
 
                 Vector3[] positions = new Vector3[routeNodeCount];
                 RouteFile.EventSpan[] spans = new RouteFile.EventSpan[routeNodeCount];
@@ -29,13 +29,13 @@ namespace Fox.GameService
                 for (int j = 0; j < routeNodeCount; j++)
                 {
                     // Takes the GsRouteData (the parent of the nodes) Transform into account.
-                    positions[j] = route.transform.TransformPoint(route.nodes[j].position);
+                    positions[j] = route.transform.TransformPoint(route.Nodes[j].Position);
 
                     ushort start = running;
 
-                    if (j < route.edges.Count)
+                    if (j < route.Edges.Count)
                     {
-                        GsRouteDataEdgeEvent edgeEvent = ((GsRouteDataEdge)route.edges[j]).@event;
+                        GsRouteDataEdgeEvent edgeEvent = ((GsRouteDataEdge)route.Edges[j]).Event;
                         if (edgeEvent != null)
                         {
                             events.Add(edgeEvent);
@@ -43,7 +43,7 @@ namespace Fox.GameService
                         }
                     }
 
-                    foreach (GsRouteDataNodeEvent nodeEvent in ((GsRouteDataNode)route.nodes[j]).events)
+                    foreach (GsRouteDataNodeEvent nodeEvent in ((GsRouteDataNode)route.Nodes[j]).Events)
                     {
                         events.Add(nodeEvent);
                         running++;
@@ -141,16 +141,16 @@ namespace Fox.GameService
 
         private static unsafe void WriteEvent(RouteFile.EventDef* eventDef, GsRouteDataEvent routeEvent)
         {
-            eventDef->Id = new StrCode32(routeEvent.id);
+            eventDef->Id = new StrCode32(routeEvent.Id);
             eventDef->Type = routeEvent is GsRouteDataNodeEvent ? RouteEventType.Node : RouteEventType.Edge;
             eventDef->AimTargetType = GetAimPointType(routeEvent.aimPoint);
             eventDef->BodySectionType = RouteBodySectionType.Head;
 
             if (routeEvent is GsRouteDataNodeEvent nodeEvent)
             {
-                eventDef->IsLoop = nodeEvent.isLoop;
-                eventDef->EncodedTime = QuantizeTime(nodeEvent.time);
-                eventDef->EncodedDir = QuantizeDirection(nodeEvent.dir);
+                eventDef->IsLoop = nodeEvent.IsLoop;
+                eventDef->EncodedTime = QuantizeTime(nodeEvent.Time);
+                eventDef->EncodedDir = QuantizeDirection(nodeEvent.Dir);
             }
 
             byte* aimPointData = eventDef->GetAimPointData(RouteFile.FormatVersion.V3);
@@ -165,7 +165,7 @@ namespace Fox.GameService
         {
             if (aimPoint is GsRouteDataEventAimStaticPoint staticPoint)
             {
-                *(Vector3*)aimPointData = Math.UnityToFoxVector3(staticPoint.position);
+                *(Vector3*)aimPointData = Math.UnityToFoxVector3(staticPoint.Position);
                 return;
             }
 

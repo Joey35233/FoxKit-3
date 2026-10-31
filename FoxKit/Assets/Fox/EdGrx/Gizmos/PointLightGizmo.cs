@@ -13,7 +13,7 @@ namespace Fox.EdGrx
         [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected | GizmoType.Pickable)]
         private static void DrawGizmo(PointLight pointLight, GizmoType gizmoType)
         {
-            DrawGizmos(pointLight.transform, gizmoType, pointLight.outerRange);
+            DrawGizmos(pointLight.transform, gizmoType, pointLight.OuterRange);
         }
 
         public static void DrawGizmos(Transform transform, GizmoType gizmoType, float outerRange)

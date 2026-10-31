@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.System
@@ -16,11 +17,11 @@ namespace Tpp.System
 	public partial class TppCheckPointLocator : Fox.Core.Locator
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public ushort checkPointId { get; set; }
+		[UnityEngine.SerializeField]
+		private ushort checkPointId;
 		
-		[field: UnityEngine.SerializeField]
-		public bool usePlayerRotation { get; set; }
+		[UnityEngine.SerializeField]
+		private bool usePlayerRotation;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Tpp.System
 		{
 			if (Fox.Core.Locator.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppCheckPointLocator", typeof(TppCheckPointLocator), Fox.Core.Locator.ClassInfo, 0, null, 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkPointId", Fox.Core.PropertyInfo.PropertyType.UInt16, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("usePlayerRotation", Fox.Core.PropertyInfo.PropertyType.Bool, 322, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkPointId", Fox.Core.PropertyInfo.PropertyType.UInt16, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("usePlayerRotation", Fox.Core.PropertyInfo.PropertyType.Bool, 322, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Fox.Core.Utils;
 using UnityEngine;
 
@@ -6,6 +8,15 @@ namespace Fox.Tactical
     [System.Serializable]
     public partial class GkTacticalAction : Fox.Core.TransformData
     {
+        public uint Attribute { get => attribute; set => attribute = value; }
+        public List<string> AttributeNames => attributeNames;
+        public List<Fox.Tactical.GkTacticalActionEdge> Edges => edges;
+        public bool Enable { get => enable; set => enable = value; }
+        public bool EnableInGame { get => enableInGame; set => enableInGame = value; }
+        public string UserId { get => userId; set => userId = value; }
+        public List<Fox.Tactical.GkTacticalActionWaypoint> Waypoints => waypoints;
+        public string WorldName { get => worldName; set => worldName = value; }
+
         public override void Reset()
         {
             base.Reset();
@@ -37,7 +48,7 @@ namespace Fox.Tactical
                 if (waypoint is null)
                     return;
 
-                globalWaypointPositions[i] = this.transform.TransformPoint(new Vector3(waypoint.position.x, waypoint.position.y, waypoint.position.z));
+                globalWaypointPositions[i] = this.transform.TransformPoint(new Vector3(waypoint.Position.x, waypoint.Position.y, waypoint.Position.z));
 
                 Gizmos.color = isSelected? WaypointColor : WaypointColor * 0.5f;
 

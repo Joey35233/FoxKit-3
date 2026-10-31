@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Geox
@@ -16,11 +17,11 @@ namespace Fox.Geox
 	public partial class GeoxDynamicBoundingVolumeActivator : Fox.Core.TransformData
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Vector3 gridSize { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 gridSize;
 		
-		[field: UnityEngine.SerializeField]
-		public uint allocateSize { get; set; }
+		[UnityEngine.SerializeField]
+		private uint allocateSize;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Geox
 		{
 			if (Fox.Core.TransformData.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GeoxDynamicBoundingVolumeActivator", typeof(GeoxDynamicBoundingVolumeActivator), Fox.Core.TransformData.ClassInfo, 288, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gridSize", Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("allocateSize", Fox.Core.PropertyInfo.PropertyType.UInt32, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gridSize", Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("allocateSize", Fox.Core.PropertyInfo.PropertyType.UInt32, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

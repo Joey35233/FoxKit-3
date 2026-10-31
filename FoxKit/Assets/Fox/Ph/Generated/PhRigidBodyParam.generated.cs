@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Ph
@@ -16,68 +17,68 @@ namespace Fox.Ph
 	public partial class PhRigidBodyParam : Fox.Core.Entity
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected UnityEngine.Vector3 defaultPosition { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 defaultPosition;
 		
-		[field: UnityEngine.SerializeField]
-		protected UnityEngine.Quaternion defaultRotation { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Quaternion defaultRotation;
 		
-		[field: UnityEngine.SerializeField]
-		protected float mass { get; set; }
+		[UnityEngine.SerializeField]
+		private float mass;
 		
-		[field: UnityEngine.SerializeField]
-		protected float friction { get; set; }
+		[UnityEngine.SerializeField]
+		private float friction;
 		
-		[field: UnityEngine.SerializeField]
-		protected float restitution { get; set; }
+		[UnityEngine.SerializeField]
+		private float restitution;
 		
-		[field: UnityEngine.SerializeField]
-		protected float maxLinearVelocity { get; set; }
+		[UnityEngine.SerializeField]
+		private float maxLinearVelocity;
 		
-		[field: UnityEngine.SerializeField]
-		protected float maxAngularVelocity { get; set; }
+		[UnityEngine.SerializeField]
+		private float maxAngularVelocity;
 		
-		[field: UnityEngine.SerializeField]
-		protected float linearVelocityDamp { get; set; }
+		[UnityEngine.SerializeField]
+		private float linearVelocityDamp;
 		
-		[field: UnityEngine.SerializeField]
-		protected float angularVelocityDamp { get; set; }
+		[UnityEngine.SerializeField]
+		private float angularVelocityDamp;
 		
-		[field: UnityEngine.SerializeField]
-		protected float permittedDepth { get; set; }
+		[UnityEngine.SerializeField]
+		private float permittedDepth;
 		
-		[field: UnityEngine.SerializeField]
-		protected bool sleepEnable { get; set; }
+		[UnityEngine.SerializeField]
+		private bool sleepEnable;
 		
-		[field: UnityEngine.SerializeField]
-		protected float sleepLinearVelocityTh { get; set; }
+		[UnityEngine.SerializeField]
+		private float sleepLinearVelocityTh;
 		
-		[field: UnityEngine.SerializeField]
-		protected float sleepAngularVelocityTh { get; set; }
+		[UnityEngine.SerializeField]
+		private float sleepAngularVelocityTh;
 		
-		[field: UnityEngine.SerializeField]
-		protected float sleepTimeTh { get; set; }
+		[UnityEngine.SerializeField]
+		private float sleepTimeTh;
 		
-		[field: UnityEngine.SerializeField]
-		protected ushort collisionGroup { get; set; }
+		[UnityEngine.SerializeField]
+		private ushort collisionGroup;
 		
-		[field: UnityEngine.SerializeField]
-		protected ushort collisionType { get; set; }
+		[UnityEngine.SerializeField]
+		private ushort collisionType;
 		
-		[field: UnityEngine.SerializeField]
-		protected uint collisionId { get; set; }
+		[UnityEngine.SerializeField]
+		private uint collisionId;
 		
-		[field: UnityEngine.SerializeField]
-		protected UnityEngine.Vector3 centerOfMassOffset { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 centerOfMassOffset;
 		
-		[field: UnityEngine.SerializeField]
-		protected PhRigidBodyType motionType { get; set; }
+		[UnityEngine.SerializeField]
+		private PhRigidBodyType motionType;
 		
-		[field: UnityEngine.SerializeField]
-		protected string material { get; set; }
+		[UnityEngine.SerializeField]
+		private string material;
 		
-		[field: UnityEngine.SerializeField]
-		protected bool isNoGravity { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isNoGravity;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -97,27 +98,27 @@ namespace Fox.Ph
 		{
 			if (Fox.Core.Entity.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("PhRigidBodyParam", typeof(PhRigidBodyParam), Fox.Core.Entity.ClassInfo, 320, "Ph", 5);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("defaultPosition", Fox.Core.PropertyInfo.PropertyType.Vector3, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("defaultRotation", Fox.Core.PropertyInfo.PropertyType.Quat, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("mass", Fox.Core.PropertyInfo.PropertyType.Float, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("friction", Fox.Core.PropertyInfo.PropertyType.Float, 108, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("restitution", Fox.Core.PropertyInfo.PropertyType.Float, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxLinearVelocity", Fox.Core.PropertyInfo.PropertyType.Float, 116, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxAngularVelocity", Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("linearVelocityDamp", Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("angularVelocityDamp", Fox.Core.PropertyInfo.PropertyType.Float, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("permittedDepth", Fox.Core.PropertyInfo.PropertyType.Float, 132, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sleepEnable", Fox.Core.PropertyInfo.PropertyType.Bool, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sleepLinearVelocityTh", Fox.Core.PropertyInfo.PropertyType.Float, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sleepAngularVelocityTh", Fox.Core.PropertyInfo.PropertyType.Float, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sleepTimeTh", Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionGroup", Fox.Core.PropertyInfo.PropertyType.UInt16, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionType", Fox.Core.PropertyInfo.PropertyType.UInt16, 150, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionId", Fox.Core.PropertyInfo.PropertyType.UInt32, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("centerOfMassOffset", Fox.Core.PropertyInfo.PropertyType.Vector3, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("motionType", Fox.Core.PropertyInfo.PropertyType.Int32, 156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, typeof(PhRigidBodyType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("material", Fox.Core.PropertyInfo.PropertyType.String, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isNoGravity", Fox.Core.PropertyInfo.PropertyType.Bool, 161, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("defaultPosition", Fox.Core.PropertyInfo.PropertyType.Vector3, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("defaultRotation", Fox.Core.PropertyInfo.PropertyType.Quat, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("mass", Fox.Core.PropertyInfo.PropertyType.Float, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("friction", Fox.Core.PropertyInfo.PropertyType.Float, 108, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("restitution", Fox.Core.PropertyInfo.PropertyType.Float, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxLinearVelocity", Fox.Core.PropertyInfo.PropertyType.Float, 116, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxAngularVelocity", Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("linearVelocityDamp", Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("angularVelocityDamp", Fox.Core.PropertyInfo.PropertyType.Float, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("permittedDepth", Fox.Core.PropertyInfo.PropertyType.Float, 132, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sleepEnable", Fox.Core.PropertyInfo.PropertyType.Bool, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sleepLinearVelocityTh", Fox.Core.PropertyInfo.PropertyType.Float, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sleepAngularVelocityTh", Fox.Core.PropertyInfo.PropertyType.Float, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sleepTimeTh", Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionGroup", Fox.Core.PropertyInfo.PropertyType.UInt16, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionType", Fox.Core.PropertyInfo.PropertyType.UInt16, 150, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionId", Fox.Core.PropertyInfo.PropertyType.UInt32, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("centerOfMassOffset", Fox.Core.PropertyInfo.PropertyType.Vector3, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("motionType", Fox.Core.PropertyInfo.PropertyType.Int32, 156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(PhRigidBodyType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("material", Fox.Core.PropertyInfo.PropertyType.String, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isNoGravity", Fox.Core.PropertyInfo.PropertyType.Bool, 161, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

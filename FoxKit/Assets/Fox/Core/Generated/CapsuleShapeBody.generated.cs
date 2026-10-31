@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Core
@@ -16,11 +17,11 @@ namespace Fox.Core
 	public partial class CapsuleShapeBody : Fox.Core.ShapeDataBody
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected UnityEngine.Vector4 shape_p0 { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector4 shape_p0;
 		
-		[field: UnityEngine.SerializeField]
-		protected UnityEngine.Vector4 shape_p1 { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector4 shape_p1;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Core
 		{
 			if (Fox.Core.ShapeDataBody.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("CapsuleShapeBody", typeof(CapsuleShapeBody), Fox.Core.ShapeDataBody.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shape_p0", Fox.Core.PropertyInfo.PropertyType.Vector4, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shape_p1", Fox.Core.PropertyInfo.PropertyType.Vector4, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shape_p0", Fox.Core.PropertyInfo.PropertyType.Vector4, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shape_p1", Fox.Core.PropertyInfo.PropertyType.Vector4, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Nav
@@ -16,8 +17,8 @@ namespace Fox.Nav
 	public partial class NavNavigationGraphHandleEntity : Fox.Nav.NavUnitHandleEntity
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected uint subId { get; set; }
+		[UnityEngine.SerializeField]
+		private uint subId;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Nav
 		{
 			if (Fox.Nav.NavUnitHandleEntity.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("NavNavigationGraphHandleEntity", typeof(NavNavigationGraphHandleEntity), Fox.Nav.NavUnitHandleEntity.ClassInfo, 0, "Nav", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subId", Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subId", Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

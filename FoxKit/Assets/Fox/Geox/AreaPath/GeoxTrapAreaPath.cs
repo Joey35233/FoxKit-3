@@ -24,7 +24,7 @@ namespace Fox.Geox
 
             triggerTrap.name = header.Name.ToString();
             triggerTrap.enable = true;
-            TagUtils.AddEnumTags<GeoTriggerTrap.Tags>(triggerTrap.groupTags, (ulong)header.GetTags<GeoTriggerTrap.Tags>());
+            TagUtils.AddEnumTags<GeoTriggerTrap.Tags>(triggerTrap.GroupTags, (ulong)header.GetTags<GeoTriggerTrap.Tags>());
 
             for (int i = 0; i < header.PrimCount; i++)
             {
@@ -50,10 +50,10 @@ namespace Fox.Geox
                         GraphxSpatialGraphDataNode node = new GameObject().AddComponent<GraphxSpatialGraphDataNode>();
                         node.SetOwner(trapAreaPath);
                         node.name = $"{node.GetType().Name}{j:D4}";
-                        node.position = reader.ReadPositionF();
-                        node.transform.position = node.position;
+                        node.Position = reader.ReadPositionF();
+                        node.transform.position = node.Position;
 
-                        trapAreaPath.nodes.Add(node);
+                        trapAreaPath.Nodes.Add(node);
                     }
 
                     GraphxSpatialGraphDataNode prevNode;
@@ -64,31 +64,31 @@ namespace Fox.Geox
                         loopEdge.SetOwner(trapAreaPath);
                         loopEdge.name = $"{loopEdge.GetType().Name}{0:D4}";
 
-                        prevNode = trapAreaPath.nodes[(int)(vertexCount - 1)];
-                        nextNode = trapAreaPath.nodes[0];
-                        loopEdge.nextNode = nextNode;
-                        nextNode.inlinks.Add(loopEdge.nextNode);
-                        loopEdge.prevNode = prevNode;
-                        prevNode.outlinks.Add(loopEdge.prevNode);
+                        prevNode = trapAreaPath.Nodes[(int)(vertexCount - 1)];
+                        nextNode = trapAreaPath.Nodes[0];
+                        loopEdge.NextNode = nextNode;
+                        nextNode.Inlinks.Add(loopEdge.NextNode);
+                        loopEdge.PrevNode = prevNode;
+                        prevNode.Outlinks.Add(loopEdge.PrevNode);
 
-                        trapAreaPath.edges.Add(loopEdge);
+                        trapAreaPath.Edges.Add(loopEdge);
                     }
 
                     for (int j = 0; j < vertexCount - 1; j++)
                     {
-                        prevNode = trapAreaPath.nodes[j];
-                        nextNode = trapAreaPath.nodes[j + 1];
+                        prevNode = trapAreaPath.Nodes[j];
+                        nextNode = trapAreaPath.Nodes[j + 1];
 
                         GraphxSpatialGraphDataEdge edge = new GameObject().AddComponent<GraphxSpatialGraphDataEdge>();
                         edge.SetOwner(trapAreaPath);
                         edge.name = $"{edge.GetType().Name}{j+1:D4}";
 
-                        edge.prevNode = prevNode;
-                        prevNode.outlinks.Add(edge.prevNode);
-                        edge.nextNode = nextNode;
-                        nextNode.outlinks.Add(edge.nextNode);
+                        edge.PrevNode = prevNode;
+                        prevNode.Outlinks.Add(edge.PrevNode);
+                        edge.NextNode = nextNode;
+                        nextNode.Outlinks.Add(edge.NextNode);
 
-                        trapAreaPath.edges.Add(edge);
+                        trapAreaPath.Edges.Add(edge);
                     }
                 }
             }
@@ -100,12 +100,12 @@ namespace Fox.Geox
 
         private void OnValidate()
         {
-            if (nodes.Count > MaxNodeCount)
+            if (Nodes.Count > MaxNodeCount)
             {
                 Debug.Log("TrapAreaPath has a max node count of 256 per fox::geox::GeoxTrapAreaFunctor::GetTrapAreaPathInfo.");
                 
-                for (int i = nodes.Count - 1; i >= MaxNodeCount; i--)
-                    RemoveNode(nodes[i]);
+                for (int i = Nodes.Count - 1; i >= MaxNodeCount; i--)
+                    RemoveNode(Nodes[i]);
             }
         }
 
@@ -114,25 +114,25 @@ namespace Fox.Geox
 
         public void DrawGizmos(bool isSelected)
         {
-            if (nodes.Count < 0)
+            if (Nodes.Count < 0)
                 return;
             
             Gizmos.color = isSelected ? Color.white : Color;
             
-            float minHeight = nodes[0].transform.position.y;
-            for (int i = 1; i < nodes.Count; i++)
+            float minHeight = Nodes[0].transform.position.y;
+            for (int i = 1; i < Nodes.Count; i++)
             {
-                float y = nodes[i].transform.position.y;
+                float y = Nodes[i].transform.position.y;
                 if (y < minHeight)
                     minHeight = y;
             }
 
-            foreach (GraphxSpatialGraphDataEdge edgePtr in edges)
+            foreach (GraphxSpatialGraphDataEdge edgePtr in Edges)
             {
                 GraphxSpatialGraphDataEdge edge = edgePtr;
 
-                Vector3 prevNodePos = edge.prevNode.transform.position;
-                Vector3 nextNodePos = edge.nextNode.transform.position;
+                Vector3 prevNodePos = edge.PrevNode.transform.position;
+                Vector3 nextNodePos = edge.NextNode.transform.position;
 
                 Gizmos.DrawLine(new Vector3(prevNodePos.x, minHeight, prevNodePos.z), new Vector3(nextNodePos.x, minHeight, nextNodePos.z));
                 Gizmos.DrawLine(new Vector3(prevNodePos.x, minHeight + height, prevNodePos.z), new Vector3(nextNodePos.x, minHeight + height, nextNodePos.z));

@@ -15,6 +15,9 @@ namespace Fox.GameKit
     [ExecuteAlways]
     public partial class ObjectBrush : Fox.Core.TransformData
     {
+        public Fox.Core.FilePtr ObrFile => obrFile;
+        public List<Fox.Core.Entity> PluginHandle => pluginHandle;
+
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);

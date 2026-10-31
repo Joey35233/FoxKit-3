@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,9 @@ namespace Fox.Graphx
 {
     public partial class GraphxSpatialGraphData
     {
+        public List<Fox.Graphx.GraphxSpatialGraphDataEdge> Edges => edges;
+        public List<Fox.Graphx.GraphxSpatialGraphDataNode> Nodes => nodes;
+
         public bool HasBounds() => nodes.Count > 0;
         
         public Bounds GetWorldBounds()
@@ -91,25 +94,25 @@ namespace Fox.Graphx
 
             Undo.RegisterCompleteObjectUndo(this, "Remove Node");
 
-            var incoming = edges.FirstOrDefault(e => e.nextNode == node);   // pred -> node
-            var outgoing = edges.FirstOrDefault(e => e.prevNode == node);   // node -> succ
-            var pred = incoming?.prevNode as GraphxSpatialGraphDataNode;
-            var succ = outgoing?.nextNode as GraphxSpatialGraphDataNode;
+            var incoming = edges.FirstOrDefault(e => e.NextNode == node);   // pred -> node
+            var outgoing = edges.FirstOrDefault(e => e.PrevNode == node);   // node -> succ
+            var pred = incoming?.PrevNode as GraphxSpatialGraphDataNode;
+            var succ = outgoing?.NextNode as GraphxSpatialGraphDataNode;
 
             if (pred != null && succ != null && pred != succ)
             {
-                incoming.nextNode = succ;
+                incoming.NextNode = succ;
                 incoming.transform.SetParent(succ.transform); // re-parent under the new nextNode so it survives the node's deletion
-                succ.outlinks.Remove(outgoing);
-                succ.outlinks.Add(incoming);
+                succ.Outlinks.Remove(outgoing);
+                succ.Outlinks.Add(incoming);
                 RemoveEdge(outgoing);
             }
             else
             {
-                foreach (var edge in edges.Where(e => e.prevNode == node || e.nextNode == node).ToList())
+                foreach (var edge in edges.Where(e => e.PrevNode == node || e.NextNode == node).ToList())
                 {
-                    (edge.prevNode as GraphxSpatialGraphDataNode)?.outlinks.Remove(edge);
-                    (edge.nextNode as GraphxSpatialGraphDataNode)?.outlinks.Remove(edge);
+                    (edge.PrevNode as GraphxSpatialGraphDataNode)?.Outlinks.Remove(edge);
+                    (edge.NextNode as GraphxSpatialGraphDataNode)?.Outlinks.Remove(edge);
                     RemoveEdge(edge);
                 }
             }
@@ -128,32 +131,32 @@ namespace Fox.Graphx
 
         protected virtual void ConnectEdge(GraphxSpatialGraphDataNode prev, GraphxSpatialGraphDataNode next, GraphxSpatialGraphDataEdge edge)
         {
-            edge.prevNode = prev;
-            edge.nextNode = next;
+            edge.PrevNode = prev;
+            edge.NextNode = next;
 
-            prev.outlinks.Add(edge);
+            prev.Outlinks.Add(edge);
 
-            next.outlinks.Add(edge);
+            next.Outlinks.Add(edge);
 
             edge.transform.SetParent(next.transform);
         }
 
         protected virtual void HandleSplice(GraphxSpatialGraphDataNode prev, GraphxSpatialGraphDataNode inserted, GraphxSpatialGraphDataEdge newEdge)
         {
-            var existingEdge = edges.FirstOrDefault(e => e.prevNode == prev && e.nextNode != null && e != newEdge);
+            var existingEdge = edges.FirstOrDefault(e => e.PrevNode == prev && e.NextNode != null && e != newEdge);
             if (existingEdge == null)
                 return;
 
-            var oldNext = existingEdge.nextNode as GraphxSpatialGraphDataNode;
-            existingEdge.prevNode = inserted;
+            var oldNext = existingEdge.NextNode as GraphxSpatialGraphDataNode;
+            existingEdge.PrevNode = inserted;
 
-            prev.outlinks.Remove(existingEdge);
-            inserted.outlinks.Add(existingEdge);
+            prev.Outlinks.Remove(existingEdge);
+            inserted.Outlinks.Add(existingEdge);
 
             if (oldNext != null)
             {
-                oldNext.outlinks.Remove(existingEdge);
-                oldNext.outlinks.Add(existingEdge);
+                oldNext.Outlinks.Remove(existingEdge);
+                oldNext.Outlinks.Add(existingEdge);
             }
         }
         protected void CreateLoopEdge()
@@ -161,16 +164,16 @@ namespace Fox.Graphx
             var firstNode = nodes.First();
             var lastNode = nodes.Last();
 
-            if (IsLoop() && firstNode.outlinks.Count < 2 && lastNode.outlinks.Count < 2)
+            if (IsLoop() && firstNode.Outlinks.Count < 2 && lastNode.Outlinks.Count < 2)
             {
                 var loopEdge = CreateEdge();
 
-                loopEdge.prevNode = lastNode;
-                loopEdge.nextNode = firstNode;
+                loopEdge.PrevNode = lastNode;
+                loopEdge.NextNode = firstNode;
                 loopEdge.transform.SetParent(firstNode.transform);
 
-                lastNode.outlinks.Add(loopEdge);
-                firstNode.outlinks.Add(loopEdge);
+                lastNode.Outlinks.Add(loopEdge);
+                firstNode.Outlinks.Add(loopEdge);
 
                 edges.Add(loopEdge);
             }

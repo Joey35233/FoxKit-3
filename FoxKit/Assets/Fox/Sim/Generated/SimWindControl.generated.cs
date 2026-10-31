@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Sim
@@ -16,8 +17,8 @@ namespace Fox.Sim
 	public partial class SimWindControl : Fox.Sim.SimControlElement
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected Fox.Sim.SimWindControlParam controlParam { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Sim.SimWindControlParam controlParam;
 		
 		public float windCoefficient { get => windCoefficient_Get(); set => windCoefficient_Set(value); }
 		private partial float windCoefficient_Get();
@@ -41,8 +42,8 @@ namespace Fox.Sim
 		{
 			if (Fox.Sim.SimControlElement.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("SimWindControl", typeof(SimWindControl), Fox.Sim.SimControlElement.ClassInfo, 56, "Sim", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlParam", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimWindControlParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windCoefficient", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlParam", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, typeof(Fox.Sim.SimWindControlParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windCoefficient", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

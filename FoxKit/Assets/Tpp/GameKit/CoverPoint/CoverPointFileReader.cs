@@ -44,15 +44,15 @@ namespace Tpp.GameKit
                 coverPoint.SetTransform(transform);
 
                 ushort flags = reader.ReadUInt16();
-                coverPoint.isLeftOpen = (flags & (1 << 0)) != 0;
-                coverPoint.isRightOpen = (flags & (1 << 1)) != 0;
-                coverPoint.isUpOpen = (flags & (1 << 2)) != 0;
-                // coverPoint.isStandable = (flags & (1 << 3)) != 0; GZ only
-                coverPoint.isUnVaultable = (flags & (1 << 4)) != 0;
-                coverPoint.isUseVip = (flags & (1 << 5)) != 0;
-                coverPoint.isUseSniper = (flags & (1 << 6)) != 0;
-                coverPoint.isBreakDisable = (flags & (1 << 7)) != 0;
-                coverPoint.isBreakEnable = (flags & (1 << 8)) != 0;
+                coverPoint.IsRightOpen = (flags & (1 << 0)) != 0;
+                coverPoint.IsLeftOpen = (flags & (1 << 1)) != 0;
+                coverPoint.IsUpOpen = (flags & (1 << 2)) != 0;
+                // coverPoint.IsStandable = (flags & (1 << 3)) != 0; // GZ only
+                coverPoint.IsUnVaultable = (flags & (1 << 4)) != 0;
+                coverPoint.IsUseVip = (flags & (1 << 5)) != 0;
+                coverPoint.IsUseSniper = (flags & (1 << 6)) != 0;
+                coverPoint.IsBreakDisable = (flags & (1 << 11)) != 0;
+                coverPoint.IsBreakEnable = (flags & (1 << 12)) != 0;
             }
         }
     }

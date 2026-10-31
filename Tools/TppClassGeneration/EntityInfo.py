@@ -1,7 +1,7 @@
 class EntityInfo:
     """Entity class metadata."""
 
-    def __init__(self, name, namespace, parent, category, version, id, properties, definitions):
+    def __init__(self, name, namespace, parent, category, version, id, properties, definitions, subentity=False):
         """Creates a new EntityInfo.
 
         Args:
@@ -15,6 +15,7 @@ class EntityInfo:
                 definitions (dict): Dictionary of all EntityInfos.
 
         """
+        self.subentity = subentity
         self.name = name
         self.namespace = namespace
         self.parent = parent

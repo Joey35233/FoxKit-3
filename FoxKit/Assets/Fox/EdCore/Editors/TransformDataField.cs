@@ -4,7 +4,6 @@ using Fox.EdCore;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
-using Transform = Fox.Core.Transform;
 
 namespace Fox.EdCore
 {
@@ -32,20 +31,16 @@ namespace Fox.EdCore
         private static void BuildBody(EntityFieldBuildContext context)
         {
             EntityPtrField<TransformEntity> transformField = new EntityPtrField<TransformEntity>("transform");
-            transformField.bindingPath = IFoxField.GetBindingPathForPropertyName(transformField.label);
-            context.BodyElement.Add(transformField);
+            context.AddPropertyField(context.BodyElement, transformField, transformField.label);
             
             EntityPtrField<ShearTransformEntity> shearTransformField = new EntityPtrField<ShearTransformEntity>("shearTransform");
-            shearTransformField.bindingPath = IFoxField.GetBindingPathForPropertyName(shearTransformField.label);
-            context.BodyElement.Add(shearTransformField);
+            context.AddPropertyField(context.BodyElement, shearTransformField, shearTransformField.label);
             
             EntityPtrField<PivotTransformEntity> pivotTransformField = new EntityPtrField<PivotTransformEntity>("pivotTransform");
-            pivotTransformField.bindingPath = IFoxField.GetBindingPathForPropertyName(pivotTransformField.label);
-            context.BodyElement.Add(pivotTransformField);
+            context.AddPropertyField(context.BodyElement, pivotTransformField, pivotTransformField.label);
             
             EnumFlagsField flagsField = new EnumFlagsField("flags");
-            flagsField.bindingPath = IFoxField.GetBindingPathForPropertyName(flagsField.label);
-            context.BodyElement.Add(flagsField);
+            context.AddPropertyField(context.BodyElement, flagsField, flagsField.label);
         }
     }
 }

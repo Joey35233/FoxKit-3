@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.Effect
@@ -16,23 +17,23 @@ namespace Tpp.Effect
 	public partial class TppFootPrint : Fox.Core.TransformData
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4> matrices { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4>();
+		[UnityEngine.SerializeField]
+		private List<UnityEngine.Matrix4x4> matrices = new List<UnityEngine.Matrix4x4>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<uint> footChara { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
+		[UnityEngine.SerializeField]
+		private List<uint> footChara = new List<uint>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<uint> footLR { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
+		[UnityEngine.SerializeField]
+		private List<uint> footLR = new List<uint>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<float> alpha { get; private set; } = new CsSystem.Collections.Generic.List<float>();
+		[UnityEngine.SerializeField]
+		private List<float> alpha = new List<float>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<bool> blood { get; private set; } = new CsSystem.Collections.Generic.List<bool>();
+		[UnityEngine.SerializeField]
+		private List<bool> blood = new List<bool>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<bool> enable { get; private set; } = new CsSystem.Collections.Generic.List<bool>();
+		[UnityEngine.SerializeField]
+		private List<bool> enable = new List<bool>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -52,12 +53,12 @@ namespace Tpp.Effect
 		{
 			if (Fox.Core.TransformData.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppFootPrint", typeof(TppFootPrint), Fox.Core.TransformData.ClassInfo, 416, null, 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("matrices", Fox.Core.PropertyInfo.PropertyType.Matrix4, 368, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("footChara", Fox.Core.PropertyInfo.PropertyType.UInt32, 384, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("footLR", Fox.Core.PropertyInfo.PropertyType.UInt32, 400, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("alpha", Fox.Core.PropertyInfo.PropertyType.Float, 416, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blood", Fox.Core.PropertyInfo.PropertyType.Bool, 432, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("enable", Fox.Core.PropertyInfo.PropertyType.Bool, 448, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("matrices", Fox.Core.PropertyInfo.PropertyType.Matrix4, 368, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("footChara", Fox.Core.PropertyInfo.PropertyType.UInt32, 384, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("footLR", Fox.Core.PropertyInfo.PropertyType.UInt32, 400, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("alpha", Fox.Core.PropertyInfo.PropertyType.Float, 416, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blood", Fox.Core.PropertyInfo.PropertyType.Bool, 432, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("enable", Fox.Core.PropertyInfo.PropertyType.Bool, 448, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

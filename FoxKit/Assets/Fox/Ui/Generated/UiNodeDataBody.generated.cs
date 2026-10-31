@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Ui
@@ -16,14 +17,14 @@ namespace Fox.Ui
 	public partial class UiNodeDataBody : Fox.Core.DataBody
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected CsSystem.Collections.Generic.List<Fox.Core.Entity> inputEdges { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.Entity>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Core.Entity> inputEdges = new List<Fox.Core.Entity>();
 		
-		[field: UnityEngine.SerializeField]
-		protected CsSystem.Collections.Generic.List<Fox.Core.Entity> outputEdges { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.Entity>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Core.Entity> outputEdges = new List<Fox.Core.Entity>();
 		
-		[field: UnityEngine.SerializeField]
-		protected Fox.Path uigName { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Path uigName;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -43,9 +44,9 @@ namespace Fox.Ui
 		{
 			if (Fox.Core.DataBody.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("UiNodeDataBody", typeof(UiNodeDataBody), Fox.Core.DataBody.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("inputEdges", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("outputEdges", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 104, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("uigName", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("inputEdges", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("outputEdges", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 104, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("uigName", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

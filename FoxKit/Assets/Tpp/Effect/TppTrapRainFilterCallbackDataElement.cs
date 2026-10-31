@@ -1,4 +1,4 @@
-﻿namespace Tpp.Effect
+namespace Tpp.Effect
 {
     public partial class TppTrapRainFilterCallbackDataElement
     {

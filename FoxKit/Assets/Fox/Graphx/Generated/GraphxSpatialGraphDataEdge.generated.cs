@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Graphx
@@ -16,11 +17,11 @@ namespace Fox.Graphx
 	public partial class GraphxSpatialGraphDataEdge : Fox.Core.DataElement
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.Entity prevNode { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.Entity prevNode;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.Entity nextNode { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.Entity nextNode;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Graphx
 		{
 			if (Fox.Core.DataElement.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GraphxSpatialGraphDataEdge", typeof(GraphxSpatialGraphDataEdge), Fox.Core.DataElement.ClassInfo, 36, "Graphx", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("prevNode", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("nextNode", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("prevNode", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("nextNode", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

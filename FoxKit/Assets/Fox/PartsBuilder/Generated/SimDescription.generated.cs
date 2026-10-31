@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.PartsBuilder
@@ -16,11 +17,11 @@ namespace Fox.PartsBuilder
 	public partial class SimDescription : Fox.PartsBuilder.PartDescription
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.FilePtr simFile { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.FilePtr simFile;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isActive { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isActive;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.PartsBuilder
 		{
 			if (Fox.PartsBuilder.PartDescription.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("SimDescription", typeof(SimDescription), Fox.PartsBuilder.PartDescription.ClassInfo, 120, "PartsBuilder", 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("simFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isActive", Fox.Core.PropertyInfo.PropertyType.Bool, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("simFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isActive", Fox.Core.PropertyInfo.PropertyType.Bool, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

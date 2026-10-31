@@ -4,7 +4,6 @@ using Fox.EdCore;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
-using Transform = Fox.Core.Transform;
 
 namespace Fox.EdCore
 {

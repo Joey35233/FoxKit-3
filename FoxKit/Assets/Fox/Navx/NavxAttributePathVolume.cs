@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Graphx;
 using UnityEngine;
@@ -27,10 +27,10 @@ namespace Fox.Navx
         {
             Gizmos.matrix = transform.localToWorldMatrix;
 
-            foreach (GraphxSpatialGraphDataEdge edge in edges)
+            foreach (GraphxSpatialGraphDataEdge edge in Edges)
             {
-                var prevNode = edge.prevNode as GraphxSpatialGraphDataNode;
-                var nextNode = edge.nextNode as GraphxSpatialGraphDataNode;
+                var prevNode = edge.PrevNode as GraphxSpatialGraphDataNode;
+                var nextNode = edge.NextNode as GraphxSpatialGraphDataNode;
 
                 Gizmos.DrawLine(prevNode.transform.localPosition + topPos, nextNode.transform.localPosition + topPos);
 

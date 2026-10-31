@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Sim
@@ -16,11 +17,11 @@ namespace Fox.Sim
 	public partial class SimClothControlParam : Fox.Sim.SimControlParam
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected float windCoefficient { get; set; }
+		[UnityEngine.SerializeField]
+		private float windCoefficient;
 		
-		[field: UnityEngine.SerializeField]
-		protected bool isLoop { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isLoop;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Sim
 		{
 			if (Fox.Sim.SimControlParam.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("SimClothControlParam", typeof(SimClothControlParam), Fox.Sim.SimControlParam.ClassInfo, 32, "Sim", 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windCoefficient", Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isLoop", Fox.Core.PropertyInfo.PropertyType.Bool, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windCoefficient", Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isLoop", Fox.Core.PropertyInfo.PropertyType.Bool, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

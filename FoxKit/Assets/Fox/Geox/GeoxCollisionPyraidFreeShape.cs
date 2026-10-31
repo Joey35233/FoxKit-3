@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
 using System.Collections.Generic;
@@ -7,6 +7,8 @@ namespace Fox.Geox
 {
     public partial class GeoxCollisionPyraidFreeShape
     {
+        public UnityEngine.Vector3[] Points => points;
+
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);

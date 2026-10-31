@@ -1,4 +1,4 @@
-﻿namespace Tpp.GameKit
+namespace Tpp.GameKit
 {
     public partial class TppTrapCheckIsPlayerCallbackDataElement
     {

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Gr
@@ -16,8 +17,8 @@ namespace Fox.Gr
 	public partial class GrSkyParameter : Fox.Gr.GrViewportParameter
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected bool isAtmosphereOnly { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isAtmosphereOnly;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Gr
 		{
 			if (Fox.Gr.GrViewportParameter.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GrSkyParameter", typeof(GrSkyParameter), Fox.Gr.GrViewportParameter.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isAtmosphereOnly", Fox.Core.PropertyInfo.PropertyType.Bool, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isAtmosphereOnly", Fox.Core.PropertyInfo.PropertyType.Bool, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.GameCore
@@ -16,11 +17,11 @@ namespace Tpp.GameCore
 	public partial class TppTrapExecCombatLocatorCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public string frontLineName { get; set; }
+		[UnityEngine.SerializeField]
+		private string frontLineName;
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<string> inactiveLocators { get; private set; } = new CsSystem.Collections.Generic.List<string>();
+		[UnityEngine.SerializeField]
+		private List<string> inactiveLocators = new List<string>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Tpp.GameCore
 		{
 			if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppTrapExecCombatLocatorCallbackDataElement", typeof(TppTrapExecCombatLocatorCallbackDataElement), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 56, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("frontLineName", Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("inactiveLocators", Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("frontLineName", Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("inactiveLocators", Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

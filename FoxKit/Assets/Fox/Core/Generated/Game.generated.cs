@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Core
@@ -16,8 +17,8 @@ namespace Fox.Core
 	public partial class Game : Fox.Core.Actor
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected Fox.Core.BucketCollector bucketCollector { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.BucketCollector bucketCollector;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Core
 		{
 			if (Fox.Core.Actor.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("Game", typeof(Game), Fox.Core.Actor.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bucketCollector", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.BucketCollector), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bucketCollector", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, typeof(Fox.Core.BucketCollector), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

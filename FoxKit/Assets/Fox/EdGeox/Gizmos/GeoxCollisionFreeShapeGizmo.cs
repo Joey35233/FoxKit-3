@@ -15,7 +15,7 @@ namespace Fox.EdGeox
             Gizmos.matrix = shape.transform.localToWorldMatrix;
             Gizmos.color = isSelected ? EditorColors.GenericSelectedColor : EditorColors.GenericUnselectedColor;
 
-            Vector3[] points = shape.points;
+            Vector3[] points = shape.Points;
 
             Gizmos.DrawLine(points[0], points[1]);
             Gizmos.DrawLine(points[1], points[2]);

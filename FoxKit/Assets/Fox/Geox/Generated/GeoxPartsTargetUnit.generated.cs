@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Geox
@@ -16,8 +17,8 @@ namespace Fox.Geox
 	public partial class GeoxPartsTargetUnit : Fox.Core.Data
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Geox.GeoxPartsTargetObject> objectArray { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Geox.GeoxPartsTargetObject>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Geox.GeoxPartsTargetObject> objectArray = new List<Fox.Geox.GeoxPartsTargetObject>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Geox
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GeoxPartsTargetUnit", typeof(GeoxPartsTargetUnit), Fox.Core.Data.ClassInfo, 0, "Target", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objectArray", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Geox.GeoxPartsTargetObject), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objectArray", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, typeof(Fox.Geox.GeoxPartsTargetObject), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

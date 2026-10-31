@@ -16,6 +16,37 @@ namespace Fox.EdCore
         public VisualElement BodyElement;
         public VisualElement FooterElement;
         public SerializedObject Object;
+
+        // Custom controls use the same metadata permissions as the generic inspector.
+        public void AddPropertyField(VisualElement parent, VisualElement field, string propertyName, string bindingPath = null)
+        {
+            PropertyInfo property = GetPropertyInfo(propertyName);
+            if (!property.ReadableInEditor || property.Backing == PropertyInfo.BackingType.Accessor)
+                return;
+            ((IBindable)field).bindingPath = bindingPath ?? propertyName;
+            field.SetEnabled(property.WritableInEditor);
+            parent.Add(field);
+        }
+
+        private PropertyInfo GetPropertyInfo(string propertyName)
+        {
+            var info = ((Entity)Object.targetObject).GetClassEntityInfo();
+            PropertyInfo property = null;
+            for (; info != null; info = info.Super)
+            {
+                foreach (var candidate in info.OrderedStaticProperties)
+                    if (candidate.Name == propertyName)
+                    {
+                        property = candidate;
+                        break;
+                    }
+                if (property != null)
+                    break;
+            }
+            if (property == null)
+                throw new ArgumentException($"Unknown entity property: {propertyName}");
+            return property;
+        }
     }
     
     public class EntityField<T> : BaseField<T>, IEntityField where T : Entity
@@ -42,6 +73,7 @@ namespace Fox.EdCore
 
         private void PreBuild(EntityFieldBuildContext context)
         {
+            SuperclassList.Clear();
             var entity = context.Object.targetObject as Entity;
             EntityInfo = entity.GetClassEntityInfo();
             
@@ -129,22 +161,20 @@ namespace Fox.EdCore
                 {
                     foreach (PropertyInfo propertyInfo in classInfo.OrderedStaticProperties)
                     {
-                        // TODO: Reimplement property hiding based on access modifiers once custom editor support is further along.
-                        if (/*propertyInfo.Readable == PropertyInfo.PropertyExport.Never || */propertyInfo.Backing == PropertyInfo.BackingType.Accessor)
+                        if (!propertyInfo.ReadableInEditor || propertyInfo.Backing == PropertyInfo.BackingType.Accessor)
                             continue;
 
                         IFoxField field = FoxFieldUtils.GetCustomBindableField(propertyInfo);
                         VisualElement fieldElement = field as VisualElement;
-                        field.bindingPath = IFoxField.GetBindingPathForPropertyName(propertyInfo.Name);
+                        field.bindingPath = propertyInfo.Name;
                         Label fieldLabel = field.GetLabelElement();
-                        if (EntityInfo.LongestNamedVisibleFieldProperty is not null)
+                        if (classInfo.LongestNamedVisibleFieldProperty is not null)
                         {
                             fieldLabel.style.minWidth = StyleKeyword.Auto;
                             fieldLabel.style.width = classInfo.LongestNamedVisibleFieldProperty.Name.Length * 8f;
                         }
 
-                        // TODO: Reimplement property disabling based on access modifiers once custom editor support is further along.
-                        // fieldElement.SetEnabled(propertyInfo.Writable != PropertyInfo.PropertyExport.Never);
+                        fieldElement.SetEnabled(propertyInfo.WritableInEditor);
                         
                         visualInput.Add(fieldElement);
                     }

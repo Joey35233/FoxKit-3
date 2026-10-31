@@ -5,6 +5,15 @@ namespace Tpp.GameKit
 {
     public partial class TppCoverPoint : Fox.Tactical.GkTacticalPoint
     {
+        public bool IsBreakDisable { get => isBreakDisable; set => isBreakDisable = value; }
+        public bool IsBreakEnable { get => isBreakEnable; set => isBreakEnable = value; }
+        public bool IsLeftOpen { get => isLeftOpen; set => isLeftOpen = value; }
+        public bool IsRightOpen { get => isRightOpen; set => isRightOpen = value; }
+        public bool IsUnVaultable { get => isUnVaultable; set => isUnVaultable = value; }
+        public bool IsUpOpen { get => isUpOpen; set => isUpOpen = value; }
+        public bool IsUseSniper { get => isUseSniper; set => isUseSniper = value; }
+        public bool IsUseVip { get => isUseVip; set => isUseVip = value; }
+
         private static readonly Color MainColor = new(67.0f / 255.0f, 1.0f, 163.0f / 255.0f);
         private static readonly Color ArrowColor = new(176.0f / 255.0f, 12.0f / 255.0f, 0f);
 

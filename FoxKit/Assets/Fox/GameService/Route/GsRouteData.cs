@@ -30,7 +30,7 @@ namespace Fox.GameService
 
             GsRouteDataNodeEvent ev = BuildDefaultNodeEvent(routeNode);
             if (ev != null)
-                routeNode.events.Add(ev);
+                routeNode.Events.Add(ev);
 
             EditorUtility.SetDirty(routeNode);
         }
@@ -45,16 +45,16 @@ namespace Fox.GameService
                 fromIndex = 0;
 
             bool changed = false;
-            for (int i = fromIndex; i < routeNode.events.Count; i++)
+            for (int i = fromIndex; i < routeNode.Events.Count; i++)
             {
-                GsRouteDataNodeEvent nodeEvent = routeNode.events[i];
+                GsRouteDataNodeEvent nodeEvent = routeNode.Events[i];
 
                 bool needsFresh = nodeEvent == null;
                 if (!needsFresh)
                 {
                     for (int j = 0; j < i; j++)
                     {
-                        if (routeNode.events[j] == nodeEvent)
+                        if (routeNode.Events[j] == nodeEvent)
                         {
                             needsFresh = true;
                             break;
@@ -68,7 +68,7 @@ namespace Fox.GameService
                 GsRouteDataNodeEvent fresh = BuildDefaultNodeEvent(routeNode);
                 if (fresh != null)
                 {
-                    routeNode.events[i] = fresh;
+                    routeNode.Events[i] = fresh;
                     changed = true;
                 }
             }
@@ -82,15 +82,15 @@ namespace Fox.GameService
         public void SetNodeEventType(GraphxSpatialGraphDataNode node, int index, string id)
         {
             GsRouteDataNode routeNode = node as GsRouteDataNode;
-            if (routeNode == null || index < 0 || index >= routeNode.events.Count)
+            if (routeNode == null || index < 0 || index >= routeNode.Events.Count)
                 return;
 
-            GsRouteDataNodeEvent oldEvent = routeNode.events[index];
+            GsRouteDataNodeEvent oldEvent = routeNode.Events[index];
 
             if (string.IsNullOrEmpty(id))
             {
                 Undo.RegisterCompleteObjectUndo(routeNode, "Remove Node Event");
-                routeNode.events.RemoveAt(index);
+                routeNode.Events.RemoveAt(index);
                 if (oldEvent != null)
                     Undo.DestroyObjectImmediate(oldEvent.gameObject);
                 EditorUtility.SetDirty(routeNode);
@@ -103,17 +103,17 @@ namespace Fox.GameService
 
             if (oldEvent != null)
             {
-                newEvent.time = oldEvent.time;
-                newEvent.dir = oldEvent.dir;
-                newEvent.isLoop = oldEvent.isLoop;
+                newEvent.Time = oldEvent.Time;
+                newEvent.Dir = oldEvent.Dir;
+                newEvent.IsLoop = oldEvent.IsLoop;
             }
             else
             {
-                newEvent.time = 8f;
+                newEvent.Time = 8f;
             }
 
             Undo.RegisterCompleteObjectUndo(routeNode, "Change Node Event Type");
-            routeNode.events[index] = newEvent;
+            routeNode.Events[index] = newEvent;
             if (oldEvent != null)
                 Undo.DestroyObjectImmediate(oldEvent.gameObject);
 
@@ -126,7 +126,7 @@ namespace Fox.GameService
             if (templateNodeEvent == null)
                 return null;
 
-            GsRouteDataNodeEvent fresh = CreateDefaultNodeEvent(templateNodeEvent.id, routeNode.transform);
+            GsRouteDataNodeEvent fresh = CreateDefaultNodeEvent(templateNodeEvent.Id, routeNode.transform);
             if (fresh == null)
                 return null;
 
@@ -137,19 +137,19 @@ namespace Fox.GameService
         protected override void OnEdgeCreated(GraphxSpatialGraphDataEdge edge)
         {
             GsRouteDataEdge routeEdge = edge as GsRouteDataEdge;
-            if (routeEdge == null || routeEdge.@event != null)
+            if (routeEdge == null || routeEdge.Event != null)
                 return;
 
             SyncEventTemplates();
             if (templateEdgeEvent == null)
                 return;
 
-            GsRouteDataEdgeEvent fresh = CreateDefaultEdgeEvent(templateEdgeEvent.id, routeEdge.transform);
+            GsRouteDataEdgeEvent fresh = CreateDefaultEdgeEvent(templateEdgeEvent.Id, routeEdge.transform);
             if (fresh == null)
                 return;
 
             EditorUtility.CopySerialized(templateEdgeEvent, fresh);
-            routeEdge.@event = fresh;
+            routeEdge.Event = fresh;
         }
 
         private static GsRouteDataNodeEvent CreateDefaultNodeEvent(string id, Transform parent)
@@ -163,7 +163,7 @@ namespace Fox.GameService
             
             go.transform.SetParent(parent, false);
             go.name = nodeEvent.GetClassEntityInfo().Name;
-            nodeEvent.id = id;
+            nodeEvent.Id = id;
             return nodeEvent;
         }
 
@@ -178,7 +178,7 @@ namespace Fox.GameService
             
             go.transform.SetParent(parent, false);
             go.name = edgeEvent.GetClassEntityInfo().Name;
-            edgeEvent.id = id;
+            edgeEvent.Id = id;
             return edgeEvent;
         }
 
@@ -191,7 +191,7 @@ namespace Fox.GameService
                 return;
 
             if (newNode != null && newNode != templateNodeEvent)
-                newNode.time = 8f;
+                newNode.Time = 8f;
 
             templateNodeEvent = newNode;
             templateEdgeEvent = newEdge;
@@ -210,7 +210,7 @@ namespace Fox.GameService
                 return null;
             }
 
-            if (existing != null && new StrCode32(id) == new StrCode32(existing.id))
+            if (existing != null && new StrCode32(id) == new StrCode32(existing.Id))
                 return existing;
 
             if (existing != null)
@@ -234,7 +234,7 @@ namespace Fox.GameService
                 return null;
             }
 
-            if (existing != null && new StrCode32(id) == new StrCode32(existing.id))
+            if (existing != null && new StrCode32(id) == new StrCode32(existing.Id))
                 return existing;
 
             if (existing != null)

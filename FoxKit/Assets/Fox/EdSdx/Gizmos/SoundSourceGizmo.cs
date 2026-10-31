@@ -19,7 +19,7 @@ namespace Fox.EdSdx
             Gizmos.color = isSelected ? EditorColors.GenericSelectedColor : EditorColors.GenericUnselectedColor;
 
             if (isSelected)
-                Gizmos.DrawWireSphere(Vector3.zero, soundSource.playRange);
+                Gizmos.DrawWireSphere(Vector3.zero, soundSource.PlayRange);
 
             Gizmos.DrawIcon(transform.position, GizmoPath, true, Gizmos.color);
         }

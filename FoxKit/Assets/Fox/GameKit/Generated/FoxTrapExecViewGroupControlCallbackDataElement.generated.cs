@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameKit
@@ -16,8 +17,8 @@ namespace Fox.GameKit
 	public partial class FoxTrapExecViewGroupControlCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public string identify { get; set; }
+		[UnityEngine.SerializeField]
+		private string identify;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.GameKit
 		{
 			if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("FoxTrapExecViewGroupControlCallbackDataElement", typeof(FoxTrapExecViewGroupControlCallbackDataElement), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 36, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("identify", Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("identify", Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

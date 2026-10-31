@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Geox
@@ -16,17 +17,17 @@ namespace Fox.Geox
 	public partial class GeoxPartsTargetOffenseObject : Fox.Geox.GeoxPartsTargetObject
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public bool isAnyOffenseCallback { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isAnyOffenseCallback;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isNoDefenseCallback { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isNoDefenseCallback;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isHandleCheck { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isHandleCheck;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isNameCheck { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isNameCheck;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -46,10 +47,10 @@ namespace Fox.Geox
 		{
 			if (Fox.Geox.GeoxPartsTargetObject.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GeoxPartsTargetOffenseObject", typeof(GeoxPartsTargetOffenseObject), Fox.Geox.GeoxPartsTargetObject.ClassInfo, 0, "Target", 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isAnyOffenseCallback", Fox.Core.PropertyInfo.PropertyType.Bool, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isNoDefenseCallback", Fox.Core.PropertyInfo.PropertyType.Bool, 401, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isHandleCheck", Fox.Core.PropertyInfo.PropertyType.Bool, 402, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isNameCheck", Fox.Core.PropertyInfo.PropertyType.Bool, 403, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isAnyOffenseCallback", Fox.Core.PropertyInfo.PropertyType.Bool, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isNoDefenseCallback", Fox.Core.PropertyInfo.PropertyType.Bool, 401, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isHandleCheck", Fox.Core.PropertyInfo.PropertyType.Bool, 402, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isNameCheck", Fox.Core.PropertyInfo.PropertyType.Bool, 403, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

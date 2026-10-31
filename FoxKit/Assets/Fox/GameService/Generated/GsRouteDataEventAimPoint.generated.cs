@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameService
@@ -16,17 +17,17 @@ namespace Fox.GameService
 	public partial class GsRouteDataEventAimPoint : Fox.Core.DataElement
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public GsRouteDataEventAimPoint_TargetType type { get; set; }
+		[UnityEngine.SerializeField]
+		private GsRouteDataEventAimPoint_TargetType type;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Vector3 position { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 position;
 		
-		[field: UnityEngine.SerializeField]
-		public string[] targetIds { get; private set; } = new string[4];
+		[UnityEngine.SerializeField]
+		protected string[] targetIds = new string[4];
 		
-		[field: UnityEngine.SerializeField]
-		public GsRouteDataEventAimPoint_BodySection bodySection { get; set; }
+		[UnityEngine.SerializeField]
+		private GsRouteDataEventAimPoint_BodySection bodySection;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -46,10 +47,10 @@ namespace Fox.GameService
 		{
 			if (Fox.Core.DataElement.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GsRouteDataEventAimPoint", typeof(GsRouteDataEventAimPoint), Fox.Core.DataElement.ClassInfo, 0, null, 2);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("type", Fox.Core.PropertyInfo.PropertyType.UInt8, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, typeof(GsRouteDataEventAimPoint_TargetType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("position", Fox.Core.PropertyInfo.PropertyType.Vector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("targetIds", Fox.Core.PropertyInfo.PropertyType.String, 80, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bodySection", Fox.Core.PropertyInfo.PropertyType.UInt8, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, typeof(GsRouteDataEventAimPoint_BodySection), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("type", Fox.Core.PropertyInfo.PropertyType.UInt8, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(GsRouteDataEventAimPoint_TargetType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("position", Fox.Core.PropertyInfo.PropertyType.Vector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("targetIds", Fox.Core.PropertyInfo.PropertyType.String, 80, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bodySection", Fox.Core.PropertyInfo.PropertyType.UInt8, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(GsRouteDataEventAimPoint_BodySection), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

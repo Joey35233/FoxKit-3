@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Fox.Core.Utils;
 using UnityEngine;
 
@@ -7,6 +7,8 @@ namespace Fox.Core
     [ExecuteAlways]
     public partial class StageBlockControllerData
     {
+        public string BaseDirectoryPath => baseDirectoryPath;
+
         public static StageBlockControllerData Instance;
 
         public override void OnDeserializeEntity(TaskLogger logger)

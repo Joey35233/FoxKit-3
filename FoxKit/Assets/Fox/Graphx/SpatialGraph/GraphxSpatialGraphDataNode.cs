@@ -1,4 +1,6 @@
-﻿using Fox.Core;
+using System.Collections.Generic;
+
+using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
 
@@ -6,6 +8,10 @@ namespace Fox.Graphx
 {
     public partial class GraphxSpatialGraphDataNode
     {
+        public List<Fox.Core.Entity> Inlinks => inlinks;
+        public List<Fox.Core.Entity> Outlinks => outlinks;
+        public UnityEngine.Vector3 Position { get => position; set => position = value; }
+
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);

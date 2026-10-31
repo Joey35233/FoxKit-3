@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Geo
@@ -16,14 +17,14 @@ namespace Fox.Geo
 	public partial class GeoCheckModuleCondition : Fox.Geo.GeoTrapCondition
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public bool isAndCheck { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isAndCheck;
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<string> checkFuncNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
+		[UnityEngine.SerializeField]
+		private List<string> checkFuncNames = new List<string>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Geo.GeoTrapModuleCallbackDataElement> checkCallbackDataElements { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Geo.GeoTrapModuleCallbackDataElement>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Geo.GeoTrapModuleCallbackDataElement> checkCallbackDataElements = new List<Fox.Geo.GeoTrapModuleCallbackDataElement>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -43,9 +44,9 @@ namespace Fox.Geo
 		{
 			if (Fox.Geo.GeoTrapCondition.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GeoCheckModuleCondition", typeof(GeoCheckModuleCondition), Fox.Geo.GeoTrapCondition.ClassInfo, 0, "Trap", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isAndCheck", Fox.Core.PropertyInfo.PropertyType.Bool, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkFuncNames", Fox.Core.PropertyInfo.PropertyType.String, 328, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkCallbackDataElements", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 344, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Geo.GeoTrapModuleCallbackDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isAndCheck", Fox.Core.PropertyInfo.PropertyType.Bool, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkFuncNames", Fox.Core.PropertyInfo.PropertyType.String, 328, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkCallbackDataElements", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 344, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, typeof(Fox.Geo.GeoTrapModuleCallbackDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor));
 
 			ClassInfoInitialized = true;
 		}

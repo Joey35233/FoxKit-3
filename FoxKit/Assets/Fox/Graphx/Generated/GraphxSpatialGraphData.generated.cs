@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Graphx
@@ -16,11 +17,11 @@ namespace Fox.Graphx
 	public partial class GraphxSpatialGraphData : Fox.Core.TransformData
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Graphx.GraphxSpatialGraphDataNode> nodes { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Graphx.GraphxSpatialGraphDataNode>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Graphx.GraphxSpatialGraphDataNode> nodes = new List<Fox.Graphx.GraphxSpatialGraphDataNode>();
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Graphx.GraphxSpatialGraphDataEdge> edges { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Graphx.GraphxSpatialGraphDataEdge>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Graphx.GraphxSpatialGraphDataEdge> edges = new List<Fox.Graphx.GraphxSpatialGraphDataEdge>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Graphx
 		{
 			if (Fox.Core.TransformData.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GraphxSpatialGraphData", typeof(GraphxSpatialGraphData), Fox.Core.TransformData.ClassInfo, 0, "Graphx", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("nodes", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, typeof(Fox.Graphx.GraphxSpatialGraphDataNode), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("edges", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, typeof(Fox.Graphx.GraphxSpatialGraphDataEdge), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("nodes", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, typeof(Fox.Graphx.GraphxSpatialGraphDataNode), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("edges", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, typeof(Fox.Graphx.GraphxSpatialGraphDataEdge), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

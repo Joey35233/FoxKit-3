@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.Sound
@@ -16,11 +17,11 @@ namespace Tpp.Sound
 	public partial class TppAmbientSoundSource : Fox.Sdx.SoundSource
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public string volumeRtpc { get; set; }
+		[UnityEngine.SerializeField]
+		private string volumeRtpc;
 		
-		[field: UnityEngine.SerializeField]
-		public byte ambientIndex { get; set; }
+		[UnityEngine.SerializeField]
+		private byte ambientIndex;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Tpp.Sound
 		{
 			if (Fox.Sdx.SoundSource.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppAmbientSoundSource", typeof(TppAmbientSoundSource), Fox.Sdx.SoundSource.ClassInfo, 304, "Sound", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("volumeRtpc", Fox.Core.PropertyInfo.PropertyType.String, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("ambientIndex", Fox.Core.PropertyInfo.PropertyType.UInt8, 344, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("volumeRtpc", Fox.Core.PropertyInfo.PropertyType.String, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("ambientIndex", Fox.Core.PropertyInfo.PropertyType.UInt8, 344, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

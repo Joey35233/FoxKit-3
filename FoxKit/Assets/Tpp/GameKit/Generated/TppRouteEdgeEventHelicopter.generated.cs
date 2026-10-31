@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.GameKit
@@ -16,32 +17,32 @@ namespace Tpp.GameKit
 	public partial class TppRouteEdgeEventHelicopter : Fox.GameService.GsRouteDataEdgeEvent
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public TppRouteEdgeEventHelicopter_DoorState leftDoorState { get; set; }
+		[UnityEngine.SerializeField]
+		private TppRouteEdgeEventHelicopter_DoorState leftDoorState;
 		
-		[field: UnityEngine.SerializeField]
-		public TppRouteEdgeEventHelicopter_DoorState rightDoorState { get; set; }
+		[UnityEngine.SerializeField]
+		private TppRouteEdgeEventHelicopter_DoorState rightDoorState;
 		
-		[field: UnityEngine.SerializeField]
-		public TppRouteEdgeEventHelicopter_DoorState landingGearState { get; set; }
+		[UnityEngine.SerializeField]
+		private TppRouteEdgeEventHelicopter_DoorState landingGearState;
 		
-		[field: UnityEngine.SerializeField]
-		public TppRouteEdgeEventHelicopter_DirectionType directionType { get; set; }
+		[UnityEngine.SerializeField]
+		private TppRouteEdgeEventHelicopter_DirectionType directionType;
 		
-		[field: UnityEngine.SerializeField]
-		public int direction { get; set; }
+		[UnityEngine.SerializeField]
+		private int direction;
 		
-		[field: UnityEngine.SerializeField]
-		public bool setTargetSpeed { get; set; }
+		[UnityEngine.SerializeField]
+		private bool setTargetSpeed;
 		
-		[field: UnityEngine.SerializeField]
-		public float targetSpeed { get; set; }
+		[UnityEngine.SerializeField]
+		private float targetSpeed;
 		
-		[field: UnityEngine.SerializeField]
-		public float changeTime { get; set; }
+		[UnityEngine.SerializeField]
+		private float changeTime;
 		
-		[field: UnityEngine.SerializeField]
-		public TppRouteEdgeEventHelicopter_DoorSide defaultDoorSide { get; set; }
+		[UnityEngine.SerializeField]
+		private TppRouteEdgeEventHelicopter_DoorSide defaultDoorSide;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -61,15 +62,15 @@ namespace Tpp.GameKit
 		{
 			if (Fox.GameService.GsRouteDataEdgeEvent.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppRouteEdgeEventHelicopter", typeof(TppRouteEdgeEventHelicopter), Fox.GameService.GsRouteDataEdgeEvent.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("leftDoorState", Fox.Core.PropertyInfo.PropertyType.UInt32, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppRouteEdgeEventHelicopter_DoorState), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rightDoorState", Fox.Core.PropertyInfo.PropertyType.UInt32, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppRouteEdgeEventHelicopter_DoorState), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("landingGearState", Fox.Core.PropertyInfo.PropertyType.UInt32, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppRouteEdgeEventHelicopter_DoorState), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("directionType", Fox.Core.PropertyInfo.PropertyType.UInt32, 100, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppRouteEdgeEventHelicopter_DirectionType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("direction", Fox.Core.PropertyInfo.PropertyType.Int32, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("setTargetSpeed", Fox.Core.PropertyInfo.PropertyType.Bool, 108, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("targetSpeed", Fox.Core.PropertyInfo.PropertyType.Float, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("changeTime", Fox.Core.PropertyInfo.PropertyType.Float, 116, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("defaultDoorSide", Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppRouteEdgeEventHelicopter_DoorSide), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("leftDoorState", Fox.Core.PropertyInfo.PropertyType.UInt32, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(TppRouteEdgeEventHelicopter_DoorState), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rightDoorState", Fox.Core.PropertyInfo.PropertyType.UInt32, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(TppRouteEdgeEventHelicopter_DoorState), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("landingGearState", Fox.Core.PropertyInfo.PropertyType.UInt32, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(TppRouteEdgeEventHelicopter_DoorState), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("directionType", Fox.Core.PropertyInfo.PropertyType.UInt32, 100, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(TppRouteEdgeEventHelicopter_DirectionType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("direction", Fox.Core.PropertyInfo.PropertyType.Int32, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("setTargetSpeed", Fox.Core.PropertyInfo.PropertyType.Bool, 108, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("targetSpeed", Fox.Core.PropertyInfo.PropertyType.Float, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("changeTime", Fox.Core.PropertyInfo.PropertyType.Float, 116, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("defaultDoorSide", Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(TppRouteEdgeEventHelicopter_DoorSide), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

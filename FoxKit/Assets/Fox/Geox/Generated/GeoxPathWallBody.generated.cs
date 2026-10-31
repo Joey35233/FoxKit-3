@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Geox
@@ -16,8 +17,8 @@ namespace Fox.Geox
 	public partial class GeoxPathWallBody : Fox.Core.TransformDataBody
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public bool isGeomActive { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isGeomActive;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Geox
 		{
 			if (Fox.Core.TransformDataBody.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GeoxPathWallBody", typeof(GeoxPathWallBody), Fox.Core.TransformDataBody.ClassInfo, 0, "Geox", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isGeomActive", Fox.Core.PropertyInfo.PropertyType.Bool, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isGeomActive", Fox.Core.PropertyInfo.PropertyType.Bool, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

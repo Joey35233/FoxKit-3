@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Ph
@@ -16,11 +17,11 @@ namespace Fox.Ph
 	public partial class PhClothHConstraintParam : Fox.Ph.PhConstraintParam
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected float expansionRatio { get; set; }
+		[UnityEngine.SerializeField]
+		private float expansionRatio;
 		
-		[field: UnityEngine.SerializeField]
-		protected float contractionRatio { get; set; }
+		[UnityEngine.SerializeField]
+		private float contractionRatio;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Ph
 		{
 			if (Fox.Ph.PhConstraintParam.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("PhClothHConstraintParam", typeof(PhClothHConstraintParam), Fox.Ph.PhConstraintParam.ClassInfo, 0, "Ph", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("expansionRatio", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("contractionRatio", Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("expansionRatio", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("contractionRatio", Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

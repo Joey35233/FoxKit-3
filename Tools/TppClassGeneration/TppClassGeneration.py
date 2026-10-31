@@ -24,22 +24,22 @@ def load_definitions (path, extraPath):
         for entry in data:
             properties = {}
             for property in entry["properties"]:
-                properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], entry["name"], result)
-            result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result)
+                properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], entry["name"], result, property["accessModifier"], property.get("accessorSetter", False), property.get("accessorWriteModifier"))
+            result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result, entry["subentity"])
             
     with open(extraPath) as json_file:
         data = json.load(json_file)
         for entry in data:
             properties = {}
             for property in entry["properties"]:
-                properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], entry["name"], result)
+                properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], entry["name"], result, property["accessModifier"], property.get("accessorSetter", False), property.get("accessorWriteModifier"))
             
             if entry["name"] in result:
                 raise RuntimeError("Vanilla Entity redeclared as custom")
                 return {}
 
             else:
-                result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result)
+                result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result, entry["subentity"])
 
     return result
 
@@ -73,6 +73,8 @@ def generate_classes ():
     definitions = load_definitions(definitions_path, extra_definitions_path)
 
     for class_name in definitions:
+        if definitions[class_name].subentity:
+            continue
         # Generate class file
         result = template.render(info = definitions[class_name])
 
@@ -130,5 +132,6 @@ def make_output_path (type_name, type_root_namespace, type_namespace):
 
     return f'../../FoxKit/Assets/{type_root_namespace}/{type_namespace}/Generated/{type_name}.generated.cs'
 
-generate_classes()
-generate_enums()
+if __name__ == "__main__":
+    generate_classes()
+    generate_enums()

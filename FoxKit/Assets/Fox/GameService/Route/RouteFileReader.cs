@@ -70,7 +70,7 @@ namespace Fox.GameService
                     {
                         GsRouteDataNode node = new GameObject($"GsRouteDataNode{j:D4}").AddComponent<GsRouteDataNode>();
                         node.SetOwner(routeData);
-                        routeData.nodes.Add(node);
+                        routeData.Nodes.Add(node);
 
                         // Position
                         if (version == RouteFile.FormatVersion.V2)
@@ -92,17 +92,17 @@ namespace Fox.GameService
                                 packedZ |= 0xFFC00000;
                             float z = (float)(int)packedZ / 1024;
 
-                            node.position = new Vector3(x, y, z) + origin;
+                            node.Position = new Vector3(x, y, z) + origin;
                         }
                         else
                         {
                             Vector3 vertex = ((Vector3*)((byte*)routeDef + routeDef->VerticesOffset))[j];
-                            node.position = vertex;
+                            node.Position = vertex;
                         }
                         
                         GsRouteDataEdge edge = new GameObject($"GsRouteDataEdge{j:D4}").AddComponent<GsRouteDataEdge>();
                         edge.SetOwner(routeData);
-                        routeData.edges.Add(edge);
+                        routeData.Edges.Add(edge);
 
                         // Events
                         RouteFile.EventSpan* eventSpan = (RouteFile.EventSpan*)((byte*)routeDef + routeDef->EventSpanOffset) + j;
@@ -123,12 +123,12 @@ namespace Fox.GameService
                                     ? eventGameObject.AddComponent(eventType)
                                     : eventGameObject.AddComponent<GsRouteDataNodeEvent>());
 
-                                nodeEvent.id = eventId;
-                                nodeEvent.isLoop = eventDef->IsLoop;
-                                nodeEvent.time = eventDef->Time;
-                                nodeEvent.dir = eventDef->Dir;
+                                nodeEvent.Id = eventId;
+                                nodeEvent.IsLoop = eventDef->IsLoop;
+                                nodeEvent.Time = eventDef->Time;
+                                nodeEvent.Dir = eventDef->Dir;
                                 
-                                node.events.Add(nodeEvent);
+                                node.Events.Add(nodeEvent);
                                 nodeEvent.SetOwner(routeData);
                                 nodeEvent.name = nodeEvent.GenerateName(k);
 
@@ -143,9 +143,9 @@ namespace Fox.GameService
                                     ? eventGameObject.AddComponent(eventType)
                                     : eventGameObject.AddComponent<GsRouteDataEdgeEvent>());
                                 
-                                edgeEvent.id = eventId;
+                                edgeEvent.Id = eventId;
                                 
-                                edge.@event = edgeEvent;
+                                edge.Event = edgeEvent;
                                 edgeEvent.SetOwner(routeData);
                                 edgeEvent.name = edgeEvent.GenerateName(k);
                                 
@@ -166,7 +166,7 @@ namespace Fox.GameService
                                     GsRouteDataEventAimStaticPoint aimStaticPoint = new GameObject().AddComponent<GsRouteDataEventAimStaticPoint>();
                                     
                                     Vector3 position = *(Vector3*)aimPointData;
-                                    aimStaticPoint.position = position;
+                                    aimStaticPoint.Position = position;
                                     
                                     aimPoint = aimStaticPoint;
                                     break;
@@ -242,7 +242,7 @@ namespace Fox.GameService
                             {
                                 if (!(@event.extensions[0] == 0 && @event.extensions[1] == 0 && @event.extensions[2] == 0 && @event.extensions[3] == 0))
                                     //Debug.LogWarning($"Event {@event.id} in {routeData} has nonzero extensions ({@event.extensions[0]}, {@event.extensions[1]}, {@event.extensions[2]}, {@event.extensions[3]}).", @event);
-                                    logger.AddWarning($"Event {@event.id} in {routeData.name} has nonzero extensions ({@event.extensions[0]}, {@event.extensions[1]}, {@event.extensions[2]}, {@event.extensions[3]}).");
+                                    logger.AddWarning($"Event {@event.Id} in {routeData.name} has nonzero extensions ({@event.extensions[0]}, {@event.extensions[1]}, {@event.extensions[2]}, {@event.extensions[3]}).");
                             }
 #endif
                         }
@@ -250,23 +250,23 @@ namespace Fox.GameService
 
                     for (int j = 0; j < routeDef->NodeCount; j++)
                     {
-                        GraphxSpatialGraphDataNode node = routeData.nodes[j];
-                        GraphxSpatialGraphDataEdge prevEdge = routeData.edges[j];
-                        GraphxSpatialGraphDataEdge nextEdge = routeData.edges[(j + 1 + routeDef->NodeCount) % routeDef->NodeCount];
+                        GraphxSpatialGraphDataNode node = routeData.Nodes[j];
+                        GraphxSpatialGraphDataEdge prevEdge = routeData.Edges[j];
+                        GraphxSpatialGraphDataEdge nextEdge = routeData.Edges[(j + 1 + routeDef->NodeCount) % routeDef->NodeCount];
 
-                        node.outlinks.Add(prevEdge);
-                        prevEdge.nextNode = node;
-                        node.outlinks.Add(nextEdge);
-                        nextEdge.prevNode = node;
+                        node.Outlinks.Add(prevEdge);
+                        prevEdge.NextNode = node;
+                        node.Outlinks.Add(nextEdge);
+                        nextEdge.PrevNode = node;
                     }
                 }
 
                 // In the future, we'll probably want to move the importers into a general "de-converted DataSet" context that handles these calls automatically
                 foreach (GsRouteData route in routeDatas)
                 {
-                    foreach (GsRouteDataNode node in route.nodes)
+                    foreach (GsRouteDataNode node in route.Nodes)
                     {
-                        foreach (GsRouteDataNodeEvent nodeEvent in node.events)
+                        foreach (GsRouteDataNodeEvent nodeEvent in node.Events)
                         {
                             nodeEvent.aimPoint?.OnDeserializeEntity(logger);
                             
@@ -276,11 +276,11 @@ namespace Fox.GameService
                         node.OnDeserializeEntity(logger);
                     }
                     
-                    foreach (GsRouteDataEdge edge in route.edges)
+                    foreach (GsRouteDataEdge edge in route.Edges)
                     {
-                        edge.@event?.aimPoint?.OnDeserializeEntity(logger);
+                        edge.Event?.aimPoint?.OnDeserializeEntity(logger);
                         
-                        edge.@event?.OnDeserializeEntity(logger);
+                        edge.Event?.OnDeserializeEntity(logger);
                         
                         edge.OnDeserializeEntity(logger);
                     }

@@ -113,7 +113,7 @@ namespace Fox.Grx
 
                 reader.Seek(rewindPos + 4);
 
-                locator.size = 1;
+                locator.Size = 1;
 
                 return locator;
             }
@@ -135,7 +135,7 @@ namespace Fox.Grx
             if (ReadLocator(reader) is { } lightArea)
             {
                 lightArea.name = pointLight.name + "_LA";
-                pointLight.lightArea = new EntityLink
+                pointLight.LightArea = new EntityLink
                 (
                     lightArea,
                     new Fox.Path(""),
@@ -149,33 +149,33 @@ namespace Fox.Grx
                 pointLight.transform.position = reader.ReadPositionF();
             }
 
-            pointLight.outerRange = reader.ReadHalf();
-            pointLight.innerRange = reader.ReadHalf();
-            pointLight.dimmer = reader.ReadHalf();
-            pointLight.color = new Color(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
-            pointLight.temperature = reader.ReadHalf();
-            pointLight.colorDeflection = reader.ReadHalf();
+            pointLight.OuterRange = reader.ReadHalf();
+            pointLight.InnerRange = reader.ReadHalf();
+            pointLight.Dimmer = reader.ReadHalf();
+            pointLight.Color = new Color(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
+            pointLight.Temperature = reader.ReadHalf();
+            pointLight.ColorDeflection = reader.ReadHalf();
 
             reader.Align(4);
 
-            pointLight.lumen = reader.ReadSingle();
-            pointLight.lightSize = reader.ReadHalf();
-            pointLight.shadowBias = reader.ReadHalf();
-            pointLight.LodShadowDrawRate = reader.ReadHalf();
-            pointLight.LodFarSize = reader.ReadHalf();
-            pointLight.LodNearSize = reader.ReadHalf();
+            pointLight.Lumen = reader.ReadSingle();
+            pointLight.LightSize = reader.ReadHalf();
+            pointLight.ShadowBias = reader.ReadHalf();
+            pointLight.LodShadowDrawRateValue = reader.ReadHalf();
+            pointLight.LodFarSizeValue = reader.ReadHalf();
+            pointLight.LodNearSizeValue = reader.ReadHalf();
 
             reader.Align(4);
 
-            pointLight.lodRadiusLevel = (PointLight_LodRadiusLevel)reader.ReadInt32();
-            pointLight.lodFadeType = (byte)reader.ReadInt32();
+            pointLight.LodRadiusLevel = (PointLight_LodRadiusLevel)reader.ReadInt32();
+            pointLight.LodFadeType = (byte)reader.ReadInt32();
 
-            pointLight.reachPoint = new Vector3(0, -pointLight.outerRange, 0);
+            pointLight.ReachPoint = new Vector3(0, -pointLight.OuterRange, 0);
 
             if (ReadLocator(reader) is { } irradiationPoint)
             {
                 irradiationPoint.name = pointLight.name + "_IP";
-                pointLight.lightArea = new EntityLink
+                pointLight.LightArea = new EntityLink
                 (
                     irradiationPoint,
                     new Fox.Path(""),
@@ -199,7 +199,7 @@ namespace Fox.Grx
             if (ReadLocator(reader) is { } lightArea)
             {
                 lightArea.name = spotLight.name + "_LA";
-                spotLight.lightArea = new EntityLink
+                spotLight.LightArea = new EntityLink
                 (
                     lightArea,
                     new Fox.Path(""),
@@ -212,49 +212,49 @@ namespace Fox.Grx
                 spotLight.SetTransform(TransformEntity.GetDefault());
 
                 spotLight.transform.position = reader.ReadPositionF();
-                spotLight.reachPoint = reader.ReadPositionF();
+                spotLight.ReachPoint = reader.ReadPositionF();
 
                 spotLight.transform.rotation = reader.ReadRotationF();
                 spotLight.transform.localScale = Vector3.one;
             }
 
-            spotLight.outerRange = reader.ReadHalf();
-            spotLight.innerRange = reader.ReadHalf();
-            spotLight.umbraAngle = reader.ReadHalf();
-            spotLight.penumbraAngle = reader.ReadHalf();
-            spotLight.attenuationExponent = reader.ReadHalf();
+            spotLight.OuterRange = reader.ReadHalf();
+            spotLight.InnerRange = reader.ReadHalf();
+            spotLight.UmbraAngle = reader.ReadHalf();
+            spotLight.PenumbraAngle = reader.ReadHalf();
+            spotLight.AttenuationExponent = reader.ReadHalf();
 
-            spotLight.dimmer = reader.ReadHalf();
-            spotLight.color = new Color(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
-            spotLight.temperature = reader.ReadHalf();
-            spotLight.colorDeflection = reader.ReadHalf();
-            spotLight.lumen = reader.ReadSingle();
+            spotLight.Dimmer = reader.ReadHalf();
+            spotLight.Color = new Color(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
+            spotLight.Temperature = reader.ReadHalf();
+            spotLight.ColorDeflection = reader.ReadHalf();
+            spotLight.Lumen = reader.ReadSingle();
 
-            spotLight.lightSize = reader.ReadHalf();
+            spotLight.LightSize = reader.ReadHalf();
 
-            spotLight.shadowUmbraAngle = reader.ReadHalf();
-            spotLight.shadowPenumbraAngle = reader.ReadHalf();
-            spotLight.shadowAttenuationExponent = reader.ReadHalf();
+            spotLight.ShadowUmbraAngle = reader.ReadHalf();
+            spotLight.ShadowPenumbraAngle = reader.ReadHalf();
+            spotLight.ShadowAttenuationExponent = reader.ReadHalf();
 
-            spotLight.shadowBias = reader.ReadHalf();
-            spotLight.viewBias = reader.ReadHalf();
+            spotLight.ShadowBias = reader.ReadHalf();
+            spotLight.ViewBias = reader.ReadHalf();
 
-            spotLight.LodShadowDrawRate = reader.ReadHalf();
+            spotLight.LodShadowDrawRateValue = reader.ReadHalf();
 
-            spotLight.LodFarSize = reader.ReadHalf();
-            spotLight.LodNearSize = reader.ReadHalf();
+            spotLight.LodFarSizeValue = reader.ReadHalf();
+            spotLight.LodNearSizeValue = reader.ReadHalf();
 
             reader.Align(4);
 
-            spotLight.powerScale = 1;
+            spotLight.PowerScale = 1;
 
-            spotLight.lodRadiusLevel = (SpotLight_LodRadiusLevel)reader.ReadInt32();
-            spotLight.lodFadeType = (byte)reader.ReadInt32();
+            spotLight.LodRadiusLevel = (SpotLight_LodRadiusLevel)reader.ReadInt32();
+            spotLight.LodFadeType = (byte)reader.ReadInt32();
 
             if (ReadLocator(reader) is { } irradiationPoint)
             {
                 irradiationPoint.name = spotLight.name + "_IP";
-                spotLight.irradiationPoint = new EntityLink
+                spotLight.IrradiationPoint = new EntityLink
                 (
                     irradiationPoint,
                     new Fox.Path(""),

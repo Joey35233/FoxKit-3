@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Geo
@@ -16,8 +17,8 @@ namespace Fox.Geo
 	public partial class CollisionObject : Fox.Core.Entity
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected Fox.Core.Entity ownerHandle { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.Entity ownerHandle;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Geo
 		{
 			if (Fox.Core.Entity.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("CollisionObject", typeof(CollisionObject), Fox.Core.Entity.ClassInfo, 0, "Collision", 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("ownerHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("ownerHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

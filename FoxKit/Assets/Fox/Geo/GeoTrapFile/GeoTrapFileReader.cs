@@ -44,7 +44,7 @@ namespace Fox.Geo
                     {
                         GeoTriggerTrap triggerTrap = new GameObject(header.Name.ToString()).AddComponent<GeoTriggerTrap>();
                         triggerTrap.enable = true;
-                        TagUtils.AddEnumTags<GeoTriggerTrap.Tags>(triggerTrap.groupTags, (ulong)header.GetTags<GeoTriggerTrap.Tags>());
+                        TagUtils.AddEnumTags<GeoTriggerTrap.Tags>(triggerTrap.GroupTags, (ulong)header.GetTags<GeoTriggerTrap.Tags>());
                         triggerTrap.SetTransform(TransformEntity.GetDefault());
 
                         for (int j = 0; j < header.PrimCount; j++)

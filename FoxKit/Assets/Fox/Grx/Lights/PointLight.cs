@@ -5,6 +5,23 @@ namespace Fox.Grx
 {
     public partial class PointLight : Fox.Core.TransformData
     {
+        public float LodFarSizeValue { get => LodFarSize; set => LodFarSize = value; }
+        public float LodNearSizeValue { get => LodNearSize; set => LodNearSize = value; }
+        public float LodShadowDrawRateValue { get => LodShadowDrawRate; set => LodShadowDrawRate = value; }
+        public UnityEngine.Color Color { get => color; set => color = value; }
+        public float ColorDeflection { get => colorDeflection; set => colorDeflection = value; }
+        public float Dimmer { get => dimmer; set => dimmer = value; }
+        public float InnerRange { get => innerRange; set => innerRange = value; }
+        public Fox.Core.EntityLink LightArea { get => lightArea; set => lightArea = value; }
+        public float LightSize { get => lightSize; set => lightSize = value; }
+        public byte LodFadeType { get => lodFadeType; set => lodFadeType = value; }
+        public PointLight_LodRadiusLevel LodRadiusLevel { get => lodRadiusLevel; set => lodRadiusLevel = value; }
+        public float Lumen { get => lumen; set => lumen = value; }
+        public float OuterRange { get => outerRange; set => outerRange = value; }
+        public UnityEngine.Vector3 ReachPoint { get => reachPoint; set => reachPoint = value; }
+        public float ShadowBias { get => shadowBias; set => shadowBias = value; }
+        public float Temperature { get => temperature; set => temperature = value; }
+
         private partial bool enable_Get() => FlagUtils.GetFlag(lightFlags, 0);
         private partial void enable_Set(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 0, value);
 

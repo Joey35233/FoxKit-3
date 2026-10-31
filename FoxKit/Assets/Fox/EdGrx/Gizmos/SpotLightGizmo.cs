@@ -18,12 +18,12 @@ namespace Fox.EdGrx
             DrawGizmos(
                 spotLight.transform,
                 gizmoType,
-                spotLight.reachPoint.normalized,
-                spotLight.umbraAngle,
-                spotLight.penumbraAngle,
-                spotLight.shadowUmbraAngle,
-                spotLight.shadowPenumbraAngle,
-                spotLight.outerRange);
+                spotLight.ReachPoint.normalized,
+                spotLight.UmbraAngle,
+                spotLight.PenumbraAngle,
+                spotLight.ShadowUmbraAngle,
+                spotLight.ShadowPenumbraAngle,
+                spotLight.OuterRange);
         }
 
         public static void DrawGizmos(

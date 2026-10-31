@@ -15,7 +15,7 @@ namespace Fox.EdGeox
             Gizmos.matrix = primitive.transform.localToWorldMatrix;
             Gizmos.color = isSelected ? EditorColors.GenericSelectedColor : EditorColors.GenericUnselectedColor;
 
-            switch (primitive.primitiveType)
+            switch (primitive.PrimitiveType)
             {
                 case CollisionPrimitive_PrimType.PRIM_CIRCLE:
                     Gizmos.DrawSphere(Vector3.zero, 1);

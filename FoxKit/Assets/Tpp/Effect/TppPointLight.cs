@@ -7,6 +7,8 @@ namespace Tpp.Effect
 {
     public partial class TppPointLight : Fox.Core.TransformData
     {
+        public float OuterRange => outerRange;
+
         private partial bool enable_Get() => throw new CsSystem.NotImplementedException();
         private partial void enable_Set(bool value) => throw new CsSystem.NotImplementedException();
 

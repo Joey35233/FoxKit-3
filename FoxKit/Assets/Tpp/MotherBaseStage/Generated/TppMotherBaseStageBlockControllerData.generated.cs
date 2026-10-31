@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.MotherBaseStage
@@ -16,65 +17,65 @@ namespace Tpp.MotherBaseStage
 	public partial class TppMotherBaseStageBlockControllerData : Fox.Core.Data
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public MbStageBlockCreateMode createMode { get; set; }
+		[UnityEngine.SerializeField]
+		private MbStageBlockCreateMode createMode;
 		
-		[field: UnityEngine.SerializeField]
-		public ushort motherBaseId { get; set; }
+		[UnityEngine.SerializeField]
+		private ushort motherBaseId;
 		
-		[field: UnityEngine.SerializeField]
-		public string stageName { get; set; }
+		[UnityEngine.SerializeField]
+		private string stageName;
 		
-		[field: UnityEngine.SerializeField]
-		public uint layoutBlockSizeInBytes { get; set; }
+		[UnityEngine.SerializeField]
+		private uint layoutBlockSizeInBytes;
 		
-		[field: UnityEngine.SerializeField]
-		public uint commonBlockSizeInBytes { get; set; }
+		[UnityEngine.SerializeField]
+		private uint commonBlockSizeInBytes;
 		
-		[field: UnityEngine.SerializeField]
-		public uint uniqueBlockCount { get; set; }
+		[UnityEngine.SerializeField]
+		private uint uniqueBlockCount;
 		
-		[field: UnityEngine.SerializeField]
-		public uint uniqueBlockSizeInBytes { get; set; }
+		[UnityEngine.SerializeField]
+		private uint uniqueBlockSizeInBytes;
 		
-		[field: UnityEngine.SerializeField]
-		public uint divisionBlockCount { get; set; }
+		[UnityEngine.SerializeField]
+		private uint divisionBlockCount;
 		
-		[field: UnityEngine.SerializeField]
-		public uint divisionBlockSizeInBytes { get; set; }
+		[UnityEngine.SerializeField]
+		private uint divisionBlockSizeInBytes;
 		
-		[field: UnityEngine.SerializeField]
-		public byte[] cluster00divisionPackageIds { get; private set; } = new byte[12];
+		[UnityEngine.SerializeField]
+		private byte[] cluster00divisionPackageIds = new byte[12];
 		
-		[field: UnityEngine.SerializeField]
-		public byte[] cluster01divisionPackageIds { get; private set; } = new byte[12];
+		[UnityEngine.SerializeField]
+		private byte[] cluster01divisionPackageIds = new byte[12];
 		
-		[field: UnityEngine.SerializeField]
-		public byte[] cluster02divisionPackageIds { get; private set; } = new byte[12];
+		[UnityEngine.SerializeField]
+		private byte[] cluster02divisionPackageIds = new byte[12];
 		
-		[field: UnityEngine.SerializeField]
-		public byte[] cluster03divisionPackageIds { get; private set; } = new byte[12];
+		[UnityEngine.SerializeField]
+		private byte[] cluster03divisionPackageIds = new byte[12];
 		
-		[field: UnityEngine.SerializeField]
-		public byte[] cluster04divisionPackageIds { get; private set; } = new byte[12];
+		[UnityEngine.SerializeField]
+		private byte[] cluster04divisionPackageIds = new byte[12];
 		
-		[field: UnityEngine.SerializeField]
-		public byte[] cluster05divisionPackageIds { get; private set; } = new byte[12];
+		[UnityEngine.SerializeField]
+		private byte[] cluster05divisionPackageIds = new byte[12];
 		
-		[field: UnityEngine.SerializeField]
-		public byte[] cluster06divisionPackageIds { get; private set; } = new byte[12];
+		[UnityEngine.SerializeField]
+		private byte[] cluster06divisionPackageIds = new byte[12];
 		
-		[field: UnityEngine.SerializeField]
-		public byte[] cluster07divisionPackageIds { get; private set; } = new byte[12];
+		[UnityEngine.SerializeField]
+		private byte[] cluster07divisionPackageIds = new byte[12];
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Vector3[] clusterPositions { get; private set; } = new UnityEngine.Vector3[8];
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3[] clusterPositions = new UnityEngine.Vector3[8];
 		
-		[field: UnityEngine.SerializeField]
-		public uint[] clusterRequestRadiuses { get; private set; } = new uint[8];
+		[UnityEngine.SerializeField]
+		private uint[] clusterRequestRadiuses = new uint[8];
 		
-		[field: UnityEngine.SerializeField]
-		public uint[] clusterRequireRadiuses { get; private set; } = new uint[8];
+		[UnityEngine.SerializeField]
+		private uint[] clusterRequireRadiuses = new uint[8];
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -94,26 +95,26 @@ namespace Tpp.MotherBaseStage
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppMotherBaseStageBlockControllerData", typeof(TppMotherBaseStageBlockControllerData), Fox.Core.Data.ClassInfo, 400, null, 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("createMode", Fox.Core.PropertyInfo.PropertyType.Int32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(MbStageBlockCreateMode), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("motherBaseId", Fox.Core.PropertyInfo.PropertyType.UInt16, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("stageName", Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("layoutBlockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("commonBlockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("uniqueBlockCount", Fox.Core.PropertyInfo.PropertyType.UInt32, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("uniqueBlockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("divisionBlockCount", Fox.Core.PropertyInfo.PropertyType.UInt32, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("divisionBlockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster00divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 162, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster01divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 174, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster02divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 186, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster03divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 198, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster04divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 210, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster05divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 222, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster06divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 234, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster07divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 246, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clusterPositions", Fox.Core.PropertyInfo.PropertyType.Vector3, 272, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clusterRequestRadiuses", Fox.Core.PropertyInfo.PropertyType.UInt32, 400, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clusterRequireRadiuses", Fox.Core.PropertyInfo.PropertyType.UInt32, 432, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("createMode", Fox.Core.PropertyInfo.PropertyType.Int32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(MbStageBlockCreateMode), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("motherBaseId", Fox.Core.PropertyInfo.PropertyType.UInt16, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("stageName", Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("layoutBlockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("commonBlockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("uniqueBlockCount", Fox.Core.PropertyInfo.PropertyType.UInt32, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("uniqueBlockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("divisionBlockCount", Fox.Core.PropertyInfo.PropertyType.UInt32, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("divisionBlockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster00divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 162, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster01divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 174, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster02divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 186, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster03divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 198, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster04divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 210, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster05divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 222, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster06divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 234, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cluster07divisionPackageIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 246, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clusterPositions", Fox.Core.PropertyInfo.PropertyType.Vector3, 272, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clusterRequestRadiuses", Fox.Core.PropertyInfo.PropertyType.UInt32, 400, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clusterRequireRadiuses", Fox.Core.PropertyInfo.PropertyType.UInt32, 432, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

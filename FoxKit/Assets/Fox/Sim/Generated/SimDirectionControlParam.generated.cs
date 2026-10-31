@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Sim
@@ -16,11 +17,11 @@ namespace Fox.Sim
 	public partial class SimDirectionControlParam : Fox.Sim.SimControlParam
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected string refBone { get; set; }
+		[UnityEngine.SerializeField]
+		private string refBone;
 		
-		[field: UnityEngine.SerializeField]
-		protected UnityEngine.Quaternion offset { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Quaternion offset;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Sim
 		{
 			if (Fox.Sim.SimControlParam.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("SimDirectionControlParam", typeof(SimDirectionControlParam), Fox.Sim.SimControlParam.ClassInfo, 48, "Sim", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("refBone", Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offset", Fox.Core.PropertyInfo.PropertyType.Quat, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("refBone", Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offset", Fox.Core.PropertyInfo.PropertyType.Quat, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

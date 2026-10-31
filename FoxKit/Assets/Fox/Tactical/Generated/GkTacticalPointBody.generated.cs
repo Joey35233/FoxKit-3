@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Tactical
@@ -16,8 +17,8 @@ namespace Fox.Tactical
 	public partial class GkTacticalPointBody : Fox.Core.TransformDataBody
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected Fox.Core.Entity @object { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.Entity @object;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Tactical
 		{
 			if (Fox.Core.TransformDataBody.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GkTacticalPointBody", typeof(GkTacticalPointBody), Fox.Core.TransformDataBody.ClassInfo, 0, "TacticalPoint", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("object", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("object", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +6,8 @@ namespace Fox.Geox
 {
     public partial class GeoxCollisionPrimitive
     {
+        public CollisionPrimitive_PrimType PrimitiveType => primitiveType;
+
         public override void Reset()
         {
             base.Reset();

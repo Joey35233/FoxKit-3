@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.PartsBuilder
@@ -16,8 +17,8 @@ namespace Fox.PartsBuilder
 	public partial class ConnectModelDescription : Fox.PartsBuilder.ModelDescription
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<string> connectPointNames { get; private set; } = new Fox.StringMap<string>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<string> connectPointNames = new Fox.StringMap<string>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.PartsBuilder
 		{
 			if (Fox.PartsBuilder.ModelDescription.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("ConnectModelDescription", typeof(ConnectModelDescription), Fox.PartsBuilder.ModelDescription.ClassInfo, 336, "PartsBuilder", 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("connectPointNames", Fox.Core.PropertyInfo.PropertyType.String, 368, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("connectPointNames", Fox.Core.PropertyInfo.PropertyType.String, 368, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

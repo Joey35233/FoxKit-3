@@ -2,6 +2,9 @@ namespace Tpp.GameKit
 {
 	public partial class TppCombatLocatorData : Fox.Core.TransformData
 	{
+        public float LostSearchRadius => lostSearchRadius;
+        public float Radius => radius;
+
         public override void Reset()
         {
             base.Reset();

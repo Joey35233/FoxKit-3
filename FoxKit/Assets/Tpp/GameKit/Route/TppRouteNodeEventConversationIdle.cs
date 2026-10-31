@@ -1,4 +1,4 @@
-﻿using Fox;
+using Fox;
 using Fox.Core.Utils;
 
 namespace Tpp.GameKit

@@ -1,5 +1,6 @@
 [
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -8,6 +9,7 @@
     "parent": "GraphxSpatialGraphDataNode",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "DynamicArray",
         "enum": null,
@@ -22,6 +24,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -30,6 +33,7 @@
     "parent": "GraphxSpatialGraphDataEdge",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -44,6 +48,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -54,6 +59,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -64,6 +70,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -72,6 +79,7 @@
     "parent": "DataElement",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -83,6 +91,7 @@
         "type": "String"
       },
       {
+        "accessModifier": "internal",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -94,6 +103,7 @@
         "type": "EntityPtr"
       },
       {
+        "accessModifier": "protected internal",
         "arraySize": 4,
         "container": "StaticArray",
         "enum": null,
@@ -108,6 +118,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -118,6 +129,7 @@
     "version": 1
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -126,6 +138,7 @@
     "parent": "GsRouteDataEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -137,6 +150,7 @@
         "type": "bool"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -148,6 +162,7 @@
         "type": "float"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -162,6 +177,7 @@
     "version": 2
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -170,6 +186,7 @@
     "parent": "DataElement",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "GsRouteDataEventAimPoint_TargetType",
@@ -181,6 +198,7 @@
         "type": "uint8"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -192,6 +210,7 @@
         "type": "Vector3"
       },
       {
+        "accessModifier": "protected",
         "arraySize": 4,
         "container": "StaticArray",
         "enum": null,
@@ -203,6 +222,7 @@
         "type": "String"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "GsRouteDataEventAimPoint_BodySection",
@@ -217,6 +237,7 @@
     "version": 2
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -225,6 +246,8 @@
     "parent": "GsRouteDataEventAimPoint",
     "properties": [
       {
+        "accessModifier": "public",
+        "accessorSetter": true,
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -239,6 +262,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -247,6 +271,8 @@
     "parent": "GsRouteDataEventAimPoint",
     "properties": [
       {
+        "accessModifier": "public",
+        "accessorSetter": true,
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -261,6 +287,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -269,6 +296,8 @@
     "parent": "GsRouteDataEventAimPoint",
     "properties": [
       {
+        "accessModifier": "public",
+        "accessorWriteModifier": "public",
         "arraySize": 1,
         "container": "DynamicArray",
         "enum": null,
@@ -283,6 +312,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -291,6 +321,8 @@
     "parent": "GsRouteDataEventAimPoint",
     "properties": [
       {
+        "accessModifier": "public",
+        "accessorWriteModifier": "public",
         "arraySize": 1,
         "container": "DynamicArray",
         "enum": null,
@@ -305,6 +337,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -313,6 +346,7 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -327,6 +361,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -335,6 +370,7 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -346,6 +382,7 @@
         "type": "String"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -357,6 +394,7 @@
         "type": "float"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -371,6 +409,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -379,6 +418,7 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -393,6 +433,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -401,6 +442,7 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -412,6 +454,7 @@
         "type": "String"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -423,6 +466,7 @@
         "type": "String"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -437,6 +481,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -445,6 +490,7 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -456,6 +502,7 @@
         "type": "String"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -470,6 +517,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -478,6 +526,7 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -489,6 +538,7 @@
         "type": "String"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -500,6 +550,7 @@
         "type": "String"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -514,6 +565,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -522,6 +574,7 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -533,6 +586,7 @@
         "type": "String"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -547,6 +601,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -555,6 +610,7 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -566,6 +622,7 @@
         "type": "String"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -577,6 +634,7 @@
         "type": "float"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -591,6 +649,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -599,6 +658,7 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "TppRouteEdgeEventHelicopter_DoorState",
@@ -610,6 +670,7 @@
         "type": "uint32"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "TppRouteEdgeEventHelicopter_DoorState",
@@ -621,6 +682,7 @@
         "type": "uint32"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "TppRouteEdgeEventHelicopter_DoorState",
@@ -632,6 +694,7 @@
         "type": "uint32"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "TppRouteEdgeEventHelicopter_DirectionType",
@@ -643,6 +706,7 @@
         "type": "uint32"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -654,6 +718,7 @@
         "type": "int32"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -665,6 +730,7 @@
         "type": "bool"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -676,6 +742,7 @@
         "type": "float"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -687,6 +754,7 @@
         "type": "float"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "TppRouteEdgeEventHelicopter_DoorSide",
@@ -701,6 +769,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -709,6 +778,7 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "TppRouteEdgeEventHelicopter_DoorState",
@@ -720,6 +790,7 @@
         "type": "uint32"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "TppRouteEdgeEventHelicopter_DoorState",
@@ -731,6 +802,7 @@
         "type": "uint32"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "TppRouteEdgeEventHelicopter_DoorState",
@@ -742,6 +814,7 @@
         "type": "uint32"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "TppRouteEdgeEventHelicopter_DirectionType",
@@ -753,6 +826,7 @@
         "type": "uint32"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -764,6 +838,7 @@
         "type": "int32"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -775,6 +850,7 @@
         "type": "bool"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -786,6 +862,7 @@
         "type": "float"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -797,6 +874,7 @@
         "type": "float"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": "TppRouteEdgeEventHelicopter_DoorSide",
@@ -811,6 +889,7 @@
     "version": 0
   },
   {
+    "subentity": false,
     "category": null,
     "functions": [],
     "id": 0,
@@ -819,6 +898,7 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -830,6 +910,7 @@
         "type": "float"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
@@ -841,6 +922,7 @@
         "type": "float"
       },
       {
+        "accessModifier": "private",
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,

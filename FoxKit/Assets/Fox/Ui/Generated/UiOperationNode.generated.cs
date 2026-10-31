@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Ui
@@ -16,8 +17,8 @@ namespace Fox.Ui
 	public partial class UiOperationNode : Fox.Ui.UiNodeData
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public UiOperationNodeKind kind { get; set; }
+		[UnityEngine.SerializeField]
+		private UiOperationNodeKind kind;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Ui
 		{
 			if (Fox.Ui.UiNodeData.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("UiOperationNode", typeof(UiOperationNode), Fox.Ui.UiNodeData.ClassInfo, 0, "UiG", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("kind", Fox.Core.PropertyInfo.PropertyType.Int32, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, typeof(UiOperationNodeKind), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("kind", Fox.Core.PropertyInfo.PropertyType.Int32, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(UiOperationNodeKind), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

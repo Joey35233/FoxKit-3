@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Codice.CM.Common.Merge;
 using Fox.Core;
 using Fox.Core.Utils;
@@ -68,7 +68,7 @@ namespace Fox.GameKit
                         out ObjectBrush objectBrush))
                     return null;
                 
-                ObjectBrushAsset obrAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushAsset>(objectBrush.obrFile.path.String);
+                ObjectBrushAsset obrAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushAsset>(objectBrush.ObrFile.path.String);
                 float blockSizeW = obrAsset.BlockSizeW;
                 float blockSizeH = obrAsset.BlockSizeH;
                 uint numBlocksW = obrAsset.NumBlocksW;
@@ -100,7 +100,7 @@ namespace Fox.GameKit
 
                     float normalizedScale = unit->NormalizedScale / (float)byte.MaxValue;
                     
-                    ObjectBrushPlugin plugin = objectBrush.pluginHandle[unit->PluginId] as ObjectBrushPlugin;
+                    ObjectBrushPlugin plugin = objectBrush.PluginHandle[unit->PluginId] as ObjectBrushPlugin;
 
                     ObjectBrushObject obj = new ObjectBrushObject
                     {

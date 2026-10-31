@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameKit
@@ -16,8 +17,8 @@ namespace Fox.GameKit
 	public partial class CheckpointTrapScriptModuleConditionBody : Fox.Geo.GeoTrapScriptModuleConditionBody
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected string checkpointName { get; set; }
+		[UnityEngine.SerializeField]
+		private string checkpointName;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.GameKit
 		{
 			if (Fox.Geo.GeoTrapScriptModuleConditionBody.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("CheckpointTrapScriptModuleConditionBody", typeof(CheckpointTrapScriptModuleConditionBody), Fox.Geo.GeoTrapScriptModuleConditionBody.ClassInfo, 0, "GameKit", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkpointName", Fox.Core.PropertyInfo.PropertyType.String, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkpointName", Fox.Core.PropertyInfo.PropertyType.String, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

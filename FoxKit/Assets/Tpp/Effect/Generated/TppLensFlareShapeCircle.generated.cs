@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.Effect
@@ -16,14 +17,14 @@ namespace Tpp.Effect
 	public partial class TppLensFlareShapeCircle : Tpp.Effect.TppLensFlareShape
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public float outerScale { get; set; }
+		[UnityEngine.SerializeField]
+		private float outerScale;
 		
-		[field: UnityEngine.SerializeField]
-		public float innerScale { get; set; }
+		[UnityEngine.SerializeField]
+		private float innerScale;
 		
-		[field: UnityEngine.SerializeField]
-		public uint divideNum { get; set; }
+		[UnityEngine.SerializeField]
+		private uint divideNum;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -43,9 +44,9 @@ namespace Tpp.Effect
 		{
 			if (Tpp.Effect.TppLensFlareShape.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppLensFlareShapeCircle", typeof(TppLensFlareShapeCircle), Tpp.Effect.TppLensFlareShape.ClassInfo, 688, null, 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("outerScale", Fox.Core.PropertyInfo.PropertyType.Float, 816, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("innerScale", Fox.Core.PropertyInfo.PropertyType.Float, 820, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("divideNum", Fox.Core.PropertyInfo.PropertyType.UInt32, 824, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("outerScale", Fox.Core.PropertyInfo.PropertyType.Float, 816, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("innerScale", Fox.Core.PropertyInfo.PropertyType.Float, 820, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("divideNum", Fox.Core.PropertyInfo.PropertyType.UInt32, 824, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

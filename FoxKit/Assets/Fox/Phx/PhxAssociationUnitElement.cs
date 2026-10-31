@@ -6,6 +6,9 @@ namespace Fox.Phx
 {
     public partial class PhxAssociationUnitElement
     {
+        public UnityEngine.Vector3 BodyOffsetPos => bodyOffsetPos;
+        public UnityEngine.Vector3 ConstraintOffsetPos => constraintOffsetPos;
+        public UnityEngine.Quaternion OffsetRot => offsetRot;
 
         public override void OnDeserializeEntity(TaskLogger logger)
         {

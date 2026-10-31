@@ -5,6 +5,32 @@ namespace Fox.Grx
 {
     public partial class SpotLight : Fox.Core.TransformData
     {
+        public float LodFarSizeValue { get => LodFarSize; set => LodFarSize = value; }
+        public float LodNearSizeValue { get => LodNearSize; set => LodNearSize = value; }
+        public float LodShadowDrawRateValue { get => LodShadowDrawRate; set => LodShadowDrawRate = value; }
+        public float AttenuationExponent { get => attenuationExponent; set => attenuationExponent = value; }
+        public UnityEngine.Color Color { get => color; set => color = value; }
+        public float ColorDeflection { get => colorDeflection; set => colorDeflection = value; }
+        public float Dimmer { get => dimmer; set => dimmer = value; }
+        public float InnerRange { get => innerRange; set => innerRange = value; }
+        public Fox.Core.EntityLink IrradiationPoint { get => irradiationPoint; set => irradiationPoint = value; }
+        public Fox.Core.EntityLink LightArea { get => lightArea; set => lightArea = value; }
+        public float LightSize { get => lightSize; set => lightSize = value; }
+        public byte LodFadeType { get => lodFadeType; set => lodFadeType = value; }
+        public SpotLight_LodRadiusLevel LodRadiusLevel { get => lodRadiusLevel; set => lodRadiusLevel = value; }
+        public float Lumen { get => lumen; set => lumen = value; }
+        public float OuterRange { get => outerRange; set => outerRange = value; }
+        public float PenumbraAngle { get => penumbraAngle; set => penumbraAngle = value; }
+        public float PowerScale { get => powerScale; set => powerScale = value; }
+        public UnityEngine.Vector3 ReachPoint { get => reachPoint; set => reachPoint = value; }
+        public float ShadowAttenuationExponent { get => shadowAttenuationExponent; set => shadowAttenuationExponent = value; }
+        public float ShadowBias { get => shadowBias; set => shadowBias = value; }
+        public float ShadowPenumbraAngle { get => shadowPenumbraAngle; set => shadowPenumbraAngle = value; }
+        public float ShadowUmbraAngle { get => shadowUmbraAngle; set => shadowUmbraAngle = value; }
+        public float Temperature { get => temperature; set => temperature = value; }
+        public float UmbraAngle { get => umbraAngle; set => umbraAngle = value; }
+        public float ViewBias { get => viewBias; set => viewBias = value; }
+
         private partial bool enable_Get() => FlagUtils.GetFlag(lightFlags, 0);
         private partial void enable_Set(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 0, value);
 

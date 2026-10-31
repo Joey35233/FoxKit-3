@@ -1,4 +1,4 @@
-﻿using Fox.EdCore;
+using Fox.EdCore;
 using Fox.Graphx;
 using UnityEditor;
 using UnityEngine;
@@ -11,12 +11,12 @@ namespace Fox.EdGraphx
         private GraphxSpatialGraphDataEdge Target => (GraphxSpatialGraphDataEdge)base.target;
         private GraphxSpatialGraphData Graph => Target.transform.parent.GetComponent<GraphxSpatialGraphData>();
 
-        protected bool HasFrameBounds() => Graph != null && Target.prevNode is not null && Target.nextNode is not null;
+        protected bool HasFrameBounds() => Graph != null && Target.PrevNode is not null && Target.NextNode is not null;
 
         protected Bounds OnGetFrameBounds()
         {
-            Bounds bounds = new Bounds(Target.prevNode.transform.position, new Vector3(0, 0, 0));
-            bounds.Encapsulate(Target.nextNode.transform.position);
+            Bounds bounds = new Bounds(Target.PrevNode.transform.position, new Vector3(0, 0, 0));
+            bounds.Encapsulate(Target.NextNode.transform.position);
 
             return bounds;
         }

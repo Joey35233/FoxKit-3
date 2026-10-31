@@ -1,4 +1,4 @@
-﻿namespace Tpp.System
+namespace Tpp.System
 {
     public partial class TppTrapChangeEventSequenceCallbackDataElement
     {

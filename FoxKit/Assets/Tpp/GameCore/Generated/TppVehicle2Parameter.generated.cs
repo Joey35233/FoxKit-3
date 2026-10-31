@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.GameCore
@@ -16,8 +17,8 @@ namespace Tpp.GameCore
 	public partial class TppVehicle2Parameter : Fox.Core.DataElement
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected byte maxBodyTypeCount { get; set; }
+		[UnityEngine.SerializeField]
+		private byte maxBodyTypeCount;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Tpp.GameCore
 		{
 			if (Fox.Core.DataElement.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppVehicle2Parameter", typeof(TppVehicle2Parameter), Fox.Core.DataElement.ClassInfo, 32, null, 6);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxBodyTypeCount", Fox.Core.PropertyInfo.PropertyType.UInt8, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxBodyTypeCount", Fox.Core.PropertyInfo.PropertyType.UInt8, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

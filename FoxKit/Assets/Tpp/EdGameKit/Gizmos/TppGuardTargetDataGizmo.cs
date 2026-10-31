@@ -19,7 +19,7 @@ namespace Tpp.EdGameKit
             Gizmos.color = isSelected ? EditorColors.GenericSelectedColor : Color.white;
 
             if (isSelected)
-                Gizmos.DrawWireSphere(Vector3.zero, guardTargetData.radius);
+                Gizmos.DrawWireSphere(Vector3.zero, guardTargetData.Radius);
 
             Gizmos.DrawIcon(transform.position, GizmoPath, true, Gizmos.color);
         }

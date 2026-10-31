@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using System;
 using System.ComponentModel;
 
@@ -5,6 +7,8 @@ namespace Fox.Geo
 {
     public partial class GeoTriggerTrap : Fox.Core.TransformData
     {
+        public List<string> GroupTags => groupTags;
+
         [Flags]
         public enum Tags : ulong
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Fox.Core.Utils;
 using UnityEngine;
 
@@ -6,6 +6,10 @@ namespace Fox.GameService
 {
 	public partial class GsRouteDataNodeEvent
 	{
+        public UnityEngine.Quaternion Dir { get => dir; set => dir = value; }
+        public bool IsLoop { get => isLoop; set => isLoop = value; }
+        public float Time { get => time; set => time = value; }
+
 		public override void Reset()
 		{
 			base.Reset();

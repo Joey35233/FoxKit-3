@@ -5,15 +5,15 @@ namespace Fox.GameService
 {
     public partial class GsRouteDataEventAimStaticPoint : GsRouteDataEventAimPoint
     {
-        private partial Vector3 aimPos_Get() => transform.TransformPoint(position);
+        private partial Vector3 aimPos_Get() => transform.TransformPoint(Position);
 
-        private partial void aimPos_Set(Vector3 value) => position = transform.InverseTransformPoint(value);
+        private partial void aimPos_Set(Vector3 value) => Position = transform.InverseTransformPoint(value);
         
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
             
-            position = Fox.Math.FoxToUnityVector3(position);
+            Position = Fox.Math.FoxToUnityVector3(Position);
         }
     }
 }

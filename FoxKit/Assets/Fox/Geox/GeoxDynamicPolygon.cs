@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
 using System.Collections.Generic;
@@ -7,6 +7,8 @@ namespace Fox.Geox
 {
     public partial class GeoxDynamicPolygon
     {
+        public List<UnityEngine.Vector3> Vertices => vertices;
+
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);

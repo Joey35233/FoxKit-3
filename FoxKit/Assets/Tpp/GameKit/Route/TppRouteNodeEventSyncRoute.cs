@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Fox;
 using Fox.Core.Utils;
 using Fox.GameService;

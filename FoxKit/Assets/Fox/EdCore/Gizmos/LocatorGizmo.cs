@@ -12,7 +12,7 @@ namespace Fox.EdCore
             bool isSelected = (gizmoType & GizmoType.Selected) != 0;
 
             Gizmos.color = isSelected ? EditorColors.GenericSelectedColor : EditorColors.GenericUnselectedColor;
-            Gizmos.DrawWireSphere(locator.transform.position, locator.size / 2f);
+            Gizmos.DrawWireSphere(locator.transform.position, locator.Size / 2f);
         }
     }
 }
