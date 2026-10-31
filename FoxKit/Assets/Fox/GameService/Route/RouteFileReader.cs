@@ -110,8 +110,6 @@ namespace Fox.GameService
                         for (ushort k = 0; k < eventSpan->Count; k++)
                         {
                             RouteFile.EventDef* eventDef = (RouteFile.EventDef*)((byte*)routeDef + routeDef->EventsOffset) + (eventSpan->StartIndex + k);
-
-                            Debug.Assert(eventDef->BodySectionType == RouteBodySectionType.Head);
                             
                             GameServiceModule.EventIdMap.Resolve(eventDef->Id, out string eventId);
                             GameObject eventGameObject = new GameObject();
@@ -156,12 +154,14 @@ namespace Fox.GameService
                             }
 
                             byte* aimPointData = eventDef->GetAimPointData(version);
+                            Debug.Assert(eventDef->AimBodySection == GsRouteDataEventAimPoint_BodySection.HEAD);
+                            
                             GsRouteDataEventAimPoint aimPoint = null;
                             switch (eventDef->AimTargetType)
                             {
-                                case RouteAimTargetType.NoTarget:
+                                case GsRouteDataEventAimPoint_TargetType.NO_TARGET:
                                     break;
-                                case RouteAimTargetType.StaticPoint:
+                                case GsRouteDataEventAimPoint_TargetType.STATIC_POINT:
                                 {
                                     GsRouteDataEventAimStaticPoint aimStaticPoint = new GameObject().AddComponent<GsRouteDataEventAimStaticPoint>();
                                     
@@ -171,7 +171,7 @@ namespace Fox.GameService
                                     aimPoint = aimStaticPoint;
                                     break;
                                 }
-                                case RouteAimTargetType.Character:
+                                case GsRouteDataEventAimPoint_TargetType.CHARACTER:
                                 {
                                     GsRouteDataEventAimCharacter aimCharacter = new GameObject().AddComponent<GsRouteDataEventAimCharacter>();
                                     
@@ -181,7 +181,7 @@ namespace Fox.GameService
                                     aimPoint = aimCharacter;
                                     break;
                                 }
-                                case RouteAimTargetType.RouteAsSightMovePath:
+                                case GsRouteDataEventAimPoint_TargetType.ROUTE_AS_SIGHT_MOVE_PATH:
                                 {
                                     GsRouteDataEventAimRouteAsSightMovePath aimRouteAsSightMovePath = new GameObject().AddComponent<GsRouteDataEventAimRouteAsSightMovePath>();
                                     
@@ -200,7 +200,7 @@ namespace Fox.GameService
                                     aimPoint = aimRouteAsSightMovePath;
                                     break;
                                 }
-                                case RouteAimTargetType.RouteAsObject:
+                                case GsRouteDataEventAimPoint_TargetType.ROUTE_AS_OBJECT:
                                 {
                                     GsRouteDataEventAimRouteAsObject aimRouteAsObject = new GameObject().AddComponent<GsRouteDataEventAimRouteAsObject>();
                                     
