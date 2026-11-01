@@ -1,3 +1,4 @@
+[strings]
 0x1af0ed4d	afgh_wtct001_gim_n0000|srt_afgh_wtct001
 0xd039ca30	afgh_wtct001_gim_n0001|srt_afgh_wtct001
 0x6fa763b6	afgh_wtct001_vrtn001_gim_n0000|srt_afgh_wtct001
@@ -121,3 +122,6 @@
 0x94d31dee	villageEast_wtct001
 0x92b114c2	villageWest_wtct001
 0x1eea502b	waterwayEast_wtct001
+
+[hashes]
+0x28c8459c

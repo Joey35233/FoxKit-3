@@ -1,3 +1,4 @@
+[strings]
 0xbf169f98	
 0x4398b121	ArriveAtFakeTarget1
 0xb9c07c15	convoy
@@ -17,3 +18,9 @@
 0xbf484e00	rts_veh_swampEast_add_idle
 0x93b10f21	startFlee
 0x64e012be	visitTent
+
+[hashes]
+0x1f0ef937
+0x43a90cef
+0x6736a972
+0xe82cac01

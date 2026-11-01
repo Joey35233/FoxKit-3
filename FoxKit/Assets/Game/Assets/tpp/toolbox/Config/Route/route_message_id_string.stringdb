@@ -1,3 +1,4 @@
+[strings]
 0x0000b8a0bf169f98	
 0x0000f1cc6759f7cc	ActMoveEndpfCampActMove01
 0x00004e9fb074dd53	ActMoveEndpfCampConversation01
@@ -480,3 +481,5 @@
 0x00005b4f27b3846b	WG_Shift02
 0x00007a1757c3da21	WG_Shift03
 0x000010ab0e06777e	WG_Shift04
+
+[hashes]

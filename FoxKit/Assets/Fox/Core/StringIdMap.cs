@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Fox;
 using System.IO;
 using UnityEngine;
 
@@ -22,54 +20,17 @@ namespace Fox
         {
             if (dictionaryPath == null)
                 return;
-            
-            string baseDictionaryPath = System.IO.Path.ChangeExtension(dictionaryPath, ".stringdb");
-            string userDictionaryPath = System.IO.Path.ChangeExtension(dictionaryPath, ".ustringdb");
-            
-            UserDictionaryPath = userDictionaryPath;
 
-            if (Fox.Fs.FileSystem.Exists(baseDictionaryPath))
-            {
-                using StreamReader baseDictionaryReadStream = new StreamReader(Fox.Fs.FileSystem.GetUnityPathFromFoxPath(baseDictionaryPath), System.Text.Encoding.ASCII);
-                while (baseDictionaryReadStream.ReadLine() is { } entry)
-                {
-                    string[] pair = entry.Split("\t");
-                    if (pair.Length == 2)
-                    {
-                        StrCode hash = new StrCode(pair[0]);
-                        string value = pair[1];
-                        if (!TryAddToMap(Map, hash, value))
-                            Debug.LogWarning(
-                                $"StringIdMap: load entry {entry} already exists in {baseDictionaryPath}.");
-                    }
-                    else
-                    {
-                        Debug.LogWarning(
-                            $"StringIdMap: can't load malformed entry {entry} at {baseDictionaryPath}.");
-                    }
-                }
-            }
-
-            using (StreamReader userDictionaryReadStream = new StreamReader(Fox.Fs.FileSystem.GetUnityPathFromFoxPath(UserDictionaryPath), System.Text.Encoding.ASCII))
-            {
-                AddQueue = new Dictionary<StrCode, string>();
-                
-                while (userDictionaryReadStream.ReadLine() is { } entry)
-                {
-                    string[] pair = entry.Split("\t");
-                    if (pair.Length == 2)
-                    {
-                        StrCode hash = new StrCode(pair[0]);
-                        string value = pair[1];
-                        if (!TryAddToMap(Map, hash, value))
-                            Debug.LogWarning($"StringIdMap: load entry {entry} already exists in {baseDictionaryPath} or {UserDictionaryPath}.");
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"StringIdMap: can't load malformed entry {entry} at {UserDictionaryPath}.");
-                    }
-                }
-            }
+            string basePath = Fox.Fs.FileSystem.GetUnityPathFromFoxPath(System.IO.Path.ChangeExtension(dictionaryPath, ".stringdb"));
+            UserDictionaryPath = System.IO.Path.ChangeExtension(dictionaryPath, ".ustringdb");
+            string userPath = Fox.Fs.FileSystem.GetUnityPathFromFoxPath(UserDictionaryPath);
+            StringIdDatabase baseDatabase = StringIdDatabase.Read(basePath, StringDatabaseType.Base);
+            StringIdDatabase userDatabase = StringIdDatabase.Read(userPath, StringDatabaseType.User);
+            foreach (KeyValuePair<string, string> entry in baseDatabase.Strings)
+                TryAddToMap(Map, new StrCode(entry.Key), entry.Value);
+            foreach (KeyValuePair<string, string> entry in userDatabase.Strings)
+                TryAddToMap(Map, new StrCode(entry.Key), entry.Value);
+            AddQueue = new Dictionary<StrCode, string>();
         }
 
         public void RegisterBaseEntries(List<(StrCode, string)> baseEntries)
@@ -151,52 +112,17 @@ namespace Fox
         {
             if (dictionaryPath == null)
                 return;
-            
-            string baseDictionaryPath = System.IO.Path.ChangeExtension(dictionaryPath, ".stringdb");
-            string userDictionaryPath = System.IO.Path.ChangeExtension(dictionaryPath, ".ustringdb");
-            
-            UserDictionaryPath = userDictionaryPath;
 
-            if (Fox.Fs.FileSystem.Exists(baseDictionaryPath))
-            {
-                using StreamReader baseDictionaryReadStream = new StreamReader(Fox.Fs.FileSystem.GetUnityPathFromFoxPath(baseDictionaryPath), System.Text.Encoding.ASCII);
-                while (baseDictionaryReadStream.ReadLine() is { } entry)
-                {
-                    string[] pair = entry.Split("\t");
-                    if (pair.Length == 2)
-                    {
-                        StrCode32 hash = new StrCode32(pair[0]);
-                        string value = pair[1];
-                        if (!TryAddToMap(Map, hash, value))
-                            Debug.LogWarning($"StringId32Map: load entry {entry} already exists in {baseDictionaryPath}.");
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"StringId32Map: can't load malformed entry {entry} at {baseDictionaryPath}.");
-                    }
-                }
-            }
-
-            using (StreamReader userDictionaryReadStream = new StreamReader(Fox.Fs.FileSystem.GetUnityPathFromFoxPath(UserDictionaryPath), System.Text.Encoding.ASCII))
-            {
-                AddQueue = new Dictionary<StrCode32, string>();
-                
-                while (userDictionaryReadStream.ReadLine() is { } entry)
-                {
-                    string[] pair = entry.Split("\t");
-                    if (pair.Length == 2)
-                    {
-                        StrCode32 hash = new StrCode32(pair[0]);
-                        string value = pair[1];
-                        if (!TryAddToMap(Map, hash, value))
-                            Debug.LogWarning($"StringId32Map: load entry {entry} already exists in {baseDictionaryPath} or {UserDictionaryPath}.");
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"StringId32Map: can't load malformed entry {entry} at {UserDictionaryPath}.");
-                    }
-                }
-            }
+            string basePath = Fox.Fs.FileSystem.GetUnityPathFromFoxPath(System.IO.Path.ChangeExtension(dictionaryPath, ".stringdb"));
+            UserDictionaryPath = System.IO.Path.ChangeExtension(dictionaryPath, ".ustringdb");
+            string userPath = Fox.Fs.FileSystem.GetUnityPathFromFoxPath(UserDictionaryPath);
+            StringId32Database baseDatabase = StringId32Database.Read(basePath, StringDatabaseType.Base);
+            StringId32Database userDatabase = StringId32Database.Read(userPath, StringDatabaseType.User);
+            foreach (KeyValuePair<string, string> entry in baseDatabase.Strings)
+                TryAddToMap(Map, new StrCode32(entry.Key), entry.Value);
+            foreach (KeyValuePair<string, string> entry in userDatabase.Strings)
+                TryAddToMap(Map, new StrCode32(entry.Key), entry.Value);
+            AddQueue = new Dictionary<StrCode32, string>();
         }
 
         public void RegisterBaseEntries(List<(StrCode32, string)> baseEntries)

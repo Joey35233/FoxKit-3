@@ -1,3 +1,4 @@
+[strings]
 0xbf169f98	
 0x5e6bb371	CT10041_01a
 0xebb69a92	CT10041_01b
@@ -21,3 +22,11 @@
 0x0036b4e9	speech52_EV061
 0xe2ce5644	speech52_EV062
 0xaedefb27	speech52_EV063
+
+[hashes]
+0x06cf6ef1
+0x3786a226
+0x5b2b1096
+0x80bdf53e
+0xb27288f9
+0xb6197051

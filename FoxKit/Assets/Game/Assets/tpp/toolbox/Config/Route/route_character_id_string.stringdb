@@ -1,3 +1,4 @@
+[strings]
 0x000029826ce4bbf3	hos_mis_0001
 0x000045a3437471fa	hos_mis_0002
 0x0000d6cf810b9765	hos_mis_0003
@@ -16,3 +17,5 @@
 0x0000ff9e5652808d	sol_vip_field
 0x000033086a19bafa	sol_vip_village
 0x0000f124539eeb2a	sol_WG_0000
+
+[hashes]

@@ -1,3 +1,4 @@
+[strings]
 0x92333fb8	AAgunRoute
 0x9c94dd86	AAGunRoute_2
 0x6e1db1a8	AAGunRoute_3
@@ -23755,3 +23756,5 @@
 0xf32ea6bf	rt_hltx_arrive_StartCliff
 0xd4edc54e	rt_hltx_takeoff_test_00
 0x4c9dc84f	rt_hltx_arrive_test_00
+
+[hashes]

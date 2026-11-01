@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -182,8 +182,7 @@ namespace Fox
             
             if (str.Length > 2 && str.StartsWith("0x"))
             {
-                ReadOnlySpan<char> subStr = str[2..];
-                if (ulong.TryParse(subStr, NumberStyles.HexNumber, null, out ulong rawVar))
+                if (ulong.TryParse(str[2..], NumberStyles.AllowHexSpecifier, null, out ulong rawVar))
                     return rawVar;
             }
             
@@ -192,42 +191,44 @@ namespace Fox
         
         public static uint PathCode32(ReadOnlySpan<char> str)
         {
+            if (str == null)
+                return 0;
+
             if (str.Length > 2 && str.StartsWith("0x"))
             {
-                ReadOnlySpan<char> subStr = str[2..];
-                if (uint.TryParse(subStr, NumberStyles.HexNumber, null, out uint rawVar))
+                if (uint.TryParse(str[2..], NumberStyles.AllowHexSpecifier, null, out uint rawVar))
                     return rawVar;
             }
             
             return (uint)PathCodeInner(str);
         }
 
+        public static bool IsStringIdRawHash(ReadOnlySpan<char> str) => str.Length > 2 && str.StartsWith("0x") && ulong.TryParse(str[2..], NumberStyles.AllowHexSpecifier, null, out _);
+
         public static ulong StringId(ReadOnlySpan<char> str)
         {
+            if (str == null)
+                return 0;
+
             if (str.Length > 2 && str.StartsWith("0x"))
-            {
-                ReadOnlySpan<char> subStr = str[2..];
-                if (ulong.TryParse(subStr, NumberStyles.HexNumber, null, out ulong rawVar))
+                if (ulong.TryParse(str[2..], NumberStyles.AllowHexSpecifier, null, out ulong rawVar))
                     return rawVar;
-            }
             
             return CityHashStrCodeInner(str);
         }
 
-        public static bool IsStringIdRawHash(ReadOnlySpan<char> str) => str.Length > 2 && str.StartsWith("0x") && ulong.TryParse(str[2..], NumberStyles.HexNumber, null, out _);
-
-        public static bool IsStringId32RawHash(ReadOnlySpan<char> str) => str.Length > 2 && str.StartsWith("0x") && uint.TryParse(str[2..], NumberStyles.HexNumber, null, out _);
-
         public static ulong StringIdHashDetectionOverride(ReadOnlySpan<char> str) => CityHashStrCodeInner(str);
+
+        public static bool IsStringId32RawHash(ReadOnlySpan<char> str) => str.Length > 2 && str.StartsWith("0x") && uint.TryParse(str[2..], NumberStyles.AllowHexSpecifier, null, out _);
 
         public static uint StringId32(ReadOnlySpan<char> str)
         {
+            if (str == null)
+                return 0;
+
             if (str.Length > 2 && str.StartsWith("0x"))
-            {
-                ReadOnlySpan<char> subStr = str[2..];
-                if (uint.TryParse(subStr, NumberStyles.HexNumber, null, out uint rawVar))
+                if (uint.TryParse(str[2..], NumberStyles.AllowHexSpecifier, null, out uint rawVar))
                     return rawVar;
-            }
             
             return (uint)CityHashStrCodeInner(str);
         }
