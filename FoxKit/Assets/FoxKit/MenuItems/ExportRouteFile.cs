@@ -41,8 +41,18 @@ namespace FoxKit.MenuItems
                 return;
             }
 
+            Fox.Core.Utils.TaskLogger logger = new Fox.Core.Utils.TaskLogger("ExportRouteFile");
+
             RouteFileWriter frtWriter = new RouteFileWriter();
-            byte[] data = frtWriter.Write(scene);
+            byte[] data = frtWriter.Write(scene, logger);
+            logger.LogToUnityConsole();
+
+            if (data == null)
+            {
+                Debug.LogError("FRT export failed.");
+                return;
+            }
+
             System.IO.File.WriteAllBytes(outputPath, data);
         }
     }

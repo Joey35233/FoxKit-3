@@ -15,6 +15,12 @@ namespace Fox.GameService
         {
             fixed (byte* dataPtr = data)
             {
+                if (data.Length < sizeof(RouteFile.BaseHeader))
+                {
+                    logger.AddError($"Read failed. File is too small to be a ROUT.");
+                    return null;
+                }
+
                 RouteFile.BaseHeader* baseHeader = (RouteFile.BaseHeader*)dataPtr;
 
                 if (baseHeader->Signature != RouteFile.Signature)
@@ -75,24 +81,8 @@ namespace Fox.GameService
                         // Position
                         if (version == RouteFile.FormatVersion.V2)
                         {
-                            ulong packedVertex = *(ulong*)((byte*)routeDef + routeDef->VerticesOffset)[j];
-
-                            uint packedX = (uint)(packedVertex & 0x003FFFFF);
-                            if ((packedX & (1 << 21)) != 0)
-                                packedX |= 0xFFC00000;
-                            float x = (float)(int)packedX / 1024;
-
-                            uint packedY = (uint)((packedVertex >> 22) & 0x000FFFFF);
-                            if ((packedY & (1 << 19)) != 0)
-                                packedY |= 0xFFF00000;
-                            float y = (float)(int)packedY / 1024;
-
-                            uint packedZ = (uint)((packedVertex >> 42) & 0x003FFFFF);
-                            if ((packedZ & (1 << 21)) != 0)
-                                packedZ |= 0xFFC00000;
-                            float z = (float)(int)packedZ / 1024;
-
-                            node.Position = new Vector3(x, y, z) + origin;
+                            ulong packedVertex = ((ulong*)((byte*)routeDef + routeDef->VerticesOffset))[j];
+                            node.Position = RouteFile.UnpackVertexV2(packedVertex) + origin;
                         }
                         else
                         {
@@ -123,8 +113,9 @@ namespace Fox.GameService
 
                                 nodeEvent.Id = eventId;
                                 nodeEvent.IsLoop = eventDef->IsLoop;
-                                nodeEvent.Time = eventDef->Time;
-                                nodeEvent.Dir = eventDef->Dir;
+                                nodeEvent.Time = eventDef->GetTime();
+                                // Still in Fox space; converted to Unity space by OnDeserializeEntity
+                                nodeEvent.Dir = eventDef->GetFoxDirection();
                                 
                                 node.Events.Add(nodeEvent);
                                 nodeEvent.SetOwner(routeData);
@@ -142,7 +133,10 @@ namespace Fox.GameService
                                     : eventGameObject.AddComponent<GsRouteDataEdgeEvent>());
                                 
                                 edgeEvent.Id = eventId;
-                                
+
+                                if (edge.Event != null)
+                                    logger.AddWarning($"Edge {j} in {routeData.name} has more than one edge event; only the last is kept.");
+
                                 edge.Event = edgeEvent;
                                 edgeEvent.SetOwner(routeData);
                                 edgeEvent.name = edgeEvent.GenerateName(k);
@@ -154,8 +148,6 @@ namespace Fox.GameService
                             }
 
                             byte* aimPointData = eventDef->GetAimPointData(version);
-                            Debug.Assert(eventDef->AimBodySection == GsRouteDataEventAimPoint_BodySection.HEAD);
-                            
                             GsRouteDataEventAimPoint aimPoint = null;
                             switch (eventDef->AimTargetType)
                             {
@@ -176,7 +168,8 @@ namespace Fox.GameService
                                     GsRouteDataEventAimCharacter aimCharacter = new GameObject().AddComponent<GsRouteDataEventAimCharacter>();
                                     
                                     StrCode32 characterId = *(StrCode32*)aimPointData;
-                                    aimCharacter.characterId = characterId.ToString();
+                                    GameServiceModule.CharacterIdMap.Resolve(characterId, out string resolvedCharacterId);
+                                    aimCharacter.characterId = resolvedCharacterId;
                                     
                                     aimPoint = aimCharacter;
                                     break;
@@ -187,15 +180,14 @@ namespace Fox.GameService
                                     
                                     StrCode32* aimPointRouteIds = (StrCode32*)aimPointData;
 
-                                    string resolvedRouteId;
-                                    GameServiceModule.RouteIdMap.Resolve(aimPointRouteIds[0], out resolvedRouteId);
-                                    aimRouteAsSightMovePath.routeId_AddElement(0, resolvedRouteId);
-                                    GameServiceModule.RouteIdMap.Resolve(aimPointRouteIds[1], out resolvedRouteId);
-                                    aimRouteAsSightMovePath.routeId_AddElement(1, resolvedRouteId);
-                                    GameServiceModule.RouteIdMap.Resolve(aimPointRouteIds[2], out resolvedRouteId);
-                                    aimRouteAsSightMovePath.routeId_AddElement(2, resolvedRouteId);
-                                    GameServiceModule.RouteIdMap.Resolve(aimPointRouteIds[3], out resolvedRouteId);
-                                    aimRouteAsSightMovePath.routeId_AddElement(3, resolvedRouteId);
+                                    for (int l = 0; l < 4; l++)
+                                    {
+                                        if (!aimPointRouteIds[l].IsValid() || aimPointRouteIds[l] == new StrCode32(""))
+                                            break;
+
+                                        GameServiceModule.RouteIdMap.Resolve(aimPointRouteIds[l], out string resolvedRouteId);
+                                        aimRouteAsSightMovePath.routeId_AddElement(l, resolvedRouteId);
+                                    }
 
                                     aimPoint = aimRouteAsSightMovePath;
                                     break;
@@ -206,16 +198,15 @@ namespace Fox.GameService
                                     
                                     StrCode32* aimPointRouteIds = (StrCode32*)aimPointData;
 
-                                    string resolvedRouteId;
-                                    GameServiceModule.RouteIdMap.Resolve(aimPointRouteIds[0], out resolvedRouteId);
-                                    aimRouteAsObject.routeId_AddElement(0, resolvedRouteId);
-                                    GameServiceModule.RouteIdMap.Resolve(aimPointRouteIds[1], out resolvedRouteId);
-                                    aimRouteAsObject.routeId_AddElement(1, resolvedRouteId);
-                                    GameServiceModule.RouteIdMap.Resolve(aimPointRouteIds[2], out resolvedRouteId);
-                                    aimRouteAsObject.routeId_AddElement(2, resolvedRouteId);
-                                    GameServiceModule.RouteIdMap.Resolve(aimPointRouteIds[3], out resolvedRouteId);
-                                    aimRouteAsObject.routeId_AddElement(3, resolvedRouteId);
-                                    
+                                    for (int l = 0; l < 4; l++)
+                                    {
+                                        if (!aimPointRouteIds[l].IsValid() || aimPointRouteIds[l] == new StrCode32(""))
+                                            break;
+
+                                        GameServiceModule.RouteIdMap.Resolve(aimPointRouteIds[l], out string resolvedRouteId);
+                                        aimRouteAsObject.routeId_AddElement(l, resolvedRouteId);
+                                    }
+
                                     aimPoint = aimRouteAsObject;
                                     break;
                                 }
@@ -226,6 +217,8 @@ namespace Fox.GameService
                                 @event.aimPoint = aimPoint;
                                 aimPoint.SetOwner(routeData);
                                 aimPoint.name = $"{aimPoint.GetClassEntityInfo().Name}";
+                                Debug.Assert(eventDef->AimBodySection == GsRouteDataEventAimPoint_BodySection.HEAD);
+                                aimPoint.BodySection = eventDef->AimBodySection;
                                 
                                 // Bit of a hack for organization - even though the GsRouteData officially owns everything, parent to node/edge
                                 aimPoint.transform.parent = @event.transform;
@@ -251,8 +244,9 @@ namespace Fox.GameService
                     for (int j = 0; j < routeDef->NodeCount; j++)
                     {
                         GraphxSpatialGraphDataNode node = routeData.Nodes[j];
-                        GraphxSpatialGraphDataEdge prevEdge = routeData.Edges[j];
-                        GraphxSpatialGraphDataEdge nextEdge = routeData.Edges[(j + 1 + routeDef->NodeCount) % routeDef->NodeCount];
+                        // The event span for node j contains the event on the edge leaving it.
+                        GraphxSpatialGraphDataEdge prevEdge = routeData.Edges[(j + routeDef->NodeCount - 1) % routeDef->NodeCount];
+                        GraphxSpatialGraphDataEdge nextEdge = routeData.Edges[j];
 
                         node.Outlinks.Add(prevEdge);
                         prevEdge.NextNode = node;

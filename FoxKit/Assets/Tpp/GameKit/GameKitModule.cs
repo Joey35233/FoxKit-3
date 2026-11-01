@@ -1,5 +1,6 @@
 using Fox;
 using Fox.GameService;
+using Fox.Geo;
 
 namespace Tpp.GameKit
 {
@@ -15,10 +16,34 @@ namespace Tpp.GameKit
         
         public static readonly StringId32Map SwitchRouteConditionIdMap = new StringId32Map();
         public static readonly StringId32Map SyncRouteIdMap = new StringId32Map();
+        public static readonly StringId32Map IdleActionIdMap = new StringId32Map();
+        public static readonly StringId32Map ConversationLabelIdMap = new StringId32Map();
+        public static readonly StringId32Map GimmickIdMap = new StringId32Map();
+        public static readonly StringIdMap MessageIdMap = new StringIdMap();
+        public static readonly StringIdMap CharacterIdMap = new StringIdMap();
+        public static readonly StringId32Map CharacterId32Map = new StringId32Map();
+        public static readonly StringId32Map MessageParamMap = new StringId32Map();
+
+        private static void SaveRouteIdMaps()
+        {
+            SwitchRouteConditionIdMap.Save();
+            SyncRouteIdMap.Save();
+            IdleActionIdMap.Save();
+            ConversationLabelIdMap.Save();
+            GimmickIdMap.Save();
+            MessageIdMap.Save();
+            CharacterIdMap.Save();
+            CharacterId32Map.Save();
+            MessageParamMap.Save();
+
+            GeoModule.RailIdMap.Save();
+        }
 
         public override void Init()
         {
             GameServiceModule.RegisterEventInfo("/Assets/tpp/toolbox/Config/Route/EventInfo.csv", "tpp");
+            GameServiceModule.RegisterCharacterIdMap(CharacterId32Map);
+            GameServiceModule.RegisterRouteIdMapsSaver(SaveRouteIdMaps);
             
             // SendMessage
             GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("SendMessage"), typeof(TppRouteNodeEventSendMessage));

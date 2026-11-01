@@ -96,42 +96,42 @@ namespace Fox
             if (string.IsNullOrWhiteSpace(value))
                 return false;
 
+            // A raw hash string carries no text to remember
+            if (StrCode.IsHash(value))
+                return false;
+
             StrCode hash = new StrCode(value);
 
-            if (TryAddToMap(AddQueue, hash, value))
-                TryAddToMap(Map, hash, value);
+            if (TryAddToMap(Map, hash, value))
+                AddQueue.TryAdd(hash, value);
 
             return true;
         }
 
         public void Save()
         {
-            if (AddQueue == null)
+            if (AddQueue == null || AddQueue.Count == 0)
                 return;
-            
-            using StreamWriter userDictionaryWriteStream = new StreamWriter(Fox.Fs.FileSystem.GetUnityPathFromFoxPath(UserDictionaryPath), append: true, System.Text.Encoding.ASCII);
-            foreach ((StrCode hash, string value) in AddQueue)
+
+            using (StreamWriter userDictionaryWriteStream = new StreamWriter(Fox.Fs.FileSystem.GetUnityPathFromFoxPath(UserDictionaryPath), append: true, System.Text.Encoding.ASCII))
             {
-                userDictionaryWriteStream.WriteLine($"{hash}\t{value}");
+                foreach ((StrCode hash, string value) in AddQueue)
+                    userDictionaryWriteStream.WriteLine($"{hash}\t{value}");
             }
+
+            AddQueue.Clear();
         }
 
         private static bool TryAddToMap(Dictionary<StrCode, string> map, StrCode hash, string value)
         {
-            if (!map.TryAdd(hash, value))
-            {
+            if (map.TryAdd(hash, value))
                 return true;
-            }
-            else
-            {
+
 #if DEBUG
-                if (!map.TryGetValue(hash, out string testValue) || testValue != value)
-                {
-                    Debug.LogWarning($"StringIdMap: Collision detected for hash {hash}. Submitted: {value}, Existing: {testValue}");
-                }
+            if (map.TryGetValue(hash, out string testValue) && testValue != value)
+                Debug.LogWarning($"StringIdMap: Collision detected for hash {hash}. Submitted: {value}, Existing: {testValue}");
 #endif
-                return false;
-            }
+            return false;
         }
     }
 
@@ -223,42 +223,42 @@ namespace Fox
             if (string.IsNullOrWhiteSpace(value))
                 return false;
 
+            // A raw hash string carries no text to remember
+            if (StrCode32.IsHash(value))
+                return false;
+
             StrCode32 hash = new StrCode32(value);
 
-            if (TryAddToMap(AddQueue, hash, value))
-                TryAddToMap(Map, hash, value);
+            if (TryAddToMap(Map, hash, value))
+                AddQueue.TryAdd(hash, value);
 
             return true;
         }
 
         public void Save()
         {
-            if (AddQueue == null)
+            if (AddQueue == null || AddQueue.Count == 0)
                 return;
-            
-            using StreamWriter userDictionaryWriteStream = new StreamWriter(Fox.Fs.FileSystem.GetUnityPathFromFoxPath(UserDictionaryPath), append: true, System.Text.Encoding.ASCII);
-            foreach ((StrCode32 hash, string value) in AddQueue)
+
+            using (StreamWriter userDictionaryWriteStream = new StreamWriter(Fox.Fs.FileSystem.GetUnityPathFromFoxPath(UserDictionaryPath), append: true, System.Text.Encoding.ASCII))
             {
-                userDictionaryWriteStream.WriteLine($"{hash}\t{value}");
+                foreach ((StrCode32 hash, string value) in AddQueue)
+                    userDictionaryWriteStream.WriteLine($"{hash}\t{value}");
             }
+
+            AddQueue.Clear();
         }
 
         private static bool TryAddToMap(Dictionary<StrCode32, string> map, StrCode32 hash, string value)
         {
             if (map.TryAdd(hash, value))
-            {
                 return true;
-            }
-            else
-            {
+
 #if DEBUG
-                if (!map.TryGetValue(hash, out string testValue) || testValue != value)
-                {
-                    Debug.LogWarning($"StringIdMap: Collision detected for hash {hash}. Submitted: {value}, Existing: {testValue}");
-                }
+            if (map.TryGetValue(hash, out string testValue) && testValue != value)
+                Debug.LogWarning($"StringId32Map: Collision detected for hash {hash}. Submitted: {value}, Existing: {testValue}");
 #endif
-                return false;
-            }
+            return false;
         }
     }
 }

@@ -17,9 +17,24 @@ namespace Tpp.GameKit
 			GameKitModule.SwitchRouteConditionIdMap.Resolve(HashingBitConverter.ToStrCode32(extensions[1]), out string resolvedCondition);
 			condition = resolvedCondition;
 			
-			gimmickId = HashingBitConverter.ToStrCode32(extensions[2]).ToString();
+			GameKitModule.GimmickIdMap.Resolve(HashingBitConverter.ToStrCode32(extensions[2]), out gimmickId);
 			
 			Debug.Assert(extensions[3] == 0);
+		}
+
+		public override uint[] GetExtensions()
+		{
+			GameServiceModule.RouteIdMap.Add(routeId);
+			GameKitModule.SwitchRouteConditionIdMap.Add(condition);
+			GameKitModule.GimmickIdMap.Add(gimmickId);
+
+			return new uint[]
+			{
+				HashingBitConverter.StrCode32ToUInt32(new StrCode32(routeId)),
+				HashingBitConverter.StrCode32ToUInt32(new StrCode32(condition)),
+				HashingBitConverter.StrCode32ToUInt32(new StrCode32(gimmickId)),
+				0,
+			};
 		}
 	}
 }

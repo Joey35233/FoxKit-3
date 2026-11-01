@@ -26,5 +26,24 @@ namespace Tpp.GameKit
 			
 			changeTime = unchecked((int)extensions[3]);
 		}
+
+		public override uint[] GetExtensions()
+		{
+			uint flags = 0;
+			flags |= ((uint)leftDoorState & 0x3) << 0;
+			flags |= ((uint)rightDoorState & 0x3) << 2;
+			flags |= ((uint)landingGearState & 0x3) << 4;
+			flags |= ((uint)directionType & 0x3) << 6;
+			flags |= ((uint)defaultDoorSide & 0x3) << 8;
+			flags |= (setTargetSpeed ? 1u : 0u) << 10;
+
+			return new uint[]
+			{
+				flags,
+				unchecked((uint)direction),
+				unchecked((uint)Mathf.RoundToInt(targetSpeed * 3600f / 1000f)),
+				unchecked((uint)Mathf.RoundToInt(changeTime)),
+			};
+		}
 	}
 }

@@ -21,7 +21,7 @@ namespace Tpp.GameKit
 		private string message;
 		
 		[UnityEngine.SerializeField]
-		private string routeId;
+		private string param;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -42,7 +42,7 @@ namespace Tpp.GameKit
 			if (Fox.GameService.GsRouteDataNodeEvent.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppRouteNodeEventSendMessage", typeof(TppRouteNodeEventSendMessage), Fox.GameService.GsRouteDataNodeEvent.ClassInfo, 0, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("message", Fox.Core.PropertyInfo.PropertyType.String, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("routeId", Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("param", Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}
@@ -53,8 +53,8 @@ namespace Tpp.GameKit
 			{
 				case "message":
 					return new Fox.Core.Value(message);
-				case "routeId":
-					return new Fox.Core.Value(routeId);
+				case "param":
+					return new Fox.Core.Value(param);
 				default:
 					return base.GetProperty(propertyName);
 			}
@@ -85,8 +85,8 @@ namespace Tpp.GameKit
 				case "message":
 					this.message = value.GetValueAsString();
 					return;
-				case "routeId":
-					this.routeId = value.GetValueAsString();
+				case "param":
+					this.param = value.GetValueAsString();
 					return;
 				default:
 					base.SetProperty(propertyName, value);

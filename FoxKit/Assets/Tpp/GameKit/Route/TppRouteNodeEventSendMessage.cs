@@ -1,6 +1,5 @@
 using Fox;
 using Fox.Core.Utils;
-using Fox.GameService;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -11,13 +10,29 @@ namespace Tpp.GameKit
 		{
 			base.OnDeserializeEntity(logger);
 
-			message = HashingBitConverter.ToStrCode((ulong)extensions[0] << 32 | extensions[1]).ToString();
+			GameKitModule.MessageIdMap.Resolve(HashingBitConverter.ToStrCode((ulong)extensions[0] << 32 | extensions[1]), out message);
 			
-			GameServiceModule.RouteIdMap.Resolve(HashingBitConverter.ToStrCode32(extensions[2]), out string resolvedId);
+			GameKitModule.MessageParamMap.Resolve(HashingBitConverter.ToStrCode32(extensions[2]), out string resolvedParam);
 			
-			routeId = resolvedId;
+			param = resolvedParam;
 			
 			Debug.Assert(extensions[3] == 0);
+		}
+
+		public override uint[] GetExtensions()
+		{
+			GameKitModule.MessageIdMap.Add(message);
+			ulong messageHash = HashingBitConverter.StrCodeToUInt64(new StrCode(message));
+
+			GameKitModule.MessageParamMap.Add(param);
+
+			return new uint[]
+			{
+				(uint)(messageHash >> 32),
+				(uint)(messageHash & 0xFFFFFFFF),
+				HashingBitConverter.StrCode32ToUInt32(new StrCode32(param)),
+				0,
+			};
 		}
 	}
 }

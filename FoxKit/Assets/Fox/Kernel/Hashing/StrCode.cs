@@ -24,6 +24,9 @@ namespace Fox
 
         public bool IsValid() => _hash != 0;
 
+        /// <summary>True if constructing a StrCode from this string would use it as a raw hash ("0x…") instead of hashing the text.</summary>
+        public static bool IsHash(ReadOnlySpan<char> str) => Hashing.IsStringIdRawHash(str);
+
         internal ulong Backing => _hash;
 
         // Fox.StrCode

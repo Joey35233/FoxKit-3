@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Fox.Core.Utils;
 using Fox.Graphx;
 using UnityEngine;
 
@@ -6,43 +7,87 @@ namespace Fox.GameService
 {
     public class RouteFileWriter
     {
-        public unsafe byte[] Write(UnityEngine.SceneManagement.Scene scene)
+        public unsafe byte[] Write(UnityEngine.SceneManagement.Scene scene, TaskLogger logger = null)
         {
             GameObject[] rootGameObjects = scene.GetRootGameObjects();
             List<GsRouteData> routes = new List<GsRouteData>(rootGameObjects.Length);
             foreach (GameObject rootGameObject in rootGameObjects)
                 if (rootGameObject.TryGetComponent(out GsRouteData route))
                     routes.Add(route);
-            
-            int routeCount = routes.Count;
 
-            uint totalNodeCount = 0;
-            uint totalEventCount = 0;
+            int routeCount = routes.Count;
+            if (routeCount > ushort.MaxValue)
+            {
+                logger?.AddError($"Write failed: {routeCount} has more than {ushort.MaxValue} routes.");
+                return null;
+            }
+
+            List<GsRouteDataEvent>[] routeEvents = new List<GsRouteDataEvent>[routeCount];
+            RouteFile.EventSpan[][] routeEventSpans = new RouteFile.EventSpan[routeCount][];
+            int totalNodeCount = 0;
+            int totalEventCount = 0;
             for (int i = 0; i < routeCount; i++)
             {
                 GsRouteData route = routes[i];
+                List<GraphxSpatialGraphDataNode> nodes = route.Nodes;
+                List<GraphxSpatialGraphDataEdge> routeEdges = route.Edges;
+                int nodeCount = nodes.Count;
 
-                totalNodeCount += (uint)route.nodes.Count;
+                if (routeEdges.Count != nodeCount)
+                {
+                    logger?.AddError($"Write failed. Route {route.name} has nodeCount {nodeCount} must == edgeCount {routeEdges.Count}.");
+                    return null;
+                }
+                for (int j = 0; j < nodeCount; j++)
+                {
+                    if (routeEdges[j].PrevNode != nodes[j])
+                    {
+                        logger?.AddError($"Write failed. Route {route.name} edge {j} does not leave node {j}.");
+                        return null;
+                    }
+                }
 
-                foreach (GraphxSpatialGraphDataNode node in route.nodes)
-                    if (node is GsRouteDataNode routeNode)
-                        foreach (GsRouteDataEvent @event in routeNode.events)
-                            totalEventCount += @event != null ? 1u : 0u;
+                List<GsRouteDataEvent> events = new List<GsRouteDataEvent>();
+                RouteFile.EventSpan[] spans = new RouteFile.EventSpan[nodeCount];
+                for (int j = 0; j < nodeCount; j++)
+                {
+                    int start = events.Count;
 
-                foreach (GraphxSpatialGraphDataEdge edge in route.edges)
-                    if (edge is GsRouteDataEdge routeEdge)
-                        totalEventCount += routeEdge.@event != null ? 1u : 0u;
+                    if (routeEdges[j] is GsRouteDataEdge { Event: not null } leavingEdge)
+                        events.Add(leavingEdge.Event);
+
+                    if (nodes[j] is GsRouteDataNode routeNode)
+                        foreach (GsRouteDataNodeEvent nodeEvent in routeNode.Events)
+                            if (nodeEvent != null)
+                                events.Add(nodeEvent);
+
+                    // StartIndex is relative to this route's event table
+                    if (events.Count > ushort.MaxValue)
+                    {
+                        logger?.AddError($"Write failed. Route {route.name} has more than {ushort.MaxValue} events.");
+                        return null;
+                    }
+                    spans[j] = new RouteFile.EventSpan { StartIndex = (ushort)start, Count = (ushort)(events.Count - start) };
+                }
+
+                if (nodes.Count > ushort.MaxValue)
+                {
+                    logger?.AddError($"Write failed. Route {route.name} has more than {ushort.MaxValue} nodes.");
+                    return null;
+                }
+
+                routeEvents[i] = events;
+                routeEventSpans[i] = spans;
+                totalNodeCount += nodes.Count;
+                totalEventCount += events.Count;
             }
 
-            if (routeCount > ushort.MaxValue || totalEventCount > ushort.MaxValue)
-                return null;
-
             long dataSize = sizeof(RouteFile.HeaderV3)
-                            + routeCount * sizeof(StrCode32)
-                            + routeCount * sizeof(RouteFile.RouteDef)
-                            + totalNodeCount * sizeof(Vector3)
-                            + totalNodeCount * sizeof(RouteFile.EventSpan)
-                            + totalEventCount * sizeof(RouteFile.EventDef);
+                            + (long)routeCount * sizeof(StrCode32)
+                            + (long)routeCount * sizeof(RouteFile.RouteDef)
+                            + (long)totalNodeCount * sizeof(Vector3)
+                            + (long)totalNodeCount * sizeof(RouteFile.EventSpan)
+                            + (long)totalEventCount * sizeof(RouteFile.EventDef);
 
             byte[] data = new byte[dataSize];
             fixed (byte* dataPtr = data)
@@ -64,129 +109,119 @@ namespace Fox.GameService
                 header->RouteEventTablesOffset = (uint)((byte*)eventSpans - dataPtr);
                 header->RouteEventsOffset = (uint)((byte*)events - dataPtr);
 
-                ushort eventWriteIndex = 0;
                 for (int i = 0; i < routeCount; i++)
                 {
                     GsRouteData route = routes[i];
-                    List<GraphxSpatialGraphDataNode> nodes = route.nodes;
+                    List<GraphxSpatialGraphDataNode> nodes = route.Nodes;
 
                     GameServiceModule.RouteIdMap.Add(route.name);
                     routeIds[i] = new StrCode32(route.name);
 
                     RouteFile.RouteDef* routeDef = routeDefs + i;
-
-                    routeDef->VerticesOffset = (uint)((byte*)vertices - (byte*)routeDef);
                     routeDef->NodeCount = (ushort)nodes.Count;
-                    foreach (GraphxSpatialGraphDataNode node in nodes)
-                        *vertices++ = Math.UnityToFoxVector3(node.transform.position);
-
+                    routeDef->EventCount = (ushort)routeEvents[i].Count;
+                    routeDef->VerticesOffset = (uint)((byte*)vertices - (byte*)routeDef);
                     routeDef->EventSpanOffset = (uint)((byte*)eventSpans - (byte*)routeDef);
-                    foreach (GraphxSpatialGraphDataNode node in nodes)
-                    {
-                        if (node is GsRouteDataNode routeNode)
-                        {
-                            RouteFile.EventSpan nodeEvents = new RouteFile.EventSpan { StartIndex = eventWriteIndex, Count = (ushort)routeNode.events.Count };
-                            *eventSpans++ = nodeEvents;
-
-                            eventWriteIndex += nodeEvents.Count;
-                        }
-                    }
-
-                    List<GsRouteDataEvent> events_ = routeEvents[i];
                     routeDef->EventsOffset = (uint)((byte*)events - (byte*)routeDef);
-                    routeDef->EventCount = (ushort)events_.Count;
-                    foreach (GsRouteDataEvent routeEvent in events_)
+
+                    foreach (GraphxSpatialGraphDataNode node in nodes)
+                        *vertices++ = Fox.Math.UnityToFoxVector3(node.transform.position);
+
+                    foreach (RouteFile.EventSpan span in routeEventSpans[i])
+                        *eventSpans++ = span;
+
+                    foreach (GsRouteDataEvent routeEvent in routeEvents[i])
                     {
-                        WriteEvent(events, routeEvent);
-                        events++;
+                        RouteFile.EventDef* eventDef = events++;
+
+                        eventDef->Id = new StrCode32(routeEvent.Id);
+
+                        if (routeEvent is GsRouteDataNodeEvent nodeEvent)
+                        {
+                            eventDef->Type = RouteEventType.Node;
+                            eventDef->IsLoop = nodeEvent.IsLoop;
+                            eventDef->SetTime(nodeEvent.Time);
+                            
+                            // TODO: Want to try to use OnSerializeEntity for this if possible.
+                            eventDef->SetFoxDirection(Fox.Math.UnityToFoxQuaternion(nodeEvent.Dir));
+                        }
+                        else
+                        {
+                            eventDef->Type = RouteEventType.Edge;
+                        }
+
+                        byte* aimPointData = eventDef->GetAimPointData(RouteFile.FormatVersion.V3);
+                        GsRouteDataEventAimPoint aimPoint = routeEvent.aimPoint;
+                        switch (aimPoint)
+                        {
+                            case GsRouteDataEventAimStaticPoint staticPoint:
+                            {
+                                eventDef->AimTargetType = GsRouteDataEventAimPoint_TargetType.STATIC_POINT;
+                                eventDef->AimBodySection = aimPoint.BodySection;
+
+                                *(Vector3*)aimPointData = Fox.Math.UnityToFoxVector3(staticPoint.Position);
+                            }
+                                break;
+                            case GsRouteDataEventAimCharacter character:
+                            {
+                                eventDef->AimTargetType = GsRouteDataEventAimPoint_TargetType.CHARACTER;
+                                eventDef->AimBodySection = aimPoint.BodySection;
+                                
+                                GameServiceModule.CharacterIdMap.Add(character.characterId);
+                                *(StrCode32*)aimPointData = new StrCode32(character.characterId);
+                            }
+                                break;
+                            case GsRouteDataEventAimRouteAsSightMovePath sightMovePath:
+                            {
+                                eventDef->AimTargetType = GsRouteDataEventAimPoint_TargetType.ROUTE_AS_SIGHT_MOVE_PATH;
+                                eventDef->AimBodySection = aimPoint.BodySection;
+                                
+                                StrCode32* ids = (StrCode32*)aimPointData;
+                                int idCount = sightMovePath.routeId_GetContainerSize();
+                                for (int j = 0; j < 4; j++)
+                                {
+                                    string targetId = j < idCount ? sightMovePath.routeId_Get(j) : "";
+                                    GameServiceModule.RouteIdMap.Add(targetId);
+                                    ids[j] = new StrCode32(targetId);
+                                }
+                            }
+                                break;
+                            case GsRouteDataEventAimRouteAsObject routeAsObject:
+                            {
+                                eventDef->AimTargetType = GsRouteDataEventAimPoint_TargetType.ROUTE_AS_OBJECT;
+                                eventDef->AimBodySection = aimPoint.BodySection;
+                                
+                                StrCode32* ids = (StrCode32*)aimPointData;
+                                int idCount = routeAsObject.routeId_GetContainerSize();
+                                for (int j = 0; j < 4; j++)
+                                {
+                                    string targetId = j < idCount ? routeAsObject.routeId_Get(j) : "";
+                                    GameServiceModule.RouteIdMap.Add(targetId);
+                                    ids[j] = new StrCode32(targetId);
+                                }
+                            }
+                                break;
+                            default:
+                            {
+                                eventDef->AimTargetType = GsRouteDataEventAimPoint_TargetType.NO_TARGET;
+
+                                if (aimPoint != null)
+                                    logger?.AddWarning($"Event {routeEvent.Id} in {route.name} has unsupported aim point type {aimPoint.GetType().Name}.");
+                            }
+                                break;
+                        }
+
+                        uint[] extensions = routeEvent.GetExtensions();
+                        uint* extensionData = eventDef->GetExtensionData(RouteFile.FormatVersion.V3);
+                        for (int j = 0; j < 4; j++)
+                            extensionData[j] = extensions[j];
                     }
                 }
             }
 
-            GameServiceModule.RouteIdMap.Save();
+            GameServiceModule.SaveRouteIdMaps();
 
             return data;
-        }
-
-        private static unsafe void WriteEvent(RouteFile.EventDef* eventDef, GsRouteDataEvent routeEvent)
-        {
-            eventDef->Id = new StrCode32(routeEvent.Id);
-            eventDef->Type = routeEvent is GsRouteDataNodeEvent ? RouteEventType.Node : RouteEventType.Edge;
-            eventDef->AimTargetType = GetAimPointType(routeEvent.aimPoint);
-            eventDef->AimBodySection = RouteBodySectionType.Head;
-            
-            
-            // if (aimPoint is GsRouteDataEventAimStaticPoint)
-            //     return RouteAimTargetType.StaticPoint;
-            // if (aimPoint is GsRouteDataEventAimCharacter)
-            //     return RouteAimTargetType.Character;
-            // if (aimPoint is GsRouteDataEventAimRouteAsSightMovePath)
-            //     return RouteAimTargetType.RouteAsSightMovePath;
-            // if (aimPoint is GsRouteDataEventAimRouteAsObject)
-            //     return RouteAimTargetType.RouteAsObject;
-            // return RouteAimTargetType.NoTarget;
-
-            if (routeEvent is GsRouteDataNodeEvent nodeEvent)
-            {
-                eventDef->IsLoop = nodeEvent.IsLoop;
-                eventDef->EncodedTime = QuantizeTime(nodeEvent.Time);
-                eventDef->EncodedDir = QuantizeDirection(nodeEvent.Dir);
-            }
-
-            byte* aimPointData = eventDef->GetAimPointData(RouteFile.FormatVersion.V3);
-            WriteAimPointPayload(aimPointData, routeEvent.aimPoint);
-
-            uint* extensions = (uint*)(aimPointData + 16);
-            for (int i = 0; i < 4; i++)
-                extensions[i] = routeEvent.extensions[i];
-        }
-
-        private static unsafe void WriteAimPointPayload(byte* aimPointData, GsRouteDataEventAimPoint aimPoint)
-        {
-            if (aimPoint is GsRouteDataEventAimStaticPoint staticPoint)
-            {
-                *(Vector3*)aimPointData = Math.UnityToFoxVector3(staticPoint.Position);
-                return;
-            }
-
-            if (aimPoint is GsRouteDataEventAimCharacter character)
-            {
-                *(StrCode32*)aimPointData = new StrCode32(character.characterId);
-                return;
-            }
-
-            if (aimPoint is GsRouteDataEventAimRouteAsSightMovePath sightMovePath)
-            {
-                StrCode32* ids = (StrCode32*)aimPointData;
-                int idCount = sightMovePath.routeId_GetContainerSize();
-                for (int i = 0; i < 4; i++)
-                    ids[i] = new StrCode32(i < idCount ? sightMovePath.routeId_Get(i) : "");
-                return;
-            }
-
-            if (aimPoint is GsRouteDataEventAimRouteAsObject routeAsObject)
-            {
-                StrCode32* ids = (StrCode32*)aimPointData;
-                int idCount = routeAsObject.routeId_GetContainerSize();
-                for (int i = 0; i < 4; i++)
-                    ids[i] = new StrCode32(i < idCount ? routeAsObject.routeId_Get(i) : "");
-                return;
-            }
-        }
-
-        private static ushort QuantizeTime(float time)
-        {
-            int raw = Mathf.RoundToInt(time * 60f) - 1;
-            return (ushort)Mathf.Clamp(raw, 0, ushort.MaxValue);
-        }
-
-        private static ushort QuantizeDirection(Quaternion direction)
-        {
-            Math.UnityToFoxQuaternion(direction).ToAngleAxis(out float angle, out _);
-
-            const float quantaPerDegree = (ushort.MaxValue + 1) / 360f;
-            int raw = Mathf.RoundToInt(angle * quantaPerDegree);
-            return (ushort)Mathf.Clamp(raw, 0, ushort.MaxValue);
         }
     }
 }

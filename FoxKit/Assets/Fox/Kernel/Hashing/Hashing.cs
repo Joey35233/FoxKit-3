@@ -214,6 +214,10 @@ namespace Fox
             return CityHashStrCodeInner(str);
         }
 
+        public static bool IsStringIdRawHash(ReadOnlySpan<char> str) => str.Length > 2 && str.StartsWith("0x") && ulong.TryParse(str[2..], NumberStyles.HexNumber, null, out _);
+
+        public static bool IsStringId32RawHash(ReadOnlySpan<char> str) => str.Length > 2 && str.StartsWith("0x") && uint.TryParse(str[2..], NumberStyles.HexNumber, null, out _);
+
         public static ulong StringIdHashDetectionOverride(ReadOnlySpan<char> str) => CityHashStrCodeInner(str);
 
         public static uint StringId32(ReadOnlySpan<char> str)

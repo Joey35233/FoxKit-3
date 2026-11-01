@@ -18,6 +18,18 @@ namespace Fox.GameService
 
         public static readonly StringId32Map RouteIdMap = new StringId32Map();
         public static readonly StringId32Map EventIdMap = new StringId32Map();
+        public static StringId32Map CharacterIdMap { get; private set; } = new StringId32Map();
+        public static void RegisterCharacterIdMap(StringId32Map map) => CharacterIdMap = map;
+
+        private static Action RouteIdMapsSaver;
+        public static void RegisterRouteIdMapsSaver(Action saver) => RouteIdMapsSaver = saver;
+
+        public static void SaveRouteIdMaps()
+        {
+            RouteIdMap.Save();
+
+            RouteIdMapsSaver?.Invoke();
+        }
 
         public GameServiceModule() : base("Fox.GameService")
         {
@@ -66,11 +78,13 @@ namespace Fox.GameService
                     continue;
 
                 eventIds.Add((idHash, id));
+
+                string idString = (id == "" && idHash != new StrCode32("")) ? idHash.ToString() : id;
                 
                 if (lineData[2] == "Node")
-                    RouteNodeEvents.Add(id);
+                    RouteNodeEvents.Add(idString);
                 else
-                    RouteEdgeEvents.Add(id);
+                    RouteEdgeEvents.Add(idString);
             }
 
             EventIdMap.RegisterBaseEntries(eventIds);

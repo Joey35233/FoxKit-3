@@ -86,20 +86,16 @@ namespace Fox.GameService
             public ushort EncodedTime;
             public ushort EncodedDir;
 
-            private const float DIR_DECODE = 2f * Mathf.PI / (UInt16.MaxValue + 1);
-            private const float DIR_ENCODE = (UInt16.MaxValue + 1) / (360f);
+            private const float DIR_DECODE = 360f / (UInt16.MaxValue + 1);
+            private const float DIR_ENCODE = (UInt16.MaxValue + 1) / 360f;
             
-            public Quaternion Dir
-            {
-                get => Quaternion.AngleAxis(EncodedDir * DIR_DECODE, Math.UnityToFoxVector3(Vector3.up));
-                set => EncodedDir = (ushort)(value.eulerAngles.y * DIR_ENCODE);
-            }
+            public Quaternion GetFoxDirection() => Quaternion.AngleAxis(EncodedDir * DIR_DECODE, Vector3.up);
+            
+            public void SetFoxDirection(Quaternion foxDirection) => EncodedDir = (ushort)(Mathf.RoundToInt(foxDirection.eulerAngles.y * DIR_ENCODE) & 0xFFFF);
 
-            public float Time
-            {
-                get => EncodedTime / KernelModule.NTSC_RATE;
-                set => EncodedTime = (ushort)(value * KernelModule.NTSC_RATE);
-            }
+            public float GetTime() => EncodedTime / KernelModule.NTSC_RATE;
+
+            public void SetTime(float time) => EncodedTime = (ushort)Mathf.Clamp(Mathf.RoundToInt(time * KernelModule.NTSC_RATE), 0, UInt16.MaxValue);
 
             public byte* GetAimPointData(FormatVersion version)
             {
@@ -136,6 +132,16 @@ namespace Fox.GameService
                     }
                 }
             }
+        }
+        
+        public static Vector3 UnpackVertexV2(ulong packedVertex)
+        {
+            // Unpack each component then sign-extend to full integer
+            int x = (int)(packedVertex & 0x3FFFFF) << 10 >> 10;
+            int y = (int)((packedVertex >> 22) & 0xFFFFF) << 12 >> 12;
+            int z = (int)((packedVertex >> 42) & 0x3FFFFF) << 10 >> 10;
+
+            return new Vector3(x, y, z) / 1024f;
         }
     }
 }

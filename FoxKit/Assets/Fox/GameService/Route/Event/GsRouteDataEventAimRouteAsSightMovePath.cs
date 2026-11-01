@@ -25,7 +25,7 @@ namespace Fox.GameService
         {
             int count;
             for (count = 0; count < targetIds.Length; count++)
-                if (targetIds[count] == string.Empty)
+                if (string.IsNullOrEmpty(targetIds[count]))
                     break;
             
             return count;

@@ -22,5 +22,18 @@ namespace Tpp.GameKit
 			
 			Debug.Assert(extensions[3] == 0);
 		}
+
+		public override uint[] GetExtensions()
+		{
+			GeoModule.RailIdMap.Add(railId);
+
+			return new uint[]
+			{
+				HashingBitConverter.StrCode32ToUInt32(new StrCode32(railId)),
+				(uint)Mathf.RoundToInt(kph * 3600f / 1000f * 100f),
+				flags,
+				0,
+			};
+		}
 	}
 }

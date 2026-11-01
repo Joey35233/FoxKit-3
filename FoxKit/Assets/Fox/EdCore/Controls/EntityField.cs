@@ -161,7 +161,7 @@ namespace Fox.EdCore
                 {
                     foreach (PropertyInfo propertyInfo in classInfo.OrderedStaticProperties)
                     {
-                        if (!propertyInfo.ReadableInEditor || propertyInfo.Backing == PropertyInfo.BackingType.Accessor)
+                        if (/*!propertyInfo.ReadableInEditor || */propertyInfo.Backing == PropertyInfo.BackingType.Accessor)
                             continue;
 
                         IFoxField field = FoxFieldUtils.GetCustomBindableField(propertyInfo);

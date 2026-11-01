@@ -1,0 +1,19 @@
+0xbf169f98	
+0x4398b121	ArriveAtFakeTarget1
+0xb9c07c15	convoy
+0xf3c1b62b	guard1ExcecutionReady
+0x610deee1	hill
+0x87c87605	rts_ishmael_to_ev0000
+0xaca27f8c	rts_ishmael_to_ev0001
+0x1cb22aa1	rts_ishmael_to_ev0002
+0xa5b57d5b	rts_ishmael_to_ev0003
+0xdc6f336e	rts_veh_pfCampGuardLeft_deep
+0x1ecfe228	rts_veh_pfCampGuardLeft_front
+0x35732b7f	rts_veh_pfCampGuardLeft_middle
+0x561a9f68	rts_veh_pfCampGuardRight_deep
+0xe6d73006	rts_veh_pfCampGuardRight_front
+0xeefb3fe4	rts_veh_pfCampGuardRight_middle
+0x4c1f238b	rts_veh_savannahEast_add_idle
+0xbf484e00	rts_veh_swampEast_add_idle
+0x93b10f21	startFlee
+0x64e012be	visitTent

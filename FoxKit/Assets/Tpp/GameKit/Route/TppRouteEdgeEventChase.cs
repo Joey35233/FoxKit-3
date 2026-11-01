@@ -15,5 +15,16 @@ namespace Tpp.GameKit
 			
 			Debug.Assert(extensions[3] == 0);
 		}
+
+		public override uint[] GetExtensions()
+		{
+			return new uint[]
+			{
+				(uint)Mathf.RoundToInt(unknown0 * 10f),
+				(uint)Mathf.RoundToInt(unknown1 * 10f),
+				(uint)Mathf.RoundToInt(unknown2 * 10f),
+				0,
+			};
+		}
 	}
 }
