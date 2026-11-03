@@ -21,23 +21,36 @@ namespace Fox.Gr
 
         private static readonly Dictionary<string, TextureSettings> pendingSettings = new Dictionary<string, TextureSettings>();
 
+        private static readonly List<string> queuedModelPaths = new List<string>();
+
+        private static bool textureCopyScheduled;
+
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         {
-            var modelPaths = new List<string>();
             foreach (string assetPath in importedAssets)
             {
-                if (assetPath.EndsWith(ModelExtension))
-                    modelPaths.Add(assetPath);
+                if (assetPath.EndsWith(ModelExtension) && !queuedModelPaths.Contains(assetPath))
+                    queuedModelPaths.Add(assetPath);
             }
 
-            if (modelPaths.Count > 0)
-                CopyTextures(modelPaths);
+            if (queuedModelPaths.Count > 0 && !textureCopyScheduled)
+            {
+                textureCopyScheduled = true;
+                EditorApplication.delayCall += CopyQueuedTextures;
+            }
+        }
+
+        private static void CopyQueuedTextures()
+        {
+            textureCopyScheduled = false;
+            var modelPaths = new List<string>(queuedModelPaths);
+            queuedModelPaths.Clear();
+            CopyTextures(modelPaths);
         }
 
         private static void CopyTextures(List<string> modelPaths)
         {
             var logger = new TaskLogger(ProgressTitle);
-            var changedModelPaths = new List<string>();
 
             AssetDatabase.StartAssetEditing();
             try
@@ -47,8 +60,7 @@ namespace Fox.Gr
                     if (EditorUtility.DisplayCancelableProgressBar(ProgressTitle, modelPaths[i], (float)i / modelPaths.Count))
                         break;
 
-                    if (CopyTexturesOfModel(modelPaths[i], logger))
-                        changedModelPaths.Add(modelPaths[i]);
+                    CopyTexturesOfModel(modelPaths[i], logger);
                 }
             }
             finally
@@ -57,23 +69,11 @@ namespace Fox.Gr
                 EditorUtility.ClearProgressBar();
             }
 
-            AssetDatabase.StartAssetEditing();
-            try
-            {
-                foreach (string modelPath in changedModelPaths)
-                    AssetDatabase.ImportAsset(modelPath, ImportAssetOptions.ForceUpdate);
-            }
-            finally
-            {
-                AssetDatabase.StopAssetEditing();
-            }
-
             logger.LogToUnityConsole();
         }
 
-        private static bool CopyTexturesOfModel(string modelPath, TaskLogger logger)
+        private static void CopyTexturesOfModel(string modelPath, TaskLogger logger)
         {
-            bool copiedAny = false;
             foreach (ulong pathCode in ModelFileImporter.ReadTexturePathCodes(modelPath))
             {
                 string foxPath = FtexPathIndex.GetFoxPath(pathCode);
@@ -85,23 +85,20 @@ namespace Fox.Gr
 
                 try
                 {
-                    if (CopyTexture(foxPath, logger))
-                        copiedAny = true;
+                    CopyTexture(foxPath, logger);
                 }
                 catch (System.Exception exception)
                 {
                     logger.AddError($"{foxPath}: {exception.Message}");
                 }
             }
-
-            return copiedAny;
         }
 
-        private static bool CopyTexture(string foxPath, TaskLogger logger)
+        private static void CopyTexture(string foxPath, TaskLogger logger)
         {
             string ddsPath = System.IO.Path.ChangeExtension(FileSystem.GetUnityPathFromFoxPath(foxPath), ".dds");
             if (System.IO.File.Exists(ddsPath))
-                return false;
+                return;
 
             string ftexPath = FileSystem.GetExternalPathFromFoxPath(foxPath);
             byte[] ftexData = System.IO.File.ReadAllBytes(ftexPath);
@@ -113,11 +110,10 @@ namespace Fox.Gr
 
             System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(ddsPath));
             if (!FtexFile.ConvertToDds(ftexData, ftexsProvider, logger, ddsPath))
-                return false;
+                return;
 
             pendingSettings[ddsPath] = ReadTextureSettings(ftexData);
             AssetDatabase.ImportAsset(ddsPath);
-            return true;
         }
 
         private static TextureSettings ReadTextureSettings(byte[] ftexData)
