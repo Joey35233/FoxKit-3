@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Core
@@ -37,7 +38,7 @@ namespace Fox.Core
 		{
 			if (Fox.Core.EntityFile.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("DataSetFile2", typeof(DataSetFile2), Fox.Core.EntityFile.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dataSet", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.DataSet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dataSet", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, typeof(Fox.Core.DataSet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor, Fox.Core.PropertyInfo.PropertyExport.Readable));
 
 			ClassInfoInitialized = true;
 		}

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Sim
@@ -16,17 +17,17 @@ namespace Fox.Sim
 	public partial class SimEngineOnPhysicsParam : Fox.Sim.SimEngineParam
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public bool isEnableGeoCheck { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isEnableGeoCheck;
 		
-		[field: UnityEngine.SerializeField]
-		public bool convertMoveToWind { get; set; }
+		[UnityEngine.SerializeField]
+		private bool convertMoveToWind;
 		
-		[field: UnityEngine.SerializeField]
-		public SimLodLevelName minLodLevel { get; set; }
+		[UnityEngine.SerializeField]
+		private SimLodLevelName minLodLevel;
 		
-		[field: UnityEngine.SerializeField]
-		public SimLodLevelName maxLodLevel { get; set; }
+		[UnityEngine.SerializeField]
+		private SimLodLevelName maxLodLevel;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -46,10 +47,10 @@ namespace Fox.Sim
 		{
 			if (Fox.Sim.SimEngineParam.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("SimEngineOnPhysicsParam", typeof(SimEngineOnPhysicsParam), Fox.Sim.SimEngineParam.ClassInfo, 36, "Sim", 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isEnableGeoCheck", Fox.Core.PropertyInfo.PropertyType.Bool, 57, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("convertMoveToWind", Fox.Core.PropertyInfo.PropertyType.Bool, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("minLodLevel", Fox.Core.PropertyInfo.PropertyType.Int32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, typeof(SimLodLevelName), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxLodLevel", Fox.Core.PropertyInfo.PropertyType.Int32, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, typeof(SimLodLevelName), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isEnableGeoCheck", Fox.Core.PropertyInfo.PropertyType.Bool, 57, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("convertMoveToWind", Fox.Core.PropertyInfo.PropertyType.Bool, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("minLodLevel", Fox.Core.PropertyInfo.PropertyType.Int32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(SimLodLevelName), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxLodLevel", Fox.Core.PropertyInfo.PropertyType.Int32, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(SimLodLevelName), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

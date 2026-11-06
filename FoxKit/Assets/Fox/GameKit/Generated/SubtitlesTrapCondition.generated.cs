@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameKit
@@ -16,14 +17,14 @@ namespace Fox.GameKit
 	public partial class SubtitlesTrapCondition : Fox.Geo.GeoTrapCondition
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<byte> targetTags { get; private set; } = new Fox.StringMap<byte>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<byte> targetTags = new Fox.StringMap<byte>();
 		
-		[field: UnityEngine.SerializeField]
-		public string enterSubtitlesFileName { get; set; }
+		[UnityEngine.SerializeField]
+		private string enterSubtitlesFileName;
 		
-		[field: UnityEngine.SerializeField]
-		public string outSubtitlesFileName { get; set; }
+		[UnityEngine.SerializeField]
+		private string outSubtitlesFileName;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -43,9 +44,9 @@ namespace Fox.GameKit
 		{
 			if (Fox.Geo.GeoTrapCondition.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("SubtitlesTrapCondition", typeof(SubtitlesTrapCondition), Fox.Geo.GeoTrapCondition.ClassInfo, 0, "Subtitles", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("targetTags", Fox.Core.PropertyInfo.PropertyType.UInt8, 320, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("enterSubtitlesFileName", Fox.Core.PropertyInfo.PropertyType.String, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("outSubtitlesFileName", Fox.Core.PropertyInfo.PropertyType.String, 376, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("targetTags", Fox.Core.PropertyInfo.PropertyType.UInt8, 320, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("enterSubtitlesFileName", Fox.Core.PropertyInfo.PropertyType.String, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("outSubtitlesFileName", Fox.Core.PropertyInfo.PropertyType.String, 376, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
@@ -57,17 +57,16 @@ namespace Fox.Geox
 
             GeoxPath2 path = new GameObject().AddComponent<GeoxPath2>();
             path.SetTransform(TransformEntity.GetDefault());
-            bool transformSet = false;
 
             TagUtils.AddEnumTags<Tags>(path.tags, (ulong)header.GetTags<Tags>());
 
             // Working off the assumption that the indices are for the vertices and the edges are implicitly linked
-            path.nodes.Capacity = header.PrimCount + 1;
-            for (int i = 0; i < path.nodes.Capacity; i++)
-                path.nodes.Add(default);
-            path.edges.Capacity = header.PrimCount;
-            for (int i = 0; i < path.edges.Capacity; i++)
-                path.edges.Add(default);
+            path.Nodes.Capacity = header.PrimCount + 1;
+            for (int i = 0; i < path.Nodes.Capacity; i++)
+                path.Nodes.Add(default);
+            path.Edges.Capacity = header.PrimCount;
+            for (int i = 0; i < path.Edges.Capacity; i++)
+                path.Edges.Add(default);
 
             for (int i = 0; i < header.PrimCount; i++)
             {
@@ -81,76 +80,56 @@ namespace Fox.Geox
                 foreach (GeoxPathEdge.Tags tag in Enum.GetValues(geoEdgeTags.GetType()))
                 {
                     if (geoEdgeTags.HasFlag(tag))
-                        edge.edgeTags.Add(tag.ToString());
+                        edge.EdgeTags.Add(tag.ToString());
                 }
 
                 ushort inNodeIndex = reader.ReadUInt16();
                 ushort outNodeIndex = reader.ReadUInt16();
                 GraphxSpatialGraphDataNode inNode;
-                if (path.nodes[inNodeIndex] is null)
+                if (path.Nodes[inNodeIndex] is null)
                 {
                     GeoxPathNode node = new GameObject($"GeoxPathNode{inNodeIndex:D4}").AddComponent<GeoxPathNode>();
                     node.SetOwner(path);
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * inNodeIndex));
-                    node.position = reader.ReadPositionF();
+                    node.Position = reader.ReadPositionF();
+                    node.transform.position = node.Position;
 
-                    if (!transformSet)
-                    {
-                        path.transform.position = node.position;
-                        node.position = Vector3.zero;
-                        transformSet = true;
-                    }
-                    else
-                    {
-                        node.position -= path.transform.position;
-                    }
+                    TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.NodeTags, reader.ReadUInt32());
 
-                    TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.nodeTags, reader.ReadUInt32());
-
-                    path.nodes[inNodeIndex] = node;
+                    path.Nodes[inNodeIndex] = node;
                     inNode = node;
                 }
                 else
                 {
-                    inNode = path.nodes[inNodeIndex];
+                    inNode = path.Nodes[inNodeIndex];
                 }
-                edge.prevNode = inNode;
-                inNode.outlinks.Add(edge);
+                edge.PrevNode = inNode;
+                inNode.Outlinks.Add(edge);
 
                 GraphxSpatialGraphDataNode outNode;
-                if (path.nodes[outNodeIndex] is null)
+                if (path.Nodes[outNodeIndex] is null)
                 {
                     GeoxPathNode node = new GameObject($"GeoxPathNode{outNodeIndex:D4}").AddComponent<GeoxPathNode>();
                     node.SetOwner(path);
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * outNodeIndex));
-                    node.position = reader.ReadPositionF();
+                    node.Position = reader.ReadPositionF();
+                    node.transform.position = node.Position;
 
-                    if (!transformSet)
-                    {
-                        path.transform.position = node.position;
-                        node.position = Vector3.zero;
-                        transformSet = true;
-                    }
-                    else
-                    {
-                        node.position -= path.transform.position;
-                    }
+                    TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.NodeTags, reader.ReadUInt32());
 
-                    TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.nodeTags, reader.ReadUInt32());
-
-                    path.nodes[outNodeIndex] = node;
+                    path.Nodes[outNodeIndex] = node;
                     outNode = node;
                 }
                 else
                 {
-                    outNode = path.nodes[outNodeIndex];
+                    outNode = path.Nodes[outNodeIndex];
                 }
-                edge.nextNode = outNode;
-                outNode.outlinks.Add(edge);
+                edge.NextNode = outNode;
+                outNode.Outlinks.Add(edge);
 
-                path.edges[i] = edge;
+                path.Edges[i] = edge;
             }
 
             return path;

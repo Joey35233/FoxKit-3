@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.GameKit
@@ -16,14 +17,11 @@ namespace Tpp.GameKit
 	public partial class TppRouteNodeEventSendMessage : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public uint unknown { get; set; }
+		[UnityEngine.SerializeField]
+		private string message;
 		
-		[field: UnityEngine.SerializeField]
-		public string message { get; set; }
-		
-		[field: UnityEngine.SerializeField]
-		public string routeId { get; set; }
+		[UnityEngine.SerializeField]
+		private string param;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -43,9 +41,8 @@ namespace Tpp.GameKit
 		{
 			if (Fox.GameService.GsRouteDataNodeEvent.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppRouteNodeEventSendMessage", typeof(TppRouteNodeEventSendMessage), Fox.GameService.GsRouteDataNodeEvent.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("unknown", Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("message", Fox.Core.PropertyInfo.PropertyType.String, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("routeId", Fox.Core.PropertyInfo.PropertyType.String, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("message", Fox.Core.PropertyInfo.PropertyType.String, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("param", Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}
@@ -54,12 +51,10 @@ namespace Tpp.GameKit
 		{
 			switch (propertyName)
 			{
-				case "unknown":
-					return new Fox.Core.Value(unknown);
 				case "message":
 					return new Fox.Core.Value(message);
-				case "routeId":
-					return new Fox.Core.Value(routeId);
+				case "param":
+					return new Fox.Core.Value(param);
 				default:
 					return base.GetProperty(propertyName);
 			}
@@ -87,14 +82,11 @@ namespace Tpp.GameKit
 		{
 			switch (propertyName)
 			{
-				case "unknown":
-					this.unknown = value.GetValueAsUInt32();
-					return;
 				case "message":
 					this.message = value.GetValueAsString();
 					return;
-				case "routeId":
-					this.routeId = value.GetValueAsString();
+				case "param":
+					this.param = value.GetValueAsString();
 					return;
 				default:
 					base.SetProperty(propertyName, value);

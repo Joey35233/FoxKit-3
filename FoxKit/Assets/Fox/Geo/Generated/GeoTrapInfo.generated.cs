@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Geo
@@ -16,41 +17,41 @@ namespace Fox.Geo
 	public partial class GeoTrapInfo : Fox.Core.Entity
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.StringMap<byte> moverTags { get; private set; } = new Fox.StringMap<byte>();
+		[UnityEngine.SerializeField]
+		private Fox.StringMap<byte> moverTags = new Fox.StringMap<byte>();
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.Entity moverHandle { get; protected set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.Entity moverHandle;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Vector3 moverPosition { get; protected set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 moverPosition;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Vector3 moverRotation { get; protected set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 moverRotation;
 		
-		[field: UnityEngine.SerializeField]
-		public string trapName { get; protected set; }
+		[UnityEngine.SerializeField]
+		private string trapName;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Vector3 trapPosition { get; protected set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 trapPosition;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.Entity trapBodyHandle { get; protected set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.Entity trapBodyHandle;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.Entity conditionHandle { get; protected set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.Entity conditionHandle;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.Entity conditionBodyHandle { get; protected set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.Entity conditionBodyHandle;
 		
-		[field: UnityEngine.SerializeField]
-		public string trapFlagString { get; protected set; }
+		[UnityEngine.SerializeField]
+		private string trapFlagString;
 		
-		[field: UnityEngine.SerializeField]
-		public uint trapFlag { get; protected set; }
+		[UnityEngine.SerializeField]
+		private uint trapFlag;
 		
-		[field: UnityEngine.SerializeField]
-		public ushort moverGameObjectId { get; protected set; }
+		[UnityEngine.SerializeField]
+		private ushort moverGameObjectId;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -70,18 +71,18 @@ namespace Fox.Geo
 		{
 			if (Fox.Core.Entity.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GeoTrapInfo", typeof(GeoTrapInfo), Fox.Core.Entity.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverTags", Fox.Core.PropertyInfo.PropertyType.UInt8, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverPosition", Fox.Core.PropertyInfo.PropertyType.Vector3, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverRotation", Fox.Core.PropertyInfo.PropertyType.Vector3, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapName", Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapPosition", Fox.Core.PropertyInfo.PropertyType.Vector3, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapBodyHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("conditionHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("conditionBodyHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapFlagString", Fox.Core.PropertyInfo.PropertyType.String, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapFlag", Fox.Core.PropertyInfo.PropertyType.UInt32, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverGameObjectId", Fox.Core.PropertyInfo.PropertyType.UInt16, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverTags", Fox.Core.PropertyInfo.PropertyType.UInt8, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverPosition", Fox.Core.PropertyInfo.PropertyType.Vector3, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverRotation", Fox.Core.PropertyInfo.PropertyType.Vector3, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapName", Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapPosition", Fox.Core.PropertyInfo.PropertyType.Vector3, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapBodyHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("conditionHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("conditionBodyHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapFlagString", Fox.Core.PropertyInfo.PropertyType.String, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapFlag", Fox.Core.PropertyInfo.PropertyType.UInt32, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverGameObjectId", Fox.Core.PropertyInfo.PropertyType.UInt16, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
 
 			ClassInfoInitialized = true;
 		}

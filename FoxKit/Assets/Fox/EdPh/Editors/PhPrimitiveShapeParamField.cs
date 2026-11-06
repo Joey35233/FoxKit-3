@@ -37,9 +37,8 @@ namespace Fox.EdPh
             context.BodyElement.Clear();
             
             EnumField typeField = new EnumField("type");
-            typeField.bindingPath = IFoxField.GetBindingPathForPropertyName("type");
             typeField.RegisterValueChangedCallback(evt => TypeChanged(evt, context));
-            context.BodyElement.Add(typeField);
+            context.AddPropertyField(context.BodyElement, typeField, "type");
         }
 
         private static void BuildShapeBody(PhPrimitiveShapeType type, EntityFieldBuildContext context)
@@ -48,8 +47,7 @@ namespace Fox.EdPh
             {
                 case PhPrimitiveShapeType.SPHERE:
                     FloatField radiusField = new FloatField("radius");
-                    radiusField.bindingPath = $"{IFoxField.GetBindingPathForPropertyName("size")}.x";
-                    context.BodyElement.Add(radiusField);
+                    context.AddPropertyField(context.BodyElement, radiusField, "size", "size.x");
                     break;
                 default:
                     BuildFooter(context);

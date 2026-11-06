@@ -1,14 +1,19 @@
 using Fox;
 using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Grx;
-using UnityEngine;
 using CsSystem = System;
 
 namespace Tpp.Effect
 {
     public partial class TppSpotLight : Fox.Core.TransformData
     {
+        public float OuterRange => outerRange;
+        public float PenumbraAngle => penumbraAngle;
+        public UnityEngine.Vector3 ReachPoint => reachPoint;
+        public float ShadowPenumbraAngle => shadowPenumbraAngle;
+        public float ShadowUmbraAngle => shadowUmbraAngle;
+        public float UmbraAngle => umbraAngle;
+
         private partial bool enable_Get() => throw new CsSystem.NotImplementedException();
         private partial void enable_Set(bool value) => throw new CsSystem.NotImplementedException();
 
@@ -45,33 +50,12 @@ namespace Tpp.Effect
 
             reachPoint = Fox.Math.FoxToUnityVector3(reachPoint);
         }
+        
         public override void OnSerializeEntity(EntityExportContext context)
         {
             base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(reachPoint), Fox.Math.UnityToFoxVector3(reachPoint));
         }
-        private SpotLightGizmo Gizmo = new SpotLightGizmo();
-
-        private void DrawGizmos(bool isSelected)
-        {
-            Gizmo.Transform = this.transform;
-            Gizmo.Label = isSelected ? this.name : null;
-            Gizmo.Axis = reachPoint.normalized;
-            Gizmo.UmbraAngle = umbraAngle;
-            Gizmo.PenumbraAngle = penumbraAngle;
-            Gizmo.ShadowUmbraAngle = shadowUmbraAngle;
-            Gizmo.ShadowPenumbraAngle = shadowPenumbraAngle;
-            Gizmo.OuterRange = outerRange;
-
-            if (isSelected)
-                Gizmo.OnDrawGizmosSelected();
-            else
-                Gizmo.OnDrawGizmos();
-        }
-
-        private void OnDrawGizmos() => DrawGizmos(false);
-
-        private void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

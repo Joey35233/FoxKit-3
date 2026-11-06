@@ -1,4 +1,4 @@
-﻿namespace Tpp.GameCore
+namespace Tpp.GameCore
 {
     public partial class TppTrapExecCombatLocatorCallbackDataElement
     {

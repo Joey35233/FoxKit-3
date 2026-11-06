@@ -18,5 +18,7 @@ namespace Fox
 
             return (value + (alignment - 1u)) & (ulong)-alignment;
         }
+
+        public unsafe static byte* Align(byte* value, uint alignment) => (byte*)Align((ulong)value, alignment);
     }
 }

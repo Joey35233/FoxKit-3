@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.GameCore
@@ -16,26 +17,26 @@ namespace Tpp.GameCore
 	public partial class TppVehicle2BodyData : Fox.Core.Data
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected byte vehicleTypeIndex { get; set; }
+		[UnityEngine.SerializeField]
+		private byte vehicleTypeIndex;
 		
-		[field: UnityEngine.SerializeField]
-		protected byte proxyVehicleTypeIndex { get; set; }
+		[UnityEngine.SerializeField]
+		private byte proxyVehicleTypeIndex;
 		
-		[field: UnityEngine.SerializeField]
-		protected byte bodyImplTypeIndex { get; set; }
+		[UnityEngine.SerializeField]
+		private byte bodyImplTypeIndex;
 		
-		[field: UnityEngine.SerializeField]
-		protected Fox.Core.FilePtr partsFile { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.FilePtr partsFile;
 		
-		[field: UnityEngine.SerializeField]
-		protected byte bodyInstanceCount { get; set; }
+		[UnityEngine.SerializeField]
+		private byte bodyInstanceCount;
 		
-		[field: UnityEngine.SerializeField]
-		protected CsSystem.Collections.Generic.List<Tpp.GameCore.TppVehicle2WeaponParameter> weaponParams { get; private set; } = new CsSystem.Collections.Generic.List<Tpp.GameCore.TppVehicle2WeaponParameter>();
+		[UnityEngine.SerializeField]
+		private List<Tpp.GameCore.TppVehicle2WeaponParameter> weaponParams = new List<Tpp.GameCore.TppVehicle2WeaponParameter>();
 		
-		[field: UnityEngine.SerializeField]
-		protected CsSystem.Collections.Generic.List<Fox.Core.FilePtr> fovaFiles { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Core.FilePtr> fovaFiles = new List<Fox.Core.FilePtr>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -55,13 +56,13 @@ namespace Tpp.GameCore
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppVehicle2BodyData", typeof(TppVehicle2BodyData), Fox.Core.Data.ClassInfo, 128, null, 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vehicleTypeIndex", Fox.Core.PropertyInfo.PropertyType.UInt8, 177, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("proxyVehicleTypeIndex", Fox.Core.PropertyInfo.PropertyType.UInt8, 178, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bodyImplTypeIndex", Fox.Core.PropertyInfo.PropertyType.UInt8, 179, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("partsFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bodyInstanceCount", Fox.Core.PropertyInfo.PropertyType.UInt8, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("weaponParams", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Tpp.GameCore.TppVehicle2WeaponParameter), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fovaFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vehicleTypeIndex", Fox.Core.PropertyInfo.PropertyType.UInt8, 177, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("proxyVehicleTypeIndex", Fox.Core.PropertyInfo.PropertyType.UInt8, 178, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bodyImplTypeIndex", Fox.Core.PropertyInfo.PropertyType.UInt8, 179, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("partsFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bodyInstanceCount", Fox.Core.PropertyInfo.PropertyType.UInt8, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("weaponParams", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, typeof(Tpp.GameCore.TppVehicle2WeaponParameter), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fovaFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameKit
@@ -16,8 +17,8 @@ namespace Fox.GameKit
 	public partial class GkTargetData : Fox.Geo.TargetExtensionData
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.Entity characterObjectHandle { get; protected set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.Entity characterObjectHandle;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.GameKit
 		{
 			if (Fox.Geo.TargetExtensionData.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GkTargetData", typeof(GkTargetData), Fox.Geo.TargetExtensionData.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("characterObjectHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("characterObjectHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
 
 			ClassInfoInitialized = true;
 		}

@@ -1,10 +1,14 @@
-﻿using System;
+using System.Collections.Generic;
+
+using System;
 using System.ComponentModel;
 
 namespace Fox.Geox
 {
     public partial class GeoxPathNode : Fox.Graphx.GraphxSpatialGraphDataNode
     {
+        public List<string> NodeTags => nodeTags;
+
         [Flags]
         public enum Tags : uint
         {

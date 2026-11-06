@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Gr
@@ -16,8 +17,8 @@ namespace Fox.Gr
 	public partial class GrViewportRenderingParameters : Fox.Gr.GrViewportParameter
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Color clearColor { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Color clearColor;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Gr
 		{
 			if (Fox.Gr.GrViewportParameter.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GrViewportRenderingParameters", typeof(GrViewportRenderingParameters), Fox.Gr.GrViewportParameter.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clearColor", Fox.Core.PropertyInfo.PropertyType.Color, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clearColor", Fox.Core.PropertyInfo.PropertyType.Color, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

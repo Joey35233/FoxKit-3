@@ -1,4 +1,4 @@
-﻿namespace Fox.GameKit
+namespace Fox.GameKit
 {
     public partial class FoxTrapExecViewGroupControlCallbackDataElement
     {

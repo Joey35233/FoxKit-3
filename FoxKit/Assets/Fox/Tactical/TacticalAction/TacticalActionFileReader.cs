@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Fio;
 using System;
@@ -126,12 +126,12 @@ namespace Fox.Tactical
                     tacticalAction.SetTransform(TransformEntity.GetDefault());
 
                     if(worldName==StrCode.Empty)
-                        tacticalAction.worldName = "";
+                        tacticalAction.WorldName = "";
                     else
-                        tacticalAction.worldName = worldName.ToString();
+                        tacticalAction.WorldName = worldName.ToString();
 
-                    tacticalAction.enable = true;
-                    tacticalAction.enableInGame = true;
+                    tacticalAction.Enable = true;
+                    tacticalAction.EnableInGame = true;
 
                     reader.Seek(rewindPos);
 
@@ -140,8 +140,8 @@ namespace Fox.Tactical
                     for (int waypointIndex = 0; waypointIndex < 2; waypointIndex++)
                     {
                         //Waypoint
-                        tacticalAction.waypoints.Insert(waypointIndex,new GameObject($"GkTacticalActionWaypoint{waypointIndex:0000}").AddComponent<GkTacticalActionWaypoint>());
-                        tacticalAction.waypoints[waypointIndex].SetOwner(tacticalAction);
+                        tacticalAction.Waypoints.Insert(waypointIndex,new GameObject($"GkTacticalActionWaypoint{waypointIndex:0000}").AddComponent<GkTacticalActionWaypoint>());
+                        tacticalAction.Waypoints[waypointIndex].SetOwner(tacticalAction);
                         worldPositions[waypointIndex] = reader.ReadPositionF();
 
 
@@ -153,13 +153,13 @@ namespace Fox.Tactical
                             //and tactical actions with the direction BOTH_WAYS should have only one edge
                             continue;
 
-                        tacticalAction.edges.Insert(waypointIndex, new GameObject($"GkTacticalActionEdge{waypointIndex:0000}|{actionNameStr}").AddComponent<GkTacticalActionEdge>());
-                        tacticalAction.edges[waypointIndex].SetOwner(tacticalAction);
+                        tacticalAction.Edges.Insert(waypointIndex, new GameObject($"GkTacticalActionEdge{waypointIndex:0000}|{actionNameStr}").AddComponent<GkTacticalActionEdge>());
+                        tacticalAction.Edges[waypointIndex].SetOwner(tacticalAction);
 
-                        tacticalAction.edges[waypointIndex].actionName = actionNameStr;
+                        tacticalAction.Edges[waypointIndex].ActionName = actionNameStr;
 
                         var actionDirection = GetDirection(actionNameStr);
-                        tacticalAction.edges[waypointIndex].actionDirection = actionDirection;
+                        tacticalAction.Edges[waypointIndex].ActionDirection = actionDirection;
 
                         //ensure only one edge is in the action if BOTH_WAYS
                         oneEdge = (actionDirection == GkTacticalActionDirection.TACTICAL_ACTION_BOTH_WAYS);
@@ -168,35 +168,35 @@ namespace Fox.Tactical
                     //set to comfortable local positions from globals
                     tacticalAction.transform.position = worldPositions[0] + (worldPositions[1] - worldPositions[0])/2;
 
-                    tacticalAction.waypoints[0].transform.position = worldPositions[0];
-                    tacticalAction.waypoints[1].transform.position = worldPositions[1];
+                    tacticalAction.Waypoints[0].transform.position = worldPositions[0];
+                    tacticalAction.Waypoints[1].transform.position = worldPositions[1];
 
-                    tacticalAction.waypoints[0].position = tacticalAction.waypoints[0].transform.localPosition;
-                    tacticalAction.waypoints[1].position = tacticalAction.waypoints[1].transform.localPosition;
+                    tacticalAction.Waypoints[0].Position = tacticalAction.Waypoints[0].transform.localPosition;
+                    tacticalAction.Waypoints[1].Position = tacticalAction.Waypoints[1].transform.localPosition;
 
 
-                    if (tacticalAction.edges[0].actionName == "LadderDown" || tacticalAction.edges[0].actionName == "StepDown")
+                    if (tacticalAction.Edges[0].ActionName == "LadderDown" || tacticalAction.Edges[0].ActionName == "StepDown")
                     {
-                        tacticalAction.waypoints.Reverse();
-                        tacticalAction.edges.Reverse();
+                        tacticalAction.Waypoints.Reverse();
+                        tacticalAction.Edges.Reverse();
                     }
 
                     //userId refers to related gameobject or gimmick
                     var userId = reader.ReadStrCode();
-                    tacticalAction.userId = ntaUserIdDictionary.TryGetValue(userId, out string _userIdStr) ? _userIdStr : userId.ToString();
+                    tacticalAction.UserId = ntaUserIdDictionary.TryGetValue(userId, out string _userIdStr) ? _userIdStr : userId.ToString();
 
                     //nav attributes
-                    tacticalAction.attribute = reader.ReadUInt16();
+                    tacticalAction.Attribute = reader.ReadUInt16();
                     var enumType = typeof(Tpp_Ground_Attributes);
-                    if (tacticalAction.attribute != 0xffff )
+                    if (tacticalAction.Attribute != 0xffff )
                     {
                         var emptyWorldName = StrCode.Empty;
                         if (worldName == emptyWorldName)
                         {
-                            var attributeFlags = (Tpp_Ground_Attributes)tacticalAction.attribute;
+                            var attributeFlags = (Tpp_Ground_Attributes)tacticalAction.Attribute;
                             foreach (Tpp_Ground_Attributes flag in Enum.GetValues(enumType))
                                 if (attributeFlags.HasFlag(flag))
-                                    tacticalAction.attributeNames.Add(Enum.GetName(enumType, flag));
+                                    tacticalAction.AttributeNames.Add(Enum.GetName(enumType, flag));
                         }
                         else
                         {
@@ -205,11 +205,11 @@ namespace Fox.Tactical
                     }
                     else
                     {
-                        foreach (GkTacticalActionEdge edge in tacticalAction.edges)
+                        foreach (GkTacticalActionEdge edge in tacticalAction.Edges)
                         {
-                            (var attribute, var attributeNames) = GetAttribute(edge.actionName);
-                            tacticalAction.attribute = attribute;
-                            tacticalAction.attributeNames.AddRange(attributeNames);
+                            (var attribute, var attributeNames) = GetAttribute(edge.ActionName);
+                            tacticalAction.Attribute = attribute;
+                            tacticalAction.AttributeNames.AddRange(attributeNames);
                             break;
                         }
                     }

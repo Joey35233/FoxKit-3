@@ -107,9 +107,9 @@ namespace Fox.EdCore
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+        protected override void HandleEventTrickleDown(EventBase evt)
         {
-            base.ExecuteDefaultActionAtTarget(evt);
+            base.HandleEventTrickleDown(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
             if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
@@ -195,9 +195,8 @@ namespace Fox.EdCore
 
             SerializedProperty cellProperty = StringMapProperty.FindPropertyRelative("CellsBacking").GetArrayElementAtIndex(i);
 
-            var field = element as CellField;
-            field.KeyField.BindProperty(cellProperty.FindPropertyRelative("Key"));
-            field.DataField.BindProperty(cellProperty.FindPropertyRelative("Value"));
+            CellField field = element as CellField;
+            field.BindProperty(cellProperty);
             
             Label label = field.labelElement;
             label.text = $"[{index}]";
@@ -206,7 +205,7 @@ namespace Fox.EdCore
             field.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
         }
 
-        private class CellField : VisualElement
+        private class CellField : BindableElement
         {
             public StringField KeyField;
             public BindableElement DataField;
@@ -230,6 +229,7 @@ namespace Fox.EdCore
                 Add(visualInput);
 
                 KeyField = new StringField();
+                KeyField.bindingPath = "Key";
                 KeyField.SetEnabled(false);
                 KeyField.style.flexBasis = new StyleLength(StyleKeyword.Auto);
                 KeyField.style.flexGrow = 0;
@@ -238,6 +238,7 @@ namespace Fox.EdCore
                 visualInput.Add(KeyField);
 
                 DataField = dataField;
+                DataField.bindingPath = "Value";
                 DataField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
                 DataField.AddToClassList("unity-composite-field__field--last");
                 visualInput.Add(DataField);

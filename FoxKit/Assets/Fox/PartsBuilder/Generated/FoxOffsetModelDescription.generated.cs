@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.PartsBuilder
@@ -16,11 +17,11 @@ namespace Fox.PartsBuilder
 	public partial class FoxOffsetModelDescription : Fox.PartsBuilder.ModelDescription
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Vector3 offsetTranslation { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Vector3 offsetTranslation;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Quaternion offsetRotQuat { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Quaternion offsetRotQuat;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.PartsBuilder
 		{
 			if (Fox.PartsBuilder.ModelDescription.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("FoxOffsetModelDescription", typeof(FoxOffsetModelDescription), Fox.PartsBuilder.ModelDescription.ClassInfo, 0, "PartsBuilder", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetTranslation", Fox.Core.PropertyInfo.PropertyType.Vector3, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetRotQuat", Fox.Core.PropertyInfo.PropertyType.Quat, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetTranslation", Fox.Core.PropertyInfo.PropertyType.Vector3, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetRotQuat", Fox.Core.PropertyInfo.PropertyType.Quat, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

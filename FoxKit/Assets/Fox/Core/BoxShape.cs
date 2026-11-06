@@ -14,19 +14,5 @@ namespace Fox.Core
             UnityEngine.Transform transform = this.transform;
             transform.localScale = 2 * value;
         }
-
-        public void OnDrawGizmos()
-        {
-            Gizmos.matrix = this.transform.localToWorldMatrix;
-            Gizmos.color = BoxGizmo.UnselectedColor;
-            Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
-        }
-
-        public void OnDrawGizmosSelected()
-        {
-            Gizmos.matrix = this.transform.localToWorldMatrix;
-            Gizmos.color = BoxGizmo.SelectedColor;
-            Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
-        }
     }
 }

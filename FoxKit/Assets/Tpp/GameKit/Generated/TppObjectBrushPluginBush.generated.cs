@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.GameKit
@@ -16,17 +17,17 @@ namespace Tpp.GameKit
 	public partial class TppObjectBrushPluginBush : Fox.GameKit.ObjectBrushPluginClone
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public uint reservedCount { get; set; }
+		[UnityEngine.SerializeField]
+		private uint reservedCount;
 		
-		[field: UnityEngine.SerializeField]
-		public float upgradeLodRateForHighEnd { get; set; }
+		[UnityEngine.SerializeField]
+		private float upgradeLodRateForHighEnd;
 		
-		[field: UnityEngine.SerializeField]
-		public Tpp.GameKit.ObjectBrushPluginBushDataElement gimmickParameter { get; set; }
+		[UnityEngine.SerializeField]
+		private Tpp.GameKit.ObjectBrushPluginBushDataElement gimmickParameter;
 		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityLink externalGimmickParameter { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Core.EntityLink externalGimmickParameter;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -46,10 +47,10 @@ namespace Tpp.GameKit
 		{
 			if (Fox.GameKit.ObjectBrushPluginClone.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppObjectBrushPluginBush", typeof(TppObjectBrushPluginBush), Fox.GameKit.ObjectBrushPluginClone.ClassInfo, 168, null, 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("reservedCount", Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("upgradeLodRateForHighEnd", Fox.Core.PropertyInfo.PropertyType.Float, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gimmickParameter", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Tpp.GameKit.ObjectBrushPluginBushDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("externalGimmickParameter", Fox.Core.PropertyInfo.PropertyType.EntityLink, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("reservedCount", Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("upgradeLodRateForHighEnd", Fox.Core.PropertyInfo.PropertyType.Float, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gimmickParameter", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, typeof(Tpp.GameKit.ObjectBrushPluginBushDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("externalGimmickParameter", Fox.Core.PropertyInfo.PropertyType.EntityLink, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}

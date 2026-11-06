@@ -10,11 +10,12 @@ using PropertyInfo = Fox.Core.PropertyInfo;
 
 namespace Fox.EdCore
 {
-    public class EntityPtrField<T> : BaseField<T>, IFoxField
-        where T : Entity
+    public class EntityPtrField<T> : BaseField<Object>, IFoxField where T :  Entity
     {
-        private SerializedProperty PtrProperty;
+        private Entity OwnerEntity;
         private EntityInfo EntityInfo = EntityInfo.GetEntityInfo<T>();
+
+        private static string TypeName = typeof(T).Name;
 
         private readonly VisualElement PropertyContainer;
         private readonly VisualElement Header;
@@ -75,17 +76,14 @@ namespace Fox.EdCore
             Header = new VisualElement();
             Header.AddToClassList(headerUssClassName);
 
-            ButtonMode = CreateDeleteButtonMode.CreateEntity;
             CreateDeleteButton = new Button(CreateDeleteButton_clicked);
             Header.Add(CreateDeleteButton);
 
             EntityLabel = new Label();
             Header.Add(EntityLabel);
 
-            CopyButton = new Button(() => EditorGUIUtility.systemCopyBuffer = $"FoxObj: {PtrProperty.objectReferenceInstanceIDValue.ToString()}")
-            {
-                text = "Copy"
-            };
+            CopyButton = new Button(() => EditorGUIUtility.systemCopyBuffer = $"FoxObj: {value.GetInstanceID().ToString()}");
+            CopyButton.text = "Copy";
             CopyButton.AddToClassList(copyButtonUssClassName);
             Header.Add(CopyButton);
 
@@ -99,67 +97,110 @@ namespace Fox.EdCore
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
+
+            this.RegisterValueChangedCallback(OnPropertyChanged);
         }
 
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+        [EventInterest(typeof(MouseDownEvent), typeof(KeyDownEvent))]
+        protected override void HandleEventBubbleUp(EventBase evt)
         {
-            base.ExecuteDefaultActionAtTarget(evt);
-
-            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
+            base.HandleEventBubbleUp(evt);
+        
+            if (evt == null)
+                return;
+            
+            if (evt.eventTypeId == MouseDownEvent.TypeId() && ((MouseDownEvent)evt).button == (int)MouseButton.LeftMouse)
             {
-                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+                OnMouseDown((MouseDownEvent)evt);
+            }
+            else if (evt.eventTypeId == KeyDownEvent.TypeId())
+            {
+                if (((KeyDownEvent)evt).keyCode is KeyCode.Delete or KeyCode.Backspace)
+                {
+                    OnKeyboardDelete();
+                }
+            }
+        }
 
-                PtrProperty = property;
+        // [EventInterest(typeof(MouseDownEvent))]
+        // internal override void ExecuteDefaultActionDisabledAtTarget(EventBase evt)
+        // {
+        //     base.ExecuteDefaultActionDisabledAtTarget(evt);
+        //
+        //     if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
+        //         OnMouseDown(evt as MouseDownEvent);
+        // }
 
-                BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPropertyChanged);
-
-                OnPropertyChanged(null);
-
-                // Stop the EntityPtrField itself's binding event; it's just a container for the actual BindableElements.
+        private void OnMouseDown(MouseDownEvent evt)
+        {
+            if (value == null || value is not Entity targetEntity)
+                return;
+        
+            // One click shows where the referenced object is, or pops up a preview
+            if (evt.clickCount == 1)
+            {
+                // ping object
+                bool anyModifiersPressed = evt.shiftKey || evt.ctrlKey;
+                if (!anyModifiersPressed && targetEntity)
+                {
+                    EditorGUIUtility.PingObject(targetEntity);
+                }
+                evt.StopPropagation();
+            }
+            // Double click opens the asset in external app or changes selection to referenced object
+            else if (evt.clickCount == 2)
+            {
+                if (targetEntity)
+                {
+                    AssetDatabase.OpenAsset(targetEntity);
+                    GUIUtility.ExitGUI();
+                }
                 evt.StopPropagation();
             }
         }
 
-        private void OnPropertyChanged(SerializedProperty property)
+        private void OnKeyboardDelete() => value = null;
+
+        private void OnPropertyChanged(ChangeEvent<Object> evt)
         {
-            // [-] clicked
-            if (PtrProperty.objectReferenceValue is null)
+            if (evt.target == this)
             {
-                Header.RemoveFromClassList(headerLivePtrUssClassName);
-
-                ButtonMode = CreateDeleteButtonMode.CreateEntity;
-                CreateDeleteButton.text = "＋";
-                CreateDeleteButton.RemoveFromClassList(deleteButtonUssClassName);
-                CreateDeleteButton.AddToClassList(createButtonUssClassName);
-
-                EntityLabel.text = $"<b>null</b> ({typeof(T).Name})";
-
-                PropertyContainer.Clear();
-                PropertyContainer.visible = false;
-            }
-            // [+] clicked
-            else
-            {
-                Header.AddToClassList(headerLivePtrUssClassName);
-
-                ButtonMode = CreateDeleteButtonMode.DeleteEntity;
-                CreateDeleteButton.text = "－";
-                CreateDeleteButton.RemoveFromClassList(createButtonUssClassName);
-                CreateDeleteButton.AddToClassList(deleteButtonUssClassName);
-
-                EntityLabel.text = $"<b>{PtrProperty.objectReferenceValue.GetType().Name}</b> ({typeof(T).Name})";
-                EntityLabel.enableRichText = true;
-
-                PropertyContainer.visible = true;
-                PropertyContainer.Clear();
-                CustomEntityFieldDesc? customFieldDesc = CustomEntityFieldManager.Get(EntityInfo);
-                IEntityField entityField = customFieldDesc?.Constructor is {} customConstructor ? customConstructor() : new EntityField<T>();
-                SerializedObject newObject = new SerializedObject(PtrProperty.objectReferenceValue);
-                entityField.Build(newObject);
-                VisualElement entityFieldElement = entityField as VisualElement;
-                entityFieldElement.Bind(newObject);
-                PropertyContainer.Add(entityFieldElement);
+                if (value == null)
+                {
+                    Header.RemoveFromClassList(headerLivePtrUssClassName);
+        
+                    ButtonMode = CreateDeleteButtonMode.CreateEntity;
+                    CreateDeleteButton.text = "＋";
+                    CreateDeleteButton.RemoveFromClassList(deleteButtonUssClassName);
+                    CreateDeleteButton.AddToClassList(createButtonUssClassName);
+        
+                    EntityLabel.text = $"<b>{TypeName}</b>";
+        
+                    PropertyContainer.Clear();
+                    PropertyContainer.visible = false;
+                }
+                else
+                {
+                    Header.AddToClassList(headerLivePtrUssClassName);
+        
+                    ButtonMode = CreateDeleteButtonMode.DeleteEntity;
+                    CreateDeleteButton.text = "－";
+                    CreateDeleteButton.RemoveFromClassList(createButtonUssClassName);
+                    CreateDeleteButton.AddToClassList(deleteButtonUssClassName);
+        
+                    EntityLabel.text = $"<b>{TypeName}</b> {value.name}";
+                    EntityLabel.enableRichText = true;
+        
+                    PropertyContainer.visible = true;
+                    PropertyContainer.Clear();
+                    CustomEntityFieldDesc? customFieldDesc = CustomEntityFieldManager.Get(EntityInfo);
+                    IEntityField entityField = customFieldDesc?.Constructor is {} customConstructor ? customConstructor() : new EntityField<T>();
+                    SerializedObject newObject = new SerializedObject(value);
+                    entityField.Build(newObject);
+                    VisualElement entityFieldElement = entityField as VisualElement;
+                    entityFieldElement.Bind(newObject);
+                    PropertyContainer.Add(entityFieldElement);
+                }
             }
         }
 
@@ -167,43 +208,36 @@ namespace Fox.EdCore
         {
             switch (ButtonMode)
             {
-                // [＋] clicked
                 case CreateDeleteButtonMode.CreateEntity:
                 {
                     SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T))?.Type;
                     if (SpecificEntityType != null)
                     {
                         GameObject newGameObject = new GameObject();
-                        Entity newEntity = newGameObject.AddComponent(SpecificEntityType) as Entity;
-                        newGameObject.name = newEntity.ToString();
-                        PtrProperty.objectReferenceValue = newEntity;
-
-                        Object targetObject = PtrProperty.serializedObject.targetObject;
-                        if (targetObject != null && targetObject is Entity targetEntity)
+                        Entity newEntity = (Entity)newGameObject.AddComponent(SpecificEntityType);
+                        newGameObject.name = newEntity.GenerateName();
+                        value = (T)newEntity;
+            
+                        if (OwnerEntity != null)
                         {
-                            newEntity.transform.SetParent(targetEntity.gameObject.transform);
+                            newEntity.transform.SetParent(OwnerEntity.gameObject.transform);
                         }
                         else
                         {
                             Debug.LogWarning("EntityPtrField: Owning entity invalid.");
                         }
-                        
-                        _ = PtrProperty.serializedObject.ApplyModifiedProperties();
                     }
                 }
                 break;
-                // [－] clicked
+                
                 case CreateDeleteButtonMode.DeleteEntity:
                 {
-                    // UnityEngine.Object obj = PtrProperty.objectReferenceValue;
-                    // if (obj is Entity entity)
-                    //     Undo.DestroyObjectImmediate(entity.gameObject);
-                    // else
-                    //     throw new ArgumentException($"EntityPtrField storing non-Entity");
-
-                    PtrProperty.objectReferenceValue = null;
-
-                    _ = PtrProperty.serializedObject.ApplyModifiedProperties();
+                    if (value is Entity entity)
+                        Undo.DestroyObjectImmediate(entity.gameObject);
+                    else
+                        throw new ArgumentException($"EntityPtrField storing non-Entity");
+            
+                    value = null;
                 }
                 break;
             }

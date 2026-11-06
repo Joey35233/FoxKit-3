@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Navx
@@ -16,11 +17,11 @@ namespace Fox.Navx
 	public partial class NavxAttributePathVolume : Fox.Graphx.GraphxPathVolume
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public string worldName { get; set; }
+		[UnityEngine.SerializeField]
+		private string worldName;
 		
-		[field: UnityEngine.SerializeField]
-		public CsSystem.Collections.Generic.List<Fox.Navx.NavxAttributeInfo> attributeInfos { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Navx.NavxAttributeInfo>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Navx.NavxAttributeInfo> attributeInfos = new List<Fox.Navx.NavxAttributeInfo>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Navx
 		{
 			if (Fox.Graphx.GraphxPathVolume.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("NavxAttributePathVolume", typeof(NavxAttributePathVolume), Fox.Graphx.GraphxPathVolume.ClassInfo, 336, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("worldName", Fox.Core.PropertyInfo.PropertyType.String, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("attributeInfos", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 360, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Navx.NavxAttributeInfo), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("worldName", Fox.Core.PropertyInfo.PropertyType.String, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("attributeInfos", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 360, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, typeof(Fox.Navx.NavxAttributeInfo), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

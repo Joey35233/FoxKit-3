@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.GameService
@@ -16,24 +17,14 @@ namespace Fox.GameService
 	public partial class GsRouteDataNodeEvent : Fox.GameService.GsRouteDataEvent
 	{
 		// Properties
-		public string action { get => action_Get(); set => action_Set(value); }
-		private partial string action_Get();
-		private partial void action_Set(string value);
+		[UnityEngine.SerializeField]
+		private bool isLoop;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isLoop { get; set; }
+		[UnityEngine.SerializeField]
+		private float time;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isActionCount { get; set; }
-		
-		[field: UnityEngine.SerializeField]
-		public float time { get; set; }
-		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Quaternion dir { get; set; }
-		
-		[field: UnityEngine.SerializeField]
-		public Fox.Core.FilePtr scriptPath { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Quaternion dir;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -53,12 +44,9 @@ namespace Fox.GameService
 		{
 			if (Fox.GameService.GsRouteDataEvent.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GsRouteDataNodeEvent", typeof(GsRouteDataNodeEvent), Fox.GameService.GsRouteDataEvent.ClassInfo, 0, null, 2);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("action", Fox.Core.PropertyInfo.PropertyType.String, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isLoop", Fox.Core.PropertyInfo.PropertyType.Bool, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isActionCount", Fox.Core.PropertyInfo.PropertyType.Bool, 89, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("time", Fox.Core.PropertyInfo.PropertyType.Float, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dir", Fox.Core.PropertyInfo.PropertyType.Quat, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scriptPath", Fox.Core.PropertyInfo.PropertyType.FilePtr, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isLoop", Fox.Core.PropertyInfo.PropertyType.Bool, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("time", Fox.Core.PropertyInfo.PropertyType.Float, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dir", Fox.Core.PropertyInfo.PropertyType.Quat, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}
@@ -67,18 +55,12 @@ namespace Fox.GameService
 		{
 			switch (propertyName)
 			{
-				case "action":
-					return new Fox.Core.Value(action);
 				case "isLoop":
 					return new Fox.Core.Value(isLoop);
-				case "isActionCount":
-					return new Fox.Core.Value(isActionCount);
 				case "time":
 					return new Fox.Core.Value(time);
 				case "dir":
 					return new Fox.Core.Value(dir);
-				case "scriptPath":
-					return new Fox.Core.Value(scriptPath);
 				default:
 					return base.GetProperty(propertyName);
 			}
@@ -106,23 +88,14 @@ namespace Fox.GameService
 		{
 			switch (propertyName)
 			{
-				case "action":
-					this.action = value.GetValueAsString();
-					return;
 				case "isLoop":
 					this.isLoop = value.GetValueAsBool();
-					return;
-				case "isActionCount":
-					this.isActionCount = value.GetValueAsBool();
 					return;
 				case "time":
 					this.time = value.GetValueAsFloat();
 					return;
 				case "dir":
 					this.dir = value.GetValueAsQuat();
-					return;
-				case "scriptPath":
-					this.scriptPath = value.GetValueAsFilePtr();
 					return;
 				default:
 					base.SetProperty(propertyName, value);

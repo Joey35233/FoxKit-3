@@ -92,23 +92,23 @@ namespace Tpp.Effect
             lightProbe.SetTransform(TransformEntity.GetDefault());
 
             uint localFlags = reader.ReadUInt32();
-            lightProbe.enable = FlagUtils.GetFlag(localFlags, 0);
+            lightProbe.Enable = FlagUtils.GetFlag(localFlags, 0);
             lightProbe.enable24hSH = FlagUtils.GetFlag(localFlags, 1);
             lightProbe.enableWeatherSH = FlagUtils.GetFlag(localFlags, 2);
             lightProbe.enableRelatedLightSH = FlagUtils.GetFlag(localFlags, 3);
             lightProbe.enableOcclusionMode = FlagUtils.GetFlag(localFlags, 4);
 
-            lightProbe.shapeType = (TppLightProbe.TppLightProbe_ShapeType)reader.ReadUInt16();
+            lightProbe.ShapeType = (TppLightProbe.TppLightProbe_ShapeType)reader.ReadUInt16();
 
             reader.Align(4);
 
             // Switched x scale for endianness
-            lightProbe.innerScaleXNegative = reader.ReadHalf(); // innerScaleXPositive
-            lightProbe.innerScaleYPositive = reader.ReadHalf();
-            lightProbe.innerScaleZPositive = reader.ReadHalf();
-            lightProbe.innerScaleXPositive = reader.ReadHalf(); // innerScaleXNegative
-            lightProbe.innerScaleYNegative = reader.ReadHalf();
-            lightProbe.innerScaleZNegative = reader.ReadHalf();
+            lightProbe.InnerScaleXNegative = reader.ReadHalf(); // innerScaleXPositive
+            lightProbe.InnerScaleYPositive = reader.ReadHalf();
+            lightProbe.InnerScaleZPositive = reader.ReadHalf();
+            lightProbe.InnerScaleXPositive = reader.ReadHalf(); // innerScaleXNegative
+            lightProbe.InnerScaleYNegative = reader.ReadHalf();
+            lightProbe.InnerScaleZNegative = reader.ReadHalf();
 
             lightProbe.transform.localScale = reader.ReadVector3();
             lightProbe.transform.rotation = reader.ReadRotationF();
@@ -117,10 +117,12 @@ namespace Tpp.Effect
             uint innerAreaOffset = reader.ReadUInt32();
             if (innerAreaOffset != 0)
             {
-                var iaTransform = new Fox.Core.Transform { scale = reader.ReadVector3(), rotation_quat = reader.ReadRotationF(), translation = reader.ReadPositionF() };
+                Vector3 iaScale = reader.ReadVector3();
+                _ = reader.ReadRotationF();
+                Vector3 iaTranslation = reader.ReadPositionF();
 
-                Vector3 localIaPos = iaTransform.translation - lightProbe.transform.position;
-                var absIaScale = new Vector3(Mathf.Abs(iaTransform.scale.x), Mathf.Abs(iaTransform.scale.y), Mathf.Abs(iaTransform.scale.z));
+                Vector3 localIaPos = iaTranslation - lightProbe.transform.position;
+                var absIaScale = new Vector3(Mathf.Abs(iaScale.x), Mathf.Abs(iaScale.y), Mathf.Abs(iaScale.z));
                 var posProbeScale = new Vector3(Mathf.Abs(lightProbe.transform.localScale.x), Mathf.Abs(lightProbe.transform.localScale.y), Mathf.Abs(lightProbe.transform.localScale.z));
                 Vector3 negProbeScale = -posProbeScale;
 
@@ -133,17 +135,17 @@ namespace Tpp.Effect
 
                 var numN = Vector3.Min(localIaPos - absIaScale - iaMid, negProbeScale);
 
-                lightProbe.innerScaleXPositive = numP.x / posProbeScale.x;
-                lightProbe.innerScaleXNegative = numN.x / negProbeScale.x;
+                lightProbe.InnerScaleXPositive = numP.x / posProbeScale.x;
+                lightProbe.InnerScaleXNegative = numN.x / negProbeScale.x;
 
-                lightProbe.innerScaleXPositive = numP.y / posProbeScale.y;
-                lightProbe.innerScaleXNegative = numN.y / negProbeScale.y;
+                lightProbe.InnerScaleXPositive = numP.y / posProbeScale.y;
+                lightProbe.InnerScaleXNegative = numN.y / negProbeScale.y;
 
-                lightProbe.innerScaleXPositive = numP.z / posProbeScale.z;
-                lightProbe.innerScaleXNegative = numN.z / negProbeScale.z;
+                lightProbe.InnerScaleXPositive = numP.z / posProbeScale.z;
+                lightProbe.InnerScaleXNegative = numN.z / negProbeScale.z;
             }
 
-            lightProbe.priority = reader.ReadInt16();
+            lightProbe.Priority = reader.ReadInt16();
 
             _ = reader.ReadUInt16();
 
@@ -152,7 +154,7 @@ namespace Tpp.Effect
             _ = reader.ReadUInt16();
 
             if (lightProbe.enableOcclusionMode)
-                lightProbe.occlusionModeOpenRate = reader.ReadSingle();
+                lightProbe.OcclusionModeOpenRate = reader.ReadSingle();
             else
                 reader.Skip(4);
         }

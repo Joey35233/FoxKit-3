@@ -12,6 +12,17 @@ namespace Tpp.Effect
 {
     public partial class TppLightProbe : Fox.Core.TransformData
     {
+        public bool Enable { get => enable; set => enable = value; }
+        public float InnerScaleXNegative { get => innerScaleXNegative; set => innerScaleXNegative = value; }
+        public float InnerScaleXPositive { get => innerScaleXPositive; set => innerScaleXPositive = value; }
+        public float InnerScaleYNegative { get => innerScaleYNegative; set => innerScaleYNegative = value; }
+        public float InnerScaleYPositive { get => innerScaleYPositive; set => innerScaleYPositive = value; }
+        public float InnerScaleZNegative { get => innerScaleZNegative; set => innerScaleZNegative = value; }
+        public float InnerScaleZPositive { get => innerScaleZPositive; set => innerScaleZPositive = value; }
+        public float OcclusionModeOpenRate { get => occlusionModeOpenRate; set => occlusionModeOpenRate = value; }
+        public int Priority { get => priority; set => priority = value; }
+        public TppLightProbe_ShapeType ShapeType { get => shapeType; set => shapeType = value; }
+
         public enum TppLightProbe_DebugMode : int
         {
             [Description("DEBUG_OFF")]

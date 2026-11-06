@@ -77,11 +77,11 @@ namespace Fox.EdCore
 
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
-        
+
         [EventInterest(typeof(MouseDownEvent), typeof(KeyDownEvent), typeof(DragUpdatedEvent), typeof(DragPerformEvent), typeof(DragLeaveEvent))]
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+        protected override void HandleEventBubbleUp(EventBase evt)
         {
-            base.ExecuteDefaultActionAtTarget(evt);
+            base.HandleEventBubbleUp(evt);
 
             if (evt == null)
             {

@@ -26,7 +26,7 @@ namespace Tpp.GameKit
             Bounds bounds = new Bounds();
             if (ModelUtils.CalculateBounds(ModelInstance.transform, ref bounds))
             {
-                float sphereRadius = gimmickParameter.modelRadius;
+                float sphereRadius = gimmickParameter.ModelRadius;
                 
                 Gizmos.matrix = Matrix4x4.Translate(transform.position);
                 Gizmos.DrawWireSphere(bounds.center, sphereRadius);

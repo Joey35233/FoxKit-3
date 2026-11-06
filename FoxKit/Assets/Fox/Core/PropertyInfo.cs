@@ -114,17 +114,6 @@ namespace Fox.Core
         }
 
         /// <summary>
-        /// Whether or not the property is exported to the editor and/or to the game.
-        /// </summary>
-        [Flags]
-        public enum PropertyExport
-        {
-            Never,
-            EditorOnly,
-            EditorAndGame
-        }
-
-        /// <summary>
         /// Name of the property.
         /// </summary>
         public string Name
@@ -196,21 +185,20 @@ namespace Fox.Core
             get;
         }
 
-        /// <summary>
-        /// Whether or not the property is visible.
-        /// </summary>
-        public PropertyExport Readable
+        [Flags]
+        public enum PropertyExport
         {
-            get;
+            None = 0,
+            Readable = 1,
+            Writable = 2,
+            ReadableInEditor = 4,
+            WritableInEditor = 8
         }
 
-        /// <summary>
-        /// Whether or not the property can be written to.
-        /// </summary>
-        public PropertyExport Writable
-        {
-            get;
-        }
+        /// <summary>Fox export permissions, independent of C# visibility.</summary>
+        public PropertyExport ExportFlags { get; }
+        public bool ReadableInEditor => (ExportFlags & PropertyExport.ReadableInEditor) != 0;
+        public bool WritableInEditor => (ExportFlags & PropertyExport.WritableInEditor) != 0;
 
         public PropertyInfo
         (
@@ -219,12 +207,11 @@ namespace Fox.Core
             uint offset,
             uint arraySize = 1,
             ContainerType container = ContainerType.StaticArray,
-            PropertyExport readable = PropertyExport.EditorAndGame,
-            PropertyExport writable = PropertyExport.EditorAndGame,
             Type ptrType = null,
             Type enumType = null,
             PropertyStorage storage = PropertyStorage.Instance,
-            BackingType backing = BackingType.Field
+            BackingType backing = BackingType.Field,
+            PropertyExport exportFlags = PropertyExport.ReadableInEditor | PropertyExport.WritableInEditor
         )
         {
             Name = name;
@@ -236,8 +223,7 @@ namespace Fox.Core
             Storage = storage;
             PtrType = ptrType;
             Enum = enumType;
-            Readable = readable;
-            Writable = writable;
+            ExportFlags = exportFlags;
         }
 
         public static Type GetTypeFromPropertyInfo(PropertyInfo propertyInfo)

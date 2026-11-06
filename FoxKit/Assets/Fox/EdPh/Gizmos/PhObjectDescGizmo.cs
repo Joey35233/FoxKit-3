@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Fox.Core;
 using Fox;
 using Fox.Ph;
@@ -14,9 +14,9 @@ namespace Fox.EdPh
         {
             // The bodies list should be body, param, body, param, etc.
             PhRigidBodyParam mostRecentRigidBody = null;
-            for (int i = 0; i < attached.bodies.Count; i++)
+            for (int i = 0; i < attached.Bodies.Count; i++)
             {
-                Entity entry = attached.bodies[i];
+                Entity entry = attached.Bodies[i];
                 if (entry == null)
                     continue;
                 
@@ -38,26 +38,26 @@ namespace Fox.EdPh
             }
             
             // Draw nothing if invalid
-            if (attached.bodyIndices.Count % 2 != 0)
+            if (attached.BodyIndices.Count % 2 != 0)
                 return;
 
-            for (int i = 0; i < attached.bodyIndices.Count / 2; i++)
+            for (int i = 0; i < attached.BodyIndices.Count / 2; i++)
             {
-                if (attached.constraints.Count < 1)
+                if (attached.Constraints.Count < 1)
                     return;
                 
-                PhConstraintParam constraint = attached.constraints[i];
+                PhConstraintParam constraint = attached.Constraints[i];
                 if (constraint == null)
                     continue;
 
                 // Draw linked bodies - this is not the same as in the EXE because there,
                 // all bodies and shapes are registered first, regardless of if they are used or not
-                int bodyAIndex = attached.bodyIndices[2 * i];
+                int bodyAIndex = attached.BodyIndices[2 * i];
                 if (bodyAIndex < 0)
                     continue;
                 
                 // This one can be -1 
-                int bodyBIndex = attached.bodyIndices[2 * i + 1];
+                int bodyBIndex = attached.BodyIndices[2 * i + 1];
                 
                 PhRigidBodyParam bodyA = null;
                 PhRigidBodyParam bodyB = null;
@@ -65,9 +65,9 @@ namespace Fox.EdPh
                 // If we were able to prepare a list of just bodies from the earlier bodies loop, we wouldn't need to filter out other things (PhShapeParam).
                 // Look for bodyA and (optional) bodyB in single loop
                 int realBodyIndex = 0;
-                for (int j = 0; j < attached.bodies.Count; j++)
+                for (int j = 0; j < attached.Bodies.Count; j++)
                 {
-                    if (attached.bodies[j] is PhRigidBodyParam body)
+                    if (attached.Bodies[j] is PhRigidBodyParam body)
                     {
                         if (realBodyIndex == bodyAIndex)
                             bodyA = body;

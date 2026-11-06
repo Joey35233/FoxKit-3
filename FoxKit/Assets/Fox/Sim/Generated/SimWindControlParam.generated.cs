@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Sim
@@ -16,8 +17,8 @@ namespace Fox.Sim
 	public partial class SimWindControlParam : Fox.Sim.SimControlParam
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected float coefficient { get; set; }
+		[UnityEngine.SerializeField]
+		private float coefficient;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Sim
 		{
 			if (Fox.Sim.SimControlParam.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("SimWindControlParam", typeof(SimWindControlParam), Fox.Sim.SimControlParam.ClassInfo, 28, "Sim", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("coefficient", Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("coefficient", Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

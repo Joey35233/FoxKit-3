@@ -63,10 +63,10 @@ namespace Fox.EdCore
             visualInput.AddToClassList(inputUssClassName);
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
-        
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+
+        protected override void HandleEventTrickleDown(EventBase evt)
         {
-            base.ExecuteDefaultActionAtTarget(evt);
+            base.HandleEventTrickleDown(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
             if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))

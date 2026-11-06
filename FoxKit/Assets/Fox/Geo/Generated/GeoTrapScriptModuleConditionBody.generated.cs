@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Geo
@@ -16,11 +17,11 @@ namespace Fox.Geo
 	public partial class GeoTrapScriptModuleConditionBody : Fox.Geo.GeoTrapConditionBody
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected CsSystem.Collections.Generic.List<Fox.Core.SafeScript> checkScriptArray { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.SafeScript>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Core.SafeScript> checkScriptArray = new List<Fox.Core.SafeScript>();
 		
-		[field: UnityEngine.SerializeField]
-		protected CsSystem.Collections.Generic.List<Fox.Core.SafeScript> execScriptArray { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.SafeScript>();
+		[UnityEngine.SerializeField]
+		private List<Fox.Core.SafeScript> execScriptArray = new List<Fox.Core.SafeScript>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Geo
 		{
 			if (Fox.Geo.GeoTrapConditionBody.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GeoTrapScriptModuleConditionBody", typeof(GeoTrapScriptModuleConditionBody), Fox.Geo.GeoTrapConditionBody.ClassInfo, 0, "Trap", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkScriptArray", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 160, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.SafeScript), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("execScriptArray", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 176, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.SafeScript), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkScriptArray", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 160, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, typeof(Fox.Core.SafeScript), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("execScriptArray", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 176, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, typeof(Fox.Core.SafeScript), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

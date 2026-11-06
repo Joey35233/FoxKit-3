@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Sim
@@ -16,8 +17,8 @@ namespace Fox.Sim
 	public partial class SimHitGroupControl : Fox.Sim.SimControlElement
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected Fox.Sim.SimHitGroupControlParam controlParam { get; set; }
+		[UnityEngine.SerializeField]
+		private Fox.Sim.SimHitGroupControlParam controlParam;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -37,7 +38,7 @@ namespace Fox.Sim
 		{
 			if (Fox.Sim.SimControlElement.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("SimHitGroupControl", typeof(SimHitGroupControl), Fox.Sim.SimControlElement.ClassInfo, 56, "Sim", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlParam", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimHitGroupControlParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlParam", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, typeof(Fox.Sim.SimHitGroupControlParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

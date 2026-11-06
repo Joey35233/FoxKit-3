@@ -1,19 +1,16 @@
-using Fox.Fio;
-using Fox;
-using System;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
 
 namespace Fox.GameKit
 {
-    [InitializeOnLoad]
-    public static class FoxGameKitModule
+    public class FoxGameKitModule : Module
     {
-        static FoxGameKitModule()
-        {
-        }
-        
+        public static FoxGameKitModule Instance { get; private set; }
+
         public static Dictionary<string, ObjectBrush> ObjectBrushRegistry = new();
+
+        public FoxGameKitModule() : base("Fox.GameKit")
+        {
+            Instance = this;
+        }
     }
 }

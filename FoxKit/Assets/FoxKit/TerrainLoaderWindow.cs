@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
@@ -86,7 +86,7 @@ namespace FoxKit.Windows
             string baseDirectoryPath = null;
             if (StageBlockControllerData.Instance != null)
             {
-                baseDirectoryPath = StageBlockControllerData.Instance.baseDirectoryPath;
+                baseDirectoryPath = StageBlockControllerData.Instance.BaseDirectoryPath;
 
                 if (!string.IsNullOrEmpty(baseDirectoryPath) && baseDirectoryPath.Contains("/pack/location/"))
                 {

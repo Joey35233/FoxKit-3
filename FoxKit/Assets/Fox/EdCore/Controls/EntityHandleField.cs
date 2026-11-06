@@ -8,55 +8,8 @@ using Object = UnityEngine.Object;
 
 namespace Fox.EdCore
 {
-    public class EntityHandleField : BaseField<Entity>, IFoxField
+    public class EntityHandleField : BaseField<Object>, IFoxField
     {
-        private SerializedProperty EntityProperty;
-
-        public override Entity value
-        {
-            get => base.value;
-            set
-            {
-                Entity newValue = value;
-                if (newValue != this.value)
-                {
-                    if (panel != null)
-                    {
-                        Entity previousValue = this.value;
-                        SetValueWithoutNotify(newValue);
-
-                        Update();
-
-                        // "Custom binding"
-                        if (newValue != EntityProperty.objectReferenceValue)
-                        {
-                            EntityProperty.objectReferenceValue = newValue;
-                            _ = EntityProperty.serializedObject.ApplyModifiedProperties();
-                        }
-
-                        using (var evt = ChangeEvent<Entity>.GetPooled(previousValue, newValue))
-                        {
-                            evt.target = this;
-                            SendEvent(evt);
-                        }
-                    }
-                    else
-                    {
-                        SetValueWithoutNotify(value);
-
-                        Update();
-
-                        // "Custom binding"
-                        if (newValue != EntityProperty.objectReferenceValue)
-                        {
-                            EntityProperty.objectReferenceValue = newValue;
-                            _ = EntityProperty.serializedObject.ApplyModifiedProperties();
-                        }
-                    }
-                }
-            }
-        }
-
         private readonly Button PasteButton;
         private readonly Label EntityLabel;
         private readonly Button DeleteButton;
@@ -112,7 +65,7 @@ namespace Fox.EdCore
             visualInput.AddToClassList(inputUssClassName);
             labelElement.AddToClassList(labelUssClassName);
 
-            Update();
+            this.RegisterValueChangedCallback(OnPropertyChanged);
         }
 
         private void PasteButton_clicked()
@@ -120,62 +73,62 @@ namespace Fox.EdCore
             string copyBuffer = EditorGUIUtility.systemCopyBuffer;
             if (copyBuffer.StartsWith("FoxObj: "))
             {
-                if (Int32.TryParse(copyBuffer.Substring(8), out int instanceID))
+                if (Int32.TryParse(copyBuffer.Substring(8), out int instanceID) && EditorUtility.InstanceIDToObject(instanceID) is Entity entity)
                 {
-                    EntityProperty.objectReferenceInstanceIDValue = instanceID;
-                    _ = EntityProperty.serializedObject.ApplyModifiedProperties();
+                    value = entity;
                 }
             }
         }
 
-        private void DeleteButton_clicked()
-        {
-            EntityProperty.objectReferenceInstanceIDValue = 0;
-            _ = EntityProperty.serializedObject.ApplyModifiedProperties();
-        }
+        private void DeleteButton_clicked() => value = null;
 
-        private void Update()
+        private void OnPropertyChanged(ChangeEvent<Object> evt)
         {
-            if (value == null)
+            if (evt.target == this)
             {
-                EntityLabel.style.display = DisplayStyle.None;
-                EntityLabel.text = "<b>null</b>";
-                visualInput.RemoveFromClassList(inputLivePtrUssClassName);
-            }
-            else
-            {
-                EntityLabel.style.display = DisplayStyle.Flex;
-                EntityLabel.text = $"<b>{value.GetClassEntityInfo().Name}</b> {value.name}";
-                visualInput.AddToClassList(inputLivePtrUssClassName);
+                if (evt.newValue == null)
+                {
+                    EntityLabel.style.display = DisplayStyle.None;
+                    EntityLabel.text = "<b>null</b>";
+                    visualInput.RemoveFromClassList(inputLivePtrUssClassName);
+                }
+                else if (evt.newValue is not Entity entity)
+                {
+                    value = null;
+                }
+                else
+                {
+                    EntityLabel.style.display = DisplayStyle.Flex;
+                    EntityLabel.text = $"<b>{entity.GetClassEntityInfo().Name}</b> {entity.name}";
+                    visualInput.AddToClassList(inputLivePtrUssClassName);
+                }
             }
         }
-
-        private void OnPropertyChanged(SerializedProperty property) => value = EntityProperty.objectReferenceValue as Entity;
 
         // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
         //[EventInterest(typeof(MouseDownEvent), typeof(KeyDownEvent), typeof(DragUpdatedEvent), typeof(DragPerformEvent), typeof(DragLeaveEvent))]
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+        protected override void HandleEventTrickleDown(EventBase evt)
         {
-            base.ExecuteDefaultActionAtTarget(evt);
+            base.HandleEventTrickleDown(evt);
 
             if (evt == null)
             {
                 return;
             }
 
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
-            {
-                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+            // if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
+            // {
+            //     var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                EntityProperty = property;
+            //     EntityProperty = property;
 
-                BindingExtensions.TrackPropertyValue(this, EntityProperty, OnPropertyChanged);
+            //     BindingExtensions.TrackPropertyValue(this, EntityProperty, OnPropertyChanged);
 
-                OnPropertyChanged(null);
+            //     OnPropertyChanged(null);
 
-                // Stop the EntityPtrField itself's binding event; it's just a container for the actual BindableElements.
-                evt.StopPropagation();
-            }
+            //     // Stop the EntityPtrField itself's binding event; it's just a container for the actual BindableElements.
+            //     evt.StopPropagation();
+            // }
 
             if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
             {
@@ -219,7 +172,7 @@ namespace Fox.EdCore
 
         private void OnMouseDown(MouseDownEvent evt)
         {
-            if (value == null || value.gameObject is not GameObject targetGameObject)
+            if (value is not Entity entity || entity.gameObject is not GameObject targetGameObject)
                 return;
 
             // One click shows where the referenced object is, or pops up a preview

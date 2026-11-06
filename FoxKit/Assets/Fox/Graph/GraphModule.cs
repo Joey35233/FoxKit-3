@@ -1,7 +1,12 @@
 namespace Fox.Graph
 {
-    public static class GraphModule
+    public class GraphModule : Module
     {
+        public static GraphModule Instance { get; private set; }
 
+        public GraphModule() : base("Fox.Graph")
+        {
+            Instance = this;
+        }
     }
 }

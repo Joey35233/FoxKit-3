@@ -1,0 +1,5 @@
+StandActIdleStill
+StandActKick
+StandActNormal
+StandActSmoking
+StandActWalkAround

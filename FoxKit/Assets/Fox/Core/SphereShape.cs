@@ -17,22 +17,6 @@ namespace Fox.Core
             transform.localScale = new Vector3(value, value, value);
         }
 
-        private readonly SphereGizmo Gizmo = new SphereGizmo();
-
-        public void OnDrawGizmos()
-        {
-            Gizmo.Transform = this.transform;
-            Gizmo.Label = this.name;
-            Gizmo.OnDrawGizmos();
-        }
-
-        public void OnDrawGizmosSelected()
-        {
-            Gizmo.Transform = this.transform;
-            Gizmo.Label = null;
-            Gizmo.OnDrawGizmos();
-        }
-
         public override void Reset()
         {
             base.Reset();

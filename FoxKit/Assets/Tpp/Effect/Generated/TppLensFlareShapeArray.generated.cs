@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.Effect
@@ -16,29 +17,29 @@ namespace Tpp.Effect
 	public partial class TppLensFlareShapeArray : Tpp.Effect.TppLensFlareShape
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public uint spriteCount { get; set; }
+		[UnityEngine.SerializeField]
+		private uint spriteCount;
 		
-		[field: UnityEngine.SerializeField]
-		public float offsetScaleMin { get; set; }
+		[UnityEngine.SerializeField]
+		private float offsetScaleMin;
 		
-		[field: UnityEngine.SerializeField]
-		public float offsetScaleMax { get; set; }
+		[UnityEngine.SerializeField]
+		private float offsetScaleMax;
 		
-		[field: UnityEngine.SerializeField]
-		public float sizeScaleMin { get; set; }
+		[UnityEngine.SerializeField]
+		private float sizeScaleMin;
 		
-		[field: UnityEngine.SerializeField]
-		public float sizeScaleMax { get; set; }
+		[UnityEngine.SerializeField]
+		private float sizeScaleMax;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Color randomColorMin { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Color randomColorMin;
 		
-		[field: UnityEngine.SerializeField]
-		public UnityEngine.Color randomColorMax { get; set; }
+		[UnityEngine.SerializeField]
+		private UnityEngine.Color randomColorMax;
 		
-		[field: UnityEngine.SerializeField]
-		public uint randomSeed { get; set; }
+		[UnityEngine.SerializeField]
+		private uint randomSeed;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -58,14 +59,14 @@ namespace Tpp.Effect
 		{
 			if (Tpp.Effect.TppLensFlareShape.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppLensFlareShapeArray", typeof(TppLensFlareShapeArray), Tpp.Effect.TppLensFlareShape.ClassInfo, 768, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("spriteCount", Fox.Core.PropertyInfo.PropertyType.UInt32, 816, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetScaleMin", Fox.Core.PropertyInfo.PropertyType.Float, 820, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetScaleMax", Fox.Core.PropertyInfo.PropertyType.Float, 824, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sizeScaleMin", Fox.Core.PropertyInfo.PropertyType.Float, 828, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sizeScaleMax", Fox.Core.PropertyInfo.PropertyType.Float, 832, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("randomColorMin", Fox.Core.PropertyInfo.PropertyType.Color, 848, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("randomColorMax", Fox.Core.PropertyInfo.PropertyType.Color, 864, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("randomSeed", Fox.Core.PropertyInfo.PropertyType.UInt32, 880, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("spriteCount", Fox.Core.PropertyInfo.PropertyType.UInt32, 816, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetScaleMin", Fox.Core.PropertyInfo.PropertyType.Float, 820, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetScaleMax", Fox.Core.PropertyInfo.PropertyType.Float, 824, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sizeScaleMin", Fox.Core.PropertyInfo.PropertyType.Float, 828, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sizeScaleMax", Fox.Core.PropertyInfo.PropertyType.Float, 832, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("randomColorMin", Fox.Core.PropertyInfo.PropertyType.Color, 848, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("randomColorMax", Fox.Core.PropertyInfo.PropertyType.Color, 864, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("randomSeed", Fox.Core.PropertyInfo.PropertyType.UInt32, 880, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

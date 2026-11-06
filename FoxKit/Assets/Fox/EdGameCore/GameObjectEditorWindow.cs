@@ -64,11 +64,11 @@ namespace Tpp.EdGameCore
             presetPopup = new PopupField<string>("Preset", DefaultPresetList, 0);
             presetPopup.style.display = DisplayStyle.None;
 
-            groupIdField = new UInt32Field(nameof(Fox.GameCore.GameObject.groupId))
+            groupIdField = new UInt32Field("groupId")
             {
                 tooltip = "Group identifier, Unclear what it does.\nAlways 0 in any GameObject."
             };
-            totalCountField = new UInt32Field(nameof(Fox.GameCore.GameObject.totalCount))
+            totalCountField = new UInt32Field("totalCount")
             {
                 tooltip = "Maximum number of instances of this GameObject that can exist"
             };
@@ -79,7 +79,7 @@ namespace Tpp.EdGameCore
                 UpdateCreateButtonState();
             }); 
 
-            realizedCountField = new UInt32Field(nameof(Fox.GameCore.GameObject.realizedCount))
+            realizedCountField = new UInt32Field("realizedCount")
             {
                 tooltip = "Maximum number of instances that can be rendered or active at the same time."
             };
@@ -510,7 +510,7 @@ namespace Tpp.EdGameCore
             var matchingLocators = new List<Fox.GameCore.GameObjectLocator>();
             foreach (var locator in existingLocators)
             {
-                if (locator.typeName == selectedType && locator.gameObject.scene == scene)
+                if (locator.TypeName == selectedType && locator.gameObject.scene == scene)
                 {
                     matchingLocators.Add(locator);
                 }
@@ -640,7 +640,7 @@ namespace Tpp.EdGameCore
             Fox.GameCore.GameObject gameObject = null;
             foreach (var existingObject in existingGameObjects)
             {
-                if (existingObject.typeName == selectedType && existingObject.gameObject.scene == scene)
+                if (existingObject.TypeName == selectedType && existingObject.gameObject.scene == scene)
                 {
                     gameObject = existingObject;
                     break;
@@ -664,14 +664,14 @@ namespace Tpp.EdGameCore
             }
 
             gameObject.name = $"{selectedType}GameObject";
-            gameObject.typeName = selectedType;
-            gameObject.groupId = groupIdField.value;
-            gameObject.totalCount = totalCountField.value;
-            gameObject.realizedCount = realizedCountField.value;
+            gameObject.TypeName = selectedType;
+            gameObject.GroupId = groupIdField.value;
+            gameObject.TotalCount = totalCountField.value;
+            gameObject.RealizedCount = realizedCountField.value;
 
             DataElement parameterBase = info.CreateParameterFunc(selectedPreset);
             parameterBase.name = "Parameters";
-            gameObject.parameters = parameterBase;
+            gameObject.Parameters = parameterBase;
             parameterBase.SetOwner(gameObject);
 
             Selection.activeGameObject = gameObject.gameObject;
@@ -731,7 +731,7 @@ namespace Tpp.EdGameCore
             List<Fox.GameCore.GameObjectLocator> locatorsToCleanup = new List<Fox.GameCore.GameObjectLocator>();
             foreach (var existingLocator in existingGameObjectLocators)
             {
-                if (existingLocator.typeName == selectedType && existingLocator.gameObject.scene == scene)
+                if (existingLocator.TypeName == selectedType && existingLocator.gameObject.scene == scene)
                 {
                     locatorsToCleanup.Add(existingLocator);
                 }
@@ -760,11 +760,11 @@ namespace Tpp.EdGameCore
 
             gameObjectLocator.SetProperty("transform", new Fox.Core.Value(transformBase));
 
-            gameObjectLocator.typeName = selectedType;
-            gameObjectLocator.groupId = groupIdField.value;
-            gameObjectLocator.parameters = info.CreateLocatorParameterFunc(selectedPreset);
-            gameObjectLocator.parameters.name = "Parameters";
-            gameObjectLocator.parameters.SetOwner(gameObjectLocator);
+            gameObjectLocator.TypeName = selectedType;
+            gameObjectLocator.GroupId = groupIdField.value;
+            gameObjectLocator.Parameters = info.CreateLocatorParameterFunc(selectedPreset);
+            gameObjectLocator.Parameters.name = "Parameters";
+            gameObjectLocator.Parameters.SetOwner(gameObjectLocator);
         }
     }
 }

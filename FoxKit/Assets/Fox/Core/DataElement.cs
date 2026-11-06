@@ -8,6 +8,7 @@ namespace Fox.Core
     {
         public void SetOwner(Data entity)
         {
+            this.owner = entity;
             this.transform.SetParent(entity.transform);
             this.transform.SetLocalPositionAndRotation(UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
         }

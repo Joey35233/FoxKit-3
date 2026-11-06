@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Fox.Geo
@@ -16,11 +17,11 @@ namespace Fox.Geo
 	public partial class CollisionPoly : Fox.Geo.CollisionObject
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		protected ulong attribute { get; set; }
+		[UnityEngine.SerializeField]
+		private ulong attribute;
 		
-		[field: UnityEngine.SerializeField]
-		protected CsSystem.Collections.Generic.List<UnityEngine.Vector3> vertices { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+		[UnityEngine.SerializeField]
+		private List<UnityEngine.Vector3> vertices = new List<UnityEngine.Vector3>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -40,8 +41,8 @@ namespace Fox.Geo
 		{
 			if (Fox.Geo.CollisionObject.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("CollisionPoly", typeof(CollisionPoly), Fox.Geo.CollisionObject.ClassInfo, 0, "Collision", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("attribute", Fox.Core.PropertyInfo.PropertyType.UInt64, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vertices", Fox.Core.PropertyInfo.PropertyType.Vector3, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("attribute", Fox.Core.PropertyInfo.PropertyType.UInt64, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vertices", Fox.Core.PropertyInfo.PropertyType.Vector3, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 
 			ClassInfoInitialized = true;
 		}

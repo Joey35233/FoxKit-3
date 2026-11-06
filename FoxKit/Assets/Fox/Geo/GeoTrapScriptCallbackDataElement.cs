@@ -1,4 +1,4 @@
-﻿namespace Fox.Geo
+namespace Fox.Geo
 {
     public partial class GeoTrapScriptCallbackDataElement
     {

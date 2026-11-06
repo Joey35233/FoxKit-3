@@ -23,6 +23,9 @@ namespace Fox
         
         public bool IsValid() => hash != 0;
 
+        /// <summary>True if constructing a StrCode32 from this string would use it as a raw hash ("0x…") instead of hashing the text.</summary>
+        public static bool IsHash(ReadOnlySpan<char> str) => Hashing.IsStringId32RawHash(str);
+
         internal uint Backing => hash;
 
         // Fox.StrCode32

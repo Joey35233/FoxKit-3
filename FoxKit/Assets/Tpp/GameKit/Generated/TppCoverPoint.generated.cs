@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using CsSystem = System;
+using System.Collections.Generic;
 using Fox;
 
 namespace Tpp.GameKit
@@ -16,29 +17,29 @@ namespace Tpp.GameKit
 	public partial class TppCoverPoint : Fox.Tactical.GkTacticalPoint
 	{
 		// Properties
-		[field: UnityEngine.SerializeField]
-		public bool isLeftOpen { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isLeftOpen;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isRightOpen { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isRightOpen;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isUpOpen { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isUpOpen;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isUnVaultable { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isUnVaultable;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isUseVip { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isUseVip;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isUseSniper { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isUseSniper;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isBreakDisable { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isBreakDisable;
 		
-		[field: UnityEngine.SerializeField]
-		public bool isBreakEnable { get; set; }
+		[UnityEngine.SerializeField]
+		private bool isBreakEnable;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -58,14 +59,14 @@ namespace Tpp.GameKit
 		{
 			if (Fox.Tactical.GkTacticalPoint.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("TppCoverPoint", typeof(TppCoverPoint), Fox.Tactical.GkTacticalPoint.ClassInfo, 0, "TacticalPoint", 5);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isLeftOpen", Fox.Core.PropertyInfo.PropertyType.Bool, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isRightOpen", Fox.Core.PropertyInfo.PropertyType.Bool, 401, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUpOpen", Fox.Core.PropertyInfo.PropertyType.Bool, 402, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUnVaultable", Fox.Core.PropertyInfo.PropertyType.Bool, 403, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUseVip", Fox.Core.PropertyInfo.PropertyType.Bool, 404, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUseSniper", Fox.Core.PropertyInfo.PropertyType.Bool, 405, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isBreakDisable", Fox.Core.PropertyInfo.PropertyType.Bool, 406, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isBreakEnable", Fox.Core.PropertyInfo.PropertyType.Bool, 407, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isLeftOpen", Fox.Core.PropertyInfo.PropertyType.Bool, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isRightOpen", Fox.Core.PropertyInfo.PropertyType.Bool, 401, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUpOpen", Fox.Core.PropertyInfo.PropertyType.Bool, 402, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUnVaultable", Fox.Core.PropertyInfo.PropertyType.Bool, 403, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUseVip", Fox.Core.PropertyInfo.PropertyType.Bool, 404, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUseSniper", Fox.Core.PropertyInfo.PropertyType.Bool, 405, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isBreakDisable", Fox.Core.PropertyInfo.PropertyType.Bool, 406, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isBreakEnable", Fox.Core.PropertyInfo.PropertyType.Bool, 407, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 
 			ClassInfoInitialized = true;
 		}

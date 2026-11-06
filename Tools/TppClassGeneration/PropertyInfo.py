@@ -1,7 +1,7 @@
 class PropertyInfo:
 	"""Entity property metadata."""
 
-	def __init__(self, name, data_type, offset, array_size, container, ptr_type, enum_type, export_flag, entity_name, definitions):
+	def __init__(self, name, data_type, offset, array_size, container, ptr_type, enum_type, export_flag, entity_name, definitions, access_modifier, accessor_setter=False, accessor_write_modifier=None):
 		"""Creates a new PropertyInfo.
 
 		Args:
@@ -27,6 +27,14 @@ class PropertyInfo:
 		self.export_flag = export_flag
 		self.entity_name = entity_name
 		self.definitions = definitions
+		valid_modifiers = {"public", "internal", "protected", "private", "protected internal", "private protected"}
+		if access_modifier not in valid_modifiers:
+			raise ValueError(f"{entity_name}.{name}: invalid accessModifier {access_modifier!r}")
+		if accessor_write_modifier is not None and accessor_write_modifier not in valid_modifiers:
+			raise ValueError(f"{entity_name}.{name}: invalid accessorWriteModifier")
+		self.access_modifier = access_modifier
+		self.accessor_setter = accessor_setter
+		self.accessor_write_modifier = accessor_write_modifier or access_modifier
 
 		self.data_type_strings = {
 			"int8" : "sbyte",
@@ -125,7 +133,7 @@ class PropertyInfo:
 			return f'{value_type_string}[]'
 		if self.container == "StringMap":
 			return f'Fox.StringMap<{value_type_string}>'
-		return f'CsSystem.Collections.Generic.List<{value_type_string}>'
+		return f'List<{value_type_string}>'
 
 	def has_setter(self):
 		"""Gets whether the property has a setter.
@@ -159,7 +167,7 @@ class PropertyInfo:
 			return f'new {value_type_string}[{self.array_size}]'
 		if self.container == "StringMap":
 			return f'new Fox.StringMap<{value_type_string}>()'
-		return f'new CsSystem.Collections.Generic.List<{value_type_string}>()'
+		return f'new List<{value_type_string}>()'
 
 	def get_value_getter_type_string(self):
 		"""Gets the type string to use with Value.GetValueAs...
@@ -191,32 +199,6 @@ class PropertyInfo:
 			return f'value.GetValueAsEntityPtr<{ptr_string}>()'
 		return f'{cast_string}value.GetValueAs{self.get_value_getter_type_string()}()'
 
-	def get_readable_string(self):
-		"""Gets the property readability enum string.
-		
-		Returns:
-				The readability enum string.
-
-		"""
-
-		if self.export_flag[0] == 'R':
-			return "Fox.Core.PropertyInfo.PropertyExport.EditorAndGame"
-		elif self.export_flag[0] == 'r':
-			return "Fox.Core.PropertyInfo.PropertyExport.EditorOnly"
-		return "Fox.Core.PropertyInfo.PropertyExport.Never"
-
-	def has_public_get(self):
-		"""Gets whether or not the property should be public and have a public getter.
-		
-		Returns:
-				True if the property should be public and have a public getter.
-
-		"""
-		
-		if self.export_flag[0] == 'R' or self.export_flag[0] == 'r':
-			return True
-		return False
-
 	def is_hiding_existing(self):
 		"""UnityEngine.MonoBehaviours redefine multiple properties used by Fox including `name`, `transform`, etc."""
 
@@ -224,45 +206,6 @@ class PropertyInfo:
 			return True
 		
 		return False
-
-	def is_blacklisted(self):
-		"""UnityEngine.MonoBehaviours redefine multiple properties used by Fox including `name`, `transform`, etc."""
-		if self.entity_name == "DataElement" or self.entity_name == "Data":
-			return True
-		
-		if self.entity_name == "TransformData" and (self.name == "children" or self.name == "parent" or self.name == "transform"):
-			return True
-		
-		if self.name == "name":
-			return True
-		
-		return False
-
-	def has_public_set(self):
-		"""Gets whether or not the property should have a public setter.
-		
-		Returns:
-				True if the property should have a public setter.
-
-		"""
-		
-		if self.export_flag[1] == 'W' or self.export_flag[1] == 'w':
-			return True
-		return False
-
-	def get_writable_string(self):
-		"""Gets the property writability enum string.
-		
-		Returns:
-				The writability enum string.
-
-		"""
-
-		if self.export_flag[1] == 'W':
-			return "Fox.Core.PropertyInfo.PropertyExport.EditorAndGame"
-		elif self.export_flag[1] == 'w':
-			return "Fox.Core.PropertyInfo.PropertyExport.EditorOnly"
-		return "Fox.Core.PropertyInfo.PropertyExport.Never"
 
 	def get_entity_ptr_type_string(self):
 		if self.ptr_type:
@@ -272,6 +215,11 @@ class PropertyInfo:
 			ptr_string = f'{root_namespace}.{ptr_namespace}.{self.ptr_type}'
 			return f'typeof({ptr_string})'
 		return "null"
+
+	def get_export_flags_string(self):
+		flags = {"r": "Readable", "w": "Writable", "R": "ReadableInEditor", "W": "WritableInEditor"}
+		values = ["Fox.Core.PropertyInfo.PropertyExport." + flags[c] for c in self.export_flag if c != " "]
+		return " | ".join(values) if values else "Fox.Core.PropertyInfo.PropertyExport.None"
 
 	def get_property_info_instantiation_string(self):
 		"""Gets the PropertyInfo instantiation string.
@@ -284,7 +232,7 @@ class PropertyInfo:
 		enum_str = "null"
 		if self.enum_type:
 			enum_str = f'typeof({self.enum_type})'
-		return f'classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("{self.name}", Fox.Core.PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, Fox.Core.PropertyInfo.ContainerType.{self.container}, {self.get_readable_string()}, {self.get_writable_string()}, {self.get_entity_ptr_type_string()}, {enum_str}, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.{"Accessor" if self.is_accessor_property() else "Field"}));'
+		return f'classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("{self.name}", Fox.Core.PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, Fox.Core.PropertyInfo.ContainerType.{self.container}, {self.get_entity_ptr_type_string()}, {enum_str}, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.{"Accessor" if self.is_accessor_property() else "Field"}, {self.get_export_flags_string()}));'
 
 	def is_collection_property(self):
 		"""Gets whether or not the property is a collection property.

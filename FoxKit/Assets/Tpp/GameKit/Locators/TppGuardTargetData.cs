@@ -1,33 +1,13 @@
-
-
-using Fox.Core;
-
 namespace Tpp.GameKit
 {
 	public partial class TppGuardTargetData : Fox.Core.TransformData
 	{
-        private readonly SphereGizmo Gizmo = new SphereGizmo
-        {
-            SelectedColor = EditorColors.HostileColor,
-            GizmoPath = "Tpp/GameKit/TppGuardTargetData.png",
-        };
+        public float Radius => radius;
 
-        public void OnDrawGizmos()
-        {
-            Gizmo.Transform = this.transform;
-            Gizmo.Radius = this.radius;
-            Gizmo.OnDrawGizmos();
-        }
-
-        public void OnDrawGizmosSelected()
-        {
-            Gizmo.Transform = this.transform;
-            Gizmo.Radius = this.radius;
-            Gizmo.OnDrawGizmosSelected();
-        }
         public override void Reset()
         {
             base.Reset();
+            
             radius = 15;
             memberCount = 4;
         }

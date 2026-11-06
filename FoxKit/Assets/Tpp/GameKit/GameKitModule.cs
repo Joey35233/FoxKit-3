@@ -1,131 +1,86 @@
 using Fox;
 using Fox.GameService;
-using UnityEditor;
+using Fox.Geo;
 
 namespace Tpp.GameKit
 {
-    [InitializeOnLoad]
-    public static class GameKitModule
+    public class GameKitModule : Module
     {
-        static GameKitModule()
+        public static GameKitModule Instance { get; private set; }
+
+        public GameKitModule() : base("Tpp.GameKit")
         {
-            // Peep1 Node
-            // UseFlashLightAlways Node
-            // PermitToGetOff Node
-            // 0x8c960491 Node
-            // VehicleAntiPlayerFire Node
-            // SkullFaceStandByVehicle Node
-            // 0xd5f75342 Node
-            // SleepOnSofa Node
-            // DisableStealthMode Node
-            // BreakSteelTower Node
-            // Caution Node
-            // CautionIdleAct Node
-            // CautionSquatFire Node
-            // CautionSquatIdle Node
-            // CautionSquatIdleAim Node
-            // CautionStandFire Node
-            // CautionStandIdle Node
-            // CautionStandIdleAim Node
-            // CautionStandIdleAimCarrying Node
-            // CautionStandIdleReady Node
-            // CautionStandIdleSearch Node
-            // CloseDoor Node
-            // ConversationIdle Node
-            // CurtainIn Node
-            // CurtainOut Node
-            // Demo Node
-            // DropPoint Node
-            // Fire Node
-            // HeliIdle Node
-            // Hovering Node
-            // Kill Node
-            // OnBaseRoute Node
-            // OnTheHill Node
-            // OpenDoor Node
-            // PileBunker Node
-            // PickUpHoneyBee Node
-            // PutDownHoneyBee Node
-            // PutHostageInVehicle Node
-            // Recovery Node
-            // RelaxedIdleAct Node
-            // RelaxedStandIdle Node
-            // RideVehicle Node
-            // Salute Node
-            // SaluteGreeting Node
-            // SearchMissile Node
-            // SendMessage Node
-            // SetTargetSpeed Node
-            // SitInChair Node
-            // Snipe Node
-            // StandIdle Node
-            // StandSearch Node
-            // SupineSnipe Node
-            // SwitchRoute Node
-            // SyncRoute Node
-            // TakeHostageOutOfVehicle Node
-            // UseFlashLight Node
-            // UseSearchLight Node
-            // Vanish Node
-            // VehicleFire Node
-            // VehicleGetIn Node
-            // VehicleGetOff Node
-            // VehicleGetOut Node
-            // VehicleIdle Node
-            // Wait Node
-            // WaitIdle Node
-            // WalkerGearCautionIdle Node
-            // WalkerGearRelaxedIdle Node
-            // VehicleKmPerHour Edge
-            // All Edge
-            // CarryHoneyBee Edge
-            // CautionDash Edge
-            // CautionRun Edge
-            // CautionRunAim Edge
-            // CautionStandWalkReady Edge
-            // CautionWalk Edge
-            // CautionWalkAim Edge
-            // CautionWalkAimFront Edge
-            // CautionWalkFire Edge
-            // CautionWalkSearch Edge
-            // Dash Edge
-            // ForwardChangeSpeed Edge
-            // JumpOnly Edge
-            // JumpWalk Edge
-            // Move Edge
-            // MoveFast Edge
-            // MoveVeryFast Edge
-            // MoveNormal Edge
-            // MoveSlow Edge
-            // None Edge
-            // Normal Edge
-            // PermitGettingOff Edge
-            // RelaxedRun Edge
-            // RelaxedStandWalk Edge
-            // RelaxedStandWalkAct Edge
-            // RelaxedWalk Edge
-            // RelaxedWalkAct Edge
-            // RouteMove Edge
-            // RouteMoveFree Edge
-            // RunOnly Edge
-            // RunWalk Edge
-            // StairsDown Edge
-            // VehicleBackFast Edge
-            // VehicleBackNormal Edge
-            // VehicleBackSlow Edge
-            // VehicleMoveFast Edge
-            // VehicleMoveNormal Edge
-            // VehicleMoveSlow Edge
-            // Walk Edge
-            // WalkOnly Edge
-            // WalkerGearCautionDash Edge
-            // WalkerGearCautionRun Edge
-            // WalkerGearCautionWalk Edge
-            // WalkerGearRelaxedRun Edge
-            // WalkerGearRelaxedWalk Edge
-            //  Edge
-            // chase Edge
-            // move Edge
+            Instance = this;
+            AddDependencyModule("Fox.GameService");
+        }
+        
+        public static readonly StringId32Map SwitchRouteConditionIdMap = new StringId32Map();
+        public static readonly StringId32Map SyncRouteIdMap = new StringId32Map();
+        public static readonly StringId32Map IdleActionIdMap = new StringId32Map();
+        public static readonly StringId32Map ConversationLabelIdMap = new StringId32Map();
+        public static readonly StringId32Map GimmickIdMap = new StringId32Map();
+        public static readonly StringIdMap MessageIdMap = new StringIdMap();
+        public static readonly StringIdMap CharacterIdMap = new StringIdMap();
+        public static readonly StringId32Map CharacterId32Map = new StringId32Map();
+        public static readonly StringId32Map MessageParamMap = new StringId32Map();
+
+        private static void SaveRouteIdMaps()
+        {
+            SwitchRouteConditionIdMap.Save();
+            SyncRouteIdMap.Save();
+            IdleActionIdMap.Save();
+            ConversationLabelIdMap.Save();
+            GimmickIdMap.Save();
+            MessageIdMap.Save();
+            CharacterIdMap.Save();
+            CharacterId32Map.Save();
+            MessageParamMap.Save();
+
+            GeoModule.RailIdMap.Save();
+        }
+
+        public override void Init()
+        {
+            GameServiceModule.RegisterEventInfo("/Assets/tpp/toolbox/Config/Route/EventInfo.csv", "tpp");
+            GameServiceModule.RegisterCharacterIdMap(CharacterId32Map);
+            GameServiceModule.RegisterRouteIdMapsSaver(SaveRouteIdMaps);
+            
+            // SendMessage
+            GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("SendMessage"), typeof(TppRouteNodeEventSendMessage));
+            GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("PutHostageInVehicle"), typeof(TppRouteNodeEventSendMessage));
+            GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("TakeHostageOutOfVehicle"), typeof(TppRouteNodeEventSendMessage));
+            
+            // SwitchRoute
+            GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("SwitchRoute"), typeof(TppRouteNodeEventSwitchRoute));
+            
+            // SyncRoute
+            GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("SyncRoute"), typeof(TppRouteNodeEventSyncRoute));
+            
+            // Idle actions
+            GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("RelaxedIdleAct"), typeof(TppRouteNodeEventRelaxedIdleAct));
+            GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("CautionIdleAct"), typeof(TppRouteNodeEventCautionIdleAct));
+            GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("ConversationIdle"), typeof(TppRouteNodeEventConversationIdle));
+
+            // Edge events
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("Move"), typeof(TppRouteEdgeEventMove));
+            
+            // Vehicle
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("VehicleMoveSlow"), typeof(TppRouteEdgeEventVehicleMove));
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("VehicleMoveNormal"), typeof(TppRouteEdgeEventVehicleMove));
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("VehicleMoveFast"), typeof(TppRouteEdgeEventVehicleMove));
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("VehicleBackSlow"), typeof(TppRouteEdgeEventVehicleMove));
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("VehicleBackNormal"), typeof(TppRouteEdgeEventVehicleMove));
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("VehicleBackFast"), typeof(TppRouteEdgeEventVehicleMove));
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("VehicleKmPerHour"), typeof(TppRouteEdgeEventVehicleMove));
+            
+            // Heli
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("Normal"), typeof(TppRouteEdgeEventHelicopter));
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("PermitGettingOff"), typeof(TppRouteEdgeEventHelicopter));
+            GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("Hovering"), typeof(TppRouteNodeEventHelicopter));
+            GameServiceModule.RegisterRouteNodeEventTypeOverride(new StrCode32("DropPoint"), typeof(TppRouteNodeEventHelicopter));
+            
+            // Volgin ride
+            GameServiceModule.RegisterRouteEdgeEventTypeOverride(new StrCode32("chase"), typeof(TppRouteEdgeEventChase));
         }
     }
 }

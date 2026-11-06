@@ -1,0 +1,4 @@
+﻿CanUseSearchLight
+CanNotUseSearchLight
+IsGimmickBroken
+IsNotGimmickBroken

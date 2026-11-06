@@ -1,0 +1,21 @@
+[strings]
+0x000029826ce4bbf3	hos_mis_0001
+0x000045a3437471fa	hos_mis_0002
+0x0000d6cf810b9765	hos_mis_0003
+0x00009059e705a2d4	hos_target_0000
+0x0000941dc291d5d4	sol_dealer
+0x0000440beca08139	sol_factorySouth_tentBack
+0x00006e0d2f9187f5	sol_hillGuard_conversation
+0x00009ebc65ad6d27	sol_hillNorth_0000
+0x000020d40cfcff7c	sol_hillNorth_0002
+0x00009b7d9ddf0f9f	sol_hillNorth_0005
+0x0000dfc0bc322430	sol_hillNorth_0010
+0x000087373339ae4d	sol_interrogator_0000
+0x00007c2bb83ffff0	sol_interrogator_0001
+0x0000a193e19caca5	sol_vip
+0x00001b02a6f97b6d	sol_vip_enemyBase
+0x0000ff9e5652808d	sol_vip_field
+0x000033086a19bafa	sol_vip_village
+0x0000f124539eeb2a	sol_WG_0000
+
+[hashes]
