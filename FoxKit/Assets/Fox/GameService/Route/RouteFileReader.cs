@@ -225,10 +225,7 @@ namespace Fox.GameService
                             }
                             
                             uint* extensions = eventDef->GetExtensionData(version);
-                            @event.extensions[0] = extensions[0];
-                            @event.extensions[1] = extensions[1];
-                            @event.extensions[2] = extensions[2];
-                            @event.extensions[3] = extensions[3];
+                            new ReadOnlySpan<uint>(extensions, GameServiceModule.ExtensionCount).CopyTo(@event.extensions);
 
 #if DEBUG
                             if (@event.GetType() == typeof(GsRouteDataNodeEvent) || @event.GetType() == typeof(GsRouteDataEdgeEvent))

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Fox.Core.Utils;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,46 +10,83 @@ namespace Fox.Geo
 {
     public class RailFileWriter
     {
-        public unsafe byte[] Write(Scene scene)
+        public unsafe byte[] Write(Scene scene, TaskLogger logger = null)
         {
             GameObject[] rootGameObjects = scene.GetRootGameObjects();
             List<SplineContainer> containers = new List<SplineContainer>(rootGameObjects.Length);
             foreach (GameObject rootGameObject in rootGameObjects)
                 if (rootGameObject.TryGetComponent(out SplineContainer splineContainer))
                     containers.Add(splineContainer);
-            
+
             int railCount = containers.Count;
 
-            Spline[] splines = new Spline[railCount];
-            RailNoteData[][] notesArrays = new RailNoteData[railCount][];
+            if (railCount > ushort.MaxValue)
+            {
+                logger?.AddError("Too many rails to export.");
+                return null;
+            }
 
-            uint vertexCount = 0;
-            uint noteCount = 0;
-            uint extensionCount = 0;
+            Spline[] splines = new Spline[railCount];
+            RailNoteData[][] noteDataArrays = new RailNoteData[railCount][];
+            uint totalVertexCount = 0;
+            uint totalNoteCount = 0;
+            long totalExtensionsWriteSize = 0;
             for (int i = 0; i < railCount; i++)
             {
                 Spline spline = containers[i].Spline;
+                RailNoteData[] sourceNoteDatas = containers[i].GetComponent<RailData>()?.Notes ?? Array.Empty<RailNoteData>();
 
                 splines[i] = spline;
 
-                vertexCount += (uint)spline.Count;
+                totalVertexCount += (uint)spline.Count;
 
-                if (containers[i].GetComponent<RailData>() is RailData railData)
+                if (spline.Count > ushort.MaxValue || sourceNoteDatas.Length > ushort.MaxValue)
                 {
-                    RailNoteData[] notes = railData.Notes;
-                        
-                    notesArrays[i] = notes;
-                    noteCount += (uint)notes.Length;
-                    extensionCount += (uint)notes.Length * 2;
+                    logger?.AddError($"Rail {i} has too many vertices or notes to export.");
+                    return null;
                 }
+                
+                // Preserve the supplied order at equal distances (e.g. end, then start).
+                int[] noteOrder = new int[sourceNoteDatas.Length];
+                for (int j = 0; j < noteOrder.Length; j++)
+                    noteOrder[j] = j;
+                
+                Array.Sort(noteOrder, (a, b) =>
+                {
+                    int distance = sourceNoteDatas[a].Position.CompareTo(sourceNoteDatas[b].Position);
+                    return distance != 0 ? distance : a.CompareTo(b);
+                });
+                
+                RailNoteData[] sortedNoteDatas = new RailNoteData[sourceNoteDatas.Length];
+                int extensionCount = 0;
+                for (int j = 0; j < sortedNoteDatas.Length; j++)
+                {
+                    sortedNoteDatas[j] = sourceNoteDatas[noteOrder[j]];
+
+                    switch (sortedNoteDatas[j].Flags)
+                    {
+                        case RailFile.RailNoteFlags.None: 
+                        case RailFile.RailNoteFlags.Start:
+                            extensionCount++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
+                noteDataArrays[i] = sortedNoteDatas;
+                totalNoteCount += (uint)sortedNoteDatas.Length;
+                
+                if (extensionCount > 0)
+                    totalExtensionsWriteSize += AlignmentUtils.Align((long)extensionCount * sizeof(float), 32);
             }
 
             long dataSize = AlignmentUtils.Align(sizeof(RailFile.Header), 0x10)
                             + railCount * sizeof(RailFile.RailDef)
-                            + vertexCount * sizeof(RailFile.RailVertex)
-                            + noteCount * sizeof(RailFile.RailNote)
-                            + extensionCount * sizeof(uint);
-            
+                            + totalVertexCount * sizeof(RailFile.RailVertex)
+                            + totalNoteCount * sizeof(RailFile.RailNote)
+                            + totalExtensionsWriteSize;
+
             byte[] data = new byte[dataSize];
             fixed (byte* dataPtr = data)
             {
@@ -58,15 +97,14 @@ namespace Fox.Geo
 
                 RailFile.RailDef* rails = (RailFile.RailDef*)AlignmentUtils.Align((byte*)(header + 1), 0x10);
                 RailFile.RailVertex* vertices = (RailFile.RailVertex*)(rails + railCount);
-                RailFile.RailNote* notes = (RailFile.RailNote*)(vertices + vertexCount);
-                uint* extensions = (uint*)(notes + noteCount);
+                RailFile.RailNote* notes = (RailFile.RailNote*)(vertices + totalVertexCount);
+                uint* extensionData = (uint*)(notes + totalNoteCount);
 
-                //uint writeOffset = (uint)sizeof(RailFile.Header) + (uint)sizeof(RailFile.RailDef) * railCount;
+                Span<int> spanExtensionIndices = stackalloc int[GeoModule.MaxRailNoteTypes];
                 for (uint i = 0; i < railCount; i++)
                 {
                     Spline spline = splines[i];
-                    RailNoteData[] noteData = notesArrays[i];
-                    
+
                     RailFile.RailDef* rail = rails + i;
 
                     rail->VerticesOffset = (uint)((byte*)vertices - dataPtr);
@@ -99,26 +137,90 @@ namespace Fox.Geo
 
                         arcLength += spline.GetCurveLength(j);
                     }
+
                     vertices += rail->VertexCount;
 
                     rail->Min = boundsMin;
                     rail->Max = boundsMax;
 
                     rail->NotesOffset = (uint)((byte*)notes - dataPtr);
-                    rail->NoteCount = (ushort)noteData.Length;
+                    rail->ExtensionsOffset = (uint)((byte*)extensionData - dataPtr);
 
-                    for (uint j = 0; j < (uint)noteData.Length; j++)
+                    RailNoteData[] noteDatas = noteDataArrays[i];
+                    rail->NoteCount = (ushort)noteDatas.Length;
+                    float* extensions = (float*)extensionData;
+                    int extensionCount = 0;
+                    spanExtensionIndices.Fill(-1);
+                    for (ushort j = 0; j < rail->NoteCount; j++)
                     {
-                        notes[j].Position = noteData[j].Position;
-                        notes[j].ExtensionStartIndex = (ushort)j;
-                        notes[j].Id = GeoModule.GetRailNoteId(noteData[j].Name);
-                        notes[j].Type = noteData[j].Condition;
+                        RailNoteData noteData = noteDatas[j];
+
+                        int typeId = GeoModule.GetRailNoteTypeId(noteData.Name);
+
+                        if (float.IsNaN(noteData.Position) || float.IsInfinity(noteData.Position) || noteData.Position < 0)
+                        {
+                            logger?.AddError($"Rail {i} has an invalid note '{noteData.Name}'.");
+                            return null;
+                        }
+
+                        int extensionIndex;
+                        switch (noteData.Flags)
+                        {
+                            case RailFile.RailNoteFlags.None:
+                                extensionIndex = extensionCount++;
+
+                                *extensions++ = noteData.Extension;
+                                break;
+                            case RailFile.RailNoteFlags.Start:
+                                if (spanExtensionIndices[typeId] >= 0)
+                                {
+                                    logger?.AddError($"Rail {i} has overlapping notes of type {typeId}.");
+                                    return null;
+                                }
+
+                                extensionIndex = extensionCount++;
+                                spanExtensionIndices[typeId] = extensionIndex;
+
+                                *extensions++ = noteData.Extension;
+                                break;
+                            case RailFile.RailNoteFlags.End:
+                                extensionIndex = spanExtensionIndices[typeId];
+                                if (extensionIndex < 0)
+                                {
+                                    logger?.AddError($"Rail {i} has an end note without a start.");
+                                    return null;
+                                }
+
+                                spanExtensionIndices[typeId] = -1;
+                                break;
+                            default:
+                                logger?.AddError($"Rail {i} has invalid note flags {noteData.Flags}.");
+                                return null;
+                        }
+
+                        notes[j] = new RailFile.RailNote
+                        {
+                            Position = noteData.Position,
+                            ExtensionStartIndex = (ushort)extensionIndex,
+                            TypeId = (byte)typeId,
+                            Flags = noteData.Flags,
+                        };
                     }
+
                     notes += rail->NoteCount;
 
-                    rail->ExtensionsOffset = (uint)((byte*)extensions - dataPtr);
-                    
-                    extensions += rail->NoteCount * 2;
+                    // Ensure extension array is closed by the time all notes have been written
+                    foreach (int active in spanExtensionIndices)
+                    {
+                        if (active >= 0)
+                        {
+                            logger?.AddError($"Rail {i} has a start note without an end.");
+                            return null;
+                        }
+                    }
+
+                    if (extensionCount > 0)
+                        extensionData += AlignmentUtils.Align((long)extensionCount * sizeof(float), 32) / sizeof(uint);
                 }
             }
 

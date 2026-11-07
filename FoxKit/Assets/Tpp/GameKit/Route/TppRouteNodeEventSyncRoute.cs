@@ -20,17 +20,14 @@ namespace Tpp.GameKit
 			Debug.Assert(extensions[2] == 0 && extensions[3] == 0);
 		}
 
-		public override uint[] GetExtensions()
+		public override void WriteExtensions(Span<uint> destination)
 		{
 			GameKitModule.SyncRouteIdMap.Add(syncTableId);
 
-			return new uint[]
-			{
-				HashingBitConverter.StrCode32ToUInt32(new StrCode32(syncTableId)),
-				unchecked((uint)step),
-				0,
-				0,
-			};
+			destination[0] = HashingBitConverter.StrCode32ToUInt32(new StrCode32(syncTableId));
+			destination[1] = unchecked((uint)step);
+			destination[2] = 0;
+			destination[3] = 0;
 		}
 	}
 }

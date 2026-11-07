@@ -1,3 +1,4 @@
+using System;
 using Fox;
 using Fox.Core.Utils;
 
@@ -16,20 +17,17 @@ namespace Tpp.GameKit
 			range = extensions[3];
 		}
 
-		public override uint[] GetExtensions()
+		public override void WriteExtensions(Span<uint> destination)
 		{
 			GameKitModule.ConversationLabelIdMap.Add(conversationLabel);
 			GameKitModule.CharacterIdMap.Add(friendCharacterId);
 
 			ulong friendCharacterHash = HashingBitConverter.StrCodeToUInt64(new StrCode(friendCharacterId));
 
-			return new uint[]
-			{
-				HashingBitConverter.StrCode32ToUInt32(new StrCode32(conversationLabel)),
-				(uint)(friendCharacterHash & 0xFFFFFFFF),
-				(uint)(friendCharacterHash >> 32),
-				range,
-			};
+			destination[0] = HashingBitConverter.StrCode32ToUInt32(new StrCode32(conversationLabel));
+			destination[1] = (uint)(friendCharacterHash & 0xFFFFFFFF);
+			destination[2] = (uint)(friendCharacterHash >> 32);
+			destination[3] = range;
 		}
 	}
 }

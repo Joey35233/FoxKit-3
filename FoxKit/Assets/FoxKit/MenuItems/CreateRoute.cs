@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using Fox.Core;
 using Fox.GameService;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,9 +27,9 @@ namespace FoxKit.MenuItems
 
         private static string GenerateUniqueRouteName()
         {
-            var used = UnityEngine.Object.FindObjectsByType<GsRouteData>(FindObjectsInactive.Include, FindObjectsSortMode.None)
-                .Select(r => r.name)
-                .ToHashSet();
+            HashSet<string> used = new();
+            foreach (GsRouteData route in UnityEngine.Object.FindObjectsByType<GsRouteData>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                used.Add(route.name);
 
             int index = 0;
             string name = $"rt_newRoute_{index:D4}";

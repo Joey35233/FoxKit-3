@@ -2,7 +2,6 @@ using Fox.Fio;
 using Fox;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace Fox.Ui
@@ -59,7 +58,7 @@ namespace Fox.Ui
                     offsetEntryDictionary[offset].Key = langIdCode;
                 }
 
-                return offsetEntryDictionary.Values.ToList();
+                return new List<LangFileEntry>(offsetEntryDictionary.Values);
             }
         }
     }

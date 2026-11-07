@@ -10,6 +10,8 @@ namespace Fox.GameService
     {
         public static GameServiceModule Instance { get; private set; }
 
+        public const int ExtensionCount = 4;
+
         internal static Dictionary<StrCode32, Type> RouteEdgeEventTypeMap = new();
         internal static Dictionary<StrCode32, Type> RouteNodeEventTypeMap = new();
 

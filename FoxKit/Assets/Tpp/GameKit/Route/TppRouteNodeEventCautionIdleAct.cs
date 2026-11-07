@@ -1,3 +1,4 @@
+using System;
 using Fox;
 using Fox.Core.Utils;
 using Fox.Geo;
@@ -16,17 +17,14 @@ namespace Tpp.GameKit
 			Debug.Assert(extensions[1] == 0 && extensions[2] == 0 && extensions[3] == 0);
 		}
 
-		public override uint[] GetExtensions()
+		public override void WriteExtensions(Span<uint> destination)
 		{
 			GameKitModule.IdleActionIdMap.Add(action);
 
-			return new uint[]
-			{
-				HashingBitConverter.StrCode32ToUInt32(new StrCode32(action)),
-				0,
-				0,
-				0,
-			};
+			destination[0] = HashingBitConverter.StrCode32ToUInt32(new StrCode32(action));
+			destination[1] = 0;
+			destination[2] = 0;
+			destination[3] = 0;
 		}
 	}
 }

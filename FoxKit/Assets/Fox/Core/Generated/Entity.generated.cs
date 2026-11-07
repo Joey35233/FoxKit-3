@@ -103,7 +103,7 @@ namespace Fox.Core
 			{
 				default:
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
-						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.DynamicArray)
 						{
 							dynamicProperty.AddElement(index, value);
 							return;

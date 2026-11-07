@@ -1,3 +1,4 @@
+using System;
 using Fox;
 using Fox.Core.Utils;
 using UnityEngine;
@@ -19,20 +20,17 @@ namespace Tpp.GameKit
 			Debug.Assert(extensions[3] == 0);
 		}
 
-		public override uint[] GetExtensions()
+		public override void WriteExtensions(Span<uint> destination)
 		{
 			GameKitModule.MessageIdMap.Add(message);
 			ulong messageHash = HashingBitConverter.StrCodeToUInt64(new StrCode(message));
 
 			GameKitModule.MessageParamMap.Add(param);
 
-			return new uint[]
-			{
-				(uint)(messageHash >> 32),
-				(uint)(messageHash & 0xFFFFFFFF),
-				HashingBitConverter.StrCode32ToUInt32(new StrCode32(param)),
-				0,
-			};
+			destination[0] = (uint)(messageHash >> 32);
+			destination[1] = (uint)(messageHash & 0xFFFFFFFF);
+			destination[2] = HashingBitConverter.StrCode32ToUInt32(new StrCode32(param));
+			destination[3] = 0;
 		}
 	}
 }
