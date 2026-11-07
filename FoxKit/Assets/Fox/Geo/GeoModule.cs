@@ -13,7 +13,8 @@ namespace Fox.Geo
         internal static Dictionary<GeoPrimType, Func<GeomHeaderContext, TransformData>> GeoPrimDeserializationMap = new();
 
         // RAIL
-        public static readonly string[] RailNoteNames = new string[15];
+        public const int MaxRailNoteTypes = 15;
+        public static readonly string[] RailNoteNames = new string[MaxRailNoteTypes];
 
         public static readonly StringId32Map RailIdMap = new StringId32Map();
 
@@ -44,11 +45,12 @@ namespace Fox.Geo
             }
         }
 
-        public static byte GetRailNoteId(string type)
+        public static byte GetRailNoteTypeId(string type)
         {
-            int index = Array.IndexOf(RailNoteNames, type);
-            
-            return index < RailNoteNames.Length ? (byte)index : (byte)RailNoteNames.Length;
+            int index = type == null ? -1 : Array.IndexOf(RailNoteNames, type);
+            if (index < 0)
+                throw new ArgumentException($"Unknown rail note type '{type}'.", nameof(type));
+            return (byte)index;
         }
     }
 }

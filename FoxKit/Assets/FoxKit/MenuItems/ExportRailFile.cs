@@ -1,4 +1,4 @@
-using Fox.GameService;
+using Fox.Core.Utils;
 using System.IO;
 using Fox.Geo;
 using UnityEditor;
@@ -43,8 +43,11 @@ namespace FoxKit.MenuItems
             }
 
             RailFileWriter frlWriter = new RailFileWriter();
-            byte[] data = frlWriter.Write(scene);
-            System.IO.File.WriteAllBytes(outputPath, data);
+            TaskLogger logger = new TaskLogger("ExportRailFile");
+            byte[] data = frlWriter.Write(scene, logger);
+            logger.LogToUnityConsole();
+            if (data != null)
+                System.IO.File.WriteAllBytes(outputPath, data);
         }
     }
 }

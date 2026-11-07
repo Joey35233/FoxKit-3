@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Graphx;
 using UnityEngine;
@@ -22,64 +24,76 @@ namespace Fox.GameService
                 return null;
             }
 
-            List<GsRouteDataEvent>[] routeEvents = new List<GsRouteDataEvent>[routeCount];
-            RouteFile.EventSpan[][] routeEventSpans = new RouteFile.EventSpan[routeCount][];
+            List<GsRouteDataEvent>[] allEvents = new List<GsRouteDataEvent>[routeCount];
+            RouteFile.EventSpan[][] allEventSpans = new RouteFile.EventSpan[routeCount][];
             int totalNodeCount = 0;
             int totalEventCount = 0;
             for (int i = 0; i < routeCount; i++)
             {
                 GsRouteData route = routes[i];
-                List<GraphxSpatialGraphDataNode> nodes = route.Nodes;
-                List<GraphxSpatialGraphDataEdge> routeEdges = route.Edges;
-                int nodeCount = nodes.Count;
+                
+                List<GraphxSpatialGraphDataNode> routeNodes = route.Nodes;
+                int routeNodeCount = routeNodes.Count;
 
-                if (routeEdges.Count != nodeCount)
+                List<GsRouteDataEvent> routeEvents = new List<GsRouteDataEvent>();
+                RouteFile.EventSpan[] routeEventSpans = new RouteFile.EventSpan[routeNodeCount];
+                for (int j = 0; j < routeNodeCount; j++)
                 {
-                    logger?.AddError($"Write failed. Route {route.name} has nodeCount {nodeCount} must == edgeCount {routeEdges.Count}.");
-                    return null;
-                }
-                for (int j = 0; j < nodeCount; j++)
-                {
-                    if (routeEdges[j].PrevNode != nodes[j])
+                    GraphxSpatialGraphDataNode node = routeNodes[j];
+                    
+                    // Capture start index for current node before adding new events
+                    int nodeEventsStartIndex = routeEvents.Count;
+
+                    // 1. Determine and validate uniqueness of "next" edge by searching outlinks for .PrevNode == node
+                    GsRouteDataEdge leavingEdge = null;
+                    foreach (Entity link in node.Outlinks)
                     {
-                        logger?.AddError($"Write failed. Route {route.name} edge {j} does not leave node {j}.");
+                        if (link is not GsRouteDataEdge edge || edge.PrevNode != node)
+                            continue;
+                        if (leavingEdge != null && leavingEdge != edge)
+                        {
+                            logger?.AddError($"Write failed. Route {route.name} node {j} has multiple next edges.");
+                            return null;
+                        }
+                        leavingEdge = edge;
+                    }
+                    if (leavingEdge == null)
+                    {
+                        logger?.AddError($"Write failed. Route {route.name} node {j} has no next edge.");
                         return null;
                     }
-                }
+                    
+                    // Actually add it
+                    if (leavingEdge.Event != null)
+                        routeEvents.Add(leavingEdge.Event);
 
-                List<GsRouteDataEvent> events = new List<GsRouteDataEvent>();
-                RouteFile.EventSpan[] spans = new RouteFile.EventSpan[nodeCount];
-                for (int j = 0; j < nodeCount; j++)
-                {
-                    int start = events.Count;
-
-                    if (routeEdges[j] is GsRouteDataEdge { Event: not null } leavingEdge)
-                        events.Add(leavingEdge.Event);
-
-                    if (nodes[j] is GsRouteDataNode routeNode)
+                    // 2. Add node events
+                    if (node is GsRouteDataNode routeNode)
                         foreach (GsRouteDataNodeEvent nodeEvent in routeNode.Events)
                             if (nodeEvent != null)
-                                events.Add(nodeEvent);
+                                routeEvents.Add(nodeEvent);
 
-                    // StartIndex is relative to this route's event table
-                    if (events.Count > ushort.MaxValue)
+                    // Route events bounds check
+                    if (routeEvents.Count > ushort.MaxValue)
                     {
                         logger?.AddError($"Write failed. Route {route.name} has more than {ushort.MaxValue} events.");
                         return null;
                     }
-                    spans[j] = new RouteFile.EventSpan { StartIndex = (ushort)start, Count = (ushort)(events.Count - start) };
+                    
+                    routeEventSpans[j] = new RouteFile.EventSpan { StartIndex = (ushort)nodeEventsStartIndex, Count = (ushort)(routeEvents.Count - nodeEventsStartIndex) };
                 }
 
-                if (nodes.Count > ushort.MaxValue)
+                //  Route nodes bounds check
+                if (routeNodes.Count > ushort.MaxValue)
                 {
                     logger?.AddError($"Write failed. Route {route.name} has more than {ushort.MaxValue} nodes.");
                     return null;
                 }
 
-                routeEvents[i] = events;
-                routeEventSpans[i] = spans;
-                totalNodeCount += nodes.Count;
-                totalEventCount += events.Count;
+                allEvents[i] = routeEvents;
+                allEventSpans[i] = routeEventSpans;
+                totalNodeCount += routeNodes.Count;
+                totalEventCount += routeEvents.Count;
             }
 
             long dataSize = sizeof(RouteFile.HeaderV3)
@@ -119,7 +133,7 @@ namespace Fox.GameService
 
                     RouteFile.RouteDef* routeDef = routeDefs + i;
                     routeDef->NodeCount = (ushort)nodes.Count;
-                    routeDef->EventCount = (ushort)routeEvents[i].Count;
+                    routeDef->EventCount = (ushort)allEvents[i].Count;
                     routeDef->VerticesOffset = (uint)((byte*)vertices - (byte*)routeDef);
                     routeDef->EventSpanOffset = (uint)((byte*)eventSpans - (byte*)routeDef);
                     routeDef->EventsOffset = (uint)((byte*)events - (byte*)routeDef);
@@ -127,10 +141,10 @@ namespace Fox.GameService
                     foreach (GraphxSpatialGraphDataNode node in nodes)
                         *vertices++ = Fox.Math.UnityToFoxVector3(node.transform.position);
 
-                    foreach (RouteFile.EventSpan span in routeEventSpans[i])
+                    foreach (RouteFile.EventSpan span in allEventSpans[i])
                         *eventSpans++ = span;
 
-                    foreach (GsRouteDataEvent routeEvent in routeEvents[i])
+                    foreach (GsRouteDataEvent routeEvent in allEvents[i])
                     {
                         RouteFile.EventDef* eventDef = events++;
 
@@ -211,10 +225,8 @@ namespace Fox.GameService
                                 break;
                         }
 
-                        uint[] extensions = routeEvent.GetExtensions();
                         uint* extensionData = eventDef->GetExtensionData(RouteFile.FormatVersion.V3);
-                        for (int j = 0; j < 4; j++)
-                            extensionData[j] = extensions[j];
+                        routeEvent.WriteExtensions(new Span<uint>(extensionData, GameServiceModule.ExtensionCount));
                     }
                 }
             }

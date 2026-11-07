@@ -1,3 +1,4 @@
+using System;
 using Fox;
 using Fox.Core.Utils;
 using Fox.GameService;
@@ -22,19 +23,16 @@ namespace Tpp.GameKit
 			Debug.Assert(extensions[3] == 0);
 		}
 
-		public override uint[] GetExtensions()
+		public override void WriteExtensions(Span<uint> destination)
 		{
 			GameServiceModule.RouteIdMap.Add(routeId);
 			GameKitModule.SwitchRouteConditionIdMap.Add(condition);
 			GameKitModule.GimmickIdMap.Add(gimmickId);
 
-			return new uint[]
-			{
-				HashingBitConverter.StrCode32ToUInt32(new StrCode32(routeId)),
-				HashingBitConverter.StrCode32ToUInt32(new StrCode32(condition)),
-				HashingBitConverter.StrCode32ToUInt32(new StrCode32(gimmickId)),
-				0,
-			};
+			destination[0] = HashingBitConverter.StrCode32ToUInt32(new StrCode32(routeId));
+			destination[1] = HashingBitConverter.StrCode32ToUInt32(new StrCode32(condition));
+			destination[2] = HashingBitConverter.StrCode32ToUInt32(new StrCode32(gimmickId));
+			destination[3] = 0;
 		}
 	}
 }

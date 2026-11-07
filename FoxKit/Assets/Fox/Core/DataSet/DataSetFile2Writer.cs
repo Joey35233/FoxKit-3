@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
@@ -133,7 +132,15 @@ namespace Fox.Core
 
         private static CreateDataSetResult CreateDataSet(List<Entity> entities)
         {
-            DataSet dataSet = entities.FirstOrDefault(ent => ent is DataSet) as DataSet;
+            DataSet dataSet = null;
+            foreach (Entity entity in entities)
+            {
+                if (entity is DataSet candidate)
+                {
+                    dataSet = candidate;
+                    break;
+                }
+            }
             if (dataSet == null)
             {
                 dataSet = new GameObject("DataSet").AddComponent<DataSet>();

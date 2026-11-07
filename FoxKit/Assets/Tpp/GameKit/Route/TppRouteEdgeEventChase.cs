@@ -1,3 +1,4 @@
+using System;
 using Fox.Core.Utils;
 using UnityEngine;
 
@@ -16,15 +17,12 @@ namespace Tpp.GameKit
 			Debug.Assert(extensions[3] == 0);
 		}
 
-		public override uint[] GetExtensions()
+		public override void WriteExtensions(Span<uint> destination)
 		{
-			return new uint[]
-			{
-				(uint)Mathf.RoundToInt(unknown0 * 10f),
-				(uint)Mathf.RoundToInt(unknown1 * 10f),
-				(uint)Mathf.RoundToInt(unknown2 * 10f),
-				0,
-			};
+			destination[0] = (uint)Mathf.RoundToInt(unknown0 * 10f);
+			destination[1] = (uint)Mathf.RoundToInt(unknown1 * 10f);
+			destination[2] = (uint)Mathf.RoundToInt(unknown2 * 10f);
+			destination[3] = 0;
 		}
 	}
 }

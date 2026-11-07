@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -57,7 +58,8 @@ namespace Fox.Geo
             public float TangentLength;
         }
 
-        public enum RailNoteType : byte
+        [Flags]
+        public enum RailNoteFlags : byte
         {
             None = 0,
             Start = 1,
@@ -69,8 +71,8 @@ namespace Fox.Geo
         {
             public float Position;
             public ushort ExtensionStartIndex;
-            public byte Id;
-            public RailNoteType Type;
+            public byte TypeId;
+            public RailNoteFlags Flags;
         }
     }
 }

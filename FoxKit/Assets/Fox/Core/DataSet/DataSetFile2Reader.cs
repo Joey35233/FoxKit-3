@@ -154,7 +154,7 @@ namespace Fox.Core
                                     for (ushort k = 0; k < propertyDef->ArraySize; k++)
                                     {
                                         object value = ReadPropertyValue(propertyDef, k);
-                                        entity.AddPropertyElement(propertyName, k, new Value(value));
+                                        entity.SetPropertyElement(propertyName, k, new Value(value));
                                     }
                                     break;
                                 case PropertyInfo.ContainerType.DynamicArray:

@@ -1,7 +1,6 @@
 using Fox.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -94,8 +93,17 @@ namespace Fox.Graphx
 
             Undo.RegisterCompleteObjectUndo(this, "Remove Node");
 
-            var incoming = edges.FirstOrDefault(e => e.NextNode == node);   // pred -> node
-            var outgoing = edges.FirstOrDefault(e => e.PrevNode == node);   // node -> succ
+            GraphxSpatialGraphDataEdge incoming = null;
+            GraphxSpatialGraphDataEdge outgoing = null;
+            foreach (GraphxSpatialGraphDataEdge edge in edges)
+            {
+                if (incoming == null && edge.NextNode == node)
+                    incoming = edge;
+                if (outgoing == null && edge.PrevNode == node)
+                    outgoing = edge;
+                if (incoming != null && outgoing != null)
+                    break;
+            }
             var pred = incoming?.PrevNode as GraphxSpatialGraphDataNode;
             var succ = outgoing?.NextNode as GraphxSpatialGraphDataNode;
 
@@ -109,7 +117,12 @@ namespace Fox.Graphx
             }
             else
             {
-                foreach (var edge in edges.Where(e => e.PrevNode == node || e.NextNode == node).ToList())
+                // Collect first because RemoveEdge modifies the edge list.
+                List<GraphxSpatialGraphDataEdge> connectedEdges = new();
+                foreach (GraphxSpatialGraphDataEdge edge in edges)
+                    if (edge.PrevNode == node || edge.NextNode == node)
+                        connectedEdges.Add(edge);
+                foreach (GraphxSpatialGraphDataEdge edge in connectedEdges)
                 {
                     (edge.PrevNode as GraphxSpatialGraphDataNode)?.Outlinks.Remove(edge);
                     (edge.NextNode as GraphxSpatialGraphDataNode)?.Outlinks.Remove(edge);
@@ -143,7 +156,15 @@ namespace Fox.Graphx
 
         protected virtual void HandleSplice(GraphxSpatialGraphDataNode prev, GraphxSpatialGraphDataNode inserted, GraphxSpatialGraphDataEdge newEdge)
         {
-            var existingEdge = edges.FirstOrDefault(e => e.PrevNode == prev && e.NextNode != null && e != newEdge);
+            GraphxSpatialGraphDataEdge existingEdge = null;
+            foreach (GraphxSpatialGraphDataEdge edge in edges)
+            {
+                if (edge.PrevNode == prev && edge.NextNode != null && edge != newEdge)
+                {
+                    existingEdge = edge;
+                    break;
+                }
+            }
             if (existingEdge == null)
                 return;
 
@@ -161,8 +182,8 @@ namespace Fox.Graphx
         }
         protected void CreateLoopEdge()
         {
-            var firstNode = nodes.First();
-            var lastNode = nodes.Last();
+            var firstNode = nodes[0];
+            var lastNode = nodes[nodes.Count - 1];
 
             if (IsLoop() && firstNode.Outlinks.Count < 2 && lastNode.Outlinks.Count < 2)
             {
@@ -188,8 +209,9 @@ namespace Fox.Graphx
             var nodeType = this.GetNodeType();
             var newNode = Undo.AddComponent(newNodeGo, nodeType) as Fox.Graphx.GraphxSpatialGraphDataNode;
 
-            var usedNames = FindObjectsByType(nodeType, FindObjectsInactive.Include, FindObjectsSortMode.None)
-                .Select(ent => ent.name).ToHashSet();
+            HashSet<string> usedNames = new();
+            foreach (UnityEngine.Object entity in FindObjectsByType(nodeType, FindObjectsInactive.Include, FindObjectsSortMode.None))
+                usedNames.Add(entity.name);
             newNodeGo.name = newNode.GenerateUniqueName(nodeType, usedNames);
 
             OnNodeCreated(newNode);
@@ -205,8 +227,9 @@ namespace Fox.Graphx
             var edgeType = GetEdgeType();
             var edge = Undo.AddComponent(newEdgeGo, GetEdgeType()) as GraphxSpatialGraphDataEdge;
 
-            var usedNames = FindObjectsByType(edgeType, FindObjectsInactive.Include, FindObjectsSortMode.None)
-                .Select(ent => ent.name).ToHashSet();
+            HashSet<string> usedNames = new();
+            foreach (UnityEngine.Object entity in FindObjectsByType(edgeType, FindObjectsInactive.Include, FindObjectsSortMode.None))
+                usedNames.Add(entity.name);
             edge.name = edge.GenerateUniqueName(edgeType, usedNames);
 
             OnEdgeCreated(edge);

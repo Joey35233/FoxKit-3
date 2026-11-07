@@ -1,3 +1,4 @@
+using System;
 using Fox;
 using Fox.Core.Utils;
 using Fox.Geo;
@@ -23,17 +24,14 @@ namespace Tpp.GameKit
 			Debug.Assert(extensions[3] == 0);
 		}
 
-		public override uint[] GetExtensions()
+		public override void WriteExtensions(Span<uint> destination)
 		{
 			GeoModule.RailIdMap.Add(railId);
 
-			return new uint[]
-			{
-				HashingBitConverter.StrCode32ToUInt32(new StrCode32(railId)),
-				(uint)Mathf.RoundToInt(kph * 3600f / 1000f * 100f),
-				flags,
-				0,
-			};
+			destination[0] = HashingBitConverter.StrCode32ToUInt32(new StrCode32(railId));
+			destination[1] = (uint)Mathf.RoundToInt(kph * 3600f / 1000f * 100f);
+			destination[2] = flags;
+			destination[3] = 0;
 		}
 	}
 }

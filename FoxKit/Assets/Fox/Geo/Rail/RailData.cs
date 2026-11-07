@@ -11,7 +11,7 @@ namespace Fox.Geo
         public float Position;
         public float Extension;
         public string Name;
-        public RailFile.RailNoteType Condition;
+        public RailFile.RailNoteFlags Flags;
     }
 
     [RequireComponent(typeof(SplineContainer))]

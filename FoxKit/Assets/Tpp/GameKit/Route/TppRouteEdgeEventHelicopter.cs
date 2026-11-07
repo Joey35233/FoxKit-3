@@ -1,3 +1,4 @@
+using System;
 using Fox;
 using Fox.Core.Utils;
 using Fox.GameService;
@@ -27,7 +28,7 @@ namespace Tpp.GameKit
 			changeTime = unchecked((int)extensions[3]);
 		}
 
-		public override uint[] GetExtensions()
+		public override void WriteExtensions(Span<uint> destination)
 		{
 			uint flags = 0;
 			flags |= ((uint)leftDoorState & 0x3) << 0;
@@ -37,13 +38,10 @@ namespace Tpp.GameKit
 			flags |= ((uint)defaultDoorSide & 0x3) << 8;
 			flags |= (setTargetSpeed ? 1u : 0u) << 10;
 
-			return new uint[]
-			{
-				flags,
-				unchecked((uint)direction),
-				unchecked((uint)Mathf.RoundToInt(targetSpeed * 3600f / 1000f)),
-				unchecked((uint)Mathf.RoundToInt(changeTime)),
-			};
+			destination[0] = flags;
+			destination[1] = unchecked((uint)direction);
+			destination[2] = unchecked((uint)Mathf.RoundToInt(targetSpeed * 3600f / 1000f));
+			destination[3] = unchecked((uint)Mathf.RoundToInt(changeTime));
 		}
 	}
 }

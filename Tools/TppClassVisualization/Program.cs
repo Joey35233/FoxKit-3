@@ -21,7 +21,9 @@ using (var streamReader = new FileStream("../../../../TppClassGeneration/TppClas
     // Deserialize
     JsonDocumentOptions options = new JsonDocumentOptions {  CommentHandling = JsonCommentHandling.Skip };
     JsonDocument document = JsonDocument.Parse(streamReader, options)!;
-    List<Class> classes = (from serializedClass in document.RootElement.EnumerateArray() select serializedClass.Deserialize<Class>()!).ToList();
+    List<Class> classes = new();
+    foreach (JsonElement serializedClass in document.RootElement.EnumerateArray())
+        classes.Add(serializedClass.Deserialize<Class>()!);
 
     // Build tree
     Tree tree = new Tree { Root = new Tree.Node { Parent = null, Children = new List<Tree.Node>(), Reference = null }, FullRegistry = new Dictionary<string, Tree.Node>() };
