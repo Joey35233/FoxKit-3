@@ -1,20 +1,28 @@
 class EnumInfo:
     """Enum metadata."""
 
-    def __init__(self, name, type, underlying_type, values):
+    def __init__(self, name, type, underlying_type, namespace, values):
         """Creates a new EntityInfo.
 
         Args:
                 name (str): Name of the enum.
                 type (str): Type of the enum. Should be either "flags" or "switch."
                 underlying_type (str): Underlying integral type of the enum. If none, assumed to be "int."
+                namespace (str): The namespace the enum belongs to.
                 values (list): Values of the enum.
 
         """
         self.name = name
         self.type = type
         self.underlying_type = underlying_type
+        self.namespace = namespace
         self.values = values
+
+    def get_root_namespace(self):
+        return get_root_namespace(self.namespace)
+
+    def get_namespace_without_prefix(self):
+        return get_namespace_without_prefix(self.namespace)
 
 class EnumValue:
     """Enum value metadata."""
