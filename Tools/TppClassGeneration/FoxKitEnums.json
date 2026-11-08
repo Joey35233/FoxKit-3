@@ -1,6 +1,7 @@
 [
 	{
 		"name": "GsRouteDataEventAimPoint_TargetType",
+		"namespace": "GameService",
 		"type": "switch",
 		"underlying_type": "byte",
 		"values": [
@@ -28,6 +29,7 @@
 	},
 	{
 		"name": "GsRouteDataEventAimPoint_BodySection",
+		"namespace": "GameService",
 		"type": "switch",
 		"underlying_type": "byte",
 		"values": [
@@ -43,6 +45,7 @@
 	},
 	{
 		"name": "TppRouteEdgeEventHelicopter_DoorState",
+		"namespace": "TppGameKit",
 		"type": "switch",
 		"underlying_type": "uint",
 		"values": [
@@ -62,6 +65,7 @@
 	},
 	{
 		"name": "TppRouteEdgeEventHelicopter_DirectionType",
+		"namespace": "TppGameKit",
 		"type": "switch",
 		"underlying_type": "uint",
 		"values": [
@@ -85,6 +89,7 @@
 	},
 	{
 		"name": "TppRouteEdgeEventHelicopter_DoorSide",
+		"namespace": "TppGameKit",
 		"type": "switch",
 		"underlying_type": "uint",
 		"values": [

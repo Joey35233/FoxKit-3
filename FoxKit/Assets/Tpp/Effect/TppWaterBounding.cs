@@ -13,13 +13,13 @@ namespace Tpp.Effect
             Color waterColor = Water;
             switch (type)
             {
-                case Fox.TppWaterBoundingType.TYPE_WATER:
+                case TppWaterBoundingType.TYPE_WATER:
                     waterColor = Water;
                     break;
-                case Fox.TppWaterBoundingType.TYPE_MAFR_SWAMP:
+                case TppWaterBoundingType.TYPE_MAFR_SWAMP:
                     waterColor = WaterSwamp;
                     break;
-                case Fox.TppWaterBoundingType.TYPE_SOUND_ONLY:
+                case TppWaterBoundingType.TYPE_SOUND_ONLY:
                     waterColor = WaterSound;
                     break;
             }

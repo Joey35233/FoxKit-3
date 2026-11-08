@@ -11,7 +11,7 @@ class_template_path = "ClassTemplate.txt"
 definitions_path = "TppClassDefinitions.json"
 extra_definitions_path = "FoxKitClassDefinitions.json"
 
-enum_template_path = "EnumsTemplate.txt"
+enum_template_path = "EnumTemplate.txt"
 enums_path = "TppEnums.json"
 extra_enums_path = "FoxKitEnums.json"
 
@@ -25,7 +25,7 @@ def load_definitions (path, extraPath):
             properties = {}
             for property in entry["properties"]:
                 properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], entry["name"], result, property["accessModifier"], property.get("accessorSetter", False), property.get("accessorWriteModifier"))
-            result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result, entry["subentity"])
+            result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["submodule"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result, entry["subentity"])
             
     with open(extraPath) as json_file:
         data = json.load(json_file)
@@ -39,7 +39,7 @@ def load_definitions (path, extraPath):
                 return {}
 
             else:
-                result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result, entry["subentity"])
+                result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["submodule"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result, entry["subentity"])
 
     return result
 
@@ -51,7 +51,7 @@ def load_enum_definitions (path, extraPath):
             values = []
             for value in entry["values"]:
                 values.append(EnumValue(value["name"], value["value"]))
-            result.append(EnumInfo(entry["name"], entry["type"], entry["underlying_type"], values))
+            result.append(EnumInfo(entry["name"], entry["type"], entry["underlying_type"], entry["namespace"], values))
 
     with open(extraPath) as json_file:
         data = json.load(json_file)
@@ -63,7 +63,7 @@ def load_enum_definitions (path, extraPath):
             values = []
             for value in entry["values"]:
                 values.append(EnumValue(value["name"], value["value"]))
-            result.append(EnumInfo(entry["name"], entry["type"], entry["underlying_type"], values))
+            result.append(EnumInfo(entry["name"], entry["type"], entry["underlying_type"], entry["namespace"], values))
 
     return result
 
@@ -82,6 +82,7 @@ def generate_classes ():
         root_namespace = get_root_namespace(definitions[class_name].namespace)
         trimmed_namespace = get_namespace_without_prefix(definitions[class_name].namespace)
         output_path = make_output_path(definitions[class_name].name, root_namespace, trimmed_namespace)
+        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
 
         output_file = open(output_path,"w")
         output_file.write(result)
@@ -99,13 +100,20 @@ def generate_classes ():
 def generate_enums ():
     template_file = open(enum_template_path, "r")
     template = Template(template_file.read())
-    definitions = load_enum_definitions(enums_path, extra_enums_path)        
-    result = template.render(enums = definitions)
-        
-    # Output generated file
-    output_file = open(f'../../FoxKit/Assets/Fox/Kernel/Generated/Enums.generated.cs', "w") 
-    output_file.write(result)
-    output_file.close()
+    definitions = load_enum_definitions(enums_path, extra_enums_path)
+
+    for enum in definitions:
+        result = template.render(enum = enum)
+
+        # Output generated file
+        root_namespace = get_root_namespace(enum.namespace)
+        trimmed_namespace = get_namespace_without_prefix(enum.namespace)
+        output_path = make_enum_output_path(enum.name, root_namespace, trimmed_namespace)
+        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+
+        output_file = open(output_path, "w")
+        output_file.write(result)
+        output_file.close()
 
 def get_root_namespace(namespace):
     if str.startswith(namespace, "Tpp"):
@@ -131,6 +139,21 @@ def make_output_path (type_name, type_root_namespace, type_namespace):
     """
 
     return f'../../FoxKit/Assets/{type_root_namespace}/{type_namespace}/Generated/{type_name}.generated.cs'
+
+def make_enum_output_path (type_name, type_root_namespace, type_namespace):
+    """Create the output path for a generated enum file.
+
+    Args:
+        type_name (str): Name of the enum.
+        type_root_namespace (str): The enum's root namespace (Fox or Tpp).
+        type_namespace (str): The enum's namespace without the root prefix.
+
+    Returns:
+        str: The output file path.
+
+    """
+
+    return f'../../FoxKit/Assets/{type_root_namespace}/{type_namespace}/Generated/Enums/{type_name}.generated.cs'
 
 if __name__ == "__main__":
     generate_classes()

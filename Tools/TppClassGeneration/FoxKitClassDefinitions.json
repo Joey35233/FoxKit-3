@@ -6,6 +6,7 @@
     "id": 0,
     "name": "GsRouteDataNode",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GraphxSpatialGraphDataNode",
     "properties": [
       {
@@ -30,6 +31,7 @@
     "id": 0,
     "name": "GsRouteDataEdge",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GraphxSpatialGraphDataEdge",
     "properties": [
       {
@@ -54,6 +56,7 @@
     "id": 0,
     "name": "GsRouteData",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GraphxSpatialGraphData",
     "properties": [],
     "version": 0
@@ -65,6 +68,7 @@
     "id": 0,
     "name": "GsRouteDataBody",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GraphxPath",
     "properties": [],
     "version": 0
@@ -76,6 +80,7 @@
     "id": 0,
     "name": "GsRouteDataEvent",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "DataElement",
     "properties": [
       {
@@ -124,6 +129,7 @@
     "id": 0,
     "name": "GsRouteDataEdgeEvent",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataEvent",
     "properties": [],
     "version": 1
@@ -135,6 +141,7 @@
     "id": 0,
     "name": "GsRouteDataNodeEvent",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataEvent",
     "properties": [
       {
@@ -183,6 +190,7 @@
     "id": 0,
     "name": "GsRouteDataEventAimPoint",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "DataElement",
     "properties": [
       {
@@ -243,6 +251,7 @@
     "id": 0,
     "name": "GsRouteDataEventAimStaticPoint",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataEventAimPoint",
     "properties": [
       {
@@ -268,6 +277,7 @@
     "id": 0,
     "name": "GsRouteDataEventAimCharacter",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataEventAimPoint",
     "properties": [
       {
@@ -293,6 +303,7 @@
     "id": 0,
     "name": "GsRouteDataEventAimRouteAsSightMovePath",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataEventAimPoint",
     "properties": [
       {
@@ -318,6 +329,7 @@
     "id": 0,
     "name": "GsRouteDataEventAimRouteAsObject",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataEventAimPoint",
     "properties": [
       {
@@ -343,6 +355,7 @@
     "id": 0,
     "name": "TppRouteEdgeEventMove",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -367,6 +380,7 @@
     "id": 0,
     "name": "TppRouteNodeEventRelaxedIdleAct",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -415,6 +429,7 @@
     "id": 0,
     "name": "TppRouteNodeEventCautionIdleAct",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -439,6 +454,7 @@
     "id": 0,
     "name": "TppRouteNodeEventConversationIdle",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -487,6 +503,7 @@
     "id": 0,
     "name": "TppRouteNodeEventSendMessage",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -523,6 +540,7 @@
     "id": 0,
     "name": "TppRouteNodeEventSwitchRoute",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -571,6 +589,7 @@
     "id": 0,
     "name": "TppRouteNodeEventSyncRoute",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -607,6 +626,7 @@
     "id": 0,
     "name": "TppRouteEdgeEventVehicleMove",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -655,6 +675,7 @@
     "id": 0,
     "name": "TppRouteEdgeEventHelicopter",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -775,6 +796,7 @@
     "id": 0,
     "name": "TppRouteNodeEventHelicopter",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -895,6 +917,7 @@
     "id": 0,
     "name": "TppRouteEdgeEventChase",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
