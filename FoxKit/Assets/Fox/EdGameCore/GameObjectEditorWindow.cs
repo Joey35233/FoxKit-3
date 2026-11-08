@@ -758,7 +758,7 @@ namespace Tpp.EdGameCore
             transformBase.name = "TransformEntity";
             transformBase.SetOwner(gameObjectLocator);
 
-            gameObjectLocator.SetProperty("transform", new Fox.Core.Value(transformBase));
+            gameObjectLocator.SetProperty("transform", transformBase);
 
             gameObjectLocator.TypeName = selectedType;
             gameObjectLocator.GroupId = groupIdField.value;

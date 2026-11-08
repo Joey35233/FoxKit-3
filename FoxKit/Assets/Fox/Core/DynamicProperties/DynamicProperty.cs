@@ -15,14 +15,14 @@ namespace Fox.Core
         
         internal virtual void ChangeStaticArraySize(uint newSize) {}
         
-        public abstract Value GetValue();
-        public virtual Value GetElement(int index) => throw new NotImplementedException();
-        public virtual Value GetElement(string key) => throw new NotImplementedException();
+        public abstract object GetValue();
+        public virtual object GetElement(int index) => throw new NotImplementedException();
+        public virtual object GetElement(string key) => throw new NotImplementedException();
         
-        public virtual void SetElement(int index, Value value) => throw new NotImplementedException();
-        public virtual void SetElement(string key, Value value) => throw new NotImplementedException();
-        public virtual void AddElement(int index, Value value) => throw new NotImplementedException();
-        public virtual void AddElement(string key, Value value) => throw new NotImplementedException();
+        public virtual void SetElement(int index, object value) => throw new NotImplementedException();
+        public virtual void SetElement(string key, object value) => throw new NotImplementedException();
+        public virtual void AddElement(int index, object value) => throw new NotImplementedException();
+        public virtual void AddElement(string key, object value) => throw new NotImplementedException();
         public virtual void RemoveElement(int index) => throw new NotImplementedException();
         public virtual void RemoveElement(string key) => throw new NotImplementedException();
     }

@@ -64,13 +64,13 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			ClassInfoInitialized = true;
 		}
 		
-		public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.Value GetProperty(string propertyName)
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				{% for property_name in info.properties if not (info.properties[property_name].is_accessor_property() and info.properties[property_name].is_collection_property()) -%}
 				case "{{ info.properties[property_name].name }}":
-					return new Fox.Core.Value({%- if info.properties[property_name].container == "StringMap" -%}(Fox.IStringMap){%- endif -%}{{ info.properties[property_name].get_safe_name() }});
+					return {% if info.properties[property_name].container == "StringMap" -%}(Fox.IStringMap){%- endif -%}{{ info.properties[property_name].get_safe_name() }};
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
@@ -81,13 +81,13 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			}
 		}
 
-		public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				{% for property_name in info.get_array_properties() -%}
 				case "{{ info.properties[property_name].name }}":
-					return new Fox.Core.Value({%- if info.properties[property_name].is_accessor_property() -%}{{ property_name }}_Get(index){%- else -%}this.{{ info.properties[property_name].get_safe_name() }}[index]{%- endif -%});
+					return {% if info.properties[property_name].is_accessor_property() -%}{{ property_name }}_Get(index){%- else -%}this.{{ info.properties[property_name].get_safe_name() }}[index]{%- endif -%};
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
@@ -98,13 +98,13 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			}
 		}
 
-		public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				{% for property_name in info.get_string_map_properties() -%}
 				case "{{ info.properties[property_name].name }}":
-					return new Fox.Core.Value({%- if info.properties[property_name].is_accessor_property() -%}{{ property_name }}_Get(key){%- else -%}this.{{ info.properties[property_name].get_safe_name() }}[key]{%- endif -%});
+					return {% if info.properties[property_name].is_accessor_property() -%}{{ property_name }}_Get(key){%- else -%}this.{{ info.properties[property_name].get_safe_name() }}[key]{%- endif -%};
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
@@ -115,7 +115,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			}
 		}
 
-		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetProperty(string propertyName, Fox.Core.Value value)
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -133,7 +133,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			}
 		}
 
-		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -160,7 +160,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			}
 		}
 
-		public {% if info.is_root() %}virtual{% else %}override{% endif %} void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -188,7 +188,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			}
 		}
 
-		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -214,7 +214,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			}
 		}
 
-		public {% if info.is_root() %}virtual{% else %}override{% endif %} void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -21,16 +21,16 @@ namespace Fox.Core
             SerializedField = newList;
         }
 
-        public override Value GetValue() => new Value(SerializedField);
-        public override Value GetElement(int index) => new Value(SerializedField[index]);
+        public override object GetValue() => SerializedField;
+        public override object GetElement(int index) => SerializedField[index];
 
-        public override void SetElement(int index, Value value) => SerializedField[index] = value.GetValueAsUInt32();
+        public override void SetElement(int index, object value) => SerializedField[index] = (uint)value;
 
-        public override void AddElement(int index, Value value)
+        public override void AddElement(int index, object value)
         {
             if (index >= SerializedField.LongLength)
                 ChangeStaticArraySize((uint)index + 1);
-            SerializedField[index] = value.GetValueAsUInt32();
+            SerializedField[index] = (uint)value;
         }
     }
 }

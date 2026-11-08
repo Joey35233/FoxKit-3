@@ -11,10 +11,10 @@ namespace Fox.Core
         internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.StringMap;
         internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.EntityLink, 0, container: GetContainerType());
         
-        public override Value GetValue() => new Value(SerializedField as IStringMap);
-        public override Value GetElement(string key) => new Value(SerializedField[key]);
+        public override object GetValue() => SerializedField as IStringMap;
+        public override object GetElement(string key) => SerializedField[key];
 
-        public override void SetElement(string key, Value value) => SerializedField[key] = value.GetValueAsEntityLink();
+        public override void SetElement(string key, object value) => SerializedField[key] = (EntityLink)value;
         public override void RemoveElement(string key) => SerializedField.Remove(key);
     }
 }

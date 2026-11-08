@@ -170,7 +170,7 @@ class PropertyInfo:
 		return f'new List<{value_type_string}>()'
 
 	def get_value_getter_type_string(self):
-		"""Gets the type string to use with Value.GetValueAs...
+		"""Gets the PropertyType name string for this property's data type.
 		
 		Returns:
 				The type name string.
@@ -179,25 +179,14 @@ class PropertyInfo:
 		return self.get_value_data_type_strings[self.data_type]
 
 	def get_value_extraction_string(self):
-		"""Gets the string to use to extract a value from Value.GetValueAs...
+		"""Gets the string to use to extract a value from a boxed object.
 		
 		Returns:
 				The value extraction string.
 
 		"""
 
-		cast_string = ""
-		if self.enum_type:
-			cast_string = f'({self.enum_type})'
-
-		if self.data_type == "EntityPtr":
-			ptr_definition = self.definitions[self.ptr_type]
-			root_namespace = ptr_definition.get_root_namespace()
-			ptr_namespace = ptr_definition.get_namespace_without_prefix()
-			ptr_string = f'{root_namespace}.{ptr_namespace}.{self.ptr_type}'
-
-			return f'value.GetValueAsEntityPtr<{ptr_string}>()'
-		return f'{cast_string}value.GetValueAs{self.get_value_getter_type_string()}()'
+		return f'({self.get_value_type_string()})value'
 
 	def is_hiding_existing(self):
 		"""UnityEngine.MonoBehaviours redefine multiple properties used by Fox including `name`, `transform`, etc."""
