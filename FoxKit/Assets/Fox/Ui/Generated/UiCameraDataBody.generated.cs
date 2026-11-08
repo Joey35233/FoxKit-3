@@ -13,7 +13,7 @@ using Fox;
 
 namespace Fox.Ui
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("UiScene/UiCameraDataBody")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ui/UiCameraDataBody")]
 	public partial class UiCameraDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

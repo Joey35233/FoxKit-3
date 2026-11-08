@@ -13,7 +13,7 @@ using Fox;
 
 namespace Fox.Demox
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("EdDemo/DemoRelativePlayParameter")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demox/DemoRelativePlayParameter")]
 	public partial class DemoRelativePlayParameter : Fox.Demo.DemoParameter
 	{
 		// Properties

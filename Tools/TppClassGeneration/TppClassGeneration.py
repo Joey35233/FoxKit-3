@@ -25,7 +25,7 @@ def load_definitions (path, extraPath):
             properties = {}
             for property in entry["properties"]:
                 properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], entry["name"], result, property["accessModifier"], property.get("accessorSetter", False), property.get("accessorWriteModifier"))
-            result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["submodule"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result, entry["subentity"])
+            result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result, entry["subentity"])
             
     with open(extraPath) as json_file:
         data = json.load(json_file)
@@ -39,7 +39,7 @@ def load_definitions (path, extraPath):
                 return {}
 
             else:
-                result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["submodule"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result, entry["subentity"])
+                result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result, entry["subentity"])
 
     return result
 

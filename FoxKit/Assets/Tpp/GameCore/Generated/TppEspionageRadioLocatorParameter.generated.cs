@@ -13,7 +13,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppRadio/TppEspionageRadioLocatorParameter")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppEspionageRadioLocatorParameter")]
 	public partial class TppEspionageRadioLocatorParameter : Fox.Core.DataElement
 	{
 		// Properties
