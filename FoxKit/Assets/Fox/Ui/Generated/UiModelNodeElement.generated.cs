@@ -13,7 +13,7 @@ using Fox;
 
 namespace Fox.Ui
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("UiScene/UiModelNodeElement")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ui/UiModelNodeElement")]
 	public partial class UiModelNodeElement : Fox.Core.DataElement
 	{
 		// Properties

@@ -13,7 +13,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("EdDemo/AvatarPhotoTextureLoadParameter")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/AvatarPhotoTextureLoadParameter")]
 	public partial class AvatarPhotoTextureLoadParameter : Fox.Demo.DemoParameter
 	{
 		// ClassInfos

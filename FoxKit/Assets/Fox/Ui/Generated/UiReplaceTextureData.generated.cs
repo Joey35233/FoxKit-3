@@ -13,7 +13,7 @@ using Fox;
 
 namespace Fox.Ui
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("UiScene/UiReplaceTextureData")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ui/UiReplaceTextureData")]
 	public partial class UiReplaceTextureData : Fox.Core.Data
 	{
 		// Properties

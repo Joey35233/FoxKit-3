@@ -13,7 +13,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppMarkerLocator/TppMarker2LocatorParameter")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppMarker2LocatorParameter")]
 	public partial class TppMarker2LocatorParameter : Fox.Core.DataElement
 	{
 		// Properties

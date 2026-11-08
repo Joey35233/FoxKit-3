@@ -13,7 +13,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("EdDemo/ChildrenIdConvertParameter")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/ChildrenIdConvertParameter")]
 	public partial class ChildrenIdConvertParameter : Fox.Demo.DemoParameter
 	{
 		// Properties

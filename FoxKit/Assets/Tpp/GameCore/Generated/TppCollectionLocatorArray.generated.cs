@@ -13,7 +13,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppCollectible/TppCollectionLocatorArray")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppCollectionLocatorArray")]
 	public partial class TppCollectionLocatorArray : Fox.Core.Data
 	{
 		// Properties

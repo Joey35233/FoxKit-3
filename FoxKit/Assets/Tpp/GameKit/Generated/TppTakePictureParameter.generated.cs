@@ -13,7 +13,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("EdDemo/TppTakePictureParameter")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppTakePictureParameter")]
 	public partial class TppTakePictureParameter : Fox.Demo.DemoParameter
 	{
 		// ClassInfos

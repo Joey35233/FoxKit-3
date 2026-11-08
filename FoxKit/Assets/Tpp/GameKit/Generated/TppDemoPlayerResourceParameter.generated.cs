@@ -13,7 +13,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("EdDemo/TppDemoPlayerResourceParameter")]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppDemoPlayerResourceParameter")]
 	public partial class TppDemoPlayerResourceParameter : Fox.Demo.DemoParameter
 	{
 		// Properties
