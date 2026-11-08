@@ -11,16 +11,16 @@ namespace Fox.Core
         internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.DynamicArray;
         internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.Float, 0, container: GetContainerType());
 
-        public override Value GetValue() => new Value(SerializedField);
-        public override Value GetElement(int index) => new Value(SerializedField[index]);
+        public override object GetValue() => SerializedField;
+        public override object GetElement(int index) => SerializedField[index];
 
-        public override void SetElement(int index, Value value) => SerializedField[index] = value.GetValueAsFloat();
+        public override void SetElement(int index, object value) => SerializedField[index] = (float)value;
 
-        public override void AddElement(int index, Value value)
+        public override void AddElement(int index, object value)
         {
             while (SerializedField.Count <= index)
                 SerializedField.Add(default);
-            SerializedField[index] = value.GetValueAsFloat();
+            SerializedField[index] = (float)value;
         }
 
         public override void RemoveElement(int index) => SerializedField.RemoveAt(index);

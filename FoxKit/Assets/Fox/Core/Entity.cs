@@ -120,13 +120,13 @@ namespace Fox.Core
                 switch (property.Type)
                 {
                     case PropertyInfo.PropertyType.EntityPtr:
-                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityPtr<Entity>(), alreadyCollectedEntities);
+                        CollectReferencedEntity((Entity)GetProperty(property.Name), alreadyCollectedEntities);
                         break;
                     case PropertyInfo.PropertyType.EntityHandle:
-                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityHandle(), alreadyCollectedEntities);
+                        CollectReferencedEntity((Entity)GetProperty(property.Name), alreadyCollectedEntities);
                         break;
                     case PropertyInfo.PropertyType.EntityLink:
-                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityLink().handle, alreadyCollectedEntities);
+                        CollectReferencedEntity(((EntityLink)GetProperty(property.Name)).handle, alreadyCollectedEntities);
                         break;
                 }
 
@@ -134,7 +134,7 @@ namespace Fox.Core
             }
             else if (property.Container == PropertyInfo.ContainerType.StringMap)
             {
-                IStringMap list = GetProperty(property.Name).GetValueAsIStringMap();
+                IStringMap list = (IStringMap)GetProperty(property.Name);
                 foreach (KeyValuePair<string, object> item in list.ToList())
                 {
                     switch (property.Type)
@@ -153,7 +153,7 @@ namespace Fox.Core
             }
             else
             {
-                var list = GetProperty(property.Name).GetValueAsIList();
+                var list = (IList)GetProperty(property.Name);
                 foreach (object item in list)
                 {
                     switch (property.Type)

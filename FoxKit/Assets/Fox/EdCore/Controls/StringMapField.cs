@@ -139,12 +139,12 @@ namespace Fox.EdCore
             if (target is Entity targetEntity)
             {
                 var propertyTest = targetEntity.GetProperty(PropertyInfo.Name);
-                var propertyList = propertyTest.GetValueAsStringMap<T>();
+                var propertyList = propertyTest as StringMap<T>;
                 ListViewInput.itemsSource = propertyList as IList;
             }
             else if (target is DynamicProperty targetDynamicProperty)
             {
-                var propertyList = targetDynamicProperty.GetValue().GetValueAsStringMap<T>();
+                var propertyList = targetDynamicProperty.GetValue() as StringMap<T>;
                 ListViewInput.itemsSource = propertyList as IList;
             }
             ListViewInput.Rebuild(); 

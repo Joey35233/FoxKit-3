@@ -173,7 +173,7 @@ namespace Fox.Core
         {
             List<KeyValuePair<string, object>> list = exportContext.OverridesProperty(property.Name)
                    ? ((IStringMap)exportContext.GetOverriddenProperty(property.Name)).ToList()
-                   : entity.GetProperty(property.Name).GetValueAsIStringMap().ToList();
+                   : ((IStringMap)entity.GetProperty(property.Name)).ToList();
 
             int skippedKeyCount = 0;
             foreach (KeyValuePair<string, object> item in list)
@@ -198,7 +198,7 @@ namespace Fox.Core
         {
             IList list = exportContext.OverridesProperty(property.Name)
                    ? (IList)exportContext.GetOverriddenProperty(property.Name)
-                   : entity.GetProperty(property.Name).GetValueAsIList();
+                   : (IList)entity.GetProperty(property.Name);
 
             foreach (object item in list)
             {
@@ -334,7 +334,7 @@ namespace Fox.Core
         {
             object value = exportContext.OverridesProperty(property.Name)
                 ? exportContext.GetOverriddenProperty(property.Name)
-                : entity.GetProperty(property.Name).GetValueAsBoxedObject();
+                : entity.GetProperty(property.Name);
 
             WritePropertyItem(value, property.Type, writer);
         }
