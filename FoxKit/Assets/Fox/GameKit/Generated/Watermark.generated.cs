@@ -71,32 +71,32 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "isVisible":
-					return new Fox.Core.Value(isVisible);
+					return isVisible;
 				case "standard":
-					return new Fox.Core.Value(standard);
+					return standard;
 				case "offsetX":
-					return new Fox.Core.Value(offsetX);
+					return offsetX;
 				case "offsetY":
-					return new Fox.Core.Value(offsetY);
+					return offsetY;
 				case "textureScaleX":
-					return new Fox.Core.Value(textureScaleX);
+					return textureScaleX;
 				case "textureScaleY":
-					return new Fox.Core.Value(textureScaleY);
+					return textureScaleY;
 				case "alphaBlend":
-					return new Fox.Core.Value(alphaBlend);
+					return alphaBlend;
 				case "texturePath":
-					return new Fox.Core.Value(texturePath);
+					return texturePath;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -105,7 +105,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -114,33 +114,33 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "isVisible":
-					this.isVisible = value.GetValueAsBool();
+					this.isVisible = (bool)value;
 					return;
 				case "standard":
-					this.standard = (Watermark_StandardMode)value.GetValueAsInt32();
+					this.standard = (Watermark_StandardMode)value;
 					return;
 				case "offsetX":
-					this.offsetX = value.GetValueAsFloat();
+					this.offsetX = (float)value;
 					return;
 				case "offsetY":
-					this.offsetY = value.GetValueAsFloat();
+					this.offsetY = (float)value;
 					return;
 				case "textureScaleX":
-					this.textureScaleX = value.GetValueAsFloat();
+					this.textureScaleX = (float)value;
 					return;
 				case "textureScaleY":
-					this.textureScaleY = value.GetValueAsFloat();
+					this.textureScaleY = (float)value;
 					return;
 				case "alphaBlend":
-					this.alphaBlend = value.GetValueAsFloat();
+					this.alphaBlend = (float)value;
 					return;
 				case "texturePath":
-					this.texturePath = value.GetValueAsPath();
+					this.texturePath = (Fox.Path)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -148,7 +148,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -158,7 +158,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -168,7 +168,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -178,7 +178,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

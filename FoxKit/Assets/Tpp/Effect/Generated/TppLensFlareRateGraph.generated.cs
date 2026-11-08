@@ -83,38 +83,38 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "value0_0":
-					return new Fox.Core.Value(value0_0);
+					return value0_0;
 				case "value0_1":
-					return new Fox.Core.Value(value0_1);
+					return value0_1;
 				case "value0_2":
-					return new Fox.Core.Value(value0_2);
+					return value0_2;
 				case "value0_3":
-					return new Fox.Core.Value(value0_3);
+					return value0_3;
 				case "value0_4":
-					return new Fox.Core.Value(value0_4);
+					return value0_4;
 				case "value0_5":
-					return new Fox.Core.Value(value0_5);
+					return value0_5;
 				case "value0_6":
-					return new Fox.Core.Value(value0_6);
+					return value0_6;
 				case "value0_7":
-					return new Fox.Core.Value(value0_7);
+					return value0_7;
 				case "value0_8":
-					return new Fox.Core.Value(value0_8);
+					return value0_8;
 				case "value0_9":
-					return new Fox.Core.Value(value0_9);
+					return value0_9;
 				case "value1_0":
-					return new Fox.Core.Value(value1_0);
+					return value1_0;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -123,7 +123,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -132,42 +132,42 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "value0_0":
-					this.value0_0 = value.GetValueAsFloat();
+					this.value0_0 = (float)value;
 					return;
 				case "value0_1":
-					this.value0_1 = value.GetValueAsFloat();
+					this.value0_1 = (float)value;
 					return;
 				case "value0_2":
-					this.value0_2 = value.GetValueAsFloat();
+					this.value0_2 = (float)value;
 					return;
 				case "value0_3":
-					this.value0_3 = value.GetValueAsFloat();
+					this.value0_3 = (float)value;
 					return;
 				case "value0_4":
-					this.value0_4 = value.GetValueAsFloat();
+					this.value0_4 = (float)value;
 					return;
 				case "value0_5":
-					this.value0_5 = value.GetValueAsFloat();
+					this.value0_5 = (float)value;
 					return;
 				case "value0_6":
-					this.value0_6 = value.GetValueAsFloat();
+					this.value0_6 = (float)value;
 					return;
 				case "value0_7":
-					this.value0_7 = value.GetValueAsFloat();
+					this.value0_7 = (float)value;
 					return;
 				case "value0_8":
-					this.value0_8 = value.GetValueAsFloat();
+					this.value0_8 = (float)value;
 					return;
 				case "value0_9":
-					this.value0_9 = value.GetValueAsFloat();
+					this.value0_9 = (float)value;
 					return;
 				case "value1_0":
-					this.value1_0 = value.GetValueAsFloat();
+					this.value1_0 = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -175,7 +175,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -185,7 +185,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -195,7 +195,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -205,7 +205,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

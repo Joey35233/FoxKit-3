@@ -55,35 +55,35 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "targetShapes":
-					return new Fox.Core.Value(targetShapes);
+					return targetShapes;
 				case "environmentType":
-					return new Fox.Core.Value(environmentType);
+					return environmentType;
 				case "environmentTypeString":
-					return new Fox.Core.Value(environmentTypeString);
+					return environmentTypeString;
 				case "offenseName":
-					return new Fox.Core.Value(offenseName);
+					return offenseName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "targetShapes":
-					return new Fox.Core.Value(this.targetShapes[index]);
+					return this.targetShapes[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -92,18 +92,18 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "environmentType":
-					this.environmentType = (TppTrapEnvironmentType)value.GetValueAsInt32();
+					this.environmentType = (TppTrapEnvironmentType)value;
 					return;
 				case "environmentTypeString":
-					this.environmentTypeString = value.GetValueAsString();
+					this.environmentTypeString = (string)value;
 					return;
 				case "offenseName":
-					this.offenseName = value.GetValueAsString();
+					this.offenseName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,12 +111,12 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "targetShapes":
-					this.targetShapes[index] = value.GetValueAsEntityLink();
+					this.targetShapes[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -124,13 +124,13 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "targetShapes":
 					while(this.targetShapes.Count <= index) { this.targetShapes.Add(default(Fox.Core.EntityLink)); }
-					this.targetShapes[index] = value.GetValueAsEntityLink();
+					this.targetShapes[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -138,7 +138,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -148,7 +148,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

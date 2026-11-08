@@ -79,47 +79,47 @@ namespace Fox.Demox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "demoIdentifierName":
-					return new Fox.Core.Value(demoIdentifierName);
+					return demoIdentifierName;
 				case "demoIdentifierKey":
-					return new Fox.Core.Value(demoIdentifierKey);
+					return demoIdentifierKey;
 				case "streamBufferSizeInKbytes":
-					return new Fox.Core.Value(streamBufferSizeInKbytes);
+					return streamBufferSizeInKbytes;
 				case "systemPacketSizeInKbytes":
-					return new Fox.Core.Value(systemPacketSizeInKbytes);
+					return systemPacketSizeInKbytes;
 				case "systemPacketNum":
-					return new Fox.Core.Value(systemPacketNum);
+					return systemPacketNum;
 				case "soundPacketSizeInKbytes":
-					return new Fox.Core.Value(soundPacketSizeInKbytes);
+					return soundPacketSizeInKbytes;
 				case "soundPacketNum":
-					return new Fox.Core.Value(soundPacketNum);
+					return soundPacketNum;
 				case "demoPacketSizeInKbytes":
-					return new Fox.Core.Value(demoPacketSizeInKbytes);
+					return demoPacketSizeInKbytes;
 				case "demoPacketNum":
-					return new Fox.Core.Value(demoPacketNum);
+					return demoPacketNum;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "demoIdentifierKey":
-					return new Fox.Core.Value(this.demoIdentifierKey[index]);
+					return this.demoIdentifierKey[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -128,36 +128,36 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "demoIdentifierName":
-					this.demoIdentifierName = value.GetValueAsString();
+					this.demoIdentifierName = (string)value;
 					return;
 				case "streamBufferSizeInKbytes":
-					this.streamBufferSizeInKbytes = value.GetValueAsUInt32();
+					this.streamBufferSizeInKbytes = (uint)value;
 					return;
 				case "systemPacketSizeInKbytes":
-					this.systemPacketSizeInKbytes = value.GetValueAsUInt32();
+					this.systemPacketSizeInKbytes = (uint)value;
 					return;
 				case "systemPacketNum":
-					this.systemPacketNum = value.GetValueAsUInt32();
+					this.systemPacketNum = (uint)value;
 					return;
 				case "soundPacketSizeInKbytes":
-					this.soundPacketSizeInKbytes = value.GetValueAsUInt32();
+					this.soundPacketSizeInKbytes = (uint)value;
 					return;
 				case "soundPacketNum":
-					this.soundPacketNum = value.GetValueAsUInt32();
+					this.soundPacketNum = (uint)value;
 					return;
 				case "demoPacketSizeInKbytes":
-					this.demoPacketSizeInKbytes = value.GetValueAsUInt32();
+					this.demoPacketSizeInKbytes = (uint)value;
 					return;
 				case "demoPacketNum":
-					this.demoPacketNum = value.GetValueAsUInt32();
+					this.demoPacketNum = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -165,12 +165,12 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "demoIdentifierKey":
-					this.demoIdentifierKey[index] = value.GetValueAsString();
+					this.demoIdentifierKey[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -178,13 +178,13 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "demoIdentifierKey":
 					while(this.demoIdentifierKey.Count <= index) { this.demoIdentifierKey.Add(default(string)); }
-					this.demoIdentifierKey[index] = value.GetValueAsString();
+					this.demoIdentifierKey[index] = (string)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -192,7 +192,7 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -202,7 +202,7 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

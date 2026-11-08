@@ -55,24 +55,24 @@ namespace Fox.Sim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "defaultViewPort":
-					return new Fox.Core.Value(defaultViewPort);
+					return defaultViewPort;
 				case "maxActiveClothNum":
-					return new Fox.Core.Value(maxActiveClothNum);
+					return maxActiveClothNum;
 				case "inertialMax":
-					return new Fox.Core.Value(inertialMax);
+					return inertialMax;
 				case "isClothLocked":
-					return new Fox.Core.Value(isClothLocked);
+					return isClothLocked;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -81,7 +81,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,21 +90,21 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "defaultViewPort":
-					this.defaultViewPort = value.GetValueAsString();
+					this.defaultViewPort = (string)value;
 					return;
 				case "maxActiveClothNum":
-					this.maxActiveClothNum = value.GetValueAsInt32();
+					this.maxActiveClothNum = (int)value;
 					return;
 				case "inertialMax":
-					this.inertialMax = value.GetValueAsFloat();
+					this.inertialMax = (float)value;
 					return;
 				case "isClothLocked":
-					this.isClothLocked = value.GetValueAsBool();
+					this.isClothLocked = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -112,7 +112,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -132,7 +132,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -142,7 +142,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

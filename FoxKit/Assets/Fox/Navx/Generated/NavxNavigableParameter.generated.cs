@@ -71,32 +71,32 @@ namespace Fox.Navx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "name":
-					return new Fox.Core.Value(name);
+					return name;
 				case "isDefault":
-					return new Fox.Core.Value(isDefault);
+					return isDefault;
 				case "radius":
-					return new Fox.Core.Value(radius);
+					return radius;
 				case "simplificationThreshold":
-					return new Fox.Core.Value(simplificationThreshold);
+					return simplificationThreshold;
 				case "height":
-					return new Fox.Core.Value(height);
+					return height;
 				case "maxClimbableAngle":
-					return new Fox.Core.Value(maxClimbableAngle);
+					return maxClimbableAngle;
 				case "maxStepSize":
-					return new Fox.Core.Value(maxStepSize);
+					return maxStepSize;
 				case "minArea":
-					return new Fox.Core.Value(minArea);
+					return minArea;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -105,7 +105,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -114,33 +114,33 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "name":
-					this.name = value.GetValueAsString();
+					this.name = (string)value;
 					return;
 				case "isDefault":
-					this.isDefault = value.GetValueAsBool();
+					this.isDefault = (bool)value;
 					return;
 				case "radius":
-					this.radius = value.GetValueAsFloat();
+					this.radius = (float)value;
 					return;
 				case "simplificationThreshold":
-					this.simplificationThreshold = value.GetValueAsFloat();
+					this.simplificationThreshold = (float)value;
 					return;
 				case "height":
-					this.height = value.GetValueAsFloat();
+					this.height = (float)value;
 					return;
 				case "maxClimbableAngle":
-					this.maxClimbableAngle = value.GetValueAsFloat();
+					this.maxClimbableAngle = (float)value;
 					return;
 				case "maxStepSize":
-					this.maxStepSize = value.GetValueAsFloat();
+					this.maxStepSize = (float)value;
 					return;
 				case "minArea":
-					this.minArea = value.GetValueAsFloat();
+					this.minArea = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -148,7 +148,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -158,7 +158,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -168,7 +168,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -178,7 +178,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

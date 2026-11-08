@@ -51,35 +51,35 @@ namespace Fox.Ui
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "inputEdges":
-					return new Fox.Core.Value(inputEdges);
+					return inputEdges;
 				case "outputEdges":
-					return new Fox.Core.Value(outputEdges);
+					return outputEdges;
 				case "uigName":
-					return new Fox.Core.Value(uigName);
+					return uigName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "inputEdges":
-					return new Fox.Core.Value(this.inputEdges[index]);
+					return this.inputEdges[index];
 				case "outputEdges":
-					return new Fox.Core.Value(this.outputEdges[index]);
+					return this.outputEdges[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -88,12 +88,12 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "uigName":
-					this.uigName = value.GetValueAsPath();
+					this.uigName = (Fox.Path)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -101,15 +101,15 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "inputEdges":
-					this.inputEdges[index] = value.GetValueAsEntityHandle();
+					this.inputEdges[index] = (Fox.Core.Entity)value;
 					return;
 				case "outputEdges":
-					this.outputEdges[index] = value.GetValueAsEntityHandle();
+					this.outputEdges[index] = (Fox.Core.Entity)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -117,17 +117,17 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "inputEdges":
 					while(this.inputEdges.Count <= index) { this.inputEdges.Add(default(Fox.Core.Entity)); }
-					this.inputEdges[index] = value.GetValueAsEntityHandle();
+					this.inputEdges[index] = (Fox.Core.Entity)value;
 					return;
 				case "outputEdges":
 					while(this.outputEdges.Count <= index) { this.outputEdges.Add(default(Fox.Core.Entity)); }
-					this.outputEdges[index] = value.GetValueAsEntityHandle();
+					this.outputEdges[index] = (Fox.Core.Entity)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -135,7 +135,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -145,7 +145,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

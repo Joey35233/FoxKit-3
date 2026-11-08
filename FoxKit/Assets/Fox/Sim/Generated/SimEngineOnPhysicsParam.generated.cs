@@ -55,24 +55,24 @@ namespace Fox.Sim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "isEnableGeoCheck":
-					return new Fox.Core.Value(isEnableGeoCheck);
+					return isEnableGeoCheck;
 				case "convertMoveToWind":
-					return new Fox.Core.Value(convertMoveToWind);
+					return convertMoveToWind;
 				case "minLodLevel":
-					return new Fox.Core.Value(minLodLevel);
+					return minLodLevel;
 				case "maxLodLevel":
-					return new Fox.Core.Value(maxLodLevel);
+					return maxLodLevel;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -81,7 +81,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,21 +90,21 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "isEnableGeoCheck":
-					this.isEnableGeoCheck = value.GetValueAsBool();
+					this.isEnableGeoCheck = (bool)value;
 					return;
 				case "convertMoveToWind":
-					this.convertMoveToWind = value.GetValueAsBool();
+					this.convertMoveToWind = (bool)value;
 					return;
 				case "minLodLevel":
-					this.minLodLevel = (SimLodLevelName)value.GetValueAsInt32();
+					this.minLodLevel = (SimLodLevelName)value;
 					return;
 				case "maxLodLevel":
-					this.maxLodLevel = (SimLodLevelName)value.GetValueAsInt32();
+					this.maxLodLevel = (SimLodLevelName)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -112,7 +112,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -132,7 +132,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -142,7 +142,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

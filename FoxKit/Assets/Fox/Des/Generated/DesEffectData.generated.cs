@@ -67,30 +67,30 @@ namespace Fox.Des
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "effectFilePath":
-					return new Fox.Core.Value(effectFilePath);
+					return effectFilePath;
 				case "effectName":
-					return new Fox.Core.Value(effectName);
+					return effectName;
 				case "setModelName":
-					return new Fox.Core.Value(setModelName);
+					return setModelName;
 				case "connectPointFilePath":
-					return new Fox.Core.Value(connectPointFilePath);
+					return connectPointFilePath;
 				case "connectPointName":
-					return new Fox.Core.Value(connectPointName);
+					return connectPointName;
 				case "effectFlag":
-					return new Fox.Core.Value(effectFlag);
+					return effectFlag;
 				case "randomSeed":
-					return new Fox.Core.Value(randomSeed);
+					return randomSeed;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -99,7 +99,7 @@ namespace Fox.Des
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -108,30 +108,30 @@ namespace Fox.Des
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "effectFilePath":
-					this.effectFilePath = value.GetValueAsPath();
+					this.effectFilePath = (Fox.Path)value;
 					return;
 				case "effectName":
-					this.effectName = value.GetValueAsString();
+					this.effectName = (string)value;
 					return;
 				case "setModelName":
-					this.setModelName = value.GetValueAsString();
+					this.setModelName = (string)value;
 					return;
 				case "connectPointFilePath":
-					this.connectPointFilePath = value.GetValueAsPath();
+					this.connectPointFilePath = (Fox.Path)value;
 					return;
 				case "connectPointName":
-					this.connectPointName = value.GetValueAsString();
+					this.connectPointName = (string)value;
 					return;
 				case "effectFlag":
-					this.effectFlag = (DesEffectDataDesEffectFlag)value.GetValueAsUInt32();
+					this.effectFlag = (DesEffectDataDesEffectFlag)value;
 					return;
 				case "randomSeed":
-					this.randomSeed = value.GetValueAsUInt32();
+					this.randomSeed = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -139,7 +139,7 @@ namespace Fox.Des
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -149,7 +149,7 @@ namespace Fox.Des
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -159,7 +159,7 @@ namespace Fox.Des
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -169,7 +169,7 @@ namespace Fox.Des
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

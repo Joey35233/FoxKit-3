@@ -51,37 +51,37 @@ namespace Fox.Ph
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "bodies":
-					return new Fox.Core.Value(bodies);
+					return bodies;
 				case "constraints":
-					return new Fox.Core.Value(constraints);
+					return constraints;
 				case "bodyIndices":
-					return new Fox.Core.Value(bodyIndices);
+					return bodyIndices;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "bodies":
-					return new Fox.Core.Value(this.bodies[index]);
+					return this.bodies[index];
 				case "constraints":
-					return new Fox.Core.Value(this.constraints[index]);
+					return this.constraints[index];
 				case "bodyIndices":
-					return new Fox.Core.Value(this.bodyIndices[index]);
+					return this.bodyIndices[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,7 +90,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -100,18 +100,18 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "bodies":
-					this.bodies[index] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					this.bodies[index] = (Fox.Core.Entity)value;
 					return;
 				case "constraints":
-					this.constraints[index] = value.GetValueAsEntityPtr<Fox.Ph.PhConstraintParam>();
+					this.constraints[index] = (Fox.Ph.PhConstraintParam)value;
 					return;
 				case "bodyIndices":
-					this.bodyIndices[index] = value.GetValueAsInt32();
+					this.bodyIndices[index] = (int)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -119,21 +119,21 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "bodies":
 					while(this.bodies.Count <= index) { this.bodies.Add(default(Fox.Core.Entity)); }
-					this.bodies[index] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					this.bodies[index] = (Fox.Core.Entity)value;
 					return;
 				case "constraints":
 					while(this.constraints.Count <= index) { this.constraints.Add(default(Fox.Ph.PhConstraintParam)); }
-					this.constraints[index] = value.GetValueAsEntityPtr<Fox.Ph.PhConstraintParam>();
+					this.constraints[index] = (Fox.Ph.PhConstraintParam)value;
 					return;
 				case "bodyIndices":
 					while(this.bodyIndices.Count <= index) { this.bodyIndices.Add(default(int)); }
-					this.bodyIndices[index] = value.GetValueAsInt32();
+					this.bodyIndices[index] = (int)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -141,7 +141,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

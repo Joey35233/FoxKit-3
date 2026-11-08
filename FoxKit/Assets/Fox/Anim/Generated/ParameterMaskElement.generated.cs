@@ -47,31 +47,31 @@ namespace Fox.Anim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "unitNameList":
-					return new Fox.Core.Value(unitNameList);
+					return unitNameList;
 				case "nodeName":
-					return new Fox.Core.Value(nodeName);
+					return nodeName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "unitNameList":
-					return new Fox.Core.Value(this.unitNameList[index]);
+					return this.unitNameList[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -80,12 +80,12 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "nodeName":
-					this.nodeName = value.GetValueAsString();
+					this.nodeName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -93,12 +93,12 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "unitNameList":
-					this.unitNameList[index] = value.GetValueAsString();
+					this.unitNameList[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -106,13 +106,13 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "unitNameList":
 					while(this.unitNameList.Count <= index) { this.unitNameList.Add(default(string)); }
-					this.unitNameList[index] = value.GetValueAsString();
+					this.unitNameList[index] = (string)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -120,7 +120,7 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -130,7 +130,7 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

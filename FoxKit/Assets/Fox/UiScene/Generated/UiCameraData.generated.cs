@@ -79,36 +79,36 @@ namespace Fox.UiScene
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "cameraName":
-					return new Fox.Core.Value(cameraName);
+					return cameraName;
 				case "translate":
-					return new Fox.Core.Value(translate);
+					return translate;
 				case "rotate":
-					return new Fox.Core.Value(rotate);
+					return rotate;
 				case "useOrtho":
-					return new Fox.Core.Value(useOrtho);
+					return useOrtho;
 				case "orthoHeight":
-					return new Fox.Core.Value(orthoHeight);
+					return orthoHeight;
 				case "nearClip":
-					return new Fox.Core.Value(nearClip);
+					return nearClip;
 				case "farClip":
-					return new Fox.Core.Value(farClip);
+					return farClip;
 				case "fov":
-					return new Fox.Core.Value(fov);
+					return fov;
 				case "fovType":
-					return new Fox.Core.Value(fovType);
+					return fovType;
 				case "debug":
-					return new Fox.Core.Value(debug);
+					return debug;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -117,7 +117,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -126,39 +126,39 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "cameraName":
-					this.cameraName = value.GetValueAsString();
+					this.cameraName = (string)value;
 					return;
 				case "translate":
-					this.translate = value.GetValueAsVector3();
+					this.translate = (UnityEngine.Vector3)value;
 					return;
 				case "rotate":
-					this.rotate = value.GetValueAsQuat();
+					this.rotate = (UnityEngine.Quaternion)value;
 					return;
 				case "useOrtho":
-					this.useOrtho = value.GetValueAsBool();
+					this.useOrtho = (bool)value;
 					return;
 				case "orthoHeight":
-					this.orthoHeight = value.GetValueAsFloat();
+					this.orthoHeight = (float)value;
 					return;
 				case "nearClip":
-					this.nearClip = value.GetValueAsFloat();
+					this.nearClip = (float)value;
 					return;
 				case "farClip":
-					this.farClip = value.GetValueAsFloat();
+					this.farClip = (float)value;
 					return;
 				case "fov":
-					this.fov = value.GetValueAsFloat();
+					this.fov = (float)value;
 					return;
 				case "fovType":
-					this.fovType = (UiCameraDataFov)value.GetValueAsInt32();
+					this.fovType = (UiCameraDataFov)value;
 					return;
 				case "debug":
-					this.debug = (UiCameraDataFlag)value.GetValueAsUInt32();
+					this.debug = (UiCameraDataFlag)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -166,7 +166,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -176,7 +176,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -186,7 +186,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -196,7 +196,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

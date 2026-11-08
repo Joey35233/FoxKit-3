@@ -51,33 +51,33 @@ namespace Fox.GameService
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "id":
-					return new Fox.Core.Value(id);
+					return id;
 				case "aimPoint":
-					return new Fox.Core.Value(aimPoint);
+					return aimPoint;
 				case "extensions":
-					return new Fox.Core.Value(extensions);
+					return extensions;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "extensions":
-					return new Fox.Core.Value(this.extensions[index]);
+					return this.extensions[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -86,15 +86,15 @@ namespace Fox.GameService
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "id":
-					this.id = value.GetValueAsString();
+					this.id = (string)value;
 					return;
 				case "aimPoint":
-					this.aimPoint = value.GetValueAsEntityPtr<Fox.GameService.GsRouteDataEventAimPoint>();
+					this.aimPoint = (Fox.GameService.GsRouteDataEventAimPoint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -102,12 +102,12 @@ namespace Fox.GameService
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "extensions":
-					this.extensions[index] = value.GetValueAsUInt32();
+					this.extensions[index] = (uint)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -115,7 +115,7 @@ namespace Fox.GameService
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -125,7 +125,7 @@ namespace Fox.GameService
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -135,7 +135,7 @@ namespace Fox.GameService
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

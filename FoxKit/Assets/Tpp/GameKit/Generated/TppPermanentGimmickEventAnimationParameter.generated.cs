@@ -55,24 +55,24 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "flag1":
-					return new Fox.Core.Value(flag1);
+					return flag1;
 				case "defaultAnimPath":
-					return new Fox.Core.Value(defaultAnimPath);
+					return defaultAnimPath;
 				case "eventAnimPath":
-					return new Fox.Core.Value(eventAnimPath);
+					return eventAnimPath;
 				case "fadeTime":
-					return new Fox.Core.Value(fadeTime);
+					return fadeTime;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -81,7 +81,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,21 +90,21 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "flag1":
-					this.flag1 = value.GetValueAsUInt32();
+					this.flag1 = (uint)value;
 					return;
 				case "defaultAnimPath":
-					this.defaultAnimPath = value.GetValueAsPath();
+					this.defaultAnimPath = (Fox.Path)value;
 					return;
 				case "eventAnimPath":
-					this.eventAnimPath = value.GetValueAsPath();
+					this.eventAnimPath = (Fox.Path)value;
 					return;
 				case "fadeTime":
-					this.fadeTime = value.GetValueAsFloat();
+					this.fadeTime = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -112,7 +112,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -132,7 +132,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -142,7 +142,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

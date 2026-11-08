@@ -67,30 +67,30 @@ namespace Fox.Navx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "sceneName":
-					return new Fox.Core.Value(sceneName);
+					return sceneName;
 				case "worldName":
-					return new Fox.Core.Value(worldName);
+					return worldName;
 				case "convexThreshold":
-					return new Fox.Core.Value(convexThreshold);
+					return convexThreshold;
 				case "obbExpandThreshold":
-					return new Fox.Core.Value(obbExpandThreshold);
+					return obbExpandThreshold;
 				case "obbToAabbThreshold":
-					return new Fox.Core.Value(obbToAabbThreshold);
+					return obbToAabbThreshold;
 				case "smoothingThreshold":
-					return new Fox.Core.Value(smoothingThreshold);
+					return smoothingThreshold;
 				case "isNotClosePassage":
-					return new Fox.Core.Value(isNotClosePassage);
+					return isNotClosePassage;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -99,7 +99,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -108,30 +108,30 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "sceneName":
-					this.sceneName = value.GetValueAsString();
+					this.sceneName = (string)value;
 					return;
 				case "worldName":
-					this.worldName = value.GetValueAsString();
+					this.worldName = (string)value;
 					return;
 				case "convexThreshold":
-					this.convexThreshold = value.GetValueAsFloat();
+					this.convexThreshold = (float)value;
 					return;
 				case "obbExpandThreshold":
-					this.obbExpandThreshold = value.GetValueAsFloat();
+					this.obbExpandThreshold = (float)value;
 					return;
 				case "obbToAabbThreshold":
-					this.obbToAabbThreshold = value.GetValueAsFloat();
+					this.obbToAabbThreshold = (float)value;
 					return;
 				case "smoothingThreshold":
-					this.smoothingThreshold = value.GetValueAsFloat();
+					this.smoothingThreshold = (float)value;
 					return;
 				case "isNotClosePassage":
-					this.isNotClosePassage = value.GetValueAsBool();
+					this.isNotClosePassage = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -139,7 +139,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -149,7 +149,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -159,7 +159,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -169,7 +169,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

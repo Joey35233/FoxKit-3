@@ -75,34 +75,34 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "visibility":
-					return new Fox.Core.Value(visibility);
+					return visibility;
 				case "scale":
-					return new Fox.Core.Value(scale);
+					return scale;
 				case "offset":
-					return new Fox.Core.Value(offset);
+					return offset;
 				case "cutScale":
-					return new Fox.Core.Value(cutScale);
+					return cutScale;
 				case "cutOffset":
-					return new Fox.Core.Value(cutOffset);
+					return cutOffset;
 				case "isForceVisible":
-					return new Fox.Core.Value(isForceVisible);
+					return isForceVisible;
 				case "color":
-					return new Fox.Core.Value(color);
+					return color;
 				case "radialSlope":
-					return new Fox.Core.Value(radialSlope);
+					return radialSlope;
 				case "radialShift":
-					return new Fox.Core.Value(radialShift);
+					return radialShift;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -111,7 +111,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -120,36 +120,36 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "visibility":
-					this.visibility = value.GetValueAsBool();
+					this.visibility = (bool)value;
 					return;
 				case "scale":
-					this.scale = value.GetValueAsFloat();
+					this.scale = (float)value;
 					return;
 				case "offset":
-					this.offset = value.GetValueAsFloat();
+					this.offset = (float)value;
 					return;
 				case "cutScale":
-					this.cutScale = value.GetValueAsFloat();
+					this.cutScale = (float)value;
 					return;
 				case "cutOffset":
-					this.cutOffset = value.GetValueAsFloat();
+					this.cutOffset = (float)value;
 					return;
 				case "isForceVisible":
-					this.isForceVisible = value.GetValueAsBool();
+					this.isForceVisible = (bool)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "radialSlope":
-					this.radialSlope = value.GetValueAsFloat();
+					this.radialSlope = (float)value;
 					return;
 				case "radialShift":
-					this.radialShift = value.GetValueAsFloat();
+					this.radialShift = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -157,7 +157,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -167,7 +167,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -177,7 +177,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -187,7 +187,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

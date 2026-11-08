@@ -79,36 +79,36 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "diffulseTexture":
-					return new Fox.Core.Value(diffulseTexture);
+					return diffulseTexture;
 				case "normalTexture":
-					return new Fox.Core.Value(normalTexture);
+					return normalTexture;
 				case "sizeMin":
-					return new Fox.Core.Value(sizeMin);
+					return sizeMin;
 				case "sizeMax":
-					return new Fox.Core.Value(sizeMax);
+					return sizeMax;
 				case "lifeMin":
-					return new Fox.Core.Value(lifeMin);
+					return lifeMin;
 				case "lifeMax":
-					return new Fox.Core.Value(lifeMax);
+					return lifeMax;
 				case "angleAppear":
-					return new Fox.Core.Value(angleAppear);
+					return angleAppear;
 				case "angleMax":
-					return new Fox.Core.Value(angleMax);
+					return angleMax;
 				case "waitMin":
-					return new Fox.Core.Value(waitMin);
+					return waitMin;
 				case "waitMax":
-					return new Fox.Core.Value(waitMax);
+					return waitMax;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -117,7 +117,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -126,39 +126,39 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "diffulseTexture":
-					this.diffulseTexture = value.GetValueAsPath();
+					this.diffulseTexture = (Fox.Path)value;
 					return;
 				case "normalTexture":
-					this.normalTexture = value.GetValueAsPath();
+					this.normalTexture = (Fox.Path)value;
 					return;
 				case "sizeMin":
-					this.sizeMin = value.GetValueAsFloat();
+					this.sizeMin = (float)value;
 					return;
 				case "sizeMax":
-					this.sizeMax = value.GetValueAsFloat();
+					this.sizeMax = (float)value;
 					return;
 				case "lifeMin":
-					this.lifeMin = value.GetValueAsFloat();
+					this.lifeMin = (float)value;
 					return;
 				case "lifeMax":
-					this.lifeMax = value.GetValueAsFloat();
+					this.lifeMax = (float)value;
 					return;
 				case "angleAppear":
-					this.angleAppear = value.GetValueAsFloat();
+					this.angleAppear = (float)value;
 					return;
 				case "angleMax":
-					this.angleMax = value.GetValueAsFloat();
+					this.angleMax = (float)value;
 					return;
 				case "waitMin":
-					this.waitMin = value.GetValueAsFloat();
+					this.waitMin = (float)value;
 					return;
 				case "waitMax":
-					this.waitMax = value.GetValueAsFloat();
+					this.waitMax = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -166,7 +166,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -176,7 +176,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -186,7 +186,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -196,7 +196,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

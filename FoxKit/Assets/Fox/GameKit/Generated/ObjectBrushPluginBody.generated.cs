@@ -59,26 +59,26 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "name":
-					return new Fox.Core.Value(name);
+					return name;
 				case "pluginName":
-					return new Fox.Core.Value(pluginName);
+					return pluginName;
 				case "modelName":
-					return new Fox.Core.Value(modelName);
+					return modelName;
 				case "thumbnailPath":
-					return new Fox.Core.Value(thumbnailPath);
+					return thumbnailPath;
 				case "numObjects":
-					return new Fox.Core.Value(numObjects);
+					return numObjects;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -87,7 +87,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -96,24 +96,24 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "name":
-					this.name = value.GetValueAsString();
+					this.name = (string)value;
 					return;
 				case "pluginName":
-					this.pluginName = value.GetValueAsString();
+					this.pluginName = (string)value;
 					return;
 				case "modelName":
-					this.modelName = value.GetValueAsString();
+					this.modelName = (string)value;
 					return;
 				case "thumbnailPath":
-					this.thumbnailPath = value.GetValueAsString();
+					this.thumbnailPath = (string)value;
 					return;
 				case "numObjects":
-					this.numObjects = value.GetValueAsUInt32();
+					this.numObjects = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -121,7 +121,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -131,7 +131,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -141,7 +141,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

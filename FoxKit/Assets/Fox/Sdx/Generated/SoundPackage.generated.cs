@@ -47,20 +47,20 @@ namespace Fox.Sdx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "soundDataFile":
-					return new Fox.Core.Value(soundDataFile);
+					return soundDataFile;
 				case "syncLoad":
-					return new Fox.Core.Value(syncLoad);
+					return syncLoad;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -69,7 +69,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -78,15 +78,15 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "soundDataFile":
-					this.soundDataFile = value.GetValueAsFilePtr();
+					this.soundDataFile = (Fox.Core.FilePtr)value;
 					return;
 				case "syncLoad":
-					this.syncLoad = value.GetValueAsBool();
+					this.syncLoad = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -94,7 +94,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -104,7 +104,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -114,7 +114,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -124,7 +124,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

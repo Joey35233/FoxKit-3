@@ -47,20 +47,20 @@ namespace Tpp.System
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "id":
-					return new Fox.Core.Value(id);
+					return id;
 				case "params":
-					return new Fox.Core.Value((Fox.IStringMap)@params);
+					return (Fox.IStringMap)@params;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -69,23 +69,23 @@ namespace Tpp.System
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "params":
-					return new Fox.Core.Value(this.@params[key]);
+					return this.@params[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "id":
-					this.id = value.GetValueAsString();
+					this.id = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -93,7 +93,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -103,7 +103,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -113,12 +113,12 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "params":
-					this.@params[key] = value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>();
+					this.@params[key] = (Tpp.System.TppDefaultParameterElement)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
@@ -126,12 +126,12 @@ namespace Tpp.System
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "params":
-					this.@params[key] = value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>();
+					this.@params[key] = (Tpp.System.TppDefaultParameterElement)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, key, value);

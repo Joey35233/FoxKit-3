@@ -55,24 +55,24 @@ namespace Fox.Grx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "isEnable":
-					return new Fox.Core.Value(isEnable);
+					return isEnable;
 				case "basePoint0":
-					return new Fox.Core.Value(basePoint0);
+					return basePoint0;
 				case "basePoint1":
-					return new Fox.Core.Value(basePoint1);
+					return basePoint1;
 				case "height":
-					return new Fox.Core.Value(height);
+					return height;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -81,7 +81,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,21 +90,21 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "isEnable":
-					this.isEnable = value.GetValueAsBool();
+					this.isEnable = (bool)value;
 					return;
 				case "basePoint0":
-					this.basePoint0 = value.GetValueAsVector3();
+					this.basePoint0 = (UnityEngine.Vector3)value;
 					return;
 				case "basePoint1":
-					this.basePoint1 = value.GetValueAsVector3();
+					this.basePoint1 = (UnityEngine.Vector3)value;
 					return;
 				case "height":
-					this.height = value.GetValueAsFloat();
+					this.height = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -112,7 +112,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -132,7 +132,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -142,7 +142,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

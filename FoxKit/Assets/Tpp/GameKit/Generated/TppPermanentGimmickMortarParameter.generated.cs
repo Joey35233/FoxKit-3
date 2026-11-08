@@ -59,26 +59,26 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "rotationLimitLeftRight":
-					return new Fox.Core.Value(rotationLimitLeftRight);
+					return rotationLimitLeftRight;
 				case "rotationLimitUp":
-					return new Fox.Core.Value(rotationLimitUp);
+					return rotationLimitUp;
 				case "rotationLimitDown":
-					return new Fox.Core.Value(rotationLimitDown);
+					return rotationLimitDown;
 				case "defaultShellPartsFile":
-					return new Fox.Core.Value(defaultShellPartsFile);
+					return defaultShellPartsFile;
 				case "flareShellPartsFile":
-					return new Fox.Core.Value(flareShellPartsFile);
+					return flareShellPartsFile;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -87,7 +87,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -96,24 +96,24 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "rotationLimitLeftRight":
-					this.rotationLimitLeftRight = value.GetValueAsFloat();
+					this.rotationLimitLeftRight = (float)value;
 					return;
 				case "rotationLimitUp":
-					this.rotationLimitUp = value.GetValueAsFloat();
+					this.rotationLimitUp = (float)value;
 					return;
 				case "rotationLimitDown":
-					this.rotationLimitDown = value.GetValueAsFloat();
+					this.rotationLimitDown = (float)value;
 					return;
 				case "defaultShellPartsFile":
-					this.defaultShellPartsFile = value.GetValueAsFilePtr();
+					this.defaultShellPartsFile = (Fox.Core.FilePtr)value;
 					return;
 				case "flareShellPartsFile":
-					this.flareShellPartsFile = value.GetValueAsFilePtr();
+					this.flareShellPartsFile = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -121,7 +121,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -131,7 +131,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -141,7 +141,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

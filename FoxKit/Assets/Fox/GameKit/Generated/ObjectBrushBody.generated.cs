@@ -47,31 +47,31 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "pluginBodyHandle":
-					return new Fox.Core.Value(pluginBodyHandle);
+					return pluginBodyHandle;
 				case "numPlugins":
-					return new Fox.Core.Value(numPlugins);
+					return numPlugins;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "pluginBodyHandle":
-					return new Fox.Core.Value(this.pluginBodyHandle[index]);
+					return this.pluginBodyHandle[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -80,12 +80,12 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "numPlugins":
-					this.numPlugins = value.GetValueAsUInt32();
+					this.numPlugins = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -93,12 +93,12 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "pluginBodyHandle":
-					this.pluginBodyHandle[index] = value.GetValueAsEntityHandle();
+					this.pluginBodyHandle[index] = (Fox.Core.Entity)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -106,13 +106,13 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "pluginBodyHandle":
 					while(this.pluginBodyHandle.Count <= index) { this.pluginBodyHandle.Add(default(Fox.Core.Entity)); }
-					this.pluginBodyHandle[index] = value.GetValueAsEntityHandle();
+					this.pluginBodyHandle[index] = (Fox.Core.Entity)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -120,7 +120,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -130,7 +130,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

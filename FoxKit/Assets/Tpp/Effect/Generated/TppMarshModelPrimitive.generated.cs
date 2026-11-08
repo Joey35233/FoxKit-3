@@ -91,53 +91,53 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "baseTexturePath":
-					return new Fox.Core.Value(baseTexturePath);
+					return baseTexturePath;
 				case "normalTexturePath":
-					return new Fox.Core.Value(normalTexturePath);
+					return normalTexturePath;
 				case "specularTexturePath":
-					return new Fox.Core.Value(specularTexturePath);
+					return specularTexturePath;
 				case "cubeMapPath":
-					return new Fox.Core.Value(cubeMapPath);
+					return cubeMapPath;
 				case "visibility":
-					return new Fox.Core.Value(visibility);
+					return visibility;
 				case "depthBlendLength":
-					return new Fox.Core.Value(depthBlendLength);
+					return depthBlendLength;
 				case "scrollSpeed0U":
-					return new Fox.Core.Value(scrollSpeed0U);
+					return scrollSpeed0U;
 				case "scrollSpeed0V":
-					return new Fox.Core.Value(scrollSpeed0V);
+					return scrollSpeed0V;
 				case "scrollSpeed1U":
-					return new Fox.Core.Value(scrollSpeed1U);
+					return scrollSpeed1U;
 				case "scrollSpeed1V":
-					return new Fox.Core.Value(scrollSpeed1V);
+					return scrollSpeed1V;
 				case "useHnmTexture":
-					return new Fox.Core.Value(useHnmTexture);
+					return useHnmTexture;
 				case "debugReset":
-					return new Fox.Core.Value(debugReset);
+					return debugReset;
 				case "staticModels":
-					return new Fox.Core.Value(staticModels);
+					return staticModels;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "staticModels":
-					return new Fox.Core.Value(this.staticModels[index]);
+					return this.staticModels[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -146,45 +146,45 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "baseTexturePath":
-					this.baseTexturePath = value.GetValueAsPath();
+					this.baseTexturePath = (Fox.Path)value;
 					return;
 				case "normalTexturePath":
-					this.normalTexturePath = value.GetValueAsPath();
+					this.normalTexturePath = (Fox.Path)value;
 					return;
 				case "specularTexturePath":
-					this.specularTexturePath = value.GetValueAsPath();
+					this.specularTexturePath = (Fox.Path)value;
 					return;
 				case "cubeMapPath":
-					this.cubeMapPath = value.GetValueAsPath();
+					this.cubeMapPath = (Fox.Path)value;
 					return;
 				case "visibility":
-					this.visibility = value.GetValueAsBool();
+					this.visibility = (bool)value;
 					return;
 				case "depthBlendLength":
-					this.depthBlendLength = value.GetValueAsFloat();
+					this.depthBlendLength = (float)value;
 					return;
 				case "scrollSpeed0U":
-					this.scrollSpeed0U = value.GetValueAsFloat();
+					this.scrollSpeed0U = (float)value;
 					return;
 				case "scrollSpeed0V":
-					this.scrollSpeed0V = value.GetValueAsFloat();
+					this.scrollSpeed0V = (float)value;
 					return;
 				case "scrollSpeed1U":
-					this.scrollSpeed1U = value.GetValueAsFloat();
+					this.scrollSpeed1U = (float)value;
 					return;
 				case "scrollSpeed1V":
-					this.scrollSpeed1V = value.GetValueAsFloat();
+					this.scrollSpeed1V = (float)value;
 					return;
 				case "useHnmTexture":
-					this.useHnmTexture = value.GetValueAsBool();
+					this.useHnmTexture = (bool)value;
 					return;
 				case "debugReset":
-					this.debugReset = value.GetValueAsBool();
+					this.debugReset = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -192,12 +192,12 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "staticModels":
-					this.staticModels[index] = value.GetValueAsEntityLink();
+					this.staticModels[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -205,13 +205,13 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "staticModels":
 					while(this.staticModels.Count <= index) { this.staticModels.Add(default(Fox.Core.EntityLink)); }
-					this.staticModels[index] = value.GetValueAsEntityLink();
+					this.staticModels[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -219,7 +219,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -229,7 +229,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

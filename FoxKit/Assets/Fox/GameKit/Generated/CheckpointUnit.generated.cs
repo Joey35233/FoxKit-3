@@ -51,22 +51,22 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "checkPointParam":
-					return new Fox.Core.Value(checkPointParam);
+					return checkPointParam;
 				case "checkPointData":
-					return new Fox.Core.Value((Fox.IStringMap)checkPointData);
+					return (Fox.IStringMap)checkPointData;
 				case "isReplacable":
-					return new Fox.Core.Value(isReplacable);
+					return isReplacable;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -75,26 +75,26 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "checkPointData":
-					return new Fox.Core.Value(this.checkPointData[key]);
+					return this.checkPointData[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkPointParam":
-					this.checkPointParam = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					this.checkPointParam = (Fox.Core.Entity)value;
 					return;
 				case "isReplacable":
-					this.isReplacable = value.GetValueAsBool();
+					this.isReplacable = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -102,7 +102,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -112,7 +112,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -122,12 +122,12 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkPointData":
-					this.checkPointData[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					this.checkPointData[key] = (Fox.Core.Entity)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
@@ -135,12 +135,12 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkPointData":
-					this.checkPointData[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					this.checkPointData[key] = (Fox.Core.Entity)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, key, value);

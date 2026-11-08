@@ -47,33 +47,33 @@ namespace Fox.Anim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "skelList":
-					return new Fox.Core.Value(skelList);
+					return skelList;
 				case "shaderList":
-					return new Fox.Core.Value(shaderList);
+					return shaderList;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "skelList":
-					return new Fox.Core.Value(this.skelList[index]);
+					return this.skelList[index];
 				case "shaderList":
-					return new Fox.Core.Value(this.shaderList[index]);
+					return this.shaderList[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -82,7 +82,7 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -92,15 +92,15 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "skelList":
-					this.skelList[index] = value.GetValueAsString();
+					this.skelList[index] = (string)value;
 					return;
 				case "shaderList":
-					this.shaderList[index] = value.GetValueAsEntityPtr<Fox.Anim.ParameterMaskElement>();
+					this.shaderList[index] = (Fox.Anim.ParameterMaskElement)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -108,17 +108,17 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "skelList":
 					while(this.skelList.Count <= index) { this.skelList.Add(default(string)); }
-					this.skelList[index] = value.GetValueAsString();
+					this.skelList[index] = (string)value;
 					return;
 				case "shaderList":
 					while(this.shaderList.Count <= index) { this.shaderList.Add(default(Fox.Anim.ParameterMaskElement)); }
-					this.shaderList[index] = value.GetValueAsEntityPtr<Fox.Anim.ParameterMaskElement>();
+					this.shaderList[index] = (Fox.Anim.ParameterMaskElement)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -126,7 +126,7 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -136,7 +136,7 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

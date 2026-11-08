@@ -59,26 +59,26 @@ namespace Fox.PartsBuilder
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "geomFile":
-					return new Fox.Core.Value(geomFile);
+					return geomFile;
 				case "skeletonName":
-					return new Fox.Core.Value(skeletonName);
+					return skeletonName;
 				case "offsetScale":
-					return new Fox.Core.Value(offsetScale);
+					return offsetScale;
 				case "offsetRotQuat":
-					return new Fox.Core.Value(offsetRotQuat);
+					return offsetRotQuat;
 				case "offsetTranslation":
-					return new Fox.Core.Value(offsetTranslation);
+					return offsetTranslation;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -87,7 +87,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -96,24 +96,24 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "geomFile":
-					this.geomFile = value.GetValueAsFilePtr();
+					this.geomFile = (Fox.Core.FilePtr)value;
 					return;
 				case "skeletonName":
-					this.skeletonName = value.GetValueAsString();
+					this.skeletonName = (string)value;
 					return;
 				case "offsetScale":
-					this.offsetScale = value.GetValueAsVector3();
+					this.offsetScale = (UnityEngine.Vector3)value;
 					return;
 				case "offsetRotQuat":
-					this.offsetRotQuat = value.GetValueAsQuat();
+					this.offsetRotQuat = (UnityEngine.Quaternion)value;
 					return;
 				case "offsetTranslation":
-					this.offsetTranslation = value.GetValueAsVector3();
+					this.offsetTranslation = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -121,7 +121,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -131,7 +131,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -141,7 +141,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

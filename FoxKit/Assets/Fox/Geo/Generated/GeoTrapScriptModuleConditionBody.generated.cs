@@ -47,33 +47,33 @@ namespace Fox.Geo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "checkScriptArray":
-					return new Fox.Core.Value(checkScriptArray);
+					return checkScriptArray;
 				case "execScriptArray":
-					return new Fox.Core.Value(execScriptArray);
+					return execScriptArray;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "checkScriptArray":
-					return new Fox.Core.Value(this.checkScriptArray[index]);
+					return this.checkScriptArray[index];
 				case "execScriptArray":
-					return new Fox.Core.Value(this.execScriptArray[index]);
+					return this.execScriptArray[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -82,7 +82,7 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -92,15 +92,15 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkScriptArray":
-					this.checkScriptArray[index] = value.GetValueAsEntityPtr<Fox.Core.SafeScript>();
+					this.checkScriptArray[index] = (Fox.Core.SafeScript)value;
 					return;
 				case "execScriptArray":
-					this.execScriptArray[index] = value.GetValueAsEntityPtr<Fox.Core.SafeScript>();
+					this.execScriptArray[index] = (Fox.Core.SafeScript)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -108,17 +108,17 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkScriptArray":
 					while(this.checkScriptArray.Count <= index) { this.checkScriptArray.Add(default(Fox.Core.SafeScript)); }
-					this.checkScriptArray[index] = value.GetValueAsEntityPtr<Fox.Core.SafeScript>();
+					this.checkScriptArray[index] = (Fox.Core.SafeScript)value;
 					return;
 				case "execScriptArray":
 					while(this.execScriptArray.Count <= index) { this.execScriptArray.Add(default(Fox.Core.SafeScript)); }
-					this.execScriptArray[index] = value.GetValueAsEntityPtr<Fox.Core.SafeScript>();
+					this.execScriptArray[index] = (Fox.Core.SafeScript)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -126,7 +126,7 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -136,7 +136,7 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

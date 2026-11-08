@@ -63,28 +63,28 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "texture":
-					return new Fox.Core.Value(texture);
+					return texture;
 				case "arcAlphaField":
-					return new Fox.Core.Value(arcAlphaField);
+					return arcAlphaField;
 				case "arcAlphaFadeAngle":
-					return new Fox.Core.Value(arcAlphaFadeAngle);
+					return arcAlphaFadeAngle;
 				case "arcAlphaBaseAngle":
-					return new Fox.Core.Value(arcAlphaBaseAngle);
+					return arcAlphaBaseAngle;
 				case "maskShape":
-					return new Fox.Core.Value(maskShape);
+					return maskShape;
 				case "debugDrawMaskShape":
-					return new Fox.Core.Value(debugDrawMaskShape);
+					return debugDrawMaskShape;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -93,7 +93,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -102,27 +102,27 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "texture":
-					this.texture = value.GetValueAsPath();
+					this.texture = (Fox.Path)value;
 					return;
 				case "arcAlphaField":
-					this.arcAlphaField = value.GetValueAsEntityLink();
+					this.arcAlphaField = (Fox.Core.EntityLink)value;
 					return;
 				case "arcAlphaFadeAngle":
-					this.arcAlphaFadeAngle = value.GetValueAsFloat();
+					this.arcAlphaFadeAngle = (float)value;
 					return;
 				case "arcAlphaBaseAngle":
-					this.arcAlphaBaseAngle = value.GetValueAsFloat();
+					this.arcAlphaBaseAngle = (float)value;
 					return;
 				case "maskShape":
-					this.maskShape = value.GetValueAsEntityLink();
+					this.maskShape = (Fox.Core.EntityLink)value;
 					return;
 				case "debugDrawMaskShape":
-					this.debugDrawMaskShape = value.GetValueAsBool();
+					this.debugDrawMaskShape = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -130,7 +130,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -140,7 +140,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -150,7 +150,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -160,7 +160,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

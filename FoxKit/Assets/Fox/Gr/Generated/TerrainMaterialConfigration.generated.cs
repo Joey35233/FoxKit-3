@@ -55,41 +55,41 @@ namespace Fox.Gr
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "slot0":
-					return new Fox.Core.Value(slot0);
+					return slot0;
 				case "slot1":
-					return new Fox.Core.Value(slot1);
+					return slot1;
 				case "slot2":
-					return new Fox.Core.Value(slot2);
+					return slot2;
 				case "slot3":
-					return new Fox.Core.Value(slot3);
+					return slot3;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "slot0":
-					return new Fox.Core.Value(this.slot0[index]);
+					return this.slot0[index];
 				case "slot1":
-					return new Fox.Core.Value(this.slot1[index]);
+					return this.slot1[index];
 				case "slot2":
-					return new Fox.Core.Value(this.slot2[index]);
+					return this.slot2[index];
 				case "slot3":
-					return new Fox.Core.Value(this.slot3[index]);
+					return this.slot3[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -98,7 +98,7 @@ namespace Fox.Gr
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -108,21 +108,21 @@ namespace Fox.Gr
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "slot0":
-					this.slot0[index] = value.GetValueAsUInt32();
+					this.slot0[index] = (uint)value;
 					return;
 				case "slot1":
-					this.slot1[index] = value.GetValueAsUInt32();
+					this.slot1[index] = (uint)value;
 					return;
 				case "slot2":
-					this.slot2[index] = value.GetValueAsUInt32();
+					this.slot2[index] = (uint)value;
 					return;
 				case "slot3":
-					this.slot3[index] = value.GetValueAsUInt32();
+					this.slot3[index] = (uint)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -130,25 +130,25 @@ namespace Fox.Gr
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "slot0":
 					while(this.slot0.Count <= index) { this.slot0.Add(default(uint)); }
-					this.slot0[index] = value.GetValueAsUInt32();
+					this.slot0[index] = (uint)value;
 					return;
 				case "slot1":
 					while(this.slot1.Count <= index) { this.slot1.Add(default(uint)); }
-					this.slot1[index] = value.GetValueAsUInt32();
+					this.slot1[index] = (uint)value;
 					return;
 				case "slot2":
 					while(this.slot2.Count <= index) { this.slot2.Add(default(uint)); }
-					this.slot2[index] = value.GetValueAsUInt32();
+					this.slot2[index] = (uint)value;
 					return;
 				case "slot3":
 					while(this.slot3.Count <= index) { this.slot3.Add(default(uint)); }
-					this.slot3[index] = value.GetValueAsUInt32();
+					this.slot3[index] = (uint)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -156,7 +156,7 @@ namespace Fox.Gr
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -166,7 +166,7 @@ namespace Fox.Gr
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

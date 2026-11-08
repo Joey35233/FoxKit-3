@@ -51,37 +51,37 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "subtitlesPackage":
-					return new Fox.Core.Value(subtitlesPackage);
+					return subtitlesPackage;
 				case "subtitlesStreamData":
-					return new Fox.Core.Value(subtitlesStreamData);
+					return subtitlesStreamData;
 				case "subtitlesStreamPath":
-					return new Fox.Core.Value(subtitlesStreamPath);
+					return subtitlesStreamPath;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "subtitlesPackage":
-					return new Fox.Core.Value(this.subtitlesPackage[index]);
+					return this.subtitlesPackage[index];
 				case "subtitlesStreamData":
-					return new Fox.Core.Value(this.subtitlesStreamData[index]);
+					return this.subtitlesStreamData[index];
 				case "subtitlesStreamPath":
-					return new Fox.Core.Value(this.subtitlesStreamPath[index]);
+					return this.subtitlesStreamPath[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,7 +90,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -100,18 +100,18 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "subtitlesPackage":
-					this.subtitlesPackage[index] = value.GetValueAsFilePtr();
+					this.subtitlesPackage[index] = (Fox.Core.FilePtr)value;
 					return;
 				case "subtitlesStreamData":
-					this.subtitlesStreamData[index] = value.GetValueAsFilePtr();
+					this.subtitlesStreamData[index] = (Fox.Core.FilePtr)value;
 					return;
 				case "subtitlesStreamPath":
-					this.subtitlesStreamPath[index] = value.GetValueAsPath();
+					this.subtitlesStreamPath[index] = (Fox.Path)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -119,21 +119,21 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "subtitlesPackage":
 					while(this.subtitlesPackage.Count <= index) { this.subtitlesPackage.Add(default(Fox.Core.FilePtr)); }
-					this.subtitlesPackage[index] = value.GetValueAsFilePtr();
+					this.subtitlesPackage[index] = (Fox.Core.FilePtr)value;
 					return;
 				case "subtitlesStreamData":
 					while(this.subtitlesStreamData.Count <= index) { this.subtitlesStreamData.Add(default(Fox.Core.FilePtr)); }
-					this.subtitlesStreamData[index] = value.GetValueAsFilePtr();
+					this.subtitlesStreamData[index] = (Fox.Core.FilePtr)value;
 					return;
 				case "subtitlesStreamPath":
 					while(this.subtitlesStreamPath.Count <= index) { this.subtitlesStreamPath.Add(default(Fox.Path)); }
-					this.subtitlesStreamPath[index] = value.GetValueAsPath();
+					this.subtitlesStreamPath[index] = (Fox.Path)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -141,7 +141,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

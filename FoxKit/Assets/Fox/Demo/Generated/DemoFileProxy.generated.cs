@@ -47,33 +47,33 @@ namespace Fox.Demo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "fmdlFiles":
-					return new Fox.Core.Value(fmdlFiles);
+					return fmdlFiles;
 				case "partsFiles":
-					return new Fox.Core.Value(partsFiles);
+					return partsFiles;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "fmdlFiles":
-					return new Fox.Core.Value(this.fmdlFiles[index]);
+					return this.fmdlFiles[index];
 				case "partsFiles":
-					return new Fox.Core.Value(this.partsFiles[index]);
+					return this.partsFiles[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -82,7 +82,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -92,15 +92,15 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "fmdlFiles":
-					this.fmdlFiles[index] = value.GetValueAsFilePtr();
+					this.fmdlFiles[index] = (Fox.Core.FilePtr)value;
 					return;
 				case "partsFiles":
-					this.partsFiles[index] = value.GetValueAsFilePtr();
+					this.partsFiles[index] = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -108,17 +108,17 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "fmdlFiles":
 					while(this.fmdlFiles.Count <= index) { this.fmdlFiles.Add(default(Fox.Core.FilePtr)); }
-					this.fmdlFiles[index] = value.GetValueAsFilePtr();
+					this.fmdlFiles[index] = (Fox.Core.FilePtr)value;
 					return;
 				case "partsFiles":
 					while(this.partsFiles.Count <= index) { this.partsFiles.Add(default(Fox.Core.FilePtr)); }
-					this.partsFiles[index] = value.GetValueAsFilePtr();
+					this.partsFiles[index] = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -126,7 +126,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -136,7 +136,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

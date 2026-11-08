@@ -67,30 +67,30 @@ namespace Fox.Sdx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "ambientEvent":
-					return new Fox.Core.Value(ambientEvent);
+					return ambientEvent;
 				case "ambientRtpcName":
-					return new Fox.Core.Value(ambientRtpcName);
+					return ambientRtpcName;
 				case "ambientRtpcValue":
-					return new Fox.Core.Value(ambientRtpcValue);
+					return ambientRtpcValue;
 				case "objectRtpcName":
-					return new Fox.Core.Value(objectRtpcName);
+					return objectRtpcName;
 				case "objectRtpcValue":
-					return new Fox.Core.Value(objectRtpcValue);
+					return objectRtpcValue;
 				case "auxSends":
-					return new Fox.Core.Value((Fox.IStringMap)auxSends);
+					return (Fox.IStringMap)auxSends;
 				case "dryVolume":
-					return new Fox.Core.Value(dryVolume);
+					return dryVolume;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -99,38 +99,38 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "auxSends":
-					return new Fox.Core.Value(this.auxSends[key]);
+					return this.auxSends[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "ambientEvent":
-					this.ambientEvent = value.GetValueAsString();
+					this.ambientEvent = (string)value;
 					return;
 				case "ambientRtpcName":
-					this.ambientRtpcName = value.GetValueAsString();
+					this.ambientRtpcName = (string)value;
 					return;
 				case "ambientRtpcValue":
-					this.ambientRtpcValue = value.GetValueAsFloat();
+					this.ambientRtpcValue = (float)value;
 					return;
 				case "objectRtpcName":
-					this.objectRtpcName = value.GetValueAsString();
+					this.objectRtpcName = (string)value;
 					return;
 				case "objectRtpcValue":
-					this.objectRtpcValue = value.GetValueAsFloat();
+					this.objectRtpcValue = (float)value;
 					return;
 				case "dryVolume":
-					this.dryVolume = value.GetValueAsFloat();
+					this.dryVolume = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -138,7 +138,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -148,7 +148,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -158,12 +158,12 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "auxSends":
-					this.auxSends[key] = value.GetValueAsFloat();
+					this.auxSends[key] = (float)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
@@ -171,12 +171,12 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "auxSends":
-					this.auxSends[key] = value.GetValueAsFloat();
+					this.auxSends[key] = (float)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, key, value);

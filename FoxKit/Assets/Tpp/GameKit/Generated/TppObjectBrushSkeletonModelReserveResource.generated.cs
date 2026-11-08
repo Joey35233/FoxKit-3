@@ -59,26 +59,26 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "pluginName":
-					return new Fox.Core.Value(pluginName);
+					return pluginName;
 				case "reserveLodLevel0":
-					return new Fox.Core.Value(reserveLodLevel0);
+					return reserveLodLevel0;
 				case "reserveLodLevel1":
-					return new Fox.Core.Value(reserveLodLevel1);
+					return reserveLodLevel1;
 				case "reserveLodLevel2":
-					return new Fox.Core.Value(reserveLodLevel2);
+					return reserveLodLevel2;
 				case "reserveLodLevel3":
-					return new Fox.Core.Value(reserveLodLevel3);
+					return reserveLodLevel3;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -87,7 +87,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -96,24 +96,24 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "pluginName":
-					this.pluginName = value.GetValueAsString();
+					this.pluginName = (string)value;
 					return;
 				case "reserveLodLevel0":
-					this.reserveLodLevel0 = value.GetValueAsUInt32();
+					this.reserveLodLevel0 = (uint)value;
 					return;
 				case "reserveLodLevel1":
-					this.reserveLodLevel1 = value.GetValueAsUInt32();
+					this.reserveLodLevel1 = (uint)value;
 					return;
 				case "reserveLodLevel2":
-					this.reserveLodLevel2 = value.GetValueAsUInt32();
+					this.reserveLodLevel2 = (uint)value;
 					return;
 				case "reserveLodLevel3":
-					this.reserveLodLevel3 = value.GetValueAsUInt32();
+					this.reserveLodLevel3 = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -121,7 +121,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -131,7 +131,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -141,7 +141,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

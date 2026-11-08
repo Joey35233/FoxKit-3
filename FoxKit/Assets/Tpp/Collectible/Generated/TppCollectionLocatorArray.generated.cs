@@ -75,61 +75,61 @@ namespace Tpp.Collectible
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "positions":
-					return new Fox.Core.Value(positions);
+					return positions;
 				case "rotations":
-					return new Fox.Core.Value(rotations);
+					return rotations;
 				case "infos":
-					return new Fox.Core.Value(infos);
+					return infos;
 				case "segmentIndices":
-					return new Fox.Core.Value(segmentIndices);
+					return segmentIndices;
 				case "locatorIndices":
-					return new Fox.Core.Value(locatorIndices);
+					return locatorIndices;
 				case "locatorCounts":
-					return new Fox.Core.Value(locatorCounts);
+					return locatorCounts;
 				case "groupIds":
-					return new Fox.Core.Value(groupIds);
+					return groupIds;
 				case "segmentInfoIndices":
-					return new Fox.Core.Value(segmentInfoIndices);
+					return segmentInfoIndices;
 				case "segmentInfoCounts":
-					return new Fox.Core.Value(segmentInfoCounts);
+					return segmentInfoCounts;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "positions":
-					return new Fox.Core.Value(this.positions[index]);
+					return this.positions[index];
 				case "rotations":
-					return new Fox.Core.Value(this.rotations[index]);
+					return this.rotations[index];
 				case "infos":
-					return new Fox.Core.Value(this.infos[index]);
+					return this.infos[index];
 				case "segmentIndices":
-					return new Fox.Core.Value(this.segmentIndices[index]);
+					return this.segmentIndices[index];
 				case "locatorIndices":
-					return new Fox.Core.Value(this.locatorIndices[index]);
+					return this.locatorIndices[index];
 				case "locatorCounts":
-					return new Fox.Core.Value(this.locatorCounts[index]);
+					return this.locatorCounts[index];
 				case "groupIds":
-					return new Fox.Core.Value(this.groupIds[index]);
+					return this.groupIds[index];
 				case "segmentInfoIndices":
-					return new Fox.Core.Value(this.segmentInfoIndices[index]);
+					return this.segmentInfoIndices[index];
 				case "segmentInfoCounts":
-					return new Fox.Core.Value(this.segmentInfoCounts[index]);
+					return this.segmentInfoCounts[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -138,7 +138,7 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -148,36 +148,36 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "positions":
-					this.positions[index] = value.GetValueAsVector3();
+					this.positions[index] = (UnityEngine.Vector3)value;
 					return;
 				case "rotations":
-					this.rotations[index] = value.GetValueAsUInt32();
+					this.rotations[index] = (uint)value;
 					return;
 				case "infos":
-					this.infos[index] = value.GetValueAsUInt32();
+					this.infos[index] = (uint)value;
 					return;
 				case "segmentIndices":
-					this.segmentIndices[index] = value.GetValueAsUInt16();
+					this.segmentIndices[index] = (ushort)value;
 					return;
 				case "locatorIndices":
-					this.locatorIndices[index] = value.GetValueAsUInt16();
+					this.locatorIndices[index] = (ushort)value;
 					return;
 				case "locatorCounts":
-					this.locatorCounts[index] = value.GetValueAsUInt16();
+					this.locatorCounts[index] = (ushort)value;
 					return;
 				case "groupIds":
-					this.groupIds[index] = value.GetValueAsUInt8();
+					this.groupIds[index] = (byte)value;
 					return;
 				case "segmentInfoIndices":
-					this.segmentInfoIndices[index] = value.GetValueAsUInt16();
+					this.segmentInfoIndices[index] = (ushort)value;
 					return;
 				case "segmentInfoCounts":
-					this.segmentInfoCounts[index] = value.GetValueAsUInt16();
+					this.segmentInfoCounts[index] = (ushort)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -185,45 +185,45 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "positions":
 					while(this.positions.Count <= index) { this.positions.Add(default(UnityEngine.Vector3)); }
-					this.positions[index] = value.GetValueAsVector3();
+					this.positions[index] = (UnityEngine.Vector3)value;
 					return;
 				case "rotations":
 					while(this.rotations.Count <= index) { this.rotations.Add(default(uint)); }
-					this.rotations[index] = value.GetValueAsUInt32();
+					this.rotations[index] = (uint)value;
 					return;
 				case "infos":
 					while(this.infos.Count <= index) { this.infos.Add(default(uint)); }
-					this.infos[index] = value.GetValueAsUInt32();
+					this.infos[index] = (uint)value;
 					return;
 				case "segmentIndices":
 					while(this.segmentIndices.Count <= index) { this.segmentIndices.Add(default(ushort)); }
-					this.segmentIndices[index] = value.GetValueAsUInt16();
+					this.segmentIndices[index] = (ushort)value;
 					return;
 				case "locatorIndices":
 					while(this.locatorIndices.Count <= index) { this.locatorIndices.Add(default(ushort)); }
-					this.locatorIndices[index] = value.GetValueAsUInt16();
+					this.locatorIndices[index] = (ushort)value;
 					return;
 				case "locatorCounts":
 					while(this.locatorCounts.Count <= index) { this.locatorCounts.Add(default(ushort)); }
-					this.locatorCounts[index] = value.GetValueAsUInt16();
+					this.locatorCounts[index] = (ushort)value;
 					return;
 				case "groupIds":
 					while(this.groupIds.Count <= index) { this.groupIds.Add(default(byte)); }
-					this.groupIds[index] = value.GetValueAsUInt8();
+					this.groupIds[index] = (byte)value;
 					return;
 				case "segmentInfoIndices":
 					while(this.segmentInfoIndices.Count <= index) { this.segmentInfoIndices.Add(default(ushort)); }
-					this.segmentInfoIndices[index] = value.GetValueAsUInt16();
+					this.segmentInfoIndices[index] = (ushort)value;
 					return;
 				case "segmentInfoCounts":
 					while(this.segmentInfoCounts.Count <= index) { this.segmentInfoCounts.Add(default(ushort)); }
-					this.segmentInfoCounts[index] = value.GetValueAsUInt16();
+					this.segmentInfoCounts[index] = (ushort)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -231,7 +231,7 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -241,7 +241,7 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

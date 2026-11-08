@@ -47,20 +47,20 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "entityDifferences":
-					return new Fox.Core.Value((Fox.IStringMap)entityDifferences);
+					return (Fox.IStringMap)entityDifferences;
 				case "propertyDifferences":
-					return new Fox.Core.Value((Fox.IStringMap)propertyDifferences);
+					return (Fox.IStringMap)propertyDifferences;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -69,20 +69,20 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "entityDifferences":
-					return new Fox.Core.Value(this.entityDifferences[key]);
+					return this.entityDifferences[key];
 				case "propertyDifferences":
-					return new Fox.Core.Value(this.propertyDifferences[key]);
+					return this.propertyDifferences[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -92,7 +92,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -102,7 +102,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -112,15 +112,15 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "entityDifferences":
-					this.entityDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					this.entityDifferences[key] = (Fox.Core.Entity)value;
 					return;
 				case "propertyDifferences":
-					this.propertyDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>();
+					this.propertyDifferences[key] = (Fox.Core.PropertyDifference)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
@@ -128,15 +128,15 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "entityDifferences":
-					this.entityDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					this.entityDifferences[key] = (Fox.Core.Entity)value;
 					return;
 				case "propertyDifferences":
-					this.propertyDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>();
+					this.propertyDifferences[key] = (Fox.Core.PropertyDifference)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, key, value);

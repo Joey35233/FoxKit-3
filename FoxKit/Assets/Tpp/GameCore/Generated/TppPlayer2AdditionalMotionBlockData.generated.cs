@@ -71,32 +71,32 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "blockSize":
-					return new Fox.Core.Value(blockSize);
+					return blockSize;
 				case "vramBlockSize":
-					return new Fox.Core.Value(vramBlockSize);
+					return vramBlockSize;
 				case "residentVramSyncBufferSize":
-					return new Fox.Core.Value(residentVramSyncBufferSize);
+					return residentVramSyncBufferSize;
 				case "baseVramSyncBufferSize":
-					return new Fox.Core.Value(baseVramSyncBufferSize);
+					return baseVramSyncBufferSize;
 				case "equipVramSyncBufferSize":
-					return new Fox.Core.Value(equipVramSyncBufferSize);
+					return equipVramSyncBufferSize;
 				case "weaponVramSyncBufferSize":
-					return new Fox.Core.Value(weaponVramSyncBufferSize);
+					return weaponVramSyncBufferSize;
 				case "fpkPath":
-					return new Fox.Core.Value(fpkPath);
+					return fpkPath;
 				case "vramFpkPath":
-					return new Fox.Core.Value(vramFpkPath);
+					return vramFpkPath;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -105,7 +105,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -114,33 +114,33 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "blockSize":
-					this.blockSize = value.GetValueAsUInt32();
+					this.blockSize = (uint)value;
 					return;
 				case "vramBlockSize":
-					this.vramBlockSize = value.GetValueAsUInt32();
+					this.vramBlockSize = (uint)value;
 					return;
 				case "residentVramSyncBufferSize":
-					this.residentVramSyncBufferSize = value.GetValueAsUInt32();
+					this.residentVramSyncBufferSize = (uint)value;
 					return;
 				case "baseVramSyncBufferSize":
-					this.baseVramSyncBufferSize = value.GetValueAsUInt32();
+					this.baseVramSyncBufferSize = (uint)value;
 					return;
 				case "equipVramSyncBufferSize":
-					this.equipVramSyncBufferSize = value.GetValueAsUInt32();
+					this.equipVramSyncBufferSize = (uint)value;
 					return;
 				case "weaponVramSyncBufferSize":
-					this.weaponVramSyncBufferSize = value.GetValueAsUInt32();
+					this.weaponVramSyncBufferSize = (uint)value;
 					return;
 				case "fpkPath":
-					this.fpkPath = value.GetValueAsPath();
+					this.fpkPath = (Fox.Path)value;
 					return;
 				case "vramFpkPath":
-					this.vramFpkPath = value.GetValueAsPath();
+					this.vramFpkPath = (Fox.Path)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -148,7 +148,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -158,7 +158,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -168,7 +168,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -178,7 +178,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

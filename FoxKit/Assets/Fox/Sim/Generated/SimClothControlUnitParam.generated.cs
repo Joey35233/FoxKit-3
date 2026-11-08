@@ -63,28 +63,28 @@ namespace Fox.Sim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "mass":
-					return new Fox.Core.Value(mass);
+					return mass;
 				case "thickness":
-					return new Fox.Core.Value(thickness);
+					return thickness;
 				case "limitedFlag":
-					return new Fox.Core.Value(limitedFlag);
+					return limitedFlag;
 				case "limit":
-					return new Fox.Core.Value(limit);
+					return limit;
 				case "expansionRatio":
-					return new Fox.Core.Value(expansionRatio);
+					return expansionRatio;
 				case "contractionRatio":
-					return new Fox.Core.Value(contractionRatio);
+					return contractionRatio;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -93,7 +93,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -102,27 +102,27 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "mass":
-					this.mass = value.GetValueAsFloat();
+					this.mass = (float)value;
 					return;
 				case "thickness":
-					this.thickness = value.GetValueAsFloat();
+					this.thickness = (float)value;
 					return;
 				case "limitedFlag":
-					this.limitedFlag = value.GetValueAsBool();
+					this.limitedFlag = (bool)value;
 					return;
 				case "limit":
-					this.limit = value.GetValueAsFloat();
+					this.limit = (float)value;
 					return;
 				case "expansionRatio":
-					this.expansionRatio = value.GetValueAsFloat();
+					this.expansionRatio = (float)value;
 					return;
 				case "contractionRatio":
-					this.contractionRatio = value.GetValueAsFloat();
+					this.contractionRatio = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -130,7 +130,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -140,7 +140,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -150,7 +150,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -160,7 +160,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

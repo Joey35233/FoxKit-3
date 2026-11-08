@@ -68,28 +68,28 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "flag":
-					return new Fox.Core.Value(flag);
+					return flag;
 				case "checkPlayer":
-					return new Fox.Core.Value(checkPlayer);
+					return checkPlayer;
 				case "checkSoldier":
-					return new Fox.Core.Value(checkSoldier);
+					return checkSoldier;
 				case "checkUav":
-					return new Fox.Core.Value(checkUav);
+					return checkUav;
 				case "checkVolgin":
-					return new Fox.Core.Value(checkVolgin);
+					return checkVolgin;
 				case "checkLiquid":
-					return new Fox.Core.Value(checkLiquid);
+					return checkLiquid;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -98,7 +98,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -107,27 +107,27 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "flag":
-					this.flag = value.GetValueAsUInt32();
+					this.flag = (uint)value;
 					return;
 				case "checkPlayer":
-					this.checkPlayer = value.GetValueAsBool();
+					this.checkPlayer = (bool)value;
 					return;
 				case "checkSoldier":
-					this.checkSoldier = value.GetValueAsBool();
+					this.checkSoldier = (bool)value;
 					return;
 				case "checkUav":
-					this.checkUav = value.GetValueAsBool();
+					this.checkUav = (bool)value;
 					return;
 				case "checkVolgin":
-					this.checkVolgin = value.GetValueAsBool();
+					this.checkVolgin = (bool)value;
 					return;
 				case "checkLiquid":
-					this.checkLiquid = value.GetValueAsBool();
+					this.checkLiquid = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -135,7 +135,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -145,7 +145,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -155,7 +155,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -165,7 +165,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

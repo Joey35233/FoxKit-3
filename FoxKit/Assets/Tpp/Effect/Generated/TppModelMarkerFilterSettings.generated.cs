@@ -67,45 +67,45 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "texRepeatsNear":
-					return new Fox.Core.Value(texRepeatsNear);
+					return texRepeatsNear;
 				case "texRepeatsFar":
-					return new Fox.Core.Value(texRepeatsFar);
+					return texRepeatsFar;
 				case "texRepeatsMin":
-					return new Fox.Core.Value(texRepeatsMin);
+					return texRepeatsMin;
 				case "texRepeatsMax":
-					return new Fox.Core.Value(texRepeatsMax);
+					return texRepeatsMax;
 				case "alphas":
-					return new Fox.Core.Value(alphas);
+					return alphas;
 				case "offsets":
-					return new Fox.Core.Value(offsets);
+					return offsets;
 				case "incidences":
-					return new Fox.Core.Value(incidences);
+					return incidences;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "alphas":
-					return new Fox.Core.Value(this.alphas[index]);
+					return this.alphas[index];
 				case "offsets":
-					return new Fox.Core.Value(this.offsets[index]);
+					return this.offsets[index];
 				case "incidences":
-					return new Fox.Core.Value(this.incidences[index]);
+					return this.incidences[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -114,21 +114,21 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "texRepeatsNear":
-					this.texRepeatsNear = value.GetValueAsFloat();
+					this.texRepeatsNear = (float)value;
 					return;
 				case "texRepeatsFar":
-					this.texRepeatsFar = value.GetValueAsFloat();
+					this.texRepeatsFar = (float)value;
 					return;
 				case "texRepeatsMin":
-					this.texRepeatsMin = value.GetValueAsFloat();
+					this.texRepeatsMin = (float)value;
 					return;
 				case "texRepeatsMax":
-					this.texRepeatsMax = value.GetValueAsFloat();
+					this.texRepeatsMax = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -136,18 +136,18 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "alphas":
-					this.alphas[index] = value.GetValueAsVector3();
+					this.alphas[index] = (UnityEngine.Vector3)value;
 					return;
 				case "offsets":
-					this.offsets[index] = value.GetValueAsVector3();
+					this.offsets[index] = (UnityEngine.Vector3)value;
 					return;
 				case "incidences":
-					this.incidences[index] = value.GetValueAsVector3();
+					this.incidences[index] = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -155,21 +155,21 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "alphas":
 					while(this.alphas.Count <= index) { this.alphas.Add(default(UnityEngine.Vector3)); }
-					this.alphas[index] = value.GetValueAsVector3();
+					this.alphas[index] = (UnityEngine.Vector3)value;
 					return;
 				case "offsets":
 					while(this.offsets.Count <= index) { this.offsets.Add(default(UnityEngine.Vector3)); }
-					this.offsets[index] = value.GetValueAsVector3();
+					this.offsets[index] = (UnityEngine.Vector3)value;
 					return;
 				case "incidences":
 					while(this.incidences.Count <= index) { this.incidences.Add(default(UnityEngine.Vector3)); }
-					this.incidences[index] = value.GetValueAsVector3();
+					this.incidences[index] = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -177,7 +177,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -187,7 +187,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

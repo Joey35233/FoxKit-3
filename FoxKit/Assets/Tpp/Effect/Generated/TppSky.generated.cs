@@ -175,84 +175,84 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return priority;
 				case "model":
-					return new Fox.Core.Value(model);
+					return model;
 				case "cloudTexture":
-					return new Fox.Core.Value(cloudTexture);
+					return cloudTexture;
 				case "textureRepeats":
-					return new Fox.Core.Value(textureRepeats);
+					return textureRepeats;
 				case "lightExtinction":
-					return new Fox.Core.Value(lightExtinction);
+					return lightExtinction;
 				case "diffusion":
-					return new Fox.Core.Value(diffusion);
+					return diffusion;
 				case "dirLightGain":
-					return new Fox.Core.Value(dirLightGain);
+					return dirLightGain;
 				case "ambLightGain":
-					return new Fox.Core.Value(ambLightGain);
+					return ambLightGain;
 				case "inCloudScatterGain":
-					return new Fox.Core.Value(inCloudScatterGain);
+					return inCloudScatterGain;
 				case "density":
-					return new Fox.Core.Value(density);
+					return density;
 				case "cloudWindInfluence":
-					return new Fox.Core.Value(cloudWindInfluence);
+					return cloudWindInfluence;
 				case "densityLayerPower":
-					return new Fox.Core.Value(densityLayerPower);
+					return densityLayerPower;
 				case "densityLayerWindInfluence":
-					return new Fox.Core.Value(densityLayerWindInfluence);
+					return densityLayerWindInfluence;
 				case "dom2TextureRepeats":
-					return new Fox.Core.Value(dom2TextureRepeats);
+					return dom2TextureRepeats;
 				case "dom2CloudDensity":
-					return new Fox.Core.Value(dom2CloudDensity);
+					return dom2CloudDensity;
 				case "dom2WindInfluence":
-					return new Fox.Core.Value(dom2WindInfluence);
+					return dom2WindInfluence;
 				case "dom2DensityLayerPower":
-					return new Fox.Core.Value(dom2DensityLayerPower);
+					return dom2DensityLayerPower;
 				case "dom2DensityLayerWindInfluence":
-					return new Fox.Core.Value(dom2DensityLayerWindInfluence);
+					return dom2DensityLayerWindInfluence;
 				case "dom3TextureRepeats":
-					return new Fox.Core.Value(dom3TextureRepeats);
+					return dom3TextureRepeats;
 				case "dom3CloudDensity":
-					return new Fox.Core.Value(dom3CloudDensity);
+					return dom3CloudDensity;
 				case "dom3WindInfluence":
-					return new Fox.Core.Value(dom3WindInfluence);
+					return dom3WindInfluence;
 				case "dom3DensityLayerPower":
-					return new Fox.Core.Value(dom3DensityLayerPower);
+					return dom3DensityLayerPower;
 				case "dom3DensityLayerWindInfluence":
-					return new Fox.Core.Value(dom3DensityLayerWindInfluence);
+					return dom3DensityLayerWindInfluence;
 				case "cylCloudTexture":
-					return new Fox.Core.Value(cylCloudTexture);
+					return cylCloudTexture;
 				case "cylTextureRepeats":
-					return new Fox.Core.Value(cylTextureRepeats);
+					return cylTextureRepeats;
 				case "cylCloudDensity":
-					return new Fox.Core.Value(cylCloudDensity);
+					return cylCloudDensity;
 				case "cylDiffusion":
-					return new Fox.Core.Value(cylDiffusion);
+					return cylDiffusion;
 				case "cylScatterGain":
-					return new Fox.Core.Value(cylScatterGain);
+					return cylScatterGain;
 				case "cylDirLightGain":
-					return new Fox.Core.Value(cylDirLightGain);
+					return cylDirLightGain;
 				case "cylAmbLightGain":
-					return new Fox.Core.Value(cylAmbLightGain);
+					return cylAmbLightGain;
 				case "cylWindInfluence":
-					return new Fox.Core.Value(cylWindInfluence);
+					return cylWindInfluence;
 				case "cylDensityLayerPower":
-					return new Fox.Core.Value(cylDensityLayerPower);
+					return cylDensityLayerPower;
 				case "cylDensityLayerWindInfluence":
-					return new Fox.Core.Value(cylDensityLayerWindInfluence);
+					return cylDensityLayerWindInfluence;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -261,7 +261,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -270,111 +270,111 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "priority":
-					this.priority = value.GetValueAsUInt32();
+					this.priority = (uint)value;
 					return;
 				case "model":
-					this.model = value.GetValueAsFilePtr();
+					this.model = (Fox.Core.FilePtr)value;
 					return;
 				case "cloudTexture":
-					this.cloudTexture = value.GetValueAsPath();
+					this.cloudTexture = (Fox.Path)value;
 					return;
 				case "textureRepeats":
-					this.textureRepeats = value.GetValueAsUInt32();
+					this.textureRepeats = (uint)value;
 					return;
 				case "lightExtinction":
-					this.lightExtinction = value.GetValueAsFloat();
+					this.lightExtinction = (float)value;
 					return;
 				case "diffusion":
-					this.diffusion = value.GetValueAsFloat();
+					this.diffusion = (float)value;
 					return;
 				case "dirLightGain":
-					this.dirLightGain = value.GetValueAsFloat();
+					this.dirLightGain = (float)value;
 					return;
 				case "ambLightGain":
-					this.ambLightGain = value.GetValueAsFloat();
+					this.ambLightGain = (float)value;
 					return;
 				case "inCloudScatterGain":
-					this.inCloudScatterGain = value.GetValueAsFloat();
+					this.inCloudScatterGain = (float)value;
 					return;
 				case "density":
-					this.density = value.GetValueAsFloat();
+					this.density = (float)value;
 					return;
 				case "cloudWindInfluence":
-					this.cloudWindInfluence = value.GetValueAsFloat();
+					this.cloudWindInfluence = (float)value;
 					return;
 				case "densityLayerPower":
-					this.densityLayerPower = value.GetValueAsFloat();
+					this.densityLayerPower = (float)value;
 					return;
 				case "densityLayerWindInfluence":
-					this.densityLayerWindInfluence = value.GetValueAsFloat();
+					this.densityLayerWindInfluence = (float)value;
 					return;
 				case "dom2TextureRepeats":
-					this.dom2TextureRepeats = value.GetValueAsUInt32();
+					this.dom2TextureRepeats = (uint)value;
 					return;
 				case "dom2CloudDensity":
-					this.dom2CloudDensity = value.GetValueAsFloat();
+					this.dom2CloudDensity = (float)value;
 					return;
 				case "dom2WindInfluence":
-					this.dom2WindInfluence = value.GetValueAsFloat();
+					this.dom2WindInfluence = (float)value;
 					return;
 				case "dom2DensityLayerPower":
-					this.dom2DensityLayerPower = value.GetValueAsFloat();
+					this.dom2DensityLayerPower = (float)value;
 					return;
 				case "dom2DensityLayerWindInfluence":
-					this.dom2DensityLayerWindInfluence = value.GetValueAsFloat();
+					this.dom2DensityLayerWindInfluence = (float)value;
 					return;
 				case "dom3TextureRepeats":
-					this.dom3TextureRepeats = value.GetValueAsUInt32();
+					this.dom3TextureRepeats = (uint)value;
 					return;
 				case "dom3CloudDensity":
-					this.dom3CloudDensity = value.GetValueAsFloat();
+					this.dom3CloudDensity = (float)value;
 					return;
 				case "dom3WindInfluence":
-					this.dom3WindInfluence = value.GetValueAsFloat();
+					this.dom3WindInfluence = (float)value;
 					return;
 				case "dom3DensityLayerPower":
-					this.dom3DensityLayerPower = value.GetValueAsFloat();
+					this.dom3DensityLayerPower = (float)value;
 					return;
 				case "dom3DensityLayerWindInfluence":
-					this.dom3DensityLayerWindInfluence = value.GetValueAsFloat();
+					this.dom3DensityLayerWindInfluence = (float)value;
 					return;
 				case "cylCloudTexture":
-					this.cylCloudTexture = value.GetValueAsPath();
+					this.cylCloudTexture = (Fox.Path)value;
 					return;
 				case "cylTextureRepeats":
-					this.cylTextureRepeats = value.GetValueAsUInt32();
+					this.cylTextureRepeats = (uint)value;
 					return;
 				case "cylCloudDensity":
-					this.cylCloudDensity = value.GetValueAsFloat();
+					this.cylCloudDensity = (float)value;
 					return;
 				case "cylDiffusion":
-					this.cylDiffusion = value.GetValueAsFloat();
+					this.cylDiffusion = (float)value;
 					return;
 				case "cylScatterGain":
-					this.cylScatterGain = value.GetValueAsFloat();
+					this.cylScatterGain = (float)value;
 					return;
 				case "cylDirLightGain":
-					this.cylDirLightGain = value.GetValueAsFloat();
+					this.cylDirLightGain = (float)value;
 					return;
 				case "cylAmbLightGain":
-					this.cylAmbLightGain = value.GetValueAsFloat();
+					this.cylAmbLightGain = (float)value;
 					return;
 				case "cylWindInfluence":
-					this.cylWindInfluence = value.GetValueAsFloat();
+					this.cylWindInfluence = (float)value;
 					return;
 				case "cylDensityLayerPower":
-					this.cylDensityLayerPower = value.GetValueAsFloat();
+					this.cylDensityLayerPower = (float)value;
 					return;
 				case "cylDensityLayerWindInfluence":
-					this.cylDensityLayerWindInfluence = value.GetValueAsFloat();
+					this.cylDensityLayerWindInfluence = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -382,7 +382,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -392,7 +392,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -402,7 +402,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -412,7 +412,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -73,32 +73,32 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "speed":
-					return new Fox.Core.Value(speed);
+					return speed;
 				case "rotation":
-					return new Fox.Core.Value(rotation);
+					return rotation;
 				case "velocity":
-					return new Fox.Core.Value(velocity);
+					return velocity;
 				case "speedTurbulentRate":
-					return new Fox.Core.Value(speedTurbulentRate);
+					return speedTurbulentRate;
 				case "speedTurbulentCycle":
-					return new Fox.Core.Value(speedTurbulentCycle);
+					return speedTurbulentCycle;
 				case "rotTurbulentRate":
-					return new Fox.Core.Value(rotTurbulentRate);
+					return rotTurbulentRate;
 				case "rotTurbulentCycle":
-					return new Fox.Core.Value(rotTurbulentCycle);
+					return rotTurbulentCycle;
 				case "influenceOfGlobal":
-					return new Fox.Core.Value(influenceOfGlobal);
+					return influenceOfGlobal;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -107,7 +107,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -116,33 +116,33 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "speed":
-					this.speed = value.GetValueAsFloat();
+					this.speed = (float)value;
 					return;
 				case "rotation":
-					this.rotation = value.GetValueAsQuat();
+					this.rotation = (UnityEngine.Quaternion)value;
 					return;
 				case "velocity":
-					this.velocity = value.GetValueAsVector3();
+					this.velocity = (UnityEngine.Vector3)value;
 					return;
 				case "speedTurbulentRate":
-					this.speedTurbulentRate = value.GetValueAsFloat();
+					this.speedTurbulentRate = (float)value;
 					return;
 				case "speedTurbulentCycle":
-					this.speedTurbulentCycle = value.GetValueAsFloat();
+					this.speedTurbulentCycle = (float)value;
 					return;
 				case "rotTurbulentRate":
-					this.rotTurbulentRate = value.GetValueAsFloat();
+					this.rotTurbulentRate = (float)value;
 					return;
 				case "rotTurbulentCycle":
-					this.rotTurbulentCycle = value.GetValueAsFloat();
+					this.rotTurbulentCycle = (float)value;
 					return;
 				case "influenceOfGlobal":
-					this.influenceOfGlobal = value.GetValueAsFloat();
+					this.influenceOfGlobal = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -150,7 +150,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -160,7 +160,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -170,7 +170,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -180,7 +180,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

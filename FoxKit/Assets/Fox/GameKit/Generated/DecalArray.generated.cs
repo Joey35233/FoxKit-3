@@ -141,87 +141,87 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "material":
-					return new Fox.Core.Value(material);
+					return material;
 				case "projectionMode":
-					return new Fox.Core.Value(projectionMode);
+					return projectionMode;
 				case "nearClipScale":
-					return new Fox.Core.Value(nearClipScale);
+					return nearClipScale;
 				case "projectionTarget":
-					return new Fox.Core.Value(projectionTarget);
+					return projectionTarget;
 				case "repeatU":
-					return new Fox.Core.Value(repeatU);
+					return repeatU;
 				case "repeatV":
-					return new Fox.Core.Value(repeatV);
+					return repeatV;
 				case "transparency":
-					return new Fox.Core.Value(transparency);
+					return transparency;
 				case "polygonDataSource":
-					return new Fox.Core.Value(polygonDataSource);
+					return polygonDataSource;
 				case "drawRejectionLevel":
-					return new Fox.Core.Value(drawRejectionLevel);
+					return drawRejectionLevel;
 				case "drawRejectionDegree":
-					return new Fox.Core.Value(drawRejectionDegree);
+					return drawRejectionDegree;
 				case "decalFlags":
-					return new Fox.Core.Value(decalFlags);
+					return decalFlags;
 				case "scales":
-					return new Fox.Core.Value(scales);
+					return scales;
 				case "rotations":
-					return new Fox.Core.Value(rotations);
+					return rotations;
 				case "translations":
-					return new Fox.Core.Value(translations);
+					return translations;
 				case "targets":
-					return new Fox.Core.Value(targets);
+					return targets;
 				case "targetIndices":
-					return new Fox.Core.Value(targetIndices);
+					return targetIndices;
 				case "targetStartIndices":
-					return new Fox.Core.Value(targetStartIndices);
+					return targetStartIndices;
 				case "renderingPriorities":
-					return new Fox.Core.Value(renderingPriorities);
+					return renderingPriorities;
 				case "isDisableAlbedo":
-					return new Fox.Core.Value(isDisableAlbedo);
+					return isDisableAlbedo;
 				case "isPreserveAspect":
-					return new Fox.Core.Value(isPreserveAspect);
+					return isPreserveAspect;
 				case "isWrap":
-					return new Fox.Core.Value(isWrap);
+					return isWrap;
 				case "showObject":
-					return new Fox.Core.Value(showObject);
+					return showObject;
 				case "isVisibleGeom":
-					return new Fox.Core.Value(isVisibleGeom);
+					return isVisibleGeom;
 				case "isSSDecal":
-					return new Fox.Core.Value(isSSDecal);
+					return isSSDecal;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "scales":
-					return new Fox.Core.Value(this.scales[index]);
+					return this.scales[index];
 				case "rotations":
-					return new Fox.Core.Value(this.rotations[index]);
+					return this.rotations[index];
 				case "translations":
-					return new Fox.Core.Value(this.translations[index]);
+					return this.translations[index];
 				case "targets":
-					return new Fox.Core.Value(this.targets[index]);
+					return this.targets[index];
 				case "targetIndices":
-					return new Fox.Core.Value(this.targetIndices[index]);
+					return this.targetIndices[index];
 				case "targetStartIndices":
-					return new Fox.Core.Value(this.targetStartIndices[index]);
+					return this.targetStartIndices[index];
 				case "renderingPriorities":
-					return new Fox.Core.Value(this.renderingPriorities[index]);
+					return this.renderingPriorities[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -230,60 +230,60 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "material":
-					this.material = value.GetValueAsEntityLink();
+					this.material = (Fox.Core.EntityLink)value;
 					return;
 				case "projectionMode":
-					this.projectionMode = (DecalArray_ProjectionMode)value.GetValueAsInt32();
+					this.projectionMode = (DecalArray_ProjectionMode)value;
 					return;
 				case "nearClipScale":
-					this.nearClipScale = value.GetValueAsFloat();
+					this.nearClipScale = (float)value;
 					return;
 				case "projectionTarget":
-					this.projectionTarget = (DecalArray_ProjectionTarget)value.GetValueAsInt32();
+					this.projectionTarget = (DecalArray_ProjectionTarget)value;
 					return;
 				case "repeatU":
-					this.repeatU = value.GetValueAsFloat();
+					this.repeatU = (float)value;
 					return;
 				case "repeatV":
-					this.repeatV = value.GetValueAsFloat();
+					this.repeatV = (float)value;
 					return;
 				case "transparency":
-					this.transparency = value.GetValueAsFloat();
+					this.transparency = (float)value;
 					return;
 				case "polygonDataSource":
-					this.polygonDataSource = (DecalArray_PolygonDataSource)value.GetValueAsInt32();
+					this.polygonDataSource = (DecalArray_PolygonDataSource)value;
 					return;
 				case "drawRejectionLevel":
-					this.drawRejectionLevel = (DecalArray_DrawRejectionLevel)value.GetValueAsInt32();
+					this.drawRejectionLevel = (DecalArray_DrawRejectionLevel)value;
 					return;
 				case "drawRejectionDegree":
-					this.drawRejectionDegree = value.GetValueAsFloat();
+					this.drawRejectionDegree = (float)value;
 					return;
 				case "decalFlags":
-					this.decalFlags = value.GetValueAsUInt32();
+					this.decalFlags = (uint)value;
 					return;
 				case "isDisableAlbedo":
-					this.isDisableAlbedo = value.GetValueAsBool();
+					this.isDisableAlbedo = (bool)value;
 					return;
 				case "isPreserveAspect":
-					this.isPreserveAspect = value.GetValueAsBool();
+					this.isPreserveAspect = (bool)value;
 					return;
 				case "isWrap":
-					this.isWrap = value.GetValueAsBool();
+					this.isWrap = (bool)value;
 					return;
 				case "showObject":
-					this.showObject = value.GetValueAsBool();
+					this.showObject = (bool)value;
 					return;
 				case "isVisibleGeom":
-					this.isVisibleGeom = value.GetValueAsBool();
+					this.isVisibleGeom = (bool)value;
 					return;
 				case "isSSDecal":
-					this.isSSDecal = value.GetValueAsBool();
+					this.isSSDecal = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -291,30 +291,30 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "scales":
-					this.scales[index] = value.GetValueAsVector3();
+					this.scales[index] = (UnityEngine.Vector3)value;
 					return;
 				case "rotations":
-					this.rotations[index] = value.GetValueAsQuat();
+					this.rotations[index] = (UnityEngine.Quaternion)value;
 					return;
 				case "translations":
-					this.translations[index] = value.GetValueAsVector3();
+					this.translations[index] = (UnityEngine.Vector3)value;
 					return;
 				case "targets":
-					this.targets[index] = value.GetValueAsEntityLink();
+					this.targets[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "targetIndices":
-					this.targetIndices[index] = value.GetValueAsUInt32();
+					this.targetIndices[index] = (uint)value;
 					return;
 				case "targetStartIndices":
-					this.targetStartIndices[index] = value.GetValueAsUInt32();
+					this.targetStartIndices[index] = (uint)value;
 					return;
 				case "renderingPriorities":
-					this.renderingPriorities[index] = value.GetValueAsInt32();
+					this.renderingPriorities[index] = (int)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -322,37 +322,37 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "scales":
 					while(this.scales.Count <= index) { this.scales.Add(default(UnityEngine.Vector3)); }
-					this.scales[index] = value.GetValueAsVector3();
+					this.scales[index] = (UnityEngine.Vector3)value;
 					return;
 				case "rotations":
 					while(this.rotations.Count <= index) { this.rotations.Add(default(UnityEngine.Quaternion)); }
-					this.rotations[index] = value.GetValueAsQuat();
+					this.rotations[index] = (UnityEngine.Quaternion)value;
 					return;
 				case "translations":
 					while(this.translations.Count <= index) { this.translations.Add(default(UnityEngine.Vector3)); }
-					this.translations[index] = value.GetValueAsVector3();
+					this.translations[index] = (UnityEngine.Vector3)value;
 					return;
 				case "targets":
 					while(this.targets.Count <= index) { this.targets.Add(default(Fox.Core.EntityLink)); }
-					this.targets[index] = value.GetValueAsEntityLink();
+					this.targets[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "targetIndices":
 					while(this.targetIndices.Count <= index) { this.targetIndices.Add(default(uint)); }
-					this.targetIndices[index] = value.GetValueAsUInt32();
+					this.targetIndices[index] = (uint)value;
 					return;
 				case "targetStartIndices":
 					while(this.targetStartIndices.Count <= index) { this.targetStartIndices.Add(default(uint)); }
-					this.targetStartIndices[index] = value.GetValueAsUInt32();
+					this.targetStartIndices[index] = (uint)value;
 					return;
 				case "renderingPriorities":
 					while(this.renderingPriorities.Count <= index) { this.renderingPriorities.Add(default(int)); }
-					this.renderingPriorities[index] = value.GetValueAsInt32();
+					this.renderingPriorities[index] = (int)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -360,7 +360,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -370,7 +370,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -75,34 +75,34 @@ namespace Fox.Ui
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "language":
-					return new Fox.Core.Value(language);
+					return language;
 				case "fontName":
-					return new Fox.Core.Value(fontName);
+					return fontName;
 				case "fontFile":
-					return new Fox.Core.Value(fontFile);
+					return fontFile;
 				case "texturePath":
-					return new Fox.Core.Value(texturePath);
+					return texturePath;
 				case "fontWidth":
-					return new Fox.Core.Value(fontWidth);
+					return fontWidth;
 				case "fontHeight":
-					return new Fox.Core.Value(fontHeight);
+					return fontHeight;
 				case "textSpace":
-					return new Fox.Core.Value(textSpace);
+					return textSpace;
 				case "lineSpace":
-					return new Fox.Core.Value(lineSpace);
+					return lineSpace;
 				case "fontEdge":
-					return new Fox.Core.Value(fontEdge);
+					return fontEdge;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -111,7 +111,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -120,36 +120,36 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "language":
-					this.language = value.GetValueAsString();
+					this.language = (string)value;
 					return;
 				case "fontName":
-					this.fontName = value.GetValueAsString();
+					this.fontName = (string)value;
 					return;
 				case "fontFile":
-					this.fontFile = value.GetValueAsFilePtr();
+					this.fontFile = (Fox.Core.FilePtr)value;
 					return;
 				case "texturePath":
-					this.texturePath = value.GetValueAsPath();
+					this.texturePath = (Fox.Path)value;
 					return;
 				case "fontWidth":
-					this.fontWidth = value.GetValueAsFloat();
+					this.fontWidth = (float)value;
 					return;
 				case "fontHeight":
-					this.fontHeight = value.GetValueAsFloat();
+					this.fontHeight = (float)value;
 					return;
 				case "textSpace":
-					this.textSpace = value.GetValueAsFloat();
+					this.textSpace = (float)value;
 					return;
 				case "lineSpace":
-					this.lineSpace = value.GetValueAsFloat();
+					this.lineSpace = (float)value;
 					return;
 				case "fontEdge":
-					this.fontEdge = value.GetValueAsVector4();
+					this.fontEdge = (UnityEngine.Vector4)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -157,7 +157,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -167,7 +167,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -177,7 +177,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -187,7 +187,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

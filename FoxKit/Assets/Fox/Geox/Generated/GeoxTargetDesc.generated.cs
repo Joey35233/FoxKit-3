@@ -91,75 +91,75 @@ namespace Fox.Geox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "posArray":
-					return new Fox.Core.Value(posArray);
+					return posArray;
 				case "scaleArray":
-					return new Fox.Core.Value(scaleArray);
+					return scaleArray;
 				case "rotArray":
-					return new Fox.Core.Value(rotArray);
+					return rotArray;
 				case "primTypeArray":
-					return new Fox.Core.Value(primTypeArray);
+					return primTypeArray;
 				case "systemAttributeArray":
-					return new Fox.Core.Value(systemAttributeArray);
+					return systemAttributeArray;
 				case "throughValueArray":
-					return new Fox.Core.Value(throughValueArray);
+					return throughValueArray;
 				case "flagArray":
-					return new Fox.Core.Value(flagArray);
+					return flagArray;
 				case "categoryTag":
-					return new Fox.Core.Value(categoryTag);
+					return categoryTag;
 				case "nameArray":
-					return new Fox.Core.Value(nameArray);
+					return nameArray;
 				case "attachSkeletonArray":
-					return new Fox.Core.Value(attachSkeletonArray);
+					return attachSkeletonArray;
 				case "groupArray":
-					return new Fox.Core.Value(groupArray);
+					return groupArray;
 				case "objIndexForgroupTagArray":
-					return new Fox.Core.Value(objIndexForgroupTagArray);
+					return objIndexForgroupTagArray;
 				case "applicationDataLinkArray":
-					return new Fox.Core.Value(applicationDataLinkArray);
+					return applicationDataLinkArray;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "posArray":
-					return new Fox.Core.Value(this.posArray[index]);
+					return this.posArray[index];
 				case "scaleArray":
-					return new Fox.Core.Value(this.scaleArray[index]);
+					return this.scaleArray[index];
 				case "rotArray":
-					return new Fox.Core.Value(this.rotArray[index]);
+					return this.rotArray[index];
 				case "primTypeArray":
-					return new Fox.Core.Value(this.primTypeArray[index]);
+					return this.primTypeArray[index];
 				case "systemAttributeArray":
-					return new Fox.Core.Value(this.systemAttributeArray[index]);
+					return this.systemAttributeArray[index];
 				case "throughValueArray":
-					return new Fox.Core.Value(this.throughValueArray[index]);
+					return this.throughValueArray[index];
 				case "flagArray":
-					return new Fox.Core.Value(this.flagArray[index]);
+					return this.flagArray[index];
 				case "nameArray":
-					return new Fox.Core.Value(this.nameArray[index]);
+					return this.nameArray[index];
 				case "attachSkeletonArray":
-					return new Fox.Core.Value(this.attachSkeletonArray[index]);
+					return this.attachSkeletonArray[index];
 				case "groupArray":
-					return new Fox.Core.Value(this.groupArray[index]);
+					return this.groupArray[index];
 				case "objIndexForgroupTagArray":
-					return new Fox.Core.Value(this.objIndexForgroupTagArray[index]);
+					return this.objIndexForgroupTagArray[index];
 				case "applicationDataLinkArray":
-					return new Fox.Core.Value(this.applicationDataLinkArray[index]);
+					return this.applicationDataLinkArray[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -168,12 +168,12 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "categoryTag":
-					this.categoryTag = value.GetValueAsString();
+					this.categoryTag = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -181,45 +181,45 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "posArray":
-					this.posArray[index] = value.GetValueAsVector3();
+					this.posArray[index] = (UnityEngine.Vector3)value;
 					return;
 				case "scaleArray":
-					this.scaleArray[index] = value.GetValueAsVector3();
+					this.scaleArray[index] = (UnityEngine.Vector3)value;
 					return;
 				case "rotArray":
-					this.rotArray[index] = value.GetValueAsQuat();
+					this.rotArray[index] = (UnityEngine.Quaternion)value;
 					return;
 				case "primTypeArray":
-					this.primTypeArray[index] = value.GetValueAsUInt32();
+					this.primTypeArray[index] = (uint)value;
 					return;
 				case "systemAttributeArray":
-					this.systemAttributeArray[index] = value.GetValueAsUInt64();
+					this.systemAttributeArray[index] = (ulong)value;
 					return;
 				case "throughValueArray":
-					this.throughValueArray[index] = value.GetValueAsUInt32();
+					this.throughValueArray[index] = (uint)value;
 					return;
 				case "flagArray":
-					this.flagArray[index] = value.GetValueAsUInt32();
+					this.flagArray[index] = (uint)value;
 					return;
 				case "nameArray":
-					this.nameArray[index] = value.GetValueAsString();
+					this.nameArray[index] = (string)value;
 					return;
 				case "attachSkeletonArray":
-					this.attachSkeletonArray[index] = value.GetValueAsString();
+					this.attachSkeletonArray[index] = (string)value;
 					return;
 				case "groupArray":
-					this.groupArray[index] = value.GetValueAsString();
+					this.groupArray[index] = (string)value;
 					return;
 				case "objIndexForgroupTagArray":
-					this.objIndexForgroupTagArray[index] = value.GetValueAsUInt32();
+					this.objIndexForgroupTagArray[index] = (uint)value;
 					return;
 				case "applicationDataLinkArray":
-					this.applicationDataLinkArray[index] = value.GetValueAsEntityLink();
+					this.applicationDataLinkArray[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -227,57 +227,57 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "posArray":
 					while(this.posArray.Count <= index) { this.posArray.Add(default(UnityEngine.Vector3)); }
-					this.posArray[index] = value.GetValueAsVector3();
+					this.posArray[index] = (UnityEngine.Vector3)value;
 					return;
 				case "scaleArray":
 					while(this.scaleArray.Count <= index) { this.scaleArray.Add(default(UnityEngine.Vector3)); }
-					this.scaleArray[index] = value.GetValueAsVector3();
+					this.scaleArray[index] = (UnityEngine.Vector3)value;
 					return;
 				case "rotArray":
 					while(this.rotArray.Count <= index) { this.rotArray.Add(default(UnityEngine.Quaternion)); }
-					this.rotArray[index] = value.GetValueAsQuat();
+					this.rotArray[index] = (UnityEngine.Quaternion)value;
 					return;
 				case "primTypeArray":
 					while(this.primTypeArray.Count <= index) { this.primTypeArray.Add(default(uint)); }
-					this.primTypeArray[index] = value.GetValueAsUInt32();
+					this.primTypeArray[index] = (uint)value;
 					return;
 				case "systemAttributeArray":
 					while(this.systemAttributeArray.Count <= index) { this.systemAttributeArray.Add(default(ulong)); }
-					this.systemAttributeArray[index] = value.GetValueAsUInt64();
+					this.systemAttributeArray[index] = (ulong)value;
 					return;
 				case "throughValueArray":
 					while(this.throughValueArray.Count <= index) { this.throughValueArray.Add(default(uint)); }
-					this.throughValueArray[index] = value.GetValueAsUInt32();
+					this.throughValueArray[index] = (uint)value;
 					return;
 				case "flagArray":
 					while(this.flagArray.Count <= index) { this.flagArray.Add(default(uint)); }
-					this.flagArray[index] = value.GetValueAsUInt32();
+					this.flagArray[index] = (uint)value;
 					return;
 				case "nameArray":
 					while(this.nameArray.Count <= index) { this.nameArray.Add(default(string)); }
-					this.nameArray[index] = value.GetValueAsString();
+					this.nameArray[index] = (string)value;
 					return;
 				case "attachSkeletonArray":
 					while(this.attachSkeletonArray.Count <= index) { this.attachSkeletonArray.Add(default(string)); }
-					this.attachSkeletonArray[index] = value.GetValueAsString();
+					this.attachSkeletonArray[index] = (string)value;
 					return;
 				case "groupArray":
 					while(this.groupArray.Count <= index) { this.groupArray.Add(default(string)); }
-					this.groupArray[index] = value.GetValueAsString();
+					this.groupArray[index] = (string)value;
 					return;
 				case "objIndexForgroupTagArray":
 					while(this.objIndexForgroupTagArray.Count <= index) { this.objIndexForgroupTagArray.Add(default(uint)); }
-					this.objIndexForgroupTagArray[index] = value.GetValueAsUInt32();
+					this.objIndexForgroupTagArray[index] = (uint)value;
 					return;
 				case "applicationDataLinkArray":
 					while(this.applicationDataLinkArray.Count <= index) { this.applicationDataLinkArray.Add(default(Fox.Core.EntityLink)); }
-					this.applicationDataLinkArray[index] = value.GetValueAsEntityLink();
+					this.applicationDataLinkArray[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -285,7 +285,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -295,7 +295,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

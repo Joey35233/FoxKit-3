@@ -59,41 +59,41 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "electricCableData":
-					return new Fox.Core.Value(electricCableData);
+					return electricCableData;
 				case "poleData":
-					return new Fox.Core.Value(poleData);
+					return poleData;
 				case "electricCable":
-					return new Fox.Core.Value(electricCable);
+					return electricCable;
 				case "pole":
-					return new Fox.Core.Value(pole);
+					return pole;
 				case "cnpIndex":
-					return new Fox.Core.Value(cnpIndex);
+					return cnpIndex;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "electricCable":
-					return new Fox.Core.Value(this.electricCable[index]);
+					return this.electricCable[index];
 				case "pole":
-					return new Fox.Core.Value(this.pole[index]);
+					return this.pole[index];
 				case "cnpIndex":
-					return new Fox.Core.Value(this.cnpIndex[index]);
+					return this.cnpIndex[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -102,15 +102,15 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "electricCableData":
-					this.electricCableData = value.GetValueAsEntityLink();
+					this.electricCableData = (Fox.Core.EntityLink)value;
 					return;
 				case "poleData":
-					this.poleData = value.GetValueAsEntityLink();
+					this.poleData = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -118,18 +118,18 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "electricCable":
-					this.electricCable[index] = value.GetValueAsString();
+					this.electricCable[index] = (string)value;
 					return;
 				case "pole":
-					this.pole[index] = value.GetValueAsString();
+					this.pole[index] = (string)value;
 					return;
 				case "cnpIndex":
-					this.cnpIndex[index] = value.GetValueAsUInt8();
+					this.cnpIndex[index] = (byte)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -137,21 +137,21 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "electricCable":
 					while(this.electricCable.Count <= index) { this.electricCable.Add(default(string)); }
-					this.electricCable[index] = value.GetValueAsString();
+					this.electricCable[index] = (string)value;
 					return;
 				case "pole":
 					while(this.pole.Count <= index) { this.pole.Add(default(string)); }
-					this.pole[index] = value.GetValueAsString();
+					this.pole[index] = (string)value;
 					return;
 				case "cnpIndex":
 					while(this.cnpIndex.Count <= index) { this.cnpIndex.Add(default(byte)); }
-					this.cnpIndex[index] = value.GetValueAsUInt8();
+					this.cnpIndex[index] = (byte)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -159,7 +159,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -169,7 +169,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

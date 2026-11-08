@@ -59,26 +59,26 @@ namespace Fox.Sim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "defaultRadius":
-					return new Fox.Core.Value(defaultRadius);
+					return defaultRadius;
 				case "defaultLimit":
-					return new Fox.Core.Value(defaultLimit);
+					return defaultLimit;
 				case "defaultSpring":
-					return new Fox.Core.Value(defaultSpring);
+					return defaultSpring;
 				case "defaultStopTwistFlag":
-					return new Fox.Core.Value(defaultStopTwistFlag);
+					return defaultStopTwistFlag;
 				case "defaultMass":
-					return new Fox.Core.Value(defaultMass);
+					return defaultMass;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -87,7 +87,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -96,24 +96,24 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "defaultRadius":
-					this.defaultRadius = value.GetValueAsFloat();
+					this.defaultRadius = (float)value;
 					return;
 				case "defaultLimit":
-					this.defaultLimit = value.GetValueAsFloat();
+					this.defaultLimit = (float)value;
 					return;
 				case "defaultSpring":
-					this.defaultSpring = value.GetValueAsFloat();
+					this.defaultSpring = (float)value;
 					return;
 				case "defaultStopTwistFlag":
-					this.defaultStopTwistFlag = value.GetValueAsBool();
+					this.defaultStopTwistFlag = (bool)value;
 					return;
 				case "defaultMass":
-					this.defaultMass = value.GetValueAsFloat();
+					this.defaultMass = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -121,7 +121,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -131,7 +131,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -141,7 +141,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

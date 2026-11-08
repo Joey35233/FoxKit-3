@@ -51,37 +51,37 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "lightGroup":
-					return new Fox.Core.Value(lightGroup);
+					return lightGroup;
 				case "colorList":
-					return new Fox.Core.Value(colorList);
+					return colorList;
 				case "requirdTime":
-					return new Fox.Core.Value(requirdTime);
+					return requirdTime;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "lightGroup":
-					return new Fox.Core.Value(this.lightGroup[index]);
+					return this.lightGroup[index];
 				case "colorList":
-					return new Fox.Core.Value(this.colorList[index]);
+					return this.colorList[index];
 				case "requirdTime":
-					return new Fox.Core.Value(this.requirdTime[index]);
+					return this.requirdTime[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,7 +90,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -100,18 +100,18 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "lightGroup":
-					this.lightGroup[index] = value.GetValueAsEntityLink();
+					this.lightGroup[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "colorList":
-					this.colorList[index] = value.GetValueAsColor();
+					this.colorList[index] = (UnityEngine.Color)value;
 					return;
 				case "requirdTime":
-					this.requirdTime[index] = value.GetValueAsFloat();
+					this.requirdTime[index] = (float)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -119,21 +119,21 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "lightGroup":
 					while(this.lightGroup.Count <= index) { this.lightGroup.Add(default(Fox.Core.EntityLink)); }
-					this.lightGroup[index] = value.GetValueAsEntityLink();
+					this.lightGroup[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "colorList":
 					while(this.colorList.Count <= index) { this.colorList.Add(default(UnityEngine.Color)); }
-					this.colorList[index] = value.GetValueAsColor();
+					this.colorList[index] = (UnityEngine.Color)value;
 					return;
 				case "requirdTime":
 					while(this.requirdTime.Count <= index) { this.requirdTime.Add(default(float)); }
-					this.requirdTime[index] = value.GetValueAsFloat();
+					this.requirdTime[index] = (float)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -141,7 +141,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

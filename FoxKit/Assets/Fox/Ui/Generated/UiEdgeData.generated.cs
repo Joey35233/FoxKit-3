@@ -91,42 +91,42 @@ namespace Fox.Ui
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "sourcePort":
-					return new Fox.Core.Value(sourcePort);
+					return sourcePort;
 				case "sourcePortType":
-					return new Fox.Core.Value(sourcePortType);
+					return sourcePortType;
 				case "sourcePortIndex":
-					return new Fox.Core.Value(sourcePortIndex);
+					return sourcePortIndex;
 				case "targetPort":
-					return new Fox.Core.Value(targetPort);
+					return targetPort;
 				case "targetPortType":
-					return new Fox.Core.Value(targetPortType);
+					return targetPortType;
 				case "targetPortIndex":
-					return new Fox.Core.Value(targetPortIndex);
+					return targetPortIndex;
 				case "isVirtual":
-					return new Fox.Core.Value(isVirtual);
+					return isVirtual;
 				case "virtualSourcePortIndex":
-					return new Fox.Core.Value(virtualSourcePortIndex);
+					return virtualSourcePortIndex;
 				case "virtualTargetPortIndex":
-					return new Fox.Core.Value(virtualTargetPortIndex);
+					return virtualTargetPortIndex;
 				case "virtualSourceNode":
-					return new Fox.Core.Value(virtualSourceNode);
+					return virtualSourceNode;
 				case "virtualTargetNode":
-					return new Fox.Core.Value(virtualTargetNode);
+					return virtualTargetNode;
 				case "isInvalid":
-					return new Fox.Core.Value(isInvalid);
+					return isInvalid;
 				case "connectRealEdge":
-					return new Fox.Core.Value(connectRealEdge);
+					return connectRealEdge;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -135,7 +135,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -144,48 +144,48 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "sourcePort":
-					this.sourcePort = value.GetValueAsEntityLink();
+					this.sourcePort = (Fox.Core.EntityLink)value;
 					return;
 				case "sourcePortType":
-					this.sourcePortType = value.GetValueAsInt32();
+					this.sourcePortType = (int)value;
 					return;
 				case "sourcePortIndex":
-					this.sourcePortIndex = value.GetValueAsInt32();
+					this.sourcePortIndex = (int)value;
 					return;
 				case "targetPort":
-					this.targetPort = value.GetValueAsEntityLink();
+					this.targetPort = (Fox.Core.EntityLink)value;
 					return;
 				case "targetPortType":
-					this.targetPortType = value.GetValueAsInt32();
+					this.targetPortType = (int)value;
 					return;
 				case "targetPortIndex":
-					this.targetPortIndex = value.GetValueAsInt32();
+					this.targetPortIndex = (int)value;
 					return;
 				case "isVirtual":
-					this.isVirtual = value.GetValueAsBool();
+					this.isVirtual = (bool)value;
 					return;
 				case "virtualSourcePortIndex":
-					this.virtualSourcePortIndex = value.GetValueAsInt32();
+					this.virtualSourcePortIndex = (int)value;
 					return;
 				case "virtualTargetPortIndex":
-					this.virtualTargetPortIndex = value.GetValueAsInt32();
+					this.virtualTargetPortIndex = (int)value;
 					return;
 				case "virtualSourceNode":
-					this.virtualSourceNode = value.GetValueAsEntityLink();
+					this.virtualSourceNode = (Fox.Core.EntityLink)value;
 					return;
 				case "virtualTargetNode":
-					this.virtualTargetNode = value.GetValueAsEntityLink();
+					this.virtualTargetNode = (Fox.Core.EntityLink)value;
 					return;
 				case "isInvalid":
-					this.isInvalid = value.GetValueAsBool();
+					this.isInvalid = (bool)value;
 					return;
 				case "connectRealEdge":
-					this.connectRealEdge = value.GetValueAsEntityLink();
+					this.connectRealEdge = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -193,7 +193,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -203,7 +203,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -213,7 +213,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -223,7 +223,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

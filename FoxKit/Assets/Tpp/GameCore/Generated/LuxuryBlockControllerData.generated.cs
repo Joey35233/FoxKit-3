@@ -67,30 +67,30 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "blockWidthX":
-					return new Fox.Core.Value(blockWidthX);
+					return blockWidthX;
 				case "blockWidthZ":
-					return new Fox.Core.Value(blockWidthZ);
+					return blockWidthZ;
 				case "centerIndexX":
-					return new Fox.Core.Value(centerIndexX);
+					return centerIndexX;
 				case "centerIndexZ":
-					return new Fox.Core.Value(centerIndexZ);
+					return centerIndexZ;
 				case "blockLoadMargin":
-					return new Fox.Core.Value(blockLoadMargin);
+					return blockLoadMargin;
 				case "maxBlockIndexMapCount":
-					return new Fox.Core.Value(maxBlockIndexMapCount);
+					return maxBlockIndexMapCount;
 				case "maxPathListCount":
-					return new Fox.Core.Value(maxPathListCount);
+					return maxPathListCount;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -99,7 +99,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -108,30 +108,30 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "blockWidthX":
-					this.blockWidthX = value.GetValueAsUInt32();
+					this.blockWidthX = (uint)value;
 					return;
 				case "blockWidthZ":
-					this.blockWidthZ = value.GetValueAsUInt32();
+					this.blockWidthZ = (uint)value;
 					return;
 				case "centerIndexX":
-					this.centerIndexX = value.GetValueAsUInt32();
+					this.centerIndexX = (uint)value;
 					return;
 				case "centerIndexZ":
-					this.centerIndexZ = value.GetValueAsUInt32();
+					this.centerIndexZ = (uint)value;
 					return;
 				case "blockLoadMargin":
-					this.blockLoadMargin = value.GetValueAsUInt32();
+					this.blockLoadMargin = (uint)value;
 					return;
 				case "maxBlockIndexMapCount":
-					this.maxBlockIndexMapCount = value.GetValueAsUInt32();
+					this.maxBlockIndexMapCount = (uint)value;
 					return;
 				case "maxPathListCount":
-					this.maxPathListCount = value.GetValueAsUInt32();
+					this.maxPathListCount = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -139,7 +139,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -149,7 +149,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -159,7 +159,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -169,7 +169,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

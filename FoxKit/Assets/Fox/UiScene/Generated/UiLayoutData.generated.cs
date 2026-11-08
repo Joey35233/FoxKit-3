@@ -71,32 +71,32 @@ namespace Fox.UiScene
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "layoutPath":
-					return new Fox.Core.Value(layoutPath);
+					return layoutPath;
 				case "color":
-					return new Fox.Core.Value(color);
+					return color;
 				case "visible":
-					return new Fox.Core.Value(visible);
+					return visible;
 				case "drawPriority":
-					return new Fox.Core.Value(drawPriority);
+					return drawPriority;
 				case "connection_connectModelDataHandle":
-					return new Fox.Core.Value(connection_connectModelDataHandle);
+					return connection_connectModelDataHandle;
 				case "connection_connectModelNodeName":
-					return new Fox.Core.Value(connection_connectModelNodeName);
+					return connection_connectModelNodeName;
 				case "useParentCamera":
-					return new Fox.Core.Value(useParentCamera);
+					return useParentCamera;
 				case "fontTableIndex":
-					return new Fox.Core.Value(fontTableIndex);
+					return fontTableIndex;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -105,7 +105,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -114,33 +114,33 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "layoutPath":
-					this.layoutPath = value.GetValueAsPath();
+					this.layoutPath = (Fox.Path)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "visible":
-					this.visible = value.GetValueAsBool();
+					this.visible = (bool)value;
 					return;
 				case "drawPriority":
-					this.drawPriority = value.GetValueAsInt32();
+					this.drawPriority = (int)value;
 					return;
 				case "connection_connectModelDataHandle":
-					this.connection_connectModelDataHandle = value.GetValueAsEntityHandle();
+					this.connection_connectModelDataHandle = (Fox.Core.Entity)value;
 					return;
 				case "connection_connectModelNodeName":
-					this.connection_connectModelNodeName = value.GetValueAsString();
+					this.connection_connectModelNodeName = (string)value;
 					return;
 				case "useParentCamera":
-					this.useParentCamera = value.GetValueAsBool();
+					this.useParentCamera = (bool)value;
 					return;
 				case "fontTableIndex":
-					this.fontTableIndex = value.GetValueAsInt32();
+					this.fontTableIndex = (int)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -148,7 +148,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -158,7 +158,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -168,7 +168,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -178,7 +178,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

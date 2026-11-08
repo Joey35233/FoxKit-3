@@ -67,43 +67,43 @@ namespace Fox.UiScene
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "data":
-					return new Fox.Core.Value(data);
+					return data;
 				case "data_s":
-					return new Fox.Core.Value(data_s);
+					return data_s;
 				case "model":
-					return new Fox.Core.Value(model);
+					return model;
 				case "speed":
-					return new Fox.Core.Value(speed);
+					return speed;
 				case "flag":
-					return new Fox.Core.Value(flag);
+					return flag;
 				case "srcNodeNames":
-					return new Fox.Core.Value(srcNodeNames);
+					return srcNodeNames;
 				case "destNodeNames":
-					return new Fox.Core.Value(destNodeNames);
+					return destNodeNames;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "srcNodeNames":
-					return new Fox.Core.Value(this.srcNodeNames[index]);
+					return this.srcNodeNames[index];
 				case "destNodeNames":
-					return new Fox.Core.Value(this.destNodeNames[index]);
+					return this.destNodeNames[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -112,24 +112,24 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "data":
-					this.data = value.GetValueAsFilePtr();
+					this.data = (Fox.Core.FilePtr)value;
 					return;
 				case "data_s":
-					this.data_s = value.GetValueAsFilePtr();
+					this.data_s = (Fox.Core.FilePtr)value;
 					return;
 				case "model":
-					this.model = value.GetValueAsEntityLink();
+					this.model = (Fox.Core.EntityLink)value;
 					return;
 				case "speed":
-					this.speed = value.GetValueAsFloat();
+					this.speed = (float)value;
 					return;
 				case "flag":
-					this.flag = (UiAnimDataFlag)value.GetValueAsUInt32();
+					this.flag = (UiAnimDataFlag)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -137,15 +137,15 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "srcNodeNames":
-					this.srcNodeNames[index] = value.GetValueAsString();
+					this.srcNodeNames[index] = (string)value;
 					return;
 				case "destNodeNames":
-					this.destNodeNames[index] = value.GetValueAsString();
+					this.destNodeNames[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -153,17 +153,17 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "srcNodeNames":
 					while(this.srcNodeNames.Count <= index) { this.srcNodeNames.Add(default(string)); }
-					this.srcNodeNames[index] = value.GetValueAsString();
+					this.srcNodeNames[index] = (string)value;
 					return;
 				case "destNodeNames":
 					while(this.destNodeNames.Count <= index) { this.destNodeNames.Add(default(string)); }
-					this.destNodeNames[index] = value.GetValueAsString();
+					this.destNodeNames[index] = (string)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -171,7 +171,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -181,7 +181,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
