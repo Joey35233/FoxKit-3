@@ -55,24 +55,24 @@ namespace Tpp.Radio
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "radioLocatorId":
-					return new Fox.Core.Value(radioLocatorId);
+					return radioLocatorId;
 				case "minDistance":
-					return new Fox.Core.Value(minDistance);
+					return minDistance;
 				case "maxDistance":
-					return new Fox.Core.Value(maxDistance);
+					return maxDistance;
 				case "angle":
-					return new Fox.Core.Value(angle);
+					return angle;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -81,7 +81,7 @@ namespace Tpp.Radio
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,21 +90,21 @@ namespace Tpp.Radio
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "radioLocatorId":
-					this.radioLocatorId = value.GetValueAsString();
+					this.radioLocatorId = (string)value;
 					return;
 				case "minDistance":
-					this.minDistance = value.GetValueAsFloat();
+					this.minDistance = (float)value;
 					return;
 				case "maxDistance":
-					this.maxDistance = value.GetValueAsFloat();
+					this.maxDistance = (float)value;
 					return;
 				case "angle":
-					this.angle = value.GetValueAsFloat();
+					this.angle = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -112,7 +112,7 @@ namespace Tpp.Radio
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Tpp.Radio
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -132,7 +132,7 @@ namespace Tpp.Radio
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -142,7 +142,7 @@ namespace Tpp.Radio
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

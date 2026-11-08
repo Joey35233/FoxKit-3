@@ -55,24 +55,24 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "filePath":
-					return new Fox.Core.Value(filePath);
+					return filePath;
 				case "obrbFile":
-					return new Fox.Core.Value(obrbFile);
+					return obrbFile;
 				case "blockId":
-					return new Fox.Core.Value(blockId);
+					return blockId;
 				case "objectBrushName":
-					return new Fox.Core.Value(objectBrushName);
+					return objectBrushName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -81,7 +81,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,21 +90,21 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "filePath":
-					this.filePath = value.GetValueAsPath();
+					this.filePath = (Fox.Path)value;
 					return;
 				case "obrbFile":
-					this.obrbFile = value.GetValueAsFilePtr();
+					this.obrbFile = (Fox.Core.FilePtr)value;
 					return;
 				case "blockId":
-					this.blockId = value.GetValueAsUInt32();
+					this.blockId = (uint)value;
 					return;
 				case "objectBrushName":
-					this.objectBrushName = value.GetValueAsString();
+					this.objectBrushName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -112,7 +112,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -132,7 +132,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -142,7 +142,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

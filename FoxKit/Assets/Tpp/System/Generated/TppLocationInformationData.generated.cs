@@ -55,24 +55,24 @@ namespace Tpp.System
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "locationId":
-					return new Fox.Core.Value(locationId);
+					return locationId;
 				case "locationPathString":
-					return new Fox.Core.Value(locationPathString);
+					return locationPathString;
 				case "locationType":
-					return new Fox.Core.Value(locationType);
+					return locationType;
 				case "loadScriptPath":
-					return new Fox.Core.Value(loadScriptPath);
+					return loadScriptPath;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -81,7 +81,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,21 +90,21 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "locationId":
-					this.locationId = value.GetValueAsUInt16();
+					this.locationId = (ushort)value;
 					return;
 				case "locationPathString":
-					this.locationPathString = value.GetValueAsString();
+					this.locationPathString = (string)value;
 					return;
 				case "locationType":
-					this.locationType = value.GetValueAsUInt8();
+					this.locationType = (byte)value;
 					return;
 				case "loadScriptPath":
-					this.loadScriptPath = value.GetValueAsPath();
+					this.loadScriptPath = (Fox.Path)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -112,7 +112,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -132,7 +132,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -142,7 +142,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

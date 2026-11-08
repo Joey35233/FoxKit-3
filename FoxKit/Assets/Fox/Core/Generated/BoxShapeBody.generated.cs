@@ -51,22 +51,22 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "shape_center":
-					return new Fox.Core.Value(shape_center);
+					return shape_center;
 				case "shape_size":
-					return new Fox.Core.Value(shape_size);
+					return shape_size;
 				case "shape_rotation":
-					return new Fox.Core.Value(shape_rotation);
+					return shape_rotation;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -75,7 +75,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -84,18 +84,18 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "shape_center":
-					this.shape_center = value.GetValueAsVector3();
+					this.shape_center = (UnityEngine.Vector3)value;
 					return;
 				case "shape_size":
-					this.shape_size = value.GetValueAsVector3();
+					this.shape_size = (UnityEngine.Vector3)value;
 					return;
 				case "shape_rotation":
-					this.shape_rotation = value.GetValueAsQuat();
+					this.shape_rotation = (UnityEngine.Quaternion)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -103,7 +103,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -113,7 +113,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -123,7 +123,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -133,7 +133,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -56,24 +56,24 @@ namespace Fox.Phx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "physicsData":
-					return new Fox.Core.Value(physicsData);
+					return physicsData;
 				case "connections":
-					return new Fox.Core.Value((Fox.IStringMap)connections);
+					return (Fox.IStringMap)connections;
 				case "param":
-					return new Fox.Core.Value(param);
+					return param;
 				case "connectType":
-					return new Fox.Core.Value(connectType);
+					return connectType;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -82,29 +82,29 @@ namespace Fox.Phx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "connections":
-					return new Fox.Core.Value(this.connections[key]);
+					return this.connections[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "physicsData":
-					this.physicsData = value.GetValueAsEntityLink();
+					this.physicsData = (Fox.Core.EntityLink)value;
 					return;
 				case "param":
-					this.param = value.GetValueAsEntityPtr<Fox.Phx.PhAssociationParam>();
+					this.param = (Fox.Phx.PhAssociationParam)value;
 					return;
 				case "connectType":
-					this.connectType = value.GetValueAsUInt32();
+					this.connectType = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -112,7 +112,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -132,12 +132,12 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "connections":
-					this.connections[key] = value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>();
+					this.connections[key] = (Fox.Phx.PhxAssociationUnitElement)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
@@ -145,12 +145,12 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "connections":
-					this.connections[key] = value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>();
+					this.connections[key] = (Fox.Phx.PhxAssociationUnitElement)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, key, value);

@@ -151,66 +151,66 @@ namespace Fox.Grx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "motionBlurConvolutionLevel":
-					return new Fox.Core.Value(motionBlurConvolutionLevel);
+					return motionBlurConvolutionLevel;
 				case "exposureCompensation":
-					return new Fox.Core.Value(exposureCompensation);
+					return exposureCompensation;
 				case "minExposure":
-					return new Fox.Core.Value(minExposure);
+					return minExposure;
 				case "maxExposure":
-					return new Fox.Core.Value(maxExposure);
+					return maxExposure;
 				case "keyValue":
-					return new Fox.Core.Value(keyValue);
+					return keyValue;
 				case "bloomSize":
-					return new Fox.Core.Value(bloomSize);
+					return bloomSize;
 				case "bloomBrightnessExtraction":
-					return new Fox.Core.Value(bloomBrightnessExtraction);
+					return bloomBrightnessExtraction;
 				case "bloomWeight":
-					return new Fox.Core.Value(bloomWeight);
+					return bloomWeight;
 				case "tonemapSpeed":
-					return new Fox.Core.Value(tonemapSpeed);
+					return tonemapSpeed;
 				case "maxLuminanceValue":
-					return new Fox.Core.Value(maxLuminanceValue);
+					return maxLuminanceValue;
 				case "captureBounceCount":
-					return new Fox.Core.Value(captureBounceCount);
+					return captureBounceCount;
 				case "minDecalArea":
-					return new Fox.Core.Value(minDecalArea);
+					return minDecalArea;
 				case "flags":
-					return new Fox.Core.Value(flags);
+					return flags;
 				case "isTonemap":
-					return new Fox.Core.Value(isTonemap);
+					return isTonemap;
 				case "isBloom":
-					return new Fox.Core.Value(isBloom);
+					return isBloom;
 				case "isMotionBlur":
-					return new Fox.Core.Value(isMotionBlur);
+					return isMotionBlur;
 				case "isDepthOfField":
-					return new Fox.Core.Value(isDepthOfField);
+					return isDepthOfField;
 				case "isDOFVisualizeFocus":
-					return new Fox.Core.Value(isDOFVisualizeFocus);
+					return isDOFVisualizeFocus;
 				case "isLocalReflections":
-					return new Fox.Core.Value(isLocalReflections);
+					return isLocalReflections;
 				case "isTemporalAA":
-					return new Fox.Core.Value(isTemporalAA);
+					return isTemporalAA;
 				case "isFixedShutterRatio":
-					return new Fox.Core.Value(isFixedShutterRatio);
+					return isFixedShutterRatio;
 				case "isPatchVelocity":
-					return new Fox.Core.Value(isPatchVelocity);
+					return isPatchVelocity;
 				case "isLightAdaptationFromLACC":
-					return new Fox.Core.Value(isLightAdaptationFromLACC);
+					return isLightAdaptationFromLACC;
 				case "isShowDecals":
-					return new Fox.Core.Value(isShowDecals);
+					return isShowDecals;
 				case "isShrinkSHBuffer":
-					return new Fox.Core.Value(isShrinkSHBuffer);
+					return isShrinkSHBuffer;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -219,7 +219,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -228,84 +228,84 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "motionBlurConvolutionLevel":
-					this.motionBlurConvolutionLevel = value.GetValueAsUInt32();
+					this.motionBlurConvolutionLevel = (uint)value;
 					return;
 				case "exposureCompensation":
-					this.exposureCompensation = value.GetValueAsFloat();
+					this.exposureCompensation = (float)value;
 					return;
 				case "minExposure":
-					this.minExposure = value.GetValueAsFloat();
+					this.minExposure = (float)value;
 					return;
 				case "maxExposure":
-					this.maxExposure = value.GetValueAsFloat();
+					this.maxExposure = (float)value;
 					return;
 				case "keyValue":
-					this.keyValue = value.GetValueAsFloat();
+					this.keyValue = (float)value;
 					return;
 				case "bloomSize":
-					this.bloomSize = value.GetValueAsFloat();
+					this.bloomSize = (float)value;
 					return;
 				case "bloomBrightnessExtraction":
-					this.bloomBrightnessExtraction = value.GetValueAsFloat();
+					this.bloomBrightnessExtraction = (float)value;
 					return;
 				case "bloomWeight":
-					this.bloomWeight = value.GetValueAsFloat();
+					this.bloomWeight = (float)value;
 					return;
 				case "tonemapSpeed":
-					this.tonemapSpeed = value.GetValueAsFloat();
+					this.tonemapSpeed = (float)value;
 					return;
 				case "maxLuminanceValue":
-					this.maxLuminanceValue = value.GetValueAsFloat();
+					this.maxLuminanceValue = (float)value;
 					return;
 				case "captureBounceCount":
-					this.captureBounceCount = value.GetValueAsUInt8();
+					this.captureBounceCount = (byte)value;
 					return;
 				case "minDecalArea":
-					this.minDecalArea = value.GetValueAsUInt32();
+					this.minDecalArea = (uint)value;
 					return;
 				case "flags":
-					this.flags = value.GetValueAsUInt32();
+					this.flags = (uint)value;
 					return;
 				case "isTonemap":
-					this.isTonemap = value.GetValueAsBool();
+					this.isTonemap = (bool)value;
 					return;
 				case "isBloom":
-					this.isBloom = value.GetValueAsBool();
+					this.isBloom = (bool)value;
 					return;
 				case "isMotionBlur":
-					this.isMotionBlur = value.GetValueAsBool();
+					this.isMotionBlur = (bool)value;
 					return;
 				case "isDepthOfField":
-					this.isDepthOfField = value.GetValueAsBool();
+					this.isDepthOfField = (bool)value;
 					return;
 				case "isDOFVisualizeFocus":
-					this.isDOFVisualizeFocus = value.GetValueAsBool();
+					this.isDOFVisualizeFocus = (bool)value;
 					return;
 				case "isLocalReflections":
-					this.isLocalReflections = value.GetValueAsBool();
+					this.isLocalReflections = (bool)value;
 					return;
 				case "isTemporalAA":
-					this.isTemporalAA = value.GetValueAsBool();
+					this.isTemporalAA = (bool)value;
 					return;
 				case "isFixedShutterRatio":
-					this.isFixedShutterRatio = value.GetValueAsBool();
+					this.isFixedShutterRatio = (bool)value;
 					return;
 				case "isPatchVelocity":
-					this.isPatchVelocity = value.GetValueAsBool();
+					this.isPatchVelocity = (bool)value;
 					return;
 				case "isLightAdaptationFromLACC":
-					this.isLightAdaptationFromLACC = value.GetValueAsBool();
+					this.isLightAdaptationFromLACC = (bool)value;
 					return;
 				case "isShowDecals":
-					this.isShowDecals = value.GetValueAsBool();
+					this.isShowDecals = (bool)value;
 					return;
 				case "isShrinkSHBuffer":
-					this.isShrinkSHBuffer = value.GetValueAsBool();
+					this.isShrinkSHBuffer = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -313,7 +313,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -323,7 +323,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -333,7 +333,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -343,7 +343,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -43,18 +43,18 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "stringMap":
-					return new Fox.Core.Value((Fox.IStringMap)stringMap);
+					return (Fox.IStringMap)stringMap;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -63,18 +63,18 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "stringMap":
-					return new Fox.Core.Value(this.stringMap[key]);
+					return this.stringMap[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -84,7 +84,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -94,7 +94,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -104,12 +104,12 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "stringMap":
-					this.stringMap[key] = value.GetValueAsString();
+					this.stringMap[key] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
@@ -117,12 +117,12 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "stringMap":
-					this.stringMap[key] = value.GetValueAsString();
+					this.stringMap[key] = (string)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, key, value);

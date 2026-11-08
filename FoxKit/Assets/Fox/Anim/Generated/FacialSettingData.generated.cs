@@ -55,35 +55,35 @@ namespace Fox.Anim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "aspectMaskList":
-					return new Fox.Core.Value(aspectMaskList);
+					return aspectMaskList;
 				case "mouthMask":
-					return new Fox.Core.Value(mouthMask);
+					return mouthMask;
 				case "lipMask":
-					return new Fox.Core.Value(lipMask);
+					return lipMask;
 				case "rootName":
-					return new Fox.Core.Value(rootName);
+					return rootName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "aspectMaskList":
-					return new Fox.Core.Value(this.aspectMaskList[index]);
+					return this.aspectMaskList[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -92,18 +92,18 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "mouthMask":
-					this.mouthMask = value.GetValueAsEntityPtr<Fox.Anim.FacialMaskElement>();
+					this.mouthMask = (Fox.Anim.FacialMaskElement)value;
 					return;
 				case "lipMask":
-					this.lipMask = value.GetValueAsEntityPtr<Fox.Anim.FacialMaskElement>();
+					this.lipMask = (Fox.Anim.FacialMaskElement)value;
 					return;
 				case "rootName":
-					this.rootName = value.GetValueAsString();
+					this.rootName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,12 +111,12 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "aspectMaskList":
-					this.aspectMaskList[index] = value.GetValueAsEntityPtr<Fox.Anim.FacialMaskElement>();
+					this.aspectMaskList[index] = (Fox.Anim.FacialMaskElement)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -124,13 +124,13 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "aspectMaskList":
 					while(this.aspectMaskList.Count <= index) { this.aspectMaskList.Add(default(Fox.Anim.FacialMaskElement)); }
-					this.aspectMaskList[index] = value.GetValueAsEntityPtr<Fox.Anim.FacialMaskElement>();
+					this.aspectMaskList[index] = (Fox.Anim.FacialMaskElement)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -138,7 +138,7 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -148,7 +148,7 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

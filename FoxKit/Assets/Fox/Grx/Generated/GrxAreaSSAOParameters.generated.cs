@@ -83,38 +83,38 @@ namespace Fox.Grx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "resolution":
-					return new Fox.Core.Value(resolution);
+					return resolution;
 				case "radius":
-					return new Fox.Core.Value(radius);
+					return radius;
 				case "angleBias":
-					return new Fox.Core.Value(angleBias);
+					return angleBias;
 				case "numSteps":
-					return new Fox.Core.Value(numSteps);
+					return numSteps;
 				case "numDirections":
-					return new Fox.Core.Value(numDirections);
+					return numDirections;
 				case "attenuation":
-					return new Fox.Core.Value(attenuation);
+					return attenuation;
 				case "contrast":
-					return new Fox.Core.Value(contrast);
+					return contrast;
 				case "blurMode":
-					return new Fox.Core.Value(blurMode);
+					return blurMode;
 				case "blurRadius":
-					return new Fox.Core.Value(blurRadius);
+					return blurRadius;
 				case "blurSharpness":
-					return new Fox.Core.Value(blurSharpness);
+					return blurSharpness;
 				case "blurSceneScale":
-					return new Fox.Core.Value(blurSceneScale);
+					return blurSceneScale;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -123,7 +123,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -132,42 +132,42 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "resolution":
-					this.resolution = (GrxAreaSSAOParameters_Resolution)value.GetValueAsInt32();
+					this.resolution = (GrxAreaSSAOParameters_Resolution)value;
 					return;
 				case "radius":
-					this.radius = value.GetValueAsFloat();
+					this.radius = (float)value;
 					return;
 				case "angleBias":
-					this.angleBias = value.GetValueAsFloat();
+					this.angleBias = (float)value;
 					return;
 				case "numSteps":
-					this.numSteps = value.GetValueAsUInt32();
+					this.numSteps = (uint)value;
 					return;
 				case "numDirections":
-					this.numDirections = value.GetValueAsUInt32();
+					this.numDirections = (uint)value;
 					return;
 				case "attenuation":
-					this.attenuation = value.GetValueAsFloat();
+					this.attenuation = (float)value;
 					return;
 				case "contrast":
-					this.contrast = value.GetValueAsFloat();
+					this.contrast = (float)value;
 					return;
 				case "blurMode":
-					this.blurMode = (GrxAreaSSAOParameters_BlurMode)value.GetValueAsInt32();
+					this.blurMode = (GrxAreaSSAOParameters_BlurMode)value;
 					return;
 				case "blurRadius":
-					this.blurRadius = value.GetValueAsFloat();
+					this.blurRadius = (float)value;
 					return;
 				case "blurSharpness":
-					this.blurSharpness = value.GetValueAsFloat();
+					this.blurSharpness = (float)value;
 					return;
 				case "blurSceneScale":
-					this.blurSceneScale = value.GetValueAsFloat();
+					this.blurSceneScale = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -175,7 +175,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -185,7 +185,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -195,7 +195,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -205,7 +205,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -71,70 +71,70 @@ namespace Fox.Demox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "evfFiles":
-					return new Fox.Core.Value((Fox.IStringMap)evfFiles);
+					return (Fox.IStringMap)evfFiles;
 				case "eventFiles":
-					return new Fox.Core.Value((Fox.IStringMap)eventFiles);
+					return (Fox.IStringMap)eventFiles;
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return priority;
 				case "demoId":
-					return new Fox.Core.Value(demoId);
+					return demoId;
 				case "stringParams":
-					return new Fox.Core.Value(stringParams);
+					return stringParams;
 				case "entityParams":
-					return new Fox.Core.Value((Fox.IStringMap)entityParams);
+					return (Fox.IStringMap)entityParams;
 				case "fileParams":
-					return new Fox.Core.Value((Fox.IStringMap)fileParams);
+					return (Fox.IStringMap)fileParams;
 				case "objectNum":
-					return new Fox.Core.Value((Fox.IStringMap)objectNum);
+					return (Fox.IStringMap)objectNum;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "stringParams":
-					return new Fox.Core.Value(this.stringParams[index]);
+					return this.stringParams[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "evfFiles":
-					return new Fox.Core.Value(this.evfFiles[key]);
+					return this.evfFiles[key];
 				case "eventFiles":
-					return new Fox.Core.Value(this.eventFiles[key]);
+					return this.eventFiles[key];
 				case "entityParams":
-					return new Fox.Core.Value(this.entityParams[key]);
+					return this.entityParams[key];
 				case "fileParams":
-					return new Fox.Core.Value(this.fileParams[key]);
+					return this.fileParams[key];
 				case "objectNum":
-					return new Fox.Core.Value(this.objectNum[key]);
+					return this.objectNum[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "priority":
-					this.priority = value.GetValueAsInt32();
+					this.priority = (int)value;
 					return;
 				case "demoId":
-					this.demoId = value.GetValueAsString();
+					this.demoId = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -142,12 +142,12 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "stringParams":
-					this.stringParams[index] = value.GetValueAsString();
+					this.stringParams[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -155,13 +155,13 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "stringParams":
 					while(this.stringParams.Count <= index) { this.stringParams.Add(default(string)); }
-					this.stringParams[index] = value.GetValueAsString();
+					this.stringParams[index] = (string)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -169,24 +169,24 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "evfFiles":
-					this.evfFiles[key] = value.GetValueAsFilePtr();
+					this.evfFiles[key] = (Fox.Core.FilePtr)value;
 					return;
 				case "eventFiles":
-					this.eventFiles[key] = value.GetValueAsFilePtr();
+					this.eventFiles[key] = (Fox.Core.FilePtr)value;
 					return;
 				case "entityParams":
-					this.entityParams[key] = value.GetValueAsEntityLink();
+					this.entityParams[key] = (Fox.Core.EntityLink)value;
 					return;
 				case "fileParams":
-					this.fileParams[key] = value.GetValueAsFilePtr();
+					this.fileParams[key] = (Fox.Core.FilePtr)value;
 					return;
 				case "objectNum":
-					this.objectNum[key] = value.GetValueAsInt32();
+					this.objectNum[key] = (int)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
@@ -194,24 +194,24 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "evfFiles":
-					this.evfFiles[key] = value.GetValueAsFilePtr();
+					this.evfFiles[key] = (Fox.Core.FilePtr)value;
 					return;
 				case "eventFiles":
-					this.eventFiles[key] = value.GetValueAsFilePtr();
+					this.eventFiles[key] = (Fox.Core.FilePtr)value;
 					return;
 				case "entityParams":
-					this.entityParams[key] = value.GetValueAsEntityLink();
+					this.entityParams[key] = (Fox.Core.EntityLink)value;
 					return;
 				case "fileParams":
-					this.fileParams[key] = value.GetValueAsFilePtr();
+					this.fileParams[key] = (Fox.Core.FilePtr)value;
 					return;
 				case "objectNum":
-					this.objectNum[key] = value.GetValueAsInt32();
+					this.objectNum[key] = (int)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, key, value);

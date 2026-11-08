@@ -103,59 +103,59 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "material":
-					return new Fox.Core.Value(material);
+					return material;
 				case "gridColor":
-					return new Fox.Core.Value(gridColor);
+					return gridColor;
 				case "color":
-					return new Fox.Core.Value(color);
+					return color;
 				case "stepLength":
-					return new Fox.Core.Value(stepLength);
+					return stepLength;
 				case "width":
-					return new Fox.Core.Value(width);
+					return width;
 				case "transparency":
-					return new Fox.Core.Value(transparency);
+					return transparency;
 				case "textureRepeatU":
-					return new Fox.Core.Value(textureRepeatU);
+					return textureRepeatU;
 				case "textureRepeatV":
-					return new Fox.Core.Value(textureRepeatV);
+					return textureRepeatV;
 				case "renderingPriority":
-					return new Fox.Core.Value(renderingPriority);
+					return renderingPriority;
 				case "edgeTransparencyLength":
-					return new Fox.Core.Value(edgeTransparencyLength);
+					return edgeTransparencyLength;
 				case "smoothEdgeLength":
-					return new Fox.Core.Value(smoothEdgeLength);
+					return smoothEdgeLength;
 				case "isTargetBlockTerrain":
-					return new Fox.Core.Value(isTargetBlockTerrain);
+					return isTargetBlockTerrain;
 				case "drawRejectionLevel":
-					return new Fox.Core.Value(drawRejectionLevel);
+					return drawRejectionLevel;
 				case "isDisableAlbedo":
-					return new Fox.Core.Value(isDisableAlbedo);
+					return isDisableAlbedo;
 				case "hasSerializedNodes":
-					return new Fox.Core.Value(hasSerializedNodes);
+					return hasSerializedNodes;
 				case "serializedGraphNodes":
-					return new Fox.Core.Value(serializedGraphNodes);
+					return serializedGraphNodes;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "serializedGraphNodes":
-					return new Fox.Core.Value(this.serializedGraphNodes[index]);
+					return this.serializedGraphNodes[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -164,54 +164,54 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "material":
-					this.material = value.GetValueAsEntityLink();
+					this.material = (Fox.Core.EntityLink)value;
 					return;
 				case "gridColor":
-					this.gridColor = value.GetValueAsColor();
+					this.gridColor = (UnityEngine.Color)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "stepLength":
-					this.stepLength = value.GetValueAsFloat();
+					this.stepLength = (float)value;
 					return;
 				case "width":
-					this.width = value.GetValueAsFloat();
+					this.width = (float)value;
 					return;
 				case "transparency":
-					this.transparency = value.GetValueAsFloat();
+					this.transparency = (float)value;
 					return;
 				case "textureRepeatU":
-					this.textureRepeatU = value.GetValueAsFloat();
+					this.textureRepeatU = (float)value;
 					return;
 				case "textureRepeatV":
-					this.textureRepeatV = value.GetValueAsFloat();
+					this.textureRepeatV = (float)value;
 					return;
 				case "renderingPriority":
-					this.renderingPriority = value.GetValueAsInt32();
+					this.renderingPriority = (int)value;
 					return;
 				case "edgeTransparencyLength":
-					this.edgeTransparencyLength = value.GetValueAsFloat();
+					this.edgeTransparencyLength = (float)value;
 					return;
 				case "smoothEdgeLength":
-					this.smoothEdgeLength = value.GetValueAsFloat();
+					this.smoothEdgeLength = (float)value;
 					return;
 				case "isTargetBlockTerrain":
-					this.isTargetBlockTerrain = value.GetValueAsBool();
+					this.isTargetBlockTerrain = (bool)value;
 					return;
 				case "drawRejectionLevel":
-					this.drawRejectionLevel = (TerrainDecal_DrawRejectionLevel)value.GetValueAsInt32();
+					this.drawRejectionLevel = (TerrainDecal_DrawRejectionLevel)value;
 					return;
 				case "isDisableAlbedo":
-					this.isDisableAlbedo = value.GetValueAsBool();
+					this.isDisableAlbedo = (bool)value;
 					return;
 				case "hasSerializedNodes":
-					this.hasSerializedNodes = value.GetValueAsBool();
+					this.hasSerializedNodes = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -219,12 +219,12 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "serializedGraphNodes":
-					this.serializedGraphNodes[index] = value.GetValueAsVector3();
+					this.serializedGraphNodes[index] = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -232,13 +232,13 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "serializedGraphNodes":
 					while(this.serializedGraphNodes.Count <= index) { this.serializedGraphNodes.Add(default(UnityEngine.Vector3)); }
-					this.serializedGraphNodes[index] = value.GetValueAsVector3();
+					this.serializedGraphNodes[index] = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -246,7 +246,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -256,7 +256,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

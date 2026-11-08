@@ -99,46 +99,46 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "color":
-					return new Fox.Core.Value(color);
+					return color;
 				case "probability":
-					return new Fox.Core.Value(probability);
+					return probability;
 				case "powerScale":
-					return new Fox.Core.Value(powerScale);
+					return powerScale;
 				case "decaySpeed":
-					return new Fox.Core.Value(decaySpeed);
+					return decaySpeed;
 				case "vfxFileStrong":
-					return new Fox.Core.Value(vfxFileStrong);
+					return vfxFileStrong;
 				case "vfxFileNormal":
-					return new Fox.Core.Value(vfxFileNormal);
+					return vfxFileNormal;
 				case "vfxFileWeak":
-					return new Fox.Core.Value(vfxFileWeak);
+					return vfxFileWeak;
 				case "fxThresholdStrong":
-					return new Fox.Core.Value(fxThresholdStrong);
+					return fxThresholdStrong;
 				case "fxThresholdNormal":
-					return new Fox.Core.Value(fxThresholdNormal);
+					return fxThresholdNormal;
 				case "fxThresholdWeak":
-					return new Fox.Core.Value(fxThresholdWeak);
+					return fxThresholdWeak;
 				case "enableSpotLight":
-					return new Fox.Core.Value(enableSpotLight);
+					return enableSpotLight;
 				case "spotLightLifeMin":
-					return new Fox.Core.Value(spotLightLifeMin);
+					return spotLightLifeMin;
 				case "spotLightLifeMax":
-					return new Fox.Core.Value(spotLightLifeMax);
+					return spotLightLifeMax;
 				case "spotLightLumen":
-					return new Fox.Core.Value(spotLightLumen);
+					return spotLightLumen;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -147,7 +147,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -156,54 +156,54 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "probability":
-					this.probability = value.GetValueAsFloat();
+					this.probability = (float)value;
 					return;
 				case "powerScale":
-					this.powerScale = value.GetValueAsFloat();
+					this.powerScale = (float)value;
 					return;
 				case "decaySpeed":
-					this.decaySpeed = value.GetValueAsFloat();
+					this.decaySpeed = (float)value;
 					return;
 				case "vfxFileStrong":
-					this.vfxFileStrong = value.GetValueAsFilePtr();
+					this.vfxFileStrong = (Fox.Core.FilePtr)value;
 					return;
 				case "vfxFileNormal":
-					this.vfxFileNormal = value.GetValueAsFilePtr();
+					this.vfxFileNormal = (Fox.Core.FilePtr)value;
 					return;
 				case "vfxFileWeak":
-					this.vfxFileWeak = value.GetValueAsFilePtr();
+					this.vfxFileWeak = (Fox.Core.FilePtr)value;
 					return;
 				case "fxThresholdStrong":
-					this.fxThresholdStrong = value.GetValueAsFloat();
+					this.fxThresholdStrong = (float)value;
 					return;
 				case "fxThresholdNormal":
-					this.fxThresholdNormal = value.GetValueAsFloat();
+					this.fxThresholdNormal = (float)value;
 					return;
 				case "fxThresholdWeak":
-					this.fxThresholdWeak = value.GetValueAsFloat();
+					this.fxThresholdWeak = (float)value;
 					return;
 				case "enableSpotLight":
-					this.enableSpotLight = value.GetValueAsBool();
+					this.enableSpotLight = (bool)value;
 					return;
 				case "spotLightLifeMin":
-					this.spotLightLifeMin = value.GetValueAsFloat();
+					this.spotLightLifeMin = (float)value;
 					return;
 				case "spotLightLifeMax":
-					this.spotLightLifeMax = value.GetValueAsFloat();
+					this.spotLightLifeMax = (float)value;
 					return;
 				case "spotLightLumen":
-					this.spotLightLumen = value.GetValueAsFloat();
+					this.spotLightLumen = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -211,7 +211,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -221,7 +221,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -231,7 +231,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -241,7 +241,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

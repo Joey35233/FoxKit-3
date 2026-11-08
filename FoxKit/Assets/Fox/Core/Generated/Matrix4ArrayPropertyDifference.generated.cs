@@ -47,33 +47,33 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "originalValues":
-					return new Fox.Core.Value(originalValues);
+					return originalValues;
 				case "values":
-					return new Fox.Core.Value(values);
+					return values;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "originalValues":
-					return new Fox.Core.Value(this.originalValues[index]);
+					return this.originalValues[index];
 				case "values":
-					return new Fox.Core.Value(this.values[index]);
+					return this.values[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -82,7 +82,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -92,15 +92,15 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "originalValues":
-					this.originalValues[index] = value.GetValueAsMatrix4();
+					this.originalValues[index] = (UnityEngine.Matrix4x4)value;
 					return;
 				case "values":
-					this.values[index] = value.GetValueAsMatrix4();
+					this.values[index] = (UnityEngine.Matrix4x4)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -108,17 +108,17 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "originalValues":
 					while(this.originalValues.Count <= index) { this.originalValues.Add(default(UnityEngine.Matrix4x4)); }
-					this.originalValues[index] = value.GetValueAsMatrix4();
+					this.originalValues[index] = (UnityEngine.Matrix4x4)value;
 					return;
 				case "values":
 					while(this.values.Count <= index) { this.values.Add(default(UnityEngine.Matrix4x4)); }
-					this.values[index] = value.GetValueAsMatrix4();
+					this.values[index] = (UnityEngine.Matrix4x4)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -126,7 +126,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -136,7 +136,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

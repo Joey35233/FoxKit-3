@@ -59,26 +59,26 @@ namespace Fox.Phx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "body":
-					return new Fox.Core.Value(body);
+					return body;
 				case "constraint":
-					return new Fox.Core.Value(constraint);
+					return constraint;
 				case "bodyOffsetPos":
-					return new Fox.Core.Value(bodyOffsetPos);
+					return bodyOffsetPos;
 				case "constraintOffsetPos":
-					return new Fox.Core.Value(constraintOffsetPos);
+					return constraintOffsetPos;
 				case "offsetRot":
-					return new Fox.Core.Value(offsetRot);
+					return offsetRot;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -87,7 +87,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -96,24 +96,24 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "body":
-					this.body = value.GetValueAsEntityLink();
+					this.body = (Fox.Core.EntityLink)value;
 					return;
 				case "constraint":
-					this.constraint = value.GetValueAsEntityLink();
+					this.constraint = (Fox.Core.EntityLink)value;
 					return;
 				case "bodyOffsetPos":
-					this.bodyOffsetPos = value.GetValueAsVector3();
+					this.bodyOffsetPos = (UnityEngine.Vector3)value;
 					return;
 				case "constraintOffsetPos":
-					this.constraintOffsetPos = value.GetValueAsVector3();
+					this.constraintOffsetPos = (UnityEngine.Vector3)value;
 					return;
 				case "offsetRot":
-					this.offsetRot = value.GetValueAsQuat();
+					this.offsetRot = (UnityEngine.Quaternion)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -121,7 +121,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -131,7 +131,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -141,7 +141,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

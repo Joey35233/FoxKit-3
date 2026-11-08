@@ -47,33 +47,33 @@ namespace Fox.Graphx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "nodes":
-					return new Fox.Core.Value(nodes);
+					return nodes;
 				case "edges":
-					return new Fox.Core.Value(edges);
+					return edges;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "nodes":
-					return new Fox.Core.Value(this.nodes[index]);
+					return this.nodes[index];
 				case "edges":
-					return new Fox.Core.Value(this.edges[index]);
+					return this.edges[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -82,7 +82,7 @@ namespace Fox.Graphx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -92,15 +92,15 @@ namespace Fox.Graphx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "nodes":
-					this.nodes[index] = value.GetValueAsEntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>();
+					this.nodes[index] = (Fox.Graphx.GraphxSpatialGraphDataNode)value;
 					return;
 				case "edges":
-					this.edges[index] = value.GetValueAsEntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>();
+					this.edges[index] = (Fox.Graphx.GraphxSpatialGraphDataEdge)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -108,17 +108,17 @@ namespace Fox.Graphx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "nodes":
 					while(this.nodes.Count <= index) { this.nodes.Add(default(Fox.Graphx.GraphxSpatialGraphDataNode)); }
-					this.nodes[index] = value.GetValueAsEntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>();
+					this.nodes[index] = (Fox.Graphx.GraphxSpatialGraphDataNode)value;
 					return;
 				case "edges":
 					while(this.edges.Count <= index) { this.edges.Add(default(Fox.Graphx.GraphxSpatialGraphDataEdge)); }
-					this.edges[index] = value.GetValueAsEntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>();
+					this.edges[index] = (Fox.Graphx.GraphxSpatialGraphDataEdge)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -126,7 +126,7 @@ namespace Fox.Graphx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -136,7 +136,7 @@ namespace Fox.Graphx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

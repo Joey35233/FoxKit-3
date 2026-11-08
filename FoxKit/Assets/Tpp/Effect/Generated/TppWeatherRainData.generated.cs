@@ -59,26 +59,26 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "rainFilter":
-					return new Fox.Core.Value(rainFilter);
+					return rainFilter;
 				case "floorRainSplash":
-					return new Fox.Core.Value(floorRainSplash);
+					return floorRainSplash;
 				case "vfxFileFallRain":
-					return new Fox.Core.Value(vfxFileFallRain);
+					return vfxFileFallRain;
 				case "vfxFileFallRainSlow":
-					return new Fox.Core.Value(vfxFileFallRainSlow);
+					return vfxFileFallRainSlow;
 				case "vfxFileCameraFog":
-					return new Fox.Core.Value(vfxFileCameraFog);
+					return vfxFileCameraFog;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -87,7 +87,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -96,24 +96,24 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "rainFilter":
-					this.rainFilter = value.GetValueAsEntityLink();
+					this.rainFilter = (Fox.Core.EntityLink)value;
 					return;
 				case "floorRainSplash":
-					this.floorRainSplash = value.GetValueAsEntityLink();
+					this.floorRainSplash = (Fox.Core.EntityLink)value;
 					return;
 				case "vfxFileFallRain":
-					this.vfxFileFallRain = value.GetValueAsFilePtr();
+					this.vfxFileFallRain = (Fox.Core.FilePtr)value;
 					return;
 				case "vfxFileFallRainSlow":
-					this.vfxFileFallRainSlow = value.GetValueAsFilePtr();
+					this.vfxFileFallRainSlow = (Fox.Core.FilePtr)value;
 					return;
 				case "vfxFileCameraFog":
-					this.vfxFileCameraFog = value.GetValueAsFilePtr();
+					this.vfxFileCameraFog = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -121,7 +121,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -131,7 +131,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -141,7 +141,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

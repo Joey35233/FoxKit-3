@@ -87,40 +87,40 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "timeBetweenNewDroplets":
-					return new Fox.Core.Value(timeBetweenNewDroplets);
+					return timeBetweenNewDroplets;
 				case "timeBetweenNewBigDroplets":
-					return new Fox.Core.Value(timeBetweenNewBigDroplets);
+					return timeBetweenNewBigDroplets;
 				case "timeBetweenTwoNewBigDropletsAtTheSameTime":
-					return new Fox.Core.Value(timeBetweenTwoNewBigDropletsAtTheSameTime);
+					return timeBetweenTwoNewBigDropletsAtTheSameTime;
 				case "dropletsSize":
-					return new Fox.Core.Value(dropletsSize);
+					return dropletsSize;
 				case "dropletsVelocity":
-					return new Fox.Core.Value(dropletsVelocity);
+					return dropletsVelocity;
 				case "dropletsTransparency":
-					return new Fox.Core.Value(dropletsTransparency);
+					return dropletsTransparency;
 				case "minimumMassToStartMoving":
-					return new Fox.Core.Value(minimumMassToStartMoving);
+					return minimumMassToStartMoving;
 				case "minimumVelocityToAdvance":
-					return new Fox.Core.Value(minimumVelocityToAdvance);
+					return minimumVelocityToAdvance;
 				case "remainingMassPropotionWhenDropletsMove":
-					return new Fox.Core.Value(remainingMassPropotionWhenDropletsMove);
+					return remainingMassPropotionWhenDropletsMove;
 				case "residualWaterMinimumRenderingRadius":
-					return new Fox.Core.Value(residualWaterMinimumRenderingRadius);
+					return residualWaterMinimumRenderingRadius;
 				case "residualWaterMaximumRenderingRadius":
-					return new Fox.Core.Value(residualWaterMaximumRenderingRadius);
+					return residualWaterMaximumRenderingRadius;
 				case "residualWaterMaximumIntensity":
-					return new Fox.Core.Value(residualWaterMaximumIntensity);
+					return residualWaterMaximumIntensity;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -129,7 +129,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -138,45 +138,45 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "timeBetweenNewDroplets":
-					this.timeBetweenNewDroplets = value.GetValueAsFloat();
+					this.timeBetweenNewDroplets = (float)value;
 					return;
 				case "timeBetweenNewBigDroplets":
-					this.timeBetweenNewBigDroplets = value.GetValueAsFloat();
+					this.timeBetweenNewBigDroplets = (float)value;
 					return;
 				case "timeBetweenTwoNewBigDropletsAtTheSameTime":
-					this.timeBetweenTwoNewBigDropletsAtTheSameTime = value.GetValueAsFloat();
+					this.timeBetweenTwoNewBigDropletsAtTheSameTime = (float)value;
 					return;
 				case "dropletsSize":
-					this.dropletsSize = value.GetValueAsFloat();
+					this.dropletsSize = (float)value;
 					return;
 				case "dropletsVelocity":
-					this.dropletsVelocity = value.GetValueAsFloat();
+					this.dropletsVelocity = (float)value;
 					return;
 				case "dropletsTransparency":
-					this.dropletsTransparency = value.GetValueAsFloat();
+					this.dropletsTransparency = (float)value;
 					return;
 				case "minimumMassToStartMoving":
-					this.minimumMassToStartMoving = value.GetValueAsFloat();
+					this.minimumMassToStartMoving = (float)value;
 					return;
 				case "minimumVelocityToAdvance":
-					this.minimumVelocityToAdvance = value.GetValueAsFloat();
+					this.minimumVelocityToAdvance = (float)value;
 					return;
 				case "remainingMassPropotionWhenDropletsMove":
-					this.remainingMassPropotionWhenDropletsMove = value.GetValueAsFloat();
+					this.remainingMassPropotionWhenDropletsMove = (float)value;
 					return;
 				case "residualWaterMinimumRenderingRadius":
-					this.residualWaterMinimumRenderingRadius = value.GetValueAsFloat();
+					this.residualWaterMinimumRenderingRadius = (float)value;
 					return;
 				case "residualWaterMaximumRenderingRadius":
-					this.residualWaterMaximumRenderingRadius = value.GetValueAsFloat();
+					this.residualWaterMaximumRenderingRadius = (float)value;
 					return;
 				case "residualWaterMaximumIntensity":
-					this.residualWaterMaximumIntensity = value.GetValueAsFloat();
+					this.residualWaterMaximumIntensity = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -184,7 +184,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -194,7 +194,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -204,7 +204,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -214,7 +214,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

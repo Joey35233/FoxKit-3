@@ -43,29 +43,29 @@ namespace Fox.GameService
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "events":
-					return new Fox.Core.Value(events);
+					return events;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "events":
-					return new Fox.Core.Value(this.events[index]);
+					return this.events[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -74,7 +74,7 @@ namespace Fox.GameService
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -84,12 +84,12 @@ namespace Fox.GameService
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "events":
-					this.events[index] = value.GetValueAsEntityPtr<Fox.GameService.GsRouteDataNodeEvent>();
+					this.events[index] = (Fox.GameService.GsRouteDataNodeEvent)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -97,13 +97,13 @@ namespace Fox.GameService
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "events":
 					while(this.events.Count <= index) { this.events.Add(default(Fox.GameService.GsRouteDataNodeEvent)); }
-					this.events[index] = value.GetValueAsEntityPtr<Fox.GameService.GsRouteDataNodeEvent>();
+					this.events[index] = (Fox.GameService.GsRouteDataNodeEvent)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -111,7 +111,7 @@ namespace Fox.GameService
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Fox.GameService
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

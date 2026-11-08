@@ -51,49 +51,49 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "checkPointUnits":
-					return new Fox.Core.Value((Fox.IStringMap)checkPointUnits);
+					return (Fox.IStringMap)checkPointUnits;
 				case "passedCheckpoints":
-					return new Fox.Core.Value(passedCheckpoints);
+					return passedCheckpoints;
 				case "latestCheckpointTag":
-					return new Fox.Core.Value(latestCheckpointTag);
+					return latestCheckpointTag;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "passedCheckpoints":
-					return new Fox.Core.Value(this.passedCheckpoints[index]);
+					return this.passedCheckpoints[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "checkPointUnits":
-					return new Fox.Core.Value(this.checkPointUnits[key]);
+					return this.checkPointUnits[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "latestCheckpointTag":
-					this.latestCheckpointTag = value.GetValueAsString();
+					this.latestCheckpointTag = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -101,12 +101,12 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "passedCheckpoints":
-					this.passedCheckpoints[index] = value.GetValueAsString();
+					this.passedCheckpoints[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -114,13 +114,13 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "passedCheckpoints":
 					while(this.passedCheckpoints.Count <= index) { this.passedCheckpoints.Add(default(string)); }
-					this.passedCheckpoints[index] = value.GetValueAsString();
+					this.passedCheckpoints[index] = (string)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -128,12 +128,12 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkPointUnits":
-					this.checkPointUnits[key] = value.GetValueAsEntityPtr<Fox.GameKit.CheckpointUnit>();
+					this.checkPointUnits[key] = (Fox.GameKit.CheckpointUnit)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
@@ -141,12 +141,12 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkPointUnits":
-					this.checkPointUnits[key] = value.GetValueAsEntityPtr<Fox.GameKit.CheckpointUnit>();
+					this.checkPointUnits[key] = (Fox.GameKit.CheckpointUnit)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, key, value);

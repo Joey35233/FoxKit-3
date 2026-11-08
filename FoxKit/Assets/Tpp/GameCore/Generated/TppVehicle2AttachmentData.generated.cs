@@ -67,41 +67,41 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "vehicleTypeCode":
-					return new Fox.Core.Value(vehicleTypeCode);
+					return vehicleTypeCode;
 				case "attachmentImplTypeIndex":
-					return new Fox.Core.Value(attachmentImplTypeIndex);
+					return attachmentImplTypeIndex;
 				case "attachmentFile":
-					return new Fox.Core.Value(attachmentFile);
+					return attachmentFile;
 				case "attachmentInstanceCount":
-					return new Fox.Core.Value(attachmentInstanceCount);
+					return attachmentInstanceCount;
 				case "bodyCnpName":
-					return new Fox.Core.Value(bodyCnpName);
+					return bodyCnpName;
 				case "attachmentBoneName":
-					return new Fox.Core.Value(attachmentBoneName);
+					return attachmentBoneName;
 				case "weaponParams":
-					return new Fox.Core.Value(weaponParams);
+					return weaponParams;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "weaponParams":
-					return new Fox.Core.Value(this.weaponParams[index]);
+					return this.weaponParams[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -110,27 +110,27 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "vehicleTypeCode":
-					this.vehicleTypeCode = value.GetValueAsUInt8();
+					this.vehicleTypeCode = (byte)value;
 					return;
 				case "attachmentImplTypeIndex":
-					this.attachmentImplTypeIndex = value.GetValueAsUInt8();
+					this.attachmentImplTypeIndex = (byte)value;
 					return;
 				case "attachmentFile":
-					this.attachmentFile = value.GetValueAsFilePtr();
+					this.attachmentFile = (Fox.Core.FilePtr)value;
 					return;
 				case "attachmentInstanceCount":
-					this.attachmentInstanceCount = value.GetValueAsUInt8();
+					this.attachmentInstanceCount = (byte)value;
 					return;
 				case "bodyCnpName":
-					this.bodyCnpName = value.GetValueAsString();
+					this.bodyCnpName = (string)value;
 					return;
 				case "attachmentBoneName":
-					this.attachmentBoneName = value.GetValueAsString();
+					this.attachmentBoneName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -138,12 +138,12 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "weaponParams":
-					this.weaponParams[index] = value.GetValueAsEntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>();
+					this.weaponParams[index] = (Tpp.GameCore.TppVehicle2WeaponParameter)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -151,13 +151,13 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "weaponParams":
 					while(this.weaponParams.Count <= index) { this.weaponParams.Add(default(Tpp.GameCore.TppVehicle2WeaponParameter)); }
-					this.weaponParams[index] = value.GetValueAsEntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>();
+					this.weaponParams[index] = (Tpp.GameCore.TppVehicle2WeaponParameter)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -165,7 +165,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -175,7 +175,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

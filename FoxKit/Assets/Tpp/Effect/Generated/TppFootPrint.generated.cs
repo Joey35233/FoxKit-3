@@ -63,49 +63,49 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "matrices":
-					return new Fox.Core.Value(matrices);
+					return matrices;
 				case "footChara":
-					return new Fox.Core.Value(footChara);
+					return footChara;
 				case "footLR":
-					return new Fox.Core.Value(footLR);
+					return footLR;
 				case "alpha":
-					return new Fox.Core.Value(alpha);
+					return alpha;
 				case "blood":
-					return new Fox.Core.Value(blood);
+					return blood;
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "matrices":
-					return new Fox.Core.Value(this.matrices[index]);
+					return this.matrices[index];
 				case "footChara":
-					return new Fox.Core.Value(this.footChara[index]);
+					return this.footChara[index];
 				case "footLR":
-					return new Fox.Core.Value(this.footLR[index]);
+					return this.footLR[index];
 				case "alpha":
-					return new Fox.Core.Value(this.alpha[index]);
+					return this.alpha[index];
 				case "blood":
-					return new Fox.Core.Value(this.blood[index]);
+					return this.blood[index];
 				case "enable":
-					return new Fox.Core.Value(this.enable[index]);
+					return this.enable[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -114,7 +114,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -124,27 +124,27 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "matrices":
-					this.matrices[index] = value.GetValueAsMatrix4();
+					this.matrices[index] = (UnityEngine.Matrix4x4)value;
 					return;
 				case "footChara":
-					this.footChara[index] = value.GetValueAsUInt32();
+					this.footChara[index] = (uint)value;
 					return;
 				case "footLR":
-					this.footLR[index] = value.GetValueAsUInt32();
+					this.footLR[index] = (uint)value;
 					return;
 				case "alpha":
-					this.alpha[index] = value.GetValueAsFloat();
+					this.alpha[index] = (float)value;
 					return;
 				case "blood":
-					this.blood[index] = value.GetValueAsBool();
+					this.blood[index] = (bool)value;
 					return;
 				case "enable":
-					this.enable[index] = value.GetValueAsBool();
+					this.enable[index] = (bool)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -152,33 +152,33 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "matrices":
 					while(this.matrices.Count <= index) { this.matrices.Add(default(UnityEngine.Matrix4x4)); }
-					this.matrices[index] = value.GetValueAsMatrix4();
+					this.matrices[index] = (UnityEngine.Matrix4x4)value;
 					return;
 				case "footChara":
 					while(this.footChara.Count <= index) { this.footChara.Add(default(uint)); }
-					this.footChara[index] = value.GetValueAsUInt32();
+					this.footChara[index] = (uint)value;
 					return;
 				case "footLR":
 					while(this.footLR.Count <= index) { this.footLR.Add(default(uint)); }
-					this.footLR[index] = value.GetValueAsUInt32();
+					this.footLR[index] = (uint)value;
 					return;
 				case "alpha":
 					while(this.alpha.Count <= index) { this.alpha.Add(default(float)); }
-					this.alpha[index] = value.GetValueAsFloat();
+					this.alpha[index] = (float)value;
 					return;
 				case "blood":
 					while(this.blood.Count <= index) { this.blood.Add(default(bool)); }
-					this.blood[index] = value.GetValueAsBool();
+					this.blood[index] = (bool)value;
 					return;
 				case "enable":
 					while(this.enable.Count <= index) { this.enable.Add(default(bool)); }
-					this.enable[index] = value.GetValueAsBool();
+					this.enable[index] = (bool)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -186,7 +186,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -196,7 +196,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

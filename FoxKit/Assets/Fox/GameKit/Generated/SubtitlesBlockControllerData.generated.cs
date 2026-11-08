@@ -43,29 +43,29 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "packageFileNames":
-					return new Fox.Core.Value(packageFileNames);
+					return packageFileNames;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "packageFileNames":
-					return new Fox.Core.Value(this.packageFileNames[index]);
+					return this.packageFileNames[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -74,7 +74,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -84,12 +84,12 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "packageFileNames":
-					this.packageFileNames[index] = value.GetValueAsString();
+					this.packageFileNames[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -97,13 +97,13 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "packageFileNames":
 					while(this.packageFileNames.Count <= index) { this.packageFileNames.Add(default(string)); }
-					this.packageFileNames[index] = value.GetValueAsString();
+					this.packageFileNames[index] = (string)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -111,7 +111,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

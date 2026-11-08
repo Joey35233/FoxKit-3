@@ -37,7 +37,7 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public virtual Fox.Core.Value GetProperty(string propertyName)
+		public virtual object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
@@ -49,7 +49,7 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public virtual object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -61,7 +61,7 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public virtual object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -73,7 +73,7 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		public virtual void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -82,7 +82,7 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -97,7 +97,7 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public virtual void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -112,7 +112,7 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -127,7 +127,7 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public virtual void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

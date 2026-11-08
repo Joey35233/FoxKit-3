@@ -59,39 +59,39 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "count":
-					return new Fox.Core.Value(count);
+					return count;
 				case "grounds":
-					return new Fox.Core.Value(grounds);
+					return grounds;
 				case "perchPoints":
-					return new Fox.Core.Value(perchPoints);
+					return perchPoints;
 				case "radius":
-					return new Fox.Core.Value(radius);
+					return radius;
 				case "height":
-					return new Fox.Core.Value(height);
+					return height;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "grounds":
-					return new Fox.Core.Value(this.grounds[index]);
+					return this.grounds[index];
 				case "perchPoints":
-					return new Fox.Core.Value(this.perchPoints[index]);
+					return this.perchPoints[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -100,18 +100,18 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "count":
-					this.count = value.GetValueAsUInt32();
+					this.count = (uint)value;
 					return;
 				case "radius":
-					this.radius = value.GetValueAsUInt8();
+					this.radius = (byte)value;
 					return;
 				case "height":
-					this.height = value.GetValueAsUInt8();
+					this.height = (byte)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -119,15 +119,15 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "grounds":
-					this.grounds[index] = value.GetValueAsVector3();
+					this.grounds[index] = (UnityEngine.Vector3)value;
 					return;
 				case "perchPoints":
-					this.perchPoints[index] = value.GetValueAsVector3();
+					this.perchPoints[index] = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -135,17 +135,17 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "grounds":
 					while(this.grounds.Count <= index) { this.grounds.Add(default(UnityEngine.Vector3)); }
-					this.grounds[index] = value.GetValueAsVector3();
+					this.grounds[index] = (UnityEngine.Vector3)value;
 					return;
 				case "perchPoints":
 					while(this.perchPoints.Count <= index) { this.perchPoints.Add(default(UnityEngine.Vector3)); }
-					this.perchPoints[index] = value.GetValueAsVector3();
+					this.perchPoints[index] = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -153,7 +153,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -163,7 +163,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

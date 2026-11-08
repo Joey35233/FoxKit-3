@@ -111,52 +111,52 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "displacementStrenght":
-					return new Fox.Core.Value(displacementStrenght);
+					return displacementStrenght;
 				case "velocity":
-					return new Fox.Core.Value(velocity);
+					return velocity;
 				case "windDirectionX":
-					return new Fox.Core.Value(windDirectionX);
+					return windDirectionX;
 				case "windDirectionZ":
-					return new Fox.Core.Value(windDirectionZ);
+					return windDirectionZ;
 				case "waveAmplitude":
-					return new Fox.Core.Value(waveAmplitude);
+					return waveAmplitude;
 				case "windSpeed":
-					return new Fox.Core.Value(windSpeed);
+					return windSpeed;
 				case "windDependency":
-					return new Fox.Core.Value(windDependency);
+					return windDependency;
 				case "baseHeight":
-					return new Fox.Core.Value(baseHeight);
+					return baseHeight;
 				case "choppyScale":
-					return new Fox.Core.Value(choppyScale);
+					return choppyScale;
 				case "projectionScale":
-					return new Fox.Core.Value(projectionScale);
+					return projectionScale;
 				case "blendStart":
-					return new Fox.Core.Value(blendStart);
+					return blendStart;
 				case "blendEnd":
-					return new Fox.Core.Value(blendEnd);
+					return blendEnd;
 				case "farProjectionScale":
-					return new Fox.Core.Value(farProjectionScale);
+					return farProjectionScale;
 				case "farProjectionAmplitude":
-					return new Fox.Core.Value(farProjectionAmplitude);
+					return farProjectionAmplitude;
 				case "farProjectionNormalStrenght":
-					return new Fox.Core.Value(farProjectionNormalStrenght);
+					return farProjectionNormalStrenght;
 				case "reflectionPower":
-					return new Fox.Core.Value(reflectionPower);
+					return reflectionPower;
 				case "specularIntensity":
-					return new Fox.Core.Value(specularIntensity);
+					return specularIntensity;
 				case "foamAmount":
-					return new Fox.Core.Value(foamAmount);
+					return foamAmount;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -165,7 +165,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -174,63 +174,63 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "displacementStrenght":
-					this.displacementStrenght = value.GetValueAsFloat();
+					this.displacementStrenght = (float)value;
 					return;
 				case "velocity":
-					this.velocity = value.GetValueAsFloat();
+					this.velocity = (float)value;
 					return;
 				case "windDirectionX":
-					this.windDirectionX = value.GetValueAsFloat();
+					this.windDirectionX = (float)value;
 					return;
 				case "windDirectionZ":
-					this.windDirectionZ = value.GetValueAsFloat();
+					this.windDirectionZ = (float)value;
 					return;
 				case "waveAmplitude":
-					this.waveAmplitude = value.GetValueAsFloat();
+					this.waveAmplitude = (float)value;
 					return;
 				case "windSpeed":
-					this.windSpeed = value.GetValueAsFloat();
+					this.windSpeed = (float)value;
 					return;
 				case "windDependency":
-					this.windDependency = value.GetValueAsFloat();
+					this.windDependency = (float)value;
 					return;
 				case "baseHeight":
-					this.baseHeight = value.GetValueAsFloat();
+					this.baseHeight = (float)value;
 					return;
 				case "choppyScale":
-					this.choppyScale = value.GetValueAsFloat();
+					this.choppyScale = (float)value;
 					return;
 				case "projectionScale":
-					this.projectionScale = value.GetValueAsFloat();
+					this.projectionScale = (float)value;
 					return;
 				case "blendStart":
-					this.blendStart = value.GetValueAsFloat();
+					this.blendStart = (float)value;
 					return;
 				case "blendEnd":
-					this.blendEnd = value.GetValueAsFloat();
+					this.blendEnd = (float)value;
 					return;
 				case "farProjectionScale":
-					this.farProjectionScale = value.GetValueAsFloat();
+					this.farProjectionScale = (float)value;
 					return;
 				case "farProjectionAmplitude":
-					this.farProjectionAmplitude = value.GetValueAsFloat();
+					this.farProjectionAmplitude = (float)value;
 					return;
 				case "farProjectionNormalStrenght":
-					this.farProjectionNormalStrenght = value.GetValueAsFloat();
+					this.farProjectionNormalStrenght = (float)value;
 					return;
 				case "reflectionPower":
-					this.reflectionPower = value.GetValueAsFloat();
+					this.reflectionPower = (float)value;
 					return;
 				case "specularIntensity":
-					this.specularIntensity = value.GetValueAsFloat();
+					this.specularIntensity = (float)value;
 					return;
 				case "foamAmount":
-					this.foamAmount = value.GetValueAsFloat();
+					this.foamAmount = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -238,7 +238,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -248,7 +248,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -258,7 +258,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -268,7 +268,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

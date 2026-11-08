@@ -76,45 +76,45 @@ namespace Fox.Phx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "vehicleAxes":
-					return new Fox.Core.Value(vehicleAxes);
+					return vehicleAxes;
 				case "torqueDistributions":
-					return new Fox.Core.Value(torqueDistributions);
+					return torqueDistributions;
 				case "gearRatios":
-					return new Fox.Core.Value(gearRatios);
+					return gearRatios;
 				case "vehicleNormalEngineParam":
-					return new Fox.Core.Value(vehicleNormalEngineParam);
+					return vehicleNormalEngineParam;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "vehicleAxes":
-					return new Fox.Core.Value(this.vehicleAxes[index]);
+					return this.vehicleAxes[index];
 				case "torqueDistributions":
-					return new Fox.Core.Value(this.torqueDistributions[index]);
+					return this.torqueDistributions[index];
 				case "gearRatios":
-					return new Fox.Core.Value(this.gearRatios[index]);
+					return this.gearRatios[index];
 				case "specPointAngularVelocity":
-					return new Fox.Core.Value(specPointAngularVelocity_Get(index));
+					return specPointAngularVelocity_Get(index);
 				case "specPointTorque":
-					return new Fox.Core.Value(specPointTorque_Get(index));
+					return specPointTorque_Get(index);
 				case "specPointBreakTorque":
-					return new Fox.Core.Value(specPointBreakTorque_Get(index));
+					return specPointBreakTorque_Get(index);
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -123,12 +123,12 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "vehicleNormalEngineParam":
-					this.vehicleNormalEngineParam = value.GetValueAsEntityPtr<Fox.Phx.PhVehicleNormalEngineParam>();
+					this.vehicleNormalEngineParam = (Fox.Phx.PhVehicleNormalEngineParam)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -136,27 +136,27 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "vehicleAxes":
-					this.vehicleAxes[index] = value.GetValueAsEntityLink();
+					this.vehicleAxes[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "torqueDistributions":
-					this.torqueDistributions[index] = value.GetValueAsFloat();
+					this.torqueDistributions[index] = (float)value;
 					return;
 				case "gearRatios":
-					this.gearRatios[index] = value.GetValueAsFloat();
+					this.gearRatios[index] = (float)value;
 					return;
 				case "specPointAngularVelocity":
-					specPointAngularVelocity_Set(index, value.GetValueAsFloat());
+					specPointAngularVelocity_Set(index, (float)value);
 					return;
 				case "specPointTorque":
-					specPointTorque_Set(index, value.GetValueAsFloat());
+					specPointTorque_Set(index, (float)value);
 					return;
 				case "specPointBreakTorque":
-					specPointBreakTorque_Set(index, value.GetValueAsFloat());
+					specPointBreakTorque_Set(index, (float)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -164,30 +164,30 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "vehicleAxes":
 					while(this.vehicleAxes.Count <= index) { this.vehicleAxes.Add(default(Fox.Core.EntityLink)); }
-					this.vehicleAxes[index] = value.GetValueAsEntityLink();
+					this.vehicleAxes[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "torqueDistributions":
 					while(this.torqueDistributions.Count <= index) { this.torqueDistributions.Add(default(float)); }
-					this.torqueDistributions[index] = value.GetValueAsFloat();
+					this.torqueDistributions[index] = (float)value;
 					return;
 				case "gearRatios":
 					while(this.gearRatios.Count <= index) { this.gearRatios.Add(default(float)); }
-					this.gearRatios[index] = value.GetValueAsFloat();
+					this.gearRatios[index] = (float)value;
 					return;
 				case "specPointAngularVelocity":
-					specPointAngularVelocity_AddElement(index, value.GetValueAsFloat());
+					specPointAngularVelocity_AddElement(index, (float)value);
 					return;
 				case "specPointTorque":
-					specPointTorque_AddElement(index, value.GetValueAsFloat());
+					specPointTorque_AddElement(index, (float)value);
 					return;
 				case "specPointBreakTorque":
-					specPointBreakTorque_AddElement(index, value.GetValueAsFloat());
+					specPointBreakTorque_AddElement(index, (float)value);
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -195,7 +195,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -205,7 +205,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -47,33 +47,33 @@ namespace Fox.Nav
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "turningRadii":
-					return new Fox.Core.Value(turningRadii);
+					return turningRadii;
 				case "turningSpeeds":
-					return new Fox.Core.Value(turningSpeeds);
+					return turningSpeeds;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "turningRadii":
-					return new Fox.Core.Value(this.turningRadii[index]);
+					return this.turningRadii[index];
 				case "turningSpeeds":
-					return new Fox.Core.Value(this.turningSpeeds[index]);
+					return this.turningSpeeds[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -82,7 +82,7 @@ namespace Fox.Nav
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -92,15 +92,15 @@ namespace Fox.Nav
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "turningRadii":
-					this.turningRadii[index] = value.GetValueAsFloat();
+					this.turningRadii[index] = (float)value;
 					return;
 				case "turningSpeeds":
-					this.turningSpeeds[index] = value.GetValueAsFloat();
+					this.turningSpeeds[index] = (float)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -108,17 +108,17 @@ namespace Fox.Nav
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "turningRadii":
 					while(this.turningRadii.Count <= index) { this.turningRadii.Add(default(float)); }
-					this.turningRadii[index] = value.GetValueAsFloat();
+					this.turningRadii[index] = (float)value;
 					return;
 				case "turningSpeeds":
 					while(this.turningSpeeds.Count <= index) { this.turningSpeeds.Add(default(float)); }
-					this.turningSpeeds[index] = value.GetValueAsFloat();
+					this.turningSpeeds[index] = (float)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -126,7 +126,7 @@ namespace Fox.Nav
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -136,7 +136,7 @@ namespace Fox.Nav
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -57,24 +57,24 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "pivotTransform_pivot":
-					return new Fox.Core.Value(pivotTransform_pivot);
+					return pivotTransform_pivot;
 				case "pivotTransform_pivotTranslation":
-					return new Fox.Core.Value(pivotTransform_pivotTranslation);
+					return pivotTransform_pivotTranslation;
 				case "pivot":
-					return new Fox.Core.Value(pivot);
+					return pivot;
 				case "pivotTranslation":
-					return new Fox.Core.Value(pivotTranslation);
+					return pivotTranslation;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -83,7 +83,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -92,21 +92,21 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "pivotTransform_pivot":
-					this.pivotTransform_pivot = value.GetValueAsVector3();
+					this.pivotTransform_pivot = (UnityEngine.Vector3)value;
 					return;
 				case "pivotTransform_pivotTranslation":
-					this.pivotTransform_pivotTranslation = value.GetValueAsVector3();
+					this.pivotTransform_pivotTranslation = (UnityEngine.Vector3)value;
 					return;
 				case "pivot":
-					this.pivot = value.GetValueAsVector3();
+					this.pivot = (UnityEngine.Vector3)value;
 					return;
 				case "pivotTranslation":
-					this.pivotTranslation = value.GetValueAsVector3();
+					this.pivotTranslation = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -114,7 +114,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -124,7 +124,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -134,7 +134,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -144,7 +144,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

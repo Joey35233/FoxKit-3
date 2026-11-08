@@ -43,29 +43,29 @@ namespace Tpp.MotherBaseCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "constructConnectionList":
-					return new Fox.Core.Value(constructConnectionList);
+					return constructConnectionList;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "constructConnectionList":
-					return new Fox.Core.Value(this.constructConnectionList[index]);
+					return this.constructConnectionList[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -74,7 +74,7 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -84,12 +84,12 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "constructConnectionList":
-					this.constructConnectionList[index] = value.GetValueAsUInt64();
+					this.constructConnectionList[index] = (ulong)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -97,13 +97,13 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "constructConnectionList":
 					while(this.constructConnectionList.Count <= index) { this.constructConnectionList.Add(default(ulong)); }
-					this.constructConnectionList[index] = value.GetValueAsUInt64();
+					this.constructConnectionList[index] = (ulong)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -111,7 +111,7 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

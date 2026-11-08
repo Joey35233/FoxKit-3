@@ -131,62 +131,62 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "followCamera":
-					return new Fox.Core.Value(followCamera);
+					return followCamera;
 				case "color":
-					return new Fox.Core.Value(color);
+					return color;
 				case "luminanceScale":
-					return new Fox.Core.Value(luminanceScale);
+					return luminanceScale;
 				case "bottom":
-					return new Fox.Core.Value(bottom);
+					return bottom;
 				case "radius":
-					return new Fox.Core.Value(radius);
+					return radius;
 				case "height":
-					return new Fox.Core.Value(height);
+					return height;
 				case "domeLength":
-					return new Fox.Core.Value(domeLength);
+					return domeLength;
 				case "domeStreach":
-					return new Fox.Core.Value(domeStreach);
+					return domeStreach;
 				case "domeWindInfluence":
-					return new Fox.Core.Value(domeWindInfluence);
+					return domeWindInfluence;
 				case "midCylinderPos":
-					return new Fox.Core.Value(midCylinderPos);
+					return midCylinderPos;
 				case "midCylinderWidth":
-					return new Fox.Core.Value(midCylinderWidth);
+					return midCylinderWidth;
 				case "midCylinderStreach":
-					return new Fox.Core.Value(midCylinderStreach);
+					return midCylinderStreach;
 				case "midCylinderScrSpeed":
-					return new Fox.Core.Value(midCylinderScrSpeed);
+					return midCylinderScrSpeed;
 				case "lowCylinderIntrusion":
-					return new Fox.Core.Value(lowCylinderIntrusion);
+					return lowCylinderIntrusion;
 				case "lowCylinderStreach":
-					return new Fox.Core.Value(lowCylinderStreach);
+					return lowCylinderStreach;
 				case "lowCylinderScrSpeed":
-					return new Fox.Core.Value(lowCylinderScrSpeed);
+					return lowCylinderScrSpeed;
 				case "cylinderTexRepeat":
-					return new Fox.Core.Value(cylinderTexRepeat);
+					return cylinderTexRepeat;
 				case "domeTexture":
-					return new Fox.Core.Value(domeTexture);
+					return domeTexture;
 				case "midCylinderTexture":
-					return new Fox.Core.Value(midCylinderTexture);
+					return midCylinderTexture;
 				case "lowCylinderTexture":
-					return new Fox.Core.Value(lowCylinderTexture);
+					return lowCylinderTexture;
 				case "colorSpace":
-					return new Fox.Core.Value(colorSpace);
+					return colorSpace;
 				case "textureColorHandling":
-					return new Fox.Core.Value(textureColorHandling);
+					return textureColorHandling;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -195,7 +195,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -204,78 +204,78 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "followCamera":
-					this.followCamera = value.GetValueAsBool();
+					this.followCamera = (bool)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "luminanceScale":
-					this.luminanceScale = value.GetValueAsFloat();
+					this.luminanceScale = (float)value;
 					return;
 				case "bottom":
-					this.bottom = value.GetValueAsFloat();
+					this.bottom = (float)value;
 					return;
 				case "radius":
-					this.radius = value.GetValueAsFloat();
+					this.radius = (float)value;
 					return;
 				case "height":
-					this.height = value.GetValueAsFloat();
+					this.height = (float)value;
 					return;
 				case "domeLength":
-					this.domeLength = value.GetValueAsFloat();
+					this.domeLength = (float)value;
 					return;
 				case "domeStreach":
-					this.domeStreach = value.GetValueAsFloat();
+					this.domeStreach = (float)value;
 					return;
 				case "domeWindInfluence":
-					this.domeWindInfluence = value.GetValueAsFloat();
+					this.domeWindInfluence = (float)value;
 					return;
 				case "midCylinderPos":
-					this.midCylinderPos = value.GetValueAsFloat();
+					this.midCylinderPos = (float)value;
 					return;
 				case "midCylinderWidth":
-					this.midCylinderWidth = value.GetValueAsFloat();
+					this.midCylinderWidth = (float)value;
 					return;
 				case "midCylinderStreach":
-					this.midCylinderStreach = value.GetValueAsFloat();
+					this.midCylinderStreach = (float)value;
 					return;
 				case "midCylinderScrSpeed":
-					this.midCylinderScrSpeed = value.GetValueAsFloat();
+					this.midCylinderScrSpeed = (float)value;
 					return;
 				case "lowCylinderIntrusion":
-					this.lowCylinderIntrusion = value.GetValueAsFloat();
+					this.lowCylinderIntrusion = (float)value;
 					return;
 				case "lowCylinderStreach":
-					this.lowCylinderStreach = value.GetValueAsFloat();
+					this.lowCylinderStreach = (float)value;
 					return;
 				case "lowCylinderScrSpeed":
-					this.lowCylinderScrSpeed = value.GetValueAsFloat();
+					this.lowCylinderScrSpeed = (float)value;
 					return;
 				case "cylinderTexRepeat":
-					this.cylinderTexRepeat = value.GetValueAsUInt32();
+					this.cylinderTexRepeat = (uint)value;
 					return;
 				case "domeTexture":
-					this.domeTexture = value.GetValueAsPath();
+					this.domeTexture = (Fox.Path)value;
 					return;
 				case "midCylinderTexture":
-					this.midCylinderTexture = value.GetValueAsPath();
+					this.midCylinderTexture = (Fox.Path)value;
 					return;
 				case "lowCylinderTexture":
-					this.lowCylinderTexture = value.GetValueAsPath();
+					this.lowCylinderTexture = (Fox.Path)value;
 					return;
 				case "colorSpace":
-					this.colorSpace = (TppSkyClouds3Param_ColorSpace)value.GetValueAsInt32();
+					this.colorSpace = (TppSkyClouds3Param_ColorSpace)value;
 					return;
 				case "textureColorHandling":
-					this.textureColorHandling = (TppSkyClouds3Param_TexColor)value.GetValueAsInt32();
+					this.textureColorHandling = (TppSkyClouds3Param_TexColor)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -283,7 +283,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -293,7 +293,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -303,7 +303,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -313,7 +313,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

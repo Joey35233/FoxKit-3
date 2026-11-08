@@ -79,55 +79,55 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "color":
-					return new Fox.Core.Value(color);
+					return color;
 				case "intensity":
-					return new Fox.Core.Value(intensity);
+					return intensity;
 				case "direction":
-					return new Fox.Core.Value(direction);
+					return direction;
 				case "bgModelName":
-					return new Fox.Core.Value(bgModelName);
+					return bgModelName;
 				case "modelNameArray":
-					return new Fox.Core.Value(modelNameArray);
+					return modelNameArray;
 				case "nameArray":
-					return new Fox.Core.Value(nameArray);
+					return nameArray;
 				case "latitudeArray":
-					return new Fox.Core.Value(latitudeArray);
+					return latitudeArray;
 				case "longitudeArray":
-					return new Fox.Core.Value(longitudeArray);
+					return longitudeArray;
 				case "scaleArray":
-					return new Fox.Core.Value(scaleArray);
+					return scaleArray;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "modelNameArray":
-					return new Fox.Core.Value(this.modelNameArray[index]);
+					return this.modelNameArray[index];
 				case "nameArray":
-					return new Fox.Core.Value(this.nameArray[index]);
+					return this.nameArray[index];
 				case "latitudeArray":
-					return new Fox.Core.Value(this.latitudeArray[index]);
+					return this.latitudeArray[index];
 				case "longitudeArray":
-					return new Fox.Core.Value(this.longitudeArray[index]);
+					return this.longitudeArray[index];
 				case "scaleArray":
-					return new Fox.Core.Value(this.scaleArray[index]);
+					return this.scaleArray[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -136,24 +136,24 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "intensity":
-					this.intensity = value.GetValueAsFloat();
+					this.intensity = (float)value;
 					return;
 				case "direction":
-					this.direction = value.GetValueAsFloat();
+					this.direction = (float)value;
 					return;
 				case "bgModelName":
-					this.bgModelName = value.GetValueAsString();
+					this.bgModelName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -161,24 +161,24 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "modelNameArray":
-					this.modelNameArray[index] = value.GetValueAsString();
+					this.modelNameArray[index] = (string)value;
 					return;
 				case "nameArray":
-					this.nameArray[index] = value.GetValueAsString();
+					this.nameArray[index] = (string)value;
 					return;
 				case "latitudeArray":
-					this.latitudeArray[index] = value.GetValueAsFloat();
+					this.latitudeArray[index] = (float)value;
 					return;
 				case "longitudeArray":
-					this.longitudeArray[index] = value.GetValueAsFloat();
+					this.longitudeArray[index] = (float)value;
 					return;
 				case "scaleArray":
-					this.scaleArray[index] = value.GetValueAsFloat();
+					this.scaleArray[index] = (float)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -186,29 +186,29 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "modelNameArray":
 					while(this.modelNameArray.Count <= index) { this.modelNameArray.Add(default(string)); }
-					this.modelNameArray[index] = value.GetValueAsString();
+					this.modelNameArray[index] = (string)value;
 					return;
 				case "nameArray":
 					while(this.nameArray.Count <= index) { this.nameArray.Add(default(string)); }
-					this.nameArray[index] = value.GetValueAsString();
+					this.nameArray[index] = (string)value;
 					return;
 				case "latitudeArray":
 					while(this.latitudeArray.Count <= index) { this.latitudeArray.Add(default(float)); }
-					this.latitudeArray[index] = value.GetValueAsFloat();
+					this.latitudeArray[index] = (float)value;
 					return;
 				case "longitudeArray":
 					while(this.longitudeArray.Count <= index) { this.longitudeArray.Add(default(float)); }
-					this.longitudeArray[index] = value.GetValueAsFloat();
+					this.longitudeArray[index] = (float)value;
 					return;
 				case "scaleArray":
 					while(this.scaleArray.Count <= index) { this.scaleArray.Add(default(float)); }
-					this.scaleArray[index] = value.GetValueAsFloat();
+					this.scaleArray[index] = (float)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -216,7 +216,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -226,7 +226,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -51,35 +51,35 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "ownerGimmickList":
-					return new Fox.Core.Value(ownerGimmickList);
+					return ownerGimmickList;
 				case "gimmickNameList":
-					return new Fox.Core.Value(gimmickNameList);
+					return gimmickNameList;
 				case "light":
-					return new Fox.Core.Value(light);
+					return light;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "ownerGimmickList":
-					return new Fox.Core.Value(this.ownerGimmickList[index]);
+					return this.ownerGimmickList[index];
 				case "gimmickNameList":
-					return new Fox.Core.Value(this.gimmickNameList[index]);
+					return this.gimmickNameList[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -88,12 +88,12 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "light":
-					this.light = value.GetValueAsEntityLink();
+					this.light = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -101,15 +101,15 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "ownerGimmickList":
-					this.ownerGimmickList[index] = value.GetValueAsEntityLink();
+					this.ownerGimmickList[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "gimmickNameList":
-					this.gimmickNameList[index] = value.GetValueAsString();
+					this.gimmickNameList[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -117,17 +117,17 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "ownerGimmickList":
 					while(this.ownerGimmickList.Count <= index) { this.ownerGimmickList.Add(default(Fox.Core.EntityLink)); }
-					this.ownerGimmickList[index] = value.GetValueAsEntityLink();
+					this.ownerGimmickList[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "gimmickNameList":
 					while(this.gimmickNameList.Count <= index) { this.gimmickNameList.Add(default(string)); }
-					this.gimmickNameList[index] = value.GetValueAsString();
+					this.gimmickNameList[index] = (string)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -135,7 +135,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -145,7 +145,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

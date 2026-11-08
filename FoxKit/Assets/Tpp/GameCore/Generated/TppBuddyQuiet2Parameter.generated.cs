@@ -59,26 +59,26 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "partsFile":
-					return new Fox.Core.Value(partsFile);
+					return partsFile;
 				case "motionGraphFile":
-					return new Fox.Core.Value(motionGraphFile);
+					return motionGraphFile;
 				case "mtarFile":
-					return new Fox.Core.Value(mtarFile);
+					return mtarFile;
 				case "extensionMtarFile":
-					return new Fox.Core.Value(extensionMtarFile);
+					return extensionMtarFile;
 				case "vfxFiles":
-					return new Fox.Core.Value((Fox.IStringMap)vfxFiles);
+					return (Fox.IStringMap)vfxFiles;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -87,32 +87,32 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "vfxFiles":
-					return new Fox.Core.Value(this.vfxFiles[key]);
+					return this.vfxFiles[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "partsFile":
-					this.partsFile = value.GetValueAsFilePtr();
+					this.partsFile = (Fox.Core.FilePtr)value;
 					return;
 				case "motionGraphFile":
-					this.motionGraphFile = value.GetValueAsFilePtr();
+					this.motionGraphFile = (Fox.Core.FilePtr)value;
 					return;
 				case "mtarFile":
-					this.mtarFile = value.GetValueAsFilePtr();
+					this.mtarFile = (Fox.Core.FilePtr)value;
 					return;
 				case "extensionMtarFile":
-					this.extensionMtarFile = value.GetValueAsFilePtr();
+					this.extensionMtarFile = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -120,7 +120,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -130,7 +130,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -140,12 +140,12 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "vfxFiles":
-					this.vfxFiles[key] = value.GetValueAsFilePtr();
+					this.vfxFiles[key] = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
@@ -153,12 +153,12 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "vfxFiles":
-					this.vfxFiles[key] = value.GetValueAsFilePtr();
+					this.vfxFiles[key] = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, key, value);

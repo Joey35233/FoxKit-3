@@ -75,34 +75,34 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "leftDoorState":
-					return new Fox.Core.Value(leftDoorState);
+					return leftDoorState;
 				case "rightDoorState":
-					return new Fox.Core.Value(rightDoorState);
+					return rightDoorState;
 				case "landingGearState":
-					return new Fox.Core.Value(landingGearState);
+					return landingGearState;
 				case "directionType":
-					return new Fox.Core.Value(directionType);
+					return directionType;
 				case "direction":
-					return new Fox.Core.Value(direction);
+					return direction;
 				case "setTargetSpeed":
-					return new Fox.Core.Value(setTargetSpeed);
+					return setTargetSpeed;
 				case "targetSpeed":
-					return new Fox.Core.Value(targetSpeed);
+					return targetSpeed;
 				case "changeTime":
-					return new Fox.Core.Value(changeTime);
+					return changeTime;
 				case "defaultDoorSide":
-					return new Fox.Core.Value(defaultDoorSide);
+					return defaultDoorSide;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -111,7 +111,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -120,36 +120,36 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "leftDoorState":
-					this.leftDoorState = (TppRouteEdgeEventHelicopter_DoorState)value.GetValueAsUInt32();
+					this.leftDoorState = (TppRouteEdgeEventHelicopter_DoorState)value;
 					return;
 				case "rightDoorState":
-					this.rightDoorState = (TppRouteEdgeEventHelicopter_DoorState)value.GetValueAsUInt32();
+					this.rightDoorState = (TppRouteEdgeEventHelicopter_DoorState)value;
 					return;
 				case "landingGearState":
-					this.landingGearState = (TppRouteEdgeEventHelicopter_DoorState)value.GetValueAsUInt32();
+					this.landingGearState = (TppRouteEdgeEventHelicopter_DoorState)value;
 					return;
 				case "directionType":
-					this.directionType = (TppRouteEdgeEventHelicopter_DirectionType)value.GetValueAsUInt32();
+					this.directionType = (TppRouteEdgeEventHelicopter_DirectionType)value;
 					return;
 				case "direction":
-					this.direction = value.GetValueAsInt32();
+					this.direction = (int)value;
 					return;
 				case "setTargetSpeed":
-					this.setTargetSpeed = value.GetValueAsBool();
+					this.setTargetSpeed = (bool)value;
 					return;
 				case "targetSpeed":
-					this.targetSpeed = value.GetValueAsFloat();
+					this.targetSpeed = (float)value;
 					return;
 				case "changeTime":
-					this.changeTime = value.GetValueAsFloat();
+					this.changeTime = (float)value;
 					return;
 				case "defaultDoorSide":
-					this.defaultDoorSide = (TppRouteEdgeEventHelicopter_DoorSide)value.GetValueAsUInt32();
+					this.defaultDoorSide = (TppRouteEdgeEventHelicopter_DoorSide)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -157,7 +157,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -167,7 +167,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -177,7 +177,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -187,7 +187,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -140,77 +140,77 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "lightArea":
-					return new Fox.Core.Value(lightArea);
+					return lightArea;
 				case "innerArea":
-					return new Fox.Core.Value(innerArea);
+					return innerArea;
 				case "shCoefficientsData":
-					return new Fox.Core.Value(shCoefficientsData);
+					return shCoefficientsData;
 				case "onLights":
-					return new Fox.Core.Value(onLights);
+					return onLights;
 				case "offLights":
-					return new Fox.Core.Value(offLights);
+					return offLights;
 				case "innerScaleXPositive":
-					return new Fox.Core.Value(innerScaleXPositive);
+					return innerScaleXPositive;
 				case "innerScaleXNegative":
-					return new Fox.Core.Value(innerScaleXNegative);
+					return innerScaleXNegative;
 				case "innerScaleYPositive":
-					return new Fox.Core.Value(innerScaleYPositive);
+					return innerScaleYPositive;
 				case "innerScaleYNegative":
-					return new Fox.Core.Value(innerScaleYNegative);
+					return innerScaleYNegative;
 				case "innerScaleZPositive":
-					return new Fox.Core.Value(innerScaleZPositive);
+					return innerScaleZPositive;
 				case "innerScaleZNegative":
-					return new Fox.Core.Value(innerScaleZNegative);
+					return innerScaleZNegative;
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return priority;
 				case "debugMode":
-					return new Fox.Core.Value(debugMode);
+					return debugMode;
 				case "drawRejectionLevel":
-					return new Fox.Core.Value(drawRejectionLevel);
+					return drawRejectionLevel;
 				case "shapeType":
-					return new Fox.Core.Value(shapeType);
+					return shapeType;
 				case "exposure":
-					return new Fox.Core.Value(exposure);
+					return exposure;
 				case "localFlags":
-					return new Fox.Core.Value(localFlags);
+					return localFlags;
 				case "occlusionModeOpenRate":
-					return new Fox.Core.Value(occlusionModeOpenRate);
+					return occlusionModeOpenRate;
 				case "enable24hSH":
-					return new Fox.Core.Value(enable24hSH);
+					return enable24hSH;
 				case "enableWeatherSH":
-					return new Fox.Core.Value(enableWeatherSH);
+					return enableWeatherSH;
 				case "enableRelatedLightSH":
-					return new Fox.Core.Value(enableRelatedLightSH);
+					return enableRelatedLightSH;
 				case "enableOcclusionMode":
-					return new Fox.Core.Value(enableOcclusionMode);
+					return enableOcclusionMode;
 				case "packingGeneration":
-					return new Fox.Core.Value(packingGeneration);
+					return packingGeneration;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "onLights":
-					return new Fox.Core.Value(this.onLights[index]);
+					return this.onLights[index];
 				case "offLights":
-					return new Fox.Core.Value(this.offLights[index]);
+					return this.offLights[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -219,75 +219,75 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "lightArea":
-					this.lightArea = value.GetValueAsEntityLink();
+					this.lightArea = (Fox.Core.EntityLink)value;
 					return;
 				case "innerArea":
-					this.innerArea = value.GetValueAsEntityLink();
+					this.innerArea = (Fox.Core.EntityLink)value;
 					return;
 				case "shCoefficientsData":
-					this.shCoefficientsData = value.GetValueAsEntityLink();
+					this.shCoefficientsData = (Fox.Core.EntityLink)value;
 					return;
 				case "innerScaleXPositive":
-					this.innerScaleXPositive = value.GetValueAsFloat();
+					this.innerScaleXPositive = (float)value;
 					return;
 				case "innerScaleXNegative":
-					this.innerScaleXNegative = value.GetValueAsFloat();
+					this.innerScaleXNegative = (float)value;
 					return;
 				case "innerScaleYPositive":
-					this.innerScaleYPositive = value.GetValueAsFloat();
+					this.innerScaleYPositive = (float)value;
 					return;
 				case "innerScaleYNegative":
-					this.innerScaleYNegative = value.GetValueAsFloat();
+					this.innerScaleYNegative = (float)value;
 					return;
 				case "innerScaleZPositive":
-					this.innerScaleZPositive = value.GetValueAsFloat();
+					this.innerScaleZPositive = (float)value;
 					return;
 				case "innerScaleZNegative":
-					this.innerScaleZNegative = value.GetValueAsFloat();
+					this.innerScaleZNegative = (float)value;
 					return;
 				case "priority":
-					this.priority = value.GetValueAsInt32();
+					this.priority = (int)value;
 					return;
 				case "debugMode":
-					this.debugMode = (TppLightProbe_DebugMode)value.GetValueAsInt32();
+					this.debugMode = (TppLightProbe_DebugMode)value;
 					return;
 				case "drawRejectionLevel":
-					this.drawRejectionLevel = (TppLightProbe_DrawRejectionLevel)value.GetValueAsInt32();
+					this.drawRejectionLevel = (TppLightProbe_DrawRejectionLevel)value;
 					return;
 				case "shapeType":
-					this.shapeType = (TppLightProbe_ShapeType)value.GetValueAsInt32();
+					this.shapeType = (TppLightProbe_ShapeType)value;
 					return;
 				case "exposure":
-					this.exposure = value.GetValueAsFloat();
+					this.exposure = (float)value;
 					return;
 				case "localFlags":
-					this.localFlags = value.GetValueAsUInt32();
+					this.localFlags = (uint)value;
 					return;
 				case "occlusionModeOpenRate":
-					this.occlusionModeOpenRate = value.GetValueAsFloat();
+					this.occlusionModeOpenRate = (float)value;
 					return;
 				case "enable24hSH":
-					this.enable24hSH = value.GetValueAsBool();
+					this.enable24hSH = (bool)value;
 					return;
 				case "enableWeatherSH":
-					this.enableWeatherSH = value.GetValueAsBool();
+					this.enableWeatherSH = (bool)value;
 					return;
 				case "enableRelatedLightSH":
-					this.enableRelatedLightSH = value.GetValueAsBool();
+					this.enableRelatedLightSH = (bool)value;
 					return;
 				case "enableOcclusionMode":
-					this.enableOcclusionMode = value.GetValueAsBool();
+					this.enableOcclusionMode = (bool)value;
 					return;
 				case "packingGeneration":
-					this.packingGeneration = (TppLightProbe_PackingGeneration)value.GetValueAsInt32();
+					this.packingGeneration = (TppLightProbe_PackingGeneration)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -295,15 +295,15 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "onLights":
-					this.onLights[index] = value.GetValueAsEntityLink();
+					this.onLights[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "offLights":
-					this.offLights[index] = value.GetValueAsEntityLink();
+					this.offLights[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -311,17 +311,17 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "onLights":
 					while(this.onLights.Count <= index) { this.onLights.Add(default(Fox.Core.EntityLink)); }
-					this.onLights[index] = value.GetValueAsEntityLink();
+					this.onLights[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "offLights":
 					while(this.offLights.Count <= index) { this.offLights.Add(default(Fox.Core.EntityLink)); }
-					this.offLights[index] = value.GetValueAsEntityLink();
+					this.offLights[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -329,7 +329,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -339,7 +339,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

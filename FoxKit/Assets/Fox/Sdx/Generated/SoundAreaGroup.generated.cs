@@ -55,37 +55,37 @@ namespace Fox.Sdx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return priority;
 				case "parameter":
-					return new Fox.Core.Value(parameter);
+					return parameter;
 				case "members":
-					return new Fox.Core.Value(members);
+					return members;
 				case "edges":
-					return new Fox.Core.Value(edges);
+					return edges;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "members":
-					return new Fox.Core.Value(this.members[index]);
+					return this.members[index];
 				case "edges":
-					return new Fox.Core.Value(this.edges[index]);
+					return this.edges[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -94,15 +94,15 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "priority":
-					this.priority = value.GetValueAsUInt32();
+					this.priority = (uint)value;
 					return;
 				case "parameter":
-					this.parameter = value.GetValueAsEntityPtr<Fox.Sdx.SoundAreaParameter>();
+					this.parameter = (Fox.Sdx.SoundAreaParameter)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -110,15 +110,15 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "members":
-					this.members[index] = value.GetValueAsEntityLink();
+					this.members[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "edges":
-					this.edges[index] = value.GetValueAsEntityLink();
+					this.edges[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -126,17 +126,17 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "members":
 					while(this.members.Count <= index) { this.members.Add(default(Fox.Core.EntityLink)); }
-					this.members[index] = value.GetValueAsEntityLink();
+					this.members[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "edges":
 					while(this.edges.Count <= index) { this.edges.Add(default(Fox.Core.EntityLink)); }
-					this.edges[index] = value.GetValueAsEntityLink();
+					this.edges[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -144,7 +144,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -154,7 +154,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

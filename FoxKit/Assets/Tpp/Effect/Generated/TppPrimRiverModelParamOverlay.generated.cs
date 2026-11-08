@@ -111,52 +111,52 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "primRiverGroupName":
-					return new Fox.Core.Value(primRiverGroupName);
+					return primRiverGroupName;
 				case "visibility":
-					return new Fox.Core.Value(visibility);
+					return visibility;
 				case "baseTextureName":
-					return new Fox.Core.Value(baseTextureName);
+					return baseTextureName;
 				case "normalTextureName":
-					return new Fox.Core.Value(normalTextureName);
+					return normalTextureName;
 				case "cubeMapName":
-					return new Fox.Core.Value(cubeMapName);
+					return cubeMapName;
 				case "lightCaptureLocator":
-					return new Fox.Core.Value(lightCaptureLocator);
+					return lightCaptureLocator;
 				case "scrollDirection0":
-					return new Fox.Core.Value(scrollDirection0);
+					return scrollDirection0;
 				case "scrollSpeed0":
-					return new Fox.Core.Value(scrollSpeed0);
+					return scrollSpeed0;
 				case "scrollScale0":
-					return new Fox.Core.Value(scrollScale0);
+					return scrollScale0;
 				case "scrollDirection1":
-					return new Fox.Core.Value(scrollDirection1);
+					return scrollDirection1;
 				case "scrollSpeed1":
-					return new Fox.Core.Value(scrollSpeed1);
+					return scrollSpeed1;
 				case "scrollScale1":
-					return new Fox.Core.Value(scrollScale1);
+					return scrollScale1;
 				case "reflectionRate":
-					return new Fox.Core.Value(reflectionRate);
+					return reflectionRate;
 				case "distortionPower":
-					return new Fox.Core.Value(distortionPower);
+					return distortionPower;
 				case "surfaceShadowRate":
-					return new Fox.Core.Value(surfaceShadowRate);
+					return surfaceShadowRate;
 				case "maskDistortionRate":
-					return new Fox.Core.Value(maskDistortionRate);
+					return maskDistortionRate;
 				case "useHnmTexture":
-					return new Fox.Core.Value(useHnmTexture);
+					return useHnmTexture;
 				case "debugReset":
-					return new Fox.Core.Value(debugReset);
+					return debugReset;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -165,7 +165,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -174,63 +174,63 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "primRiverGroupName":
-					this.primRiverGroupName = value.GetValueAsString();
+					this.primRiverGroupName = (string)value;
 					return;
 				case "visibility":
-					this.visibility = value.GetValueAsBool();
+					this.visibility = (bool)value;
 					return;
 				case "baseTextureName":
-					this.baseTextureName = value.GetValueAsString();
+					this.baseTextureName = (string)value;
 					return;
 				case "normalTextureName":
-					this.normalTextureName = value.GetValueAsString();
+					this.normalTextureName = (string)value;
 					return;
 				case "cubeMapName":
-					this.cubeMapName = value.GetValueAsString();
+					this.cubeMapName = (string)value;
 					return;
 				case "lightCaptureLocator":
-					this.lightCaptureLocator = value.GetValueAsEntityLink();
+					this.lightCaptureLocator = (Fox.Core.EntityLink)value;
 					return;
 				case "scrollDirection0":
-					this.scrollDirection0 = value.GetValueAsFloat();
+					this.scrollDirection0 = (float)value;
 					return;
 				case "scrollSpeed0":
-					this.scrollSpeed0 = value.GetValueAsFloat();
+					this.scrollSpeed0 = (float)value;
 					return;
 				case "scrollScale0":
-					this.scrollScale0 = value.GetValueAsFloat();
+					this.scrollScale0 = (float)value;
 					return;
 				case "scrollDirection1":
-					this.scrollDirection1 = value.GetValueAsFloat();
+					this.scrollDirection1 = (float)value;
 					return;
 				case "scrollSpeed1":
-					this.scrollSpeed1 = value.GetValueAsFloat();
+					this.scrollSpeed1 = (float)value;
 					return;
 				case "scrollScale1":
-					this.scrollScale1 = value.GetValueAsFloat();
+					this.scrollScale1 = (float)value;
 					return;
 				case "reflectionRate":
-					this.reflectionRate = value.GetValueAsFloat();
+					this.reflectionRate = (float)value;
 					return;
 				case "distortionPower":
-					this.distortionPower = value.GetValueAsFloat();
+					this.distortionPower = (float)value;
 					return;
 				case "surfaceShadowRate":
-					this.surfaceShadowRate = value.GetValueAsFloat();
+					this.surfaceShadowRate = (float)value;
 					return;
 				case "maskDistortionRate":
-					this.maskDistortionRate = value.GetValueAsFloat();
+					this.maskDistortionRate = (float)value;
 					return;
 				case "useHnmTexture":
-					this.useHnmTexture = value.GetValueAsBool();
+					this.useHnmTexture = (bool)value;
 					return;
 				case "debugReset":
-					this.debugReset = value.GetValueAsBool();
+					this.debugReset = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -238,7 +238,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -248,7 +248,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -258,7 +258,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -268,7 +268,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

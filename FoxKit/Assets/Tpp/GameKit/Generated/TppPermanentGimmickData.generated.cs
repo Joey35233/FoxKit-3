@@ -59,26 +59,26 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "partsFile":
-					return new Fox.Core.Value(partsFile);
+					return partsFile;
 				case "locaterFile":
-					return new Fox.Core.Value(locaterFile);
+					return locaterFile;
 				case "parameters":
-					return new Fox.Core.Value(parameters);
+					return parameters;
 				case "flags1":
-					return new Fox.Core.Value(flags1);
+					return flags1;
 				case "flags2":
-					return new Fox.Core.Value(flags2);
+					return flags2;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -87,7 +87,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -96,24 +96,24 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "partsFile":
-					this.partsFile = value.GetValueAsFilePtr();
+					this.partsFile = (Fox.Core.FilePtr)value;
 					return;
 				case "locaterFile":
-					this.locaterFile = value.GetValueAsFilePtr();
+					this.locaterFile = (Fox.Core.FilePtr)value;
 					return;
 				case "parameters":
-					this.parameters = value.GetValueAsEntityPtr<Fox.Core.DataElement>();
+					this.parameters = (Fox.Core.DataElement)value;
 					return;
 				case "flags1":
-					this.flags1 = value.GetValueAsUInt32();
+					this.flags1 = (uint)value;
 					return;
 				case "flags2":
-					this.flags2 = value.GetValueAsUInt32();
+					this.flags2 = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -121,7 +121,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -131,7 +131,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -141,7 +141,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

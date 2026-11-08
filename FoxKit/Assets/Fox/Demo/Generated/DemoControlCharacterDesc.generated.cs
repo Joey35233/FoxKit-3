@@ -79,36 +79,36 @@ namespace Fox.Demo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "characterId":
-					return new Fox.Core.Value(characterId);
+					return characterId;
 				case "releaseGroupName":
-					return new Fox.Core.Value(releaseGroupName);
+					return releaseGroupName;
 				case "releaseTag":
-					return new Fox.Core.Value(releaseTag);
+					return releaseTag;
 				case "controlledAtStart":
-					return new Fox.Core.Value(controlledAtStart);
+					return controlledAtStart;
 				case "translation":
-					return new Fox.Core.Value(translation);
+					return translation;
 				case "rotation":
-					return new Fox.Core.Value(rotation);
+					return rotation;
 				case "startGroupName":
-					return new Fox.Core.Value(startGroupName);
+					return startGroupName;
 				case "startTag":
-					return new Fox.Core.Value(startTag);
+					return startTag;
 				case "startTranslation":
-					return new Fox.Core.Value(startTranslation);
+					return startTranslation;
 				case "startRotation":
-					return new Fox.Core.Value(startRotation);
+					return startRotation;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -117,7 +117,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -126,39 +126,39 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "characterId":
-					this.characterId = value.GetValueAsString();
+					this.characterId = (string)value;
 					return;
 				case "releaseGroupName":
-					this.releaseGroupName = value.GetValueAsString();
+					this.releaseGroupName = (string)value;
 					return;
 				case "releaseTag":
-					this.releaseTag = value.GetValueAsString();
+					this.releaseTag = (string)value;
 					return;
 				case "controlledAtStart":
-					this.controlledAtStart = value.GetValueAsBool();
+					this.controlledAtStart = (bool)value;
 					return;
 				case "translation":
-					this.translation = value.GetValueAsVector3();
+					this.translation = (UnityEngine.Vector3)value;
 					return;
 				case "rotation":
-					this.rotation = value.GetValueAsQuat();
+					this.rotation = (UnityEngine.Quaternion)value;
 					return;
 				case "startGroupName":
-					this.startGroupName = value.GetValueAsString();
+					this.startGroupName = (string)value;
 					return;
 				case "startTag":
-					this.startTag = value.GetValueAsString();
+					this.startTag = (string)value;
 					return;
 				case "startTranslation":
-					this.startTranslation = value.GetValueAsVector3();
+					this.startTranslation = (UnityEngine.Vector3)value;
 					return;
 				case "startRotation":
-					this.startRotation = value.GetValueAsQuat();
+					this.startRotation = (UnityEngine.Quaternion)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -166,7 +166,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -176,7 +176,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -186,7 +186,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -196,7 +196,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

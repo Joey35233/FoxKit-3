@@ -119,103 +119,103 @@ namespace Tpp.MotherBaseStage
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "cluster00divisionPackageIds":
-					return new Fox.Core.Value(cluster00divisionPackageIds);
+					return cluster00divisionPackageIds;
 				case "cluster01divisionPackageIds":
-					return new Fox.Core.Value(cluster01divisionPackageIds);
+					return cluster01divisionPackageIds;
 				case "cluster02divisionPackageIds":
-					return new Fox.Core.Value(cluster02divisionPackageIds);
+					return cluster02divisionPackageIds;
 				case "cluster03divisionPackageIds":
-					return new Fox.Core.Value(cluster03divisionPackageIds);
+					return cluster03divisionPackageIds;
 				case "cluster04divisionPackageIds":
-					return new Fox.Core.Value(cluster04divisionPackageIds);
+					return cluster04divisionPackageIds;
 				case "cluster05divisionPackageIds":
-					return new Fox.Core.Value(cluster05divisionPackageIds);
+					return cluster05divisionPackageIds;
 				case "cluster06divisionPackageIds":
-					return new Fox.Core.Value(cluster06divisionPackageIds);
+					return cluster06divisionPackageIds;
 				case "cluster07divisionPackageIds":
-					return new Fox.Core.Value(cluster07divisionPackageIds);
+					return cluster07divisionPackageIds;
 				case "clusterPositions":
-					return new Fox.Core.Value(clusterPositions);
+					return clusterPositions;
 				case "clusterRequestRadiuses":
-					return new Fox.Core.Value(clusterRequestRadiuses);
+					return clusterRequestRadiuses;
 				case "clusterRequireRadiuses":
-					return new Fox.Core.Value(clusterRequireRadiuses);
+					return clusterRequireRadiuses;
 				case "cluster00loadAreaVertices":
-					return new Fox.Core.Value(cluster00loadAreaVertices);
+					return cluster00loadAreaVertices;
 				case "cluster01loadAreaVertices":
-					return new Fox.Core.Value(cluster01loadAreaVertices);
+					return cluster01loadAreaVertices;
 				case "cluster02loadAreaVertices":
-					return new Fox.Core.Value(cluster02loadAreaVertices);
+					return cluster02loadAreaVertices;
 				case "cluster03loadAreaVertices":
-					return new Fox.Core.Value(cluster03loadAreaVertices);
+					return cluster03loadAreaVertices;
 				case "cluster04loadAreaVertices":
-					return new Fox.Core.Value(cluster04loadAreaVertices);
+					return cluster04loadAreaVertices;
 				case "cluster05loadAreaVertices":
-					return new Fox.Core.Value(cluster05loadAreaVertices);
+					return cluster05loadAreaVertices;
 				case "cluster06loadAreaVertices":
-					return new Fox.Core.Value(cluster06loadAreaVertices);
+					return cluster06loadAreaVertices;
 				case "cluster07loadAreaVertices":
-					return new Fox.Core.Value(cluster07loadAreaVertices);
+					return cluster07loadAreaVertices;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "cluster00divisionPackageIds":
-					return new Fox.Core.Value(this.cluster00divisionPackageIds[index]);
+					return this.cluster00divisionPackageIds[index];
 				case "cluster01divisionPackageIds":
-					return new Fox.Core.Value(this.cluster01divisionPackageIds[index]);
+					return this.cluster01divisionPackageIds[index];
 				case "cluster02divisionPackageIds":
-					return new Fox.Core.Value(this.cluster02divisionPackageIds[index]);
+					return this.cluster02divisionPackageIds[index];
 				case "cluster03divisionPackageIds":
-					return new Fox.Core.Value(this.cluster03divisionPackageIds[index]);
+					return this.cluster03divisionPackageIds[index];
 				case "cluster04divisionPackageIds":
-					return new Fox.Core.Value(this.cluster04divisionPackageIds[index]);
+					return this.cluster04divisionPackageIds[index];
 				case "cluster05divisionPackageIds":
-					return new Fox.Core.Value(this.cluster05divisionPackageIds[index]);
+					return this.cluster05divisionPackageIds[index];
 				case "cluster06divisionPackageIds":
-					return new Fox.Core.Value(this.cluster06divisionPackageIds[index]);
+					return this.cluster06divisionPackageIds[index];
 				case "cluster07divisionPackageIds":
-					return new Fox.Core.Value(this.cluster07divisionPackageIds[index]);
+					return this.cluster07divisionPackageIds[index];
 				case "clusterPositions":
-					return new Fox.Core.Value(this.clusterPositions[index]);
+					return this.clusterPositions[index];
 				case "clusterRequestRadiuses":
-					return new Fox.Core.Value(this.clusterRequestRadiuses[index]);
+					return this.clusterRequestRadiuses[index];
 				case "clusterRequireRadiuses":
-					return new Fox.Core.Value(this.clusterRequireRadiuses[index]);
+					return this.clusterRequireRadiuses[index];
 				case "cluster00loadAreaVertices":
-					return new Fox.Core.Value(this.cluster00loadAreaVertices[index]);
+					return this.cluster00loadAreaVertices[index];
 				case "cluster01loadAreaVertices":
-					return new Fox.Core.Value(this.cluster01loadAreaVertices[index]);
+					return this.cluster01loadAreaVertices[index];
 				case "cluster02loadAreaVertices":
-					return new Fox.Core.Value(this.cluster02loadAreaVertices[index]);
+					return this.cluster02loadAreaVertices[index];
 				case "cluster03loadAreaVertices":
-					return new Fox.Core.Value(this.cluster03loadAreaVertices[index]);
+					return this.cluster03loadAreaVertices[index];
 				case "cluster04loadAreaVertices":
-					return new Fox.Core.Value(this.cluster04loadAreaVertices[index]);
+					return this.cluster04loadAreaVertices[index];
 				case "cluster05loadAreaVertices":
-					return new Fox.Core.Value(this.cluster05loadAreaVertices[index]);
+					return this.cluster05loadAreaVertices[index];
 				case "cluster06loadAreaVertices":
-					return new Fox.Core.Value(this.cluster06loadAreaVertices[index]);
+					return this.cluster06loadAreaVertices[index];
 				case "cluster07loadAreaVertices":
-					return new Fox.Core.Value(this.cluster07loadAreaVertices[index]);
+					return this.cluster07loadAreaVertices[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -224,12 +224,12 @@ namespace Tpp.MotherBaseStage
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -237,66 +237,66 @@ namespace Tpp.MotherBaseStage
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "cluster00divisionPackageIds":
-					this.cluster00divisionPackageIds[index] = value.GetValueAsUInt8();
+					this.cluster00divisionPackageIds[index] = (byte)value;
 					return;
 				case "cluster01divisionPackageIds":
-					this.cluster01divisionPackageIds[index] = value.GetValueAsUInt8();
+					this.cluster01divisionPackageIds[index] = (byte)value;
 					return;
 				case "cluster02divisionPackageIds":
-					this.cluster02divisionPackageIds[index] = value.GetValueAsUInt8();
+					this.cluster02divisionPackageIds[index] = (byte)value;
 					return;
 				case "cluster03divisionPackageIds":
-					this.cluster03divisionPackageIds[index] = value.GetValueAsUInt8();
+					this.cluster03divisionPackageIds[index] = (byte)value;
 					return;
 				case "cluster04divisionPackageIds":
-					this.cluster04divisionPackageIds[index] = value.GetValueAsUInt8();
+					this.cluster04divisionPackageIds[index] = (byte)value;
 					return;
 				case "cluster05divisionPackageIds":
-					this.cluster05divisionPackageIds[index] = value.GetValueAsUInt8();
+					this.cluster05divisionPackageIds[index] = (byte)value;
 					return;
 				case "cluster06divisionPackageIds":
-					this.cluster06divisionPackageIds[index] = value.GetValueAsUInt8();
+					this.cluster06divisionPackageIds[index] = (byte)value;
 					return;
 				case "cluster07divisionPackageIds":
-					this.cluster07divisionPackageIds[index] = value.GetValueAsUInt8();
+					this.cluster07divisionPackageIds[index] = (byte)value;
 					return;
 				case "clusterPositions":
-					this.clusterPositions[index] = value.GetValueAsVector3();
+					this.clusterPositions[index] = (UnityEngine.Vector3)value;
 					return;
 				case "clusterRequestRadiuses":
-					this.clusterRequestRadiuses[index] = value.GetValueAsUInt32();
+					this.clusterRequestRadiuses[index] = (uint)value;
 					return;
 				case "clusterRequireRadiuses":
-					this.clusterRequireRadiuses[index] = value.GetValueAsUInt32();
+					this.clusterRequireRadiuses[index] = (uint)value;
 					return;
 				case "cluster00loadAreaVertices":
-					this.cluster00loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster00loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster01loadAreaVertices":
-					this.cluster01loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster01loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster02loadAreaVertices":
-					this.cluster02loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster02loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster03loadAreaVertices":
-					this.cluster03loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster03loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster04loadAreaVertices":
-					this.cluster04loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster04loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster05loadAreaVertices":
-					this.cluster05loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster05loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster06loadAreaVertices":
-					this.cluster06loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster06loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster07loadAreaVertices":
-					this.cluster07loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster07loadAreaVertices[index] = (short)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -304,41 +304,41 @@ namespace Tpp.MotherBaseStage
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "cluster00loadAreaVertices":
 					while(this.cluster00loadAreaVertices.Count <= index) { this.cluster00loadAreaVertices.Add(default(short)); }
-					this.cluster00loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster00loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster01loadAreaVertices":
 					while(this.cluster01loadAreaVertices.Count <= index) { this.cluster01loadAreaVertices.Add(default(short)); }
-					this.cluster01loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster01loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster02loadAreaVertices":
 					while(this.cluster02loadAreaVertices.Count <= index) { this.cluster02loadAreaVertices.Add(default(short)); }
-					this.cluster02loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster02loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster03loadAreaVertices":
 					while(this.cluster03loadAreaVertices.Count <= index) { this.cluster03loadAreaVertices.Add(default(short)); }
-					this.cluster03loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster03loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster04loadAreaVertices":
 					while(this.cluster04loadAreaVertices.Count <= index) { this.cluster04loadAreaVertices.Add(default(short)); }
-					this.cluster04loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster04loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster05loadAreaVertices":
 					while(this.cluster05loadAreaVertices.Count <= index) { this.cluster05loadAreaVertices.Add(default(short)); }
-					this.cluster05loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster05loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster06loadAreaVertices":
 					while(this.cluster06loadAreaVertices.Count <= index) { this.cluster06loadAreaVertices.Add(default(short)); }
-					this.cluster06loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster06loadAreaVertices[index] = (short)value;
 					return;
 				case "cluster07loadAreaVertices":
 					while(this.cluster07loadAreaVertices.Count <= index) { this.cluster07loadAreaVertices.Add(default(short)); }
-					this.cluster07loadAreaVertices[index] = value.GetValueAsInt16();
+					this.cluster07loadAreaVertices[index] = (short)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -346,7 +346,7 @@ namespace Tpp.MotherBaseStage
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -356,7 +356,7 @@ namespace Tpp.MotherBaseStage
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

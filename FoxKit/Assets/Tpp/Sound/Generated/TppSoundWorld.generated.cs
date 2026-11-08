@@ -131,73 +131,73 @@ namespace Tpp.Sound
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "updateSeconds":
-					return new Fox.Core.Value(updateSeconds);
+					return updateSeconds;
 				case "startMorning":
-					return new Fox.Core.Value(startMorning);
+					return startMorning;
 				case "midMorning":
-					return new Fox.Core.Value(midMorning);
+					return midMorning;
 				case "endMorning":
-					return new Fox.Core.Value(endMorning);
+					return endMorning;
 				case "startEvening":
-					return new Fox.Core.Value(startEvening);
+					return startEvening;
 				case "midEvening":
-					return new Fox.Core.Value(midEvening);
+					return midEvening;
 				case "endEvening":
-					return new Fox.Core.Value(endEvening);
+					return endEvening;
 				case "situationEvent":
-					return new Fox.Core.Value(situationEvent);
+					return situationEvent;
 				case "clockRtpc":
-					return new Fox.Core.Value(clockRtpc);
+					return clockRtpc;
 				case "windVelocityRtpc":
-					return new Fox.Core.Value(windVelocityRtpc);
+					return windVelocityRtpc;
 				case "windDirectionRtpc":
-					return new Fox.Core.Value(windDirectionRtpc);
+					return windDirectionRtpc;
 				case "rainRtpc":
-					return new Fox.Core.Value(rainRtpc);
+					return rainRtpc;
 				case "heightRtpc":
-					return new Fox.Core.Value(heightRtpc);
+					return heightRtpc;
 				case "ambientParameter":
-					return new Fox.Core.Value(ambientParameter);
+					return ambientParameter;
 				case "categoryFpvStateGroup":
-					return new Fox.Core.Value(categoryFpvStateGroup);
+					return categoryFpvStateGroup;
 				case "categoryFpvStateValue":
-					return new Fox.Core.Value(categoryFpvStateValue);
+					return categoryFpvStateValue;
 				case "dashStartEventName":
-					return new Fox.Core.Value(dashStartEventName);
+					return dashStartEventName;
 				case "dashFinishEventName":
-					return new Fox.Core.Value(dashFinishEventName);
+					return dashFinishEventName;
 				case "blockedObstruction":
-					return new Fox.Core.Value(blockedObstruction);
+					return blockedObstruction;
 				case "blockedOcclusion":
-					return new Fox.Core.Value(blockedOcclusion);
+					return blockedOcclusion;
 				case "unlinkedObstruction":
-					return new Fox.Core.Value(unlinkedObstruction);
+					return unlinkedObstruction;
 				case "unlinkedOcclusion":
-					return new Fox.Core.Value(unlinkedOcclusion);
+					return unlinkedOcclusion;
 				case "interferenceSlope":
-					return new Fox.Core.Value(interferenceSlope);
+					return interferenceSlope;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "ambientParameter":
-					return new Fox.Core.Value(this.ambientParameter[index]);
+					return this.ambientParameter[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -206,75 +206,75 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "updateSeconds":
-					this.updateSeconds = value.GetValueAsUInt32();
+					this.updateSeconds = (uint)value;
 					return;
 				case "startMorning":
-					this.startMorning = value.GetValueAsFloat();
+					this.startMorning = (float)value;
 					return;
 				case "midMorning":
-					this.midMorning = value.GetValueAsFloat();
+					this.midMorning = (float)value;
 					return;
 				case "endMorning":
-					this.endMorning = value.GetValueAsFloat();
+					this.endMorning = (float)value;
 					return;
 				case "startEvening":
-					this.startEvening = value.GetValueAsFloat();
+					this.startEvening = (float)value;
 					return;
 				case "midEvening":
-					this.midEvening = value.GetValueAsFloat();
+					this.midEvening = (float)value;
 					return;
 				case "endEvening":
-					this.endEvening = value.GetValueAsFloat();
+					this.endEvening = (float)value;
 					return;
 				case "situationEvent":
-					this.situationEvent = value.GetValueAsString();
+					this.situationEvent = (string)value;
 					return;
 				case "clockRtpc":
-					this.clockRtpc = value.GetValueAsString();
+					this.clockRtpc = (string)value;
 					return;
 				case "windVelocityRtpc":
-					this.windVelocityRtpc = value.GetValueAsString();
+					this.windVelocityRtpc = (string)value;
 					return;
 				case "windDirectionRtpc":
-					this.windDirectionRtpc = value.GetValueAsString();
+					this.windDirectionRtpc = (string)value;
 					return;
 				case "rainRtpc":
-					this.rainRtpc = value.GetValueAsString();
+					this.rainRtpc = (string)value;
 					return;
 				case "heightRtpc":
-					this.heightRtpc = value.GetValueAsString();
+					this.heightRtpc = (string)value;
 					return;
 				case "categoryFpvStateGroup":
-					this.categoryFpvStateGroup = value.GetValueAsString();
+					this.categoryFpvStateGroup = (string)value;
 					return;
 				case "categoryFpvStateValue":
-					this.categoryFpvStateValue = value.GetValueAsString();
+					this.categoryFpvStateValue = (string)value;
 					return;
 				case "dashStartEventName":
-					this.dashStartEventName = value.GetValueAsString();
+					this.dashStartEventName = (string)value;
 					return;
 				case "dashFinishEventName":
-					this.dashFinishEventName = value.GetValueAsString();
+					this.dashFinishEventName = (string)value;
 					return;
 				case "blockedObstruction":
-					this.blockedObstruction = value.GetValueAsFloat();
+					this.blockedObstruction = (float)value;
 					return;
 				case "blockedOcclusion":
-					this.blockedOcclusion = value.GetValueAsFloat();
+					this.blockedOcclusion = (float)value;
 					return;
 				case "unlinkedObstruction":
-					this.unlinkedObstruction = value.GetValueAsFloat();
+					this.unlinkedObstruction = (float)value;
 					return;
 				case "unlinkedOcclusion":
-					this.unlinkedOcclusion = value.GetValueAsFloat();
+					this.unlinkedOcclusion = (float)value;
 					return;
 				case "interferenceSlope":
-					this.interferenceSlope = value.GetValueAsFloat();
+					this.interferenceSlope = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -282,12 +282,12 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "ambientParameter":
-					this.ambientParameter[index] = value.GetValueAsEntityLink();
+					this.ambientParameter[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -295,7 +295,7 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -305,7 +305,7 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -315,7 +315,7 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

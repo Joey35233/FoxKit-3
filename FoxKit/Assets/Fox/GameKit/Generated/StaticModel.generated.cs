@@ -83,38 +83,38 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					return new Fox.Core.Value(modelFile);
+					return modelFile;
 				case "geomFile":
-					return new Fox.Core.Value(geomFile);
+					return geomFile;
 				case "isVisibleGeom":
-					return new Fox.Core.Value(isVisibleGeom);
+					return isVisibleGeom;
 				case "isIsolated":
-					return new Fox.Core.Value(isIsolated);
+					return isIsolated;
 				case "lodFarSize":
-					return new Fox.Core.Value(lodFarSize);
+					return lodFarSize;
 				case "lodNearSize":
-					return new Fox.Core.Value(lodNearSize);
+					return lodNearSize;
 				case "lodPolygonSize":
-					return new Fox.Core.Value(lodPolygonSize);
+					return lodPolygonSize;
 				case "color":
-					return new Fox.Core.Value(color);
+					return color;
 				case "drawRejectionLevel":
-					return new Fox.Core.Value(drawRejectionLevel);
+					return drawRejectionLevel;
 				case "drawMode":
-					return new Fox.Core.Value(drawMode);
+					return drawMode;
 				case "rejectFarRangeShadowCast":
-					return new Fox.Core.Value(rejectFarRangeShadowCast);
+					return rejectFarRangeShadowCast;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -123,7 +123,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -132,42 +132,42 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					this.modelFile = value.GetValueAsFilePtr();
+					this.modelFile = (Fox.Core.FilePtr)value;
 					return;
 				case "geomFile":
-					this.geomFile = value.GetValueAsFilePtr();
+					this.geomFile = (Fox.Core.FilePtr)value;
 					return;
 				case "isVisibleGeom":
-					this.isVisibleGeom = value.GetValueAsBool();
+					this.isVisibleGeom = (bool)value;
 					return;
 				case "isIsolated":
-					this.isIsolated = value.GetValueAsBool();
+					this.isIsolated = (bool)value;
 					return;
 				case "lodFarSize":
-					this.lodFarSize = value.GetValueAsFloat();
+					this.lodFarSize = (float)value;
 					return;
 				case "lodNearSize":
-					this.lodNearSize = value.GetValueAsFloat();
+					this.lodNearSize = (float)value;
 					return;
 				case "lodPolygonSize":
-					this.lodPolygonSize = value.GetValueAsFloat();
+					this.lodPolygonSize = (float)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "drawRejectionLevel":
-					this.drawRejectionLevel = (StaticModel_DrawRejectionLevel)value.GetValueAsInt32();
+					this.drawRejectionLevel = (StaticModel_DrawRejectionLevel)value;
 					return;
 				case "drawMode":
-					this.drawMode = (StaticModel_DrawMode)value.GetValueAsInt32();
+					this.drawMode = (StaticModel_DrawMode)value;
 					return;
 				case "rejectFarRangeShadowCast":
-					this.rejectFarRangeShadowCast = (StaticModel_RejectFarRangeShadowCast)value.GetValueAsInt32();
+					this.rejectFarRangeShadowCast = (StaticModel_RejectFarRangeShadowCast)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -175,7 +175,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -185,7 +185,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -195,7 +195,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -205,7 +205,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -51,33 +51,33 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enabled":
-					return new Fox.Core.Value(enabled);
+					return enabled;
 				case "sizeInBytes":
-					return new Fox.Core.Value(sizeInBytes);
+					return sizeInBytes;
 				case "prerequisites":
-					return new Fox.Core.Value(prerequisites);
+					return prerequisites;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "prerequisites":
-					return new Fox.Core.Value(this.prerequisites[index]);
+					return this.prerequisites[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -86,15 +86,15 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enabled":
-					this.enabled = value.GetValueAsBool();
+					this.enabled = (bool)value;
 					return;
 				case "sizeInBytes":
-					this.sizeInBytes = value.GetValueAsUInt32();
+					this.sizeInBytes = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -102,12 +102,12 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "prerequisites":
-					this.prerequisites[index] = value.GetValueAsString();
+					this.prerequisites[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -115,13 +115,13 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "prerequisites":
 					while(this.prerequisites.Count <= index) { this.prerequisites.Add(default(string)); }
-					this.prerequisites[index] = value.GetValueAsString();
+					this.prerequisites[index] = (string)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -129,7 +129,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -139,7 +139,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

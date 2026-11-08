@@ -51,22 +51,22 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "life":
-					return new Fox.Core.Value(life);
+					return life;
 				case "flag1":
-					return new Fox.Core.Value(flag1);
+					return flag1;
 				case "flag2":
-					return new Fox.Core.Value(flag2);
+					return flag2;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -75,7 +75,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -84,18 +84,18 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "life":
-					this.life = value.GetValueAsUInt32();
+					this.life = (uint)value;
 					return;
 				case "flag1":
-					this.flag1 = value.GetValueAsUInt32();
+					this.flag1 = (uint)value;
 					return;
 				case "flag2":
-					this.flag2 = value.GetValueAsUInt32();
+					this.flag2 = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -103,7 +103,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -113,7 +113,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -123,7 +123,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -133,7 +133,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -368,185 +368,185 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "atshFilePath":
-					return new Fox.Core.Value(atshFilePath);
+					return atshFilePath;
 				case "pcspFilePath":
-					return new Fox.Core.Value(pcspFilePath);
+					return pcspFilePath;
 				case "atshFilePtr":
-					return new Fox.Core.Value(atshFilePtr);
+					return atshFilePtr;
 				case "pcspFilePtr":
-					return new Fox.Core.Value(pcspFilePtr);
+					return pcspFilePtr;
 				case "useBakedData":
-					return new Fox.Core.Value(useBakedData);
+					return useBakedData;
 				case "capturePosition":
-					return new Fox.Core.Value(capturePosition);
+					return capturePosition;
 				case "rayleighHeightScale":
-					return new Fox.Core.Value(rayleighHeightScale);
+					return rayleighHeightScale;
 				case "rayleighScatteringCoefficient":
-					return new Fox.Core.Value(rayleighScatteringCoefficient);
+					return rayleighScatteringCoefficient;
 				case "rayleighScatteringCoefficientOfCloudySky":
-					return new Fox.Core.Value(rayleighScatteringCoefficientOfCloudySky);
+					return rayleighScatteringCoefficientOfCloudySky;
 				case "mieHeightScale":
-					return new Fox.Core.Value(mieHeightScale);
+					return mieHeightScale;
 				case "mieAbsorptionRate":
-					return new Fox.Core.Value(mieAbsorptionRate);
+					return mieAbsorptionRate;
 				case "mieAnisotropy":
-					return new Fox.Core.Value(mieAnisotropy);
+					return mieAnisotropy;
 				case "mieScatteringCoefficient":
-					return new Fox.Core.Value(mieScatteringCoefficient);
+					return mieScatteringCoefficient;
 				case "mieAnisotropyOfCloudySky":
-					return new Fox.Core.Value(mieAnisotropyOfCloudySky);
+					return mieAnisotropyOfCloudySky;
 				case "mieScatteringCoefficientOfCloudySky":
-					return new Fox.Core.Value(mieScatteringCoefficientOfCloudySky);
+					return mieScatteringCoefficientOfCloudySky;
 				case "multiScatteringOrder":
-					return new Fox.Core.Value(multiScatteringOrder);
+					return multiScatteringOrder;
 				case "groundColor":
-					return new Fox.Core.Value(groundColor);
+					return groundColor;
 				case "northAngle":
-					return new Fox.Core.Value(northAngle);
+					return northAngle;
 				case "latitude":
-					return new Fox.Core.Value(latitude);
+					return latitude;
 				case "longitude":
-					return new Fox.Core.Value(longitude);
+					return longitude;
 				case "gmtTimeDifference":
-					return new Fox.Core.Value(gmtTimeDifference);
+					return gmtTimeDifference;
 				case "year":
-					return new Fox.Core.Value(year);
+					return year;
 				case "month":
-					return new Fox.Core.Value(month);
+					return month;
 				case "day":
-					return new Fox.Core.Value(day);
+					return day;
 				case "shadowRange":
-					return new Fox.Core.Value(shadowRange);
+					return shadowRange;
 				case "shadowRangeExtra":
-					return new Fox.Core.Value(shadowRangeExtra);
+					return shadowRangeExtra;
 				case "hiResShadowRange":
-					return new Fox.Core.Value(hiResShadowRange);
+					return hiResShadowRange;
 				case "shadowProjectionRange":
-					return new Fox.Core.Value(shadowProjectionRange);
+					return shadowProjectionRange;
 				case "shadowFadeRange":
-					return new Fox.Core.Value(shadowFadeRange);
+					return shadowFadeRange;
 				case "selfShadowBias":
-					return new Fox.Core.Value(selfShadowBias);
+					return selfShadowBias;
 				case "shadowMaskSpecular":
-					return new Fox.Core.Value(shadowMaskSpecular);
+					return shadowMaskSpecular;
 				case "dirLightFadeStart":
-					return new Fox.Core.Value(dirLightFadeStart);
+					return dirLightFadeStart;
 				case "dirLightFadeLength":
-					return new Fox.Core.Value(dirLightFadeLength);
+					return dirLightFadeLength;
 				case "sunLux":
-					return new Fox.Core.Value(sunLux);
+					return sunLux;
 				case "moonLux":
-					return new Fox.Core.Value(moonLux);
+					return moonLux;
 				case "starLight":
-					return new Fox.Core.Value(starLight);
+					return starLight;
 				case "sunMoonSize":
-					return new Fox.Core.Value(sunMoonSize);
+					return sunMoonSize;
 				case "sunMoonIntensity":
-					return new Fox.Core.Value(sunMoonIntensity);
+					return sunMoonIntensity;
 				case "sunTexture":
-					return new Fox.Core.Value(sunTexture);
+					return sunTexture;
 				case "moonTexture":
-					return new Fox.Core.Value(moonTexture);
+					return moonTexture;
 				case "moonColor":
-					return new Fox.Core.Value(moonColor);
+					return moonColor;
 				case "sunColorExtinctionOfClearSky":
-					return new Fox.Core.Value(sunColorExtinctionOfClearSky);
+					return sunColorExtinctionOfClearSky;
 				case "sunColorOfCloudySky":
-					return new Fox.Core.Value(sunColorOfCloudySky);
+					return sunColorOfCloudySky;
 				case "skyLightSunScale":
-					return new Fox.Core.Value(skyLightSunScale);
+					return skyLightSunScale;
 				case "skyColorSunScale":
-					return new Fox.Core.Value(skyColorSunScale);
+					return skyColorSunScale;
 				case "daySkyAmbientScale":
-					return new Fox.Core.Value(daySkyAmbientScale);
+					return daySkyAmbientScale;
 				case "dirLightSunLimitAngle":
-					return new Fox.Core.Value(dirLightSunLimitAngle);
+					return dirLightSunLimitAngle;
 				case "dirLightMoonLimitAngle":
-					return new Fox.Core.Value(dirLightMoonLimitAngle);
+					return dirLightMoonLimitAngle;
 				case "dirLightAttenuStart":
-					return new Fox.Core.Value(dirLightAttenuStart);
+					return dirLightAttenuStart;
 				case "dirLightAttenuEnd":
-					return new Fox.Core.Value(dirLightAttenuEnd);
+					return dirLightAttenuEnd;
 				case "fixedLightDirSunRise":
-					return new Fox.Core.Value(fixedLightDirSunRise);
+					return fixedLightDirSunRise;
 				case "fixedLightDirSunSet":
-					return new Fox.Core.Value(fixedLightDirSunSet);
+					return fixedLightDirSunSet;
 				case "fixedLightDirMoonRise":
-					return new Fox.Core.Value(fixedLightDirMoonRise);
+					return fixedLightDirMoonRise;
 				case "fixedLightDirMoonSet":
-					return new Fox.Core.Value(fixedLightDirMoonSet);
+					return fixedLightDirMoonSet;
 				case "fixedRisingSunDir":
-					return new Fox.Core.Value(fixedRisingSunDir);
+					return fixedRisingSunDir;
 				case "fixedFallingSunDir":
-					return new Fox.Core.Value(fixedFallingSunDir);
+					return fixedFallingSunDir;
 				case "fixedRisingMoonDir":
-					return new Fox.Core.Value(fixedRisingMoonDir);
+					return fixedRisingMoonDir;
 				case "fixedFallingMoonDir":
-					return new Fox.Core.Value(fixedFallingMoonDir);
+					return fixedFallingMoonDir;
 				case "skyLightLuminanceScale":
-					return new Fox.Core.Value(skyLightLuminanceScale);
+					return skyLightLuminanceScale;
 				case "numBands":
-					return new Fox.Core.Value(numBands);
+					return numBands;
 				case "coefficients":
-					return new Fox.Core.Value(coefficients);
+					return coefficients;
 				case "cloudiness":
-					return new Fox.Core.Value(cloudiness);
+					return cloudiness;
 				case "influenceOfFog":
-					return new Fox.Core.Value(influenceOfFog);
+					return influenceOfFog;
 				case "localFlags":
-					return new Fox.Core.Value(localFlags);
+					return localFlags;
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return priority;
 				case "interpolateTimeInSecondOfDirLightSteppedMove":
-					return new Fox.Core.Value(interpolateTimeInSecondOfDirLightSteppedMove);
+					return interpolateTimeInSecondOfDirLightSteppedMove;
 				case "divisonNumOfDirLightSteppedMove":
-					return new Fox.Core.Value(divisonNumOfDirLightSteppedMove);
+					return divisonNumOfDirLightSteppedMove;
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "skyEnable":
-					return new Fox.Core.Value(skyEnable);
+					return skyEnable;
 				case "sunLightEnable":
-					return new Fox.Core.Value(sunLightEnable);
+					return sunLightEnable;
 				case "isCascadeBlend":
-					return new Fox.Core.Value(isCascadeBlend);
+					return isCascadeBlend;
 				case "castShadow":
-					return new Fox.Core.Value(castShadow);
+					return castShadow;
 				case "dirLightFade":
-					return new Fox.Core.Value(dirLightFade);
+					return dirLightFade;
 				case "disableSkyCapture":
-					return new Fox.Core.Value(disableSkyCapture);
+					return disableSkyCapture;
 				case "skyLightEnable":
-					return new Fox.Core.Value(skyLightEnable);
+					return skyLightEnable;
 				case "usePrecomputedAmbient":
-					return new Fox.Core.Value(usePrecomputedAmbient);
+					return usePrecomputedAmbient;
 				case "fogEnable":
-					return new Fox.Core.Value(fogEnable);
+					return fogEnable;
 				case "expandHorizontalLineColor":
-					return new Fox.Core.Value(expandHorizontalLineColor);
+					return expandHorizontalLineColor;
 				case "isSteppedMoveOfDirectionalLight":
-					return new Fox.Core.Value(isSteppedMoveOfDirectionalLight);
+					return isSteppedMoveOfDirectionalLight;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "coefficients":
-					return new Fox.Core.Value(this.coefficients[index]);
+					return this.coefficients[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -555,243 +555,243 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "atshFilePath":
-					this.atshFilePath = value.GetValueAsPath();
+					this.atshFilePath = (Fox.Path)value;
 					return;
 				case "pcspFilePath":
-					this.pcspFilePath = value.GetValueAsPath();
+					this.pcspFilePath = (Fox.Path)value;
 					return;
 				case "atshFilePtr":
-					this.atshFilePtr = value.GetValueAsFilePtr();
+					this.atshFilePtr = (Fox.Core.FilePtr)value;
 					return;
 				case "pcspFilePtr":
-					this.pcspFilePtr = value.GetValueAsFilePtr();
+					this.pcspFilePtr = (Fox.Core.FilePtr)value;
 					return;
 				case "useBakedData":
-					this.useBakedData = value.GetValueAsBool();
+					this.useBakedData = (bool)value;
 					return;
 				case "capturePosition":
-					this.capturePosition = value.GetValueAsEntityHandle();
+					this.capturePosition = (Fox.Core.Entity)value;
 					return;
 				case "rayleighHeightScale":
-					this.rayleighHeightScale = value.GetValueAsFloat();
+					this.rayleighHeightScale = (float)value;
 					return;
 				case "rayleighScatteringCoefficient":
-					this.rayleighScatteringCoefficient = value.GetValueAsVector3();
+					this.rayleighScatteringCoefficient = (UnityEngine.Vector3)value;
 					return;
 				case "rayleighScatteringCoefficientOfCloudySky":
-					this.rayleighScatteringCoefficientOfCloudySky = value.GetValueAsVector3();
+					this.rayleighScatteringCoefficientOfCloudySky = (UnityEngine.Vector3)value;
 					return;
 				case "mieHeightScale":
-					this.mieHeightScale = value.GetValueAsFloat();
+					this.mieHeightScale = (float)value;
 					return;
 				case "mieAbsorptionRate":
-					this.mieAbsorptionRate = value.GetValueAsFloat();
+					this.mieAbsorptionRate = (float)value;
 					return;
 				case "mieAnisotropy":
-					this.mieAnisotropy = value.GetValueAsFloat();
+					this.mieAnisotropy = (float)value;
 					return;
 				case "mieScatteringCoefficient":
-					this.mieScatteringCoefficient = value.GetValueAsVector3();
+					this.mieScatteringCoefficient = (UnityEngine.Vector3)value;
 					return;
 				case "mieAnisotropyOfCloudySky":
-					this.mieAnisotropyOfCloudySky = value.GetValueAsFloat();
+					this.mieAnisotropyOfCloudySky = (float)value;
 					return;
 				case "mieScatteringCoefficientOfCloudySky":
-					this.mieScatteringCoefficientOfCloudySky = value.GetValueAsVector3();
+					this.mieScatteringCoefficientOfCloudySky = (UnityEngine.Vector3)value;
 					return;
 				case "multiScatteringOrder":
-					this.multiScatteringOrder = value.GetValueAsUInt32();
+					this.multiScatteringOrder = (uint)value;
 					return;
 				case "groundColor":
-					this.groundColor = value.GetValueAsColor();
+					this.groundColor = (UnityEngine.Color)value;
 					return;
 				case "northAngle":
-					this.northAngle = value.GetValueAsFloat();
+					this.northAngle = (float)value;
 					return;
 				case "latitude":
-					this.latitude = value.GetValueAsFloat();
+					this.latitude = (float)value;
 					return;
 				case "longitude":
-					this.longitude = value.GetValueAsFloat();
+					this.longitude = (float)value;
 					return;
 				case "gmtTimeDifference":
-					this.gmtTimeDifference = value.GetValueAsInt32();
+					this.gmtTimeDifference = (int)value;
 					return;
 				case "year":
-					this.year = value.GetValueAsUInt32();
+					this.year = (uint)value;
 					return;
 				case "month":
-					this.month = value.GetValueAsUInt32();
+					this.month = (uint)value;
 					return;
 				case "day":
-					this.day = value.GetValueAsUInt32();
+					this.day = (uint)value;
 					return;
 				case "shadowRange":
-					this.shadowRange = value.GetValueAsFloat();
+					this.shadowRange = (float)value;
 					return;
 				case "shadowRangeExtra":
-					this.shadowRangeExtra = value.GetValueAsFloat();
+					this.shadowRangeExtra = (float)value;
 					return;
 				case "hiResShadowRange":
-					this.hiResShadowRange = value.GetValueAsFloat();
+					this.hiResShadowRange = (float)value;
 					return;
 				case "shadowProjectionRange":
-					this.shadowProjectionRange = value.GetValueAsFloat();
+					this.shadowProjectionRange = (float)value;
 					return;
 				case "shadowFadeRange":
-					this.shadowFadeRange = value.GetValueAsFloat();
+					this.shadowFadeRange = (float)value;
 					return;
 				case "selfShadowBias":
-					this.selfShadowBias = value.GetValueAsFloat();
+					this.selfShadowBias = (float)value;
 					return;
 				case "shadowMaskSpecular":
-					this.shadowMaskSpecular = value.GetValueAsFloat();
+					this.shadowMaskSpecular = (float)value;
 					return;
 				case "dirLightFadeStart":
-					this.dirLightFadeStart = value.GetValueAsFloat();
+					this.dirLightFadeStart = (float)value;
 					return;
 				case "dirLightFadeLength":
-					this.dirLightFadeLength = value.GetValueAsFloat();
+					this.dirLightFadeLength = (float)value;
 					return;
 				case "sunLux":
-					this.sunLux = value.GetValueAsFloat();
+					this.sunLux = (float)value;
 					return;
 				case "moonLux":
-					this.moonLux = value.GetValueAsFloat();
+					this.moonLux = (float)value;
 					return;
 				case "starLight":
-					this.starLight = value.GetValueAsFloat();
+					this.starLight = (float)value;
 					return;
 				case "sunMoonSize":
-					this.sunMoonSize = value.GetValueAsFloat();
+					this.sunMoonSize = (float)value;
 					return;
 				case "sunMoonIntensity":
-					this.sunMoonIntensity = value.GetValueAsFloat();
+					this.sunMoonIntensity = (float)value;
 					return;
 				case "sunTexture":
-					this.sunTexture = value.GetValueAsPath();
+					this.sunTexture = (Fox.Path)value;
 					return;
 				case "moonTexture":
-					this.moonTexture = value.GetValueAsPath();
+					this.moonTexture = (Fox.Path)value;
 					return;
 				case "moonColor":
-					this.moonColor = value.GetValueAsColor();
+					this.moonColor = (UnityEngine.Color)value;
 					return;
 				case "sunColorExtinctionOfClearSky":
-					this.sunColorExtinctionOfClearSky = value.GetValueAsColor();
+					this.sunColorExtinctionOfClearSky = (UnityEngine.Color)value;
 					return;
 				case "sunColorOfCloudySky":
-					this.sunColorOfCloudySky = value.GetValueAsColor();
+					this.sunColorOfCloudySky = (UnityEngine.Color)value;
 					return;
 				case "skyLightSunScale":
-					this.skyLightSunScale = value.GetValueAsFloat();
+					this.skyLightSunScale = (float)value;
 					return;
 				case "skyColorSunScale":
-					this.skyColorSunScale = value.GetValueAsFloat();
+					this.skyColorSunScale = (float)value;
 					return;
 				case "daySkyAmbientScale":
-					this.daySkyAmbientScale = value.GetValueAsFloat();
+					this.daySkyAmbientScale = (float)value;
 					return;
 				case "dirLightSunLimitAngle":
-					this.dirLightSunLimitAngle = value.GetValueAsFloat();
+					this.dirLightSunLimitAngle = (float)value;
 					return;
 				case "dirLightMoonLimitAngle":
-					this.dirLightMoonLimitAngle = value.GetValueAsFloat();
+					this.dirLightMoonLimitAngle = (float)value;
 					return;
 				case "dirLightAttenuStart":
-					this.dirLightAttenuStart = value.GetValueAsFloat();
+					this.dirLightAttenuStart = (float)value;
 					return;
 				case "dirLightAttenuEnd":
-					this.dirLightAttenuEnd = value.GetValueAsFloat();
+					this.dirLightAttenuEnd = (float)value;
 					return;
 				case "fixedLightDirSunRise":
-					this.fixedLightDirSunRise = value.GetValueAsVector3();
+					this.fixedLightDirSunRise = (UnityEngine.Vector3)value;
 					return;
 				case "fixedLightDirSunSet":
-					this.fixedLightDirSunSet = value.GetValueAsVector3();
+					this.fixedLightDirSunSet = (UnityEngine.Vector3)value;
 					return;
 				case "fixedLightDirMoonRise":
-					this.fixedLightDirMoonRise = value.GetValueAsVector3();
+					this.fixedLightDirMoonRise = (UnityEngine.Vector3)value;
 					return;
 				case "fixedLightDirMoonSet":
-					this.fixedLightDirMoonSet = value.GetValueAsVector3();
+					this.fixedLightDirMoonSet = (UnityEngine.Vector3)value;
 					return;
 				case "fixedRisingSunDir":
-					this.fixedRisingSunDir = value.GetValueAsVector3();
+					this.fixedRisingSunDir = (UnityEngine.Vector3)value;
 					return;
 				case "fixedFallingSunDir":
-					this.fixedFallingSunDir = value.GetValueAsVector3();
+					this.fixedFallingSunDir = (UnityEngine.Vector3)value;
 					return;
 				case "fixedRisingMoonDir":
-					this.fixedRisingMoonDir = value.GetValueAsVector3();
+					this.fixedRisingMoonDir = (UnityEngine.Vector3)value;
 					return;
 				case "fixedFallingMoonDir":
-					this.fixedFallingMoonDir = value.GetValueAsVector3();
+					this.fixedFallingMoonDir = (UnityEngine.Vector3)value;
 					return;
 				case "skyLightLuminanceScale":
-					this.skyLightLuminanceScale = value.GetValueAsFloat();
+					this.skyLightLuminanceScale = (float)value;
 					return;
 				case "numBands":
-					this.numBands = value.GetValueAsUInt32();
+					this.numBands = (uint)value;
 					return;
 				case "cloudiness":
-					this.cloudiness = value.GetValueAsFloat();
+					this.cloudiness = (float)value;
 					return;
 				case "influenceOfFog":
-					this.influenceOfFog = value.GetValueAsFloat();
+					this.influenceOfFog = (float)value;
 					return;
 				case "localFlags":
-					this.localFlags = value.GetValueAsUInt32();
+					this.localFlags = (uint)value;
 					return;
 				case "priority":
-					this.priority = value.GetValueAsUInt32();
+					this.priority = (uint)value;
 					return;
 				case "interpolateTimeInSecondOfDirLightSteppedMove":
-					this.interpolateTimeInSecondOfDirLightSteppedMove = value.GetValueAsFloat();
+					this.interpolateTimeInSecondOfDirLightSteppedMove = (float)value;
 					return;
 				case "divisonNumOfDirLightSteppedMove":
-					this.divisonNumOfDirLightSteppedMove = value.GetValueAsUInt32();
+					this.divisonNumOfDirLightSteppedMove = (uint)value;
 					return;
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "skyEnable":
-					this.skyEnable = value.GetValueAsBool();
+					this.skyEnable = (bool)value;
 					return;
 				case "sunLightEnable":
-					this.sunLightEnable = value.GetValueAsBool();
+					this.sunLightEnable = (bool)value;
 					return;
 				case "isCascadeBlend":
-					this.isCascadeBlend = value.GetValueAsBool();
+					this.isCascadeBlend = (bool)value;
 					return;
 				case "castShadow":
-					this.castShadow = value.GetValueAsBool();
+					this.castShadow = (bool)value;
 					return;
 				case "dirLightFade":
-					this.dirLightFade = value.GetValueAsBool();
+					this.dirLightFade = (bool)value;
 					return;
 				case "disableSkyCapture":
-					this.disableSkyCapture = value.GetValueAsBool();
+					this.disableSkyCapture = (bool)value;
 					return;
 				case "skyLightEnable":
-					this.skyLightEnable = value.GetValueAsBool();
+					this.skyLightEnable = (bool)value;
 					return;
 				case "usePrecomputedAmbient":
-					this.usePrecomputedAmbient = value.GetValueAsBool();
+					this.usePrecomputedAmbient = (bool)value;
 					return;
 				case "fogEnable":
-					this.fogEnable = value.GetValueAsBool();
+					this.fogEnable = (bool)value;
 					return;
 				case "expandHorizontalLineColor":
-					this.expandHorizontalLineColor = value.GetValueAsBool();
+					this.expandHorizontalLineColor = (bool)value;
 					return;
 				case "isSteppedMoveOfDirectionalLight":
-					this.isSteppedMoveOfDirectionalLight = value.GetValueAsBool();
+					this.isSteppedMoveOfDirectionalLight = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -799,12 +799,12 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "coefficients":
-					this.coefficients[index] = value.GetValueAsVector4();
+					this.coefficients[index] = (UnityEngine.Vector4)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -812,13 +812,13 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "coefficients":
 					while(this.coefficients.Count <= index) { this.coefficients.Add(default(UnityEngine.Vector4)); }
-					this.coefficients[index] = value.GetValueAsVector4();
+					this.coefficients[index] = (UnityEngine.Vector4)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -826,7 +826,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -836,7 +836,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

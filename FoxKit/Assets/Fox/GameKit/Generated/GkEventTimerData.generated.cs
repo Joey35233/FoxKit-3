@@ -67,30 +67,30 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "measureTime":
-					return new Fox.Core.Value(measureTime);
+					return measureTime;
 				case "startMessageName":
-					return new Fox.Core.Value(startMessageName);
+					return startMessageName;
 				case "interruptMessageName":
-					return new Fox.Core.Value(interruptMessageName);
+					return interruptMessageName;
 				case "alarmMessageName":
-					return new Fox.Core.Value(alarmMessageName);
+					return alarmMessageName;
 				case "enableDebugView":
-					return new Fox.Core.Value(enableDebugView);
+					return enableDebugView;
 				case "debugViewPositionX":
-					return new Fox.Core.Value(debugViewPositionX);
+					return debugViewPositionX;
 				case "debugViewPositionY":
-					return new Fox.Core.Value(debugViewPositionY);
+					return debugViewPositionY;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -99,7 +99,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -108,30 +108,30 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "measureTime":
-					this.measureTime = value.GetValueAsDouble();
+					this.measureTime = (double)value;
 					return;
 				case "startMessageName":
-					this.startMessageName = value.GetValueAsString();
+					this.startMessageName = (string)value;
 					return;
 				case "interruptMessageName":
-					this.interruptMessageName = value.GetValueAsString();
+					this.interruptMessageName = (string)value;
 					return;
 				case "alarmMessageName":
-					this.alarmMessageName = value.GetValueAsString();
+					this.alarmMessageName = (string)value;
 					return;
 				case "enableDebugView":
-					this.enableDebugView = value.GetValueAsBool();
+					this.enableDebugView = (bool)value;
 					return;
 				case "debugViewPositionX":
-					this.debugViewPositionX = value.GetValueAsFloat();
+					this.debugViewPositionX = (float)value;
 					return;
 				case "debugViewPositionY":
-					this.debugViewPositionY = value.GetValueAsFloat();
+					this.debugViewPositionY = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -139,7 +139,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -149,7 +149,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -159,7 +159,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -169,7 +169,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

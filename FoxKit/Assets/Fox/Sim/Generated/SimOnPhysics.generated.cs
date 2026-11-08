@@ -83,36 +83,36 @@ namespace Fox.Sim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "simRootBones":
-					return new Fox.Core.Value((Fox.IStringMap)simRootBones);
+					return (Fox.IStringMap)simRootBones;
 				case "simBones":
-					return new Fox.Core.Value((Fox.IStringMap)simBones);
+					return (Fox.IStringMap)simBones;
 				case "simTransBones":
-					return new Fox.Core.Value((Fox.IStringMap)simTransBones);
+					return (Fox.IStringMap)simTransBones;
 				case "simHitBones":
-					return new Fox.Core.Value((Fox.IStringMap)simHitBones);
+					return (Fox.IStringMap)simHitBones;
 				case "formatVersion":
-					return new Fox.Core.Value(formatVersion);
+					return formatVersion;
 				case "physicsData":
-					return new Fox.Core.Value(physicsData);
+					return physicsData;
 				case "minLodLevel":
-					return new Fox.Core.Value(minLodLevel);
+					return minLodLevel;
 				case "maxLodLevel":
-					return new Fox.Core.Value(maxLodLevel);
+					return maxLodLevel;
 				case "isEnableGeoCheck":
-					return new Fox.Core.Value(isEnableGeoCheck);
+					return isEnableGeoCheck;
 				case "convertMoveToWind":
-					return new Fox.Core.Value(convertMoveToWind);
+					return convertMoveToWind;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -121,44 +121,44 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "simRootBones":
-					return new Fox.Core.Value(this.simRootBones[key]);
+					return this.simRootBones[key];
 				case "simBones":
-					return new Fox.Core.Value(this.simBones[key]);
+					return this.simBones[key];
 				case "simTransBones":
-					return new Fox.Core.Value(this.simTransBones[key]);
+					return this.simTransBones[key];
 				case "simHitBones":
-					return new Fox.Core.Value(this.simHitBones[key]);
+					return this.simHitBones[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "formatVersion":
-					this.formatVersion = value.GetValueAsUInt32();
+					this.formatVersion = (uint)value;
 					return;
 				case "physicsData":
-					this.physicsData = value.GetValueAsEntityLink();
+					this.physicsData = (Fox.Core.EntityLink)value;
 					return;
 				case "minLodLevel":
-					this.minLodLevel = (SimLodLevelName)value.GetValueAsInt32();
+					this.minLodLevel = (SimLodLevelName)value;
 					return;
 				case "maxLodLevel":
-					this.maxLodLevel = (SimLodLevelName)value.GetValueAsInt32();
+					this.maxLodLevel = (SimLodLevelName)value;
 					return;
 				case "isEnableGeoCheck":
-					this.isEnableGeoCheck = value.GetValueAsBool();
+					this.isEnableGeoCheck = (bool)value;
 					return;
 				case "convertMoveToWind":
-					this.convertMoveToWind = value.GetValueAsBool();
+					this.convertMoveToWind = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -166,7 +166,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -176,7 +176,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -186,21 +186,21 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "simRootBones":
-					this.simRootBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					this.simRootBones[key] = (Fox.Sim.SimAssociationUnit)value;
 					return;
 				case "simBones":
-					this.simBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					this.simBones[key] = (Fox.Sim.SimAssociationUnit)value;
 					return;
 				case "simTransBones":
-					this.simTransBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					this.simTransBones[key] = (Fox.Sim.SimAssociationUnit)value;
 					return;
 				case "simHitBones":
-					this.simHitBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					this.simHitBones[key] = (Fox.Sim.SimAssociationUnit)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
@@ -208,21 +208,21 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "simRootBones":
-					this.simRootBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					this.simRootBones[key] = (Fox.Sim.SimAssociationUnit)value;
 					return;
 				case "simBones":
-					this.simBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					this.simBones[key] = (Fox.Sim.SimAssociationUnit)value;
 					return;
 				case "simTransBones":
-					this.simTransBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					this.simTransBones[key] = (Fox.Sim.SimAssociationUnit)value;
 					return;
 				case "simHitBones":
-					this.simHitBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					this.simHitBones[key] = (Fox.Sim.SimAssociationUnit)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, key, value);

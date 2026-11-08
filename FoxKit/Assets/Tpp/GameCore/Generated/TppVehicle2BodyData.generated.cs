@@ -67,43 +67,43 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "vehicleTypeIndex":
-					return new Fox.Core.Value(vehicleTypeIndex);
+					return vehicleTypeIndex;
 				case "proxyVehicleTypeIndex":
-					return new Fox.Core.Value(proxyVehicleTypeIndex);
+					return proxyVehicleTypeIndex;
 				case "bodyImplTypeIndex":
-					return new Fox.Core.Value(bodyImplTypeIndex);
+					return bodyImplTypeIndex;
 				case "partsFile":
-					return new Fox.Core.Value(partsFile);
+					return partsFile;
 				case "bodyInstanceCount":
-					return new Fox.Core.Value(bodyInstanceCount);
+					return bodyInstanceCount;
 				case "weaponParams":
-					return new Fox.Core.Value(weaponParams);
+					return weaponParams;
 				case "fovaFiles":
-					return new Fox.Core.Value(fovaFiles);
+					return fovaFiles;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "weaponParams":
-					return new Fox.Core.Value(this.weaponParams[index]);
+					return this.weaponParams[index];
 				case "fovaFiles":
-					return new Fox.Core.Value(this.fovaFiles[index]);
+					return this.fovaFiles[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -112,24 +112,24 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "vehicleTypeIndex":
-					this.vehicleTypeIndex = value.GetValueAsUInt8();
+					this.vehicleTypeIndex = (byte)value;
 					return;
 				case "proxyVehicleTypeIndex":
-					this.proxyVehicleTypeIndex = value.GetValueAsUInt8();
+					this.proxyVehicleTypeIndex = (byte)value;
 					return;
 				case "bodyImplTypeIndex":
-					this.bodyImplTypeIndex = value.GetValueAsUInt8();
+					this.bodyImplTypeIndex = (byte)value;
 					return;
 				case "partsFile":
-					this.partsFile = value.GetValueAsFilePtr();
+					this.partsFile = (Fox.Core.FilePtr)value;
 					return;
 				case "bodyInstanceCount":
-					this.bodyInstanceCount = value.GetValueAsUInt8();
+					this.bodyInstanceCount = (byte)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -137,15 +137,15 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "weaponParams":
-					this.weaponParams[index] = value.GetValueAsEntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>();
+					this.weaponParams[index] = (Tpp.GameCore.TppVehicle2WeaponParameter)value;
 					return;
 				case "fovaFiles":
-					this.fovaFiles[index] = value.GetValueAsFilePtr();
+					this.fovaFiles[index] = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -153,17 +153,17 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "weaponParams":
 					while(this.weaponParams.Count <= index) { this.weaponParams.Add(default(Tpp.GameCore.TppVehicle2WeaponParameter)); }
-					this.weaponParams[index] = value.GetValueAsEntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>();
+					this.weaponParams[index] = (Tpp.GameCore.TppVehicle2WeaponParameter)value;
 					return;
 				case "fovaFiles":
 					while(this.fovaFiles.Count <= index) { this.fovaFiles.Add(default(Fox.Core.FilePtr)); }
-					this.fovaFiles[index] = value.GetValueAsFilePtr();
+					this.fovaFiles[index] = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -171,7 +171,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -181,7 +181,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

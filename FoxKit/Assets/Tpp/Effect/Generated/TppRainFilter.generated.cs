@@ -135,64 +135,64 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "startFadeInDistance":
-					return new Fox.Core.Value(startFadeInDistance);
+					return startFadeInDistance;
 				case "endFadeInDistance":
-					return new Fox.Core.Value(endFadeInDistance);
+					return endFadeInDistance;
 				case "startFadeOutDistance":
-					return new Fox.Core.Value(startFadeOutDistance);
+					return startFadeOutDistance;
 				case "endFadeOutDistance":
-					return new Fox.Core.Value(endFadeOutDistance);
+					return endFadeOutDistance;
 				case "albedoExtinctionRatio":
-					return new Fox.Core.Value(albedoExtinctionRatio);
+					return albedoExtinctionRatio;
 				case "roughnessExtinctionCoefficient":
-					return new Fox.Core.Value(roughnessExtinctionCoefficient);
+					return roughnessExtinctionCoefficient;
 				case "roughnessEffectiveThreshold":
-					return new Fox.Core.Value(roughnessEffectiveThreshold);
+					return roughnessEffectiveThreshold;
 				case "LABDiffuseScale":
-					return new Fox.Core.Value(LABDiffuseScale);
+					return LABDiffuseScale;
 				case "LABDiffuseAdd":
-					return new Fox.Core.Value(LABDiffuseAdd);
+					return LABDiffuseAdd;
 				case "floorTexScale":
-					return new Fox.Core.Value(floorTexScale);
+					return floorTexScale;
 				case "wallTexScale0":
-					return new Fox.Core.Value(wallTexScale0);
+					return wallTexScale0;
 				case "wallTexScale1":
-					return new Fox.Core.Value(wallTexScale1);
+					return wallTexScale1;
 				case "wallTexSpeed":
-					return new Fox.Core.Value(wallTexSpeed);
+					return wallTexSpeed;
 				case "maskTexScale0":
-					return new Fox.Core.Value(maskTexScale0);
+					return maskTexScale0;
 				case "maskTexScale1":
-					return new Fox.Core.Value(maskTexScale1);
+					return maskTexScale1;
 				case "maskTexSpeed":
-					return new Fox.Core.Value(maskTexSpeed);
+					return maskTexSpeed;
 				case "rainColor":
-					return new Fox.Core.Value(rainColor);
+					return rainColor;
 				case "windScale":
-					return new Fox.Core.Value(windScale);
+					return windScale;
 				case "wallAlphaRate":
-					return new Fox.Core.Value(wallAlphaRate);
+					return wallAlphaRate;
 				case "normalWallTexPath":
-					return new Fox.Core.Value(normalWallTexPath);
+					return normalWallTexPath;
 				case "normalFloorTexPath":
-					return new Fox.Core.Value(normalFloorTexPath);
+					return normalFloorTexPath;
 				case "reflectionCubeMapTexPath":
-					return new Fox.Core.Value(reflectionCubeMapTexPath);
+					return reflectionCubeMapTexPath;
 				case "maskTexPath":
-					return new Fox.Core.Value(maskTexPath);
+					return maskTexPath;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -201,7 +201,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -210,81 +210,81 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "startFadeInDistance":
-					this.startFadeInDistance = value.GetValueAsFloat();
+					this.startFadeInDistance = (float)value;
 					return;
 				case "endFadeInDistance":
-					this.endFadeInDistance = value.GetValueAsFloat();
+					this.endFadeInDistance = (float)value;
 					return;
 				case "startFadeOutDistance":
-					this.startFadeOutDistance = value.GetValueAsFloat();
+					this.startFadeOutDistance = (float)value;
 					return;
 				case "endFadeOutDistance":
-					this.endFadeOutDistance = value.GetValueAsFloat();
+					this.endFadeOutDistance = (float)value;
 					return;
 				case "albedoExtinctionRatio":
-					this.albedoExtinctionRatio = value.GetValueAsFloat();
+					this.albedoExtinctionRatio = (float)value;
 					return;
 				case "roughnessExtinctionCoefficient":
-					this.roughnessExtinctionCoefficient = value.GetValueAsFloat();
+					this.roughnessExtinctionCoefficient = (float)value;
 					return;
 				case "roughnessEffectiveThreshold":
-					this.roughnessEffectiveThreshold = value.GetValueAsFloat();
+					this.roughnessEffectiveThreshold = (float)value;
 					return;
 				case "LABDiffuseScale":
-					this.LABDiffuseScale = value.GetValueAsFloat();
+					this.LABDiffuseScale = (float)value;
 					return;
 				case "LABDiffuseAdd":
-					this.LABDiffuseAdd = value.GetValueAsFloat();
+					this.LABDiffuseAdd = (float)value;
 					return;
 				case "floorTexScale":
-					this.floorTexScale = value.GetValueAsFloat();
+					this.floorTexScale = (float)value;
 					return;
 				case "wallTexScale0":
-					this.wallTexScale0 = value.GetValueAsFloat();
+					this.wallTexScale0 = (float)value;
 					return;
 				case "wallTexScale1":
-					this.wallTexScale1 = value.GetValueAsFloat();
+					this.wallTexScale1 = (float)value;
 					return;
 				case "wallTexSpeed":
-					this.wallTexSpeed = value.GetValueAsVector4();
+					this.wallTexSpeed = (UnityEngine.Vector4)value;
 					return;
 				case "maskTexScale0":
-					this.maskTexScale0 = value.GetValueAsFloat();
+					this.maskTexScale0 = (float)value;
 					return;
 				case "maskTexScale1":
-					this.maskTexScale1 = value.GetValueAsFloat();
+					this.maskTexScale1 = (float)value;
 					return;
 				case "maskTexSpeed":
-					this.maskTexSpeed = value.GetValueAsVector4();
+					this.maskTexSpeed = (UnityEngine.Vector4)value;
 					return;
 				case "rainColor":
-					this.rainColor = value.GetValueAsColor();
+					this.rainColor = (UnityEngine.Color)value;
 					return;
 				case "windScale":
-					this.windScale = value.GetValueAsFloat();
+					this.windScale = (float)value;
 					return;
 				case "wallAlphaRate":
-					this.wallAlphaRate = value.GetValueAsFloat();
+					this.wallAlphaRate = (float)value;
 					return;
 				case "normalWallTexPath":
-					this.normalWallTexPath = value.GetValueAsPath();
+					this.normalWallTexPath = (Fox.Path)value;
 					return;
 				case "normalFloorTexPath":
-					this.normalFloorTexPath = value.GetValueAsPath();
+					this.normalFloorTexPath = (Fox.Path)value;
 					return;
 				case "reflectionCubeMapTexPath":
-					this.reflectionCubeMapTexPath = value.GetValueAsPath();
+					this.reflectionCubeMapTexPath = (Fox.Path)value;
 					return;
 				case "maskTexPath":
-					this.maskTexPath = value.GetValueAsPath();
+					this.maskTexPath = (Fox.Path)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -292,7 +292,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -302,7 +302,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -312,7 +312,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -322,7 +322,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

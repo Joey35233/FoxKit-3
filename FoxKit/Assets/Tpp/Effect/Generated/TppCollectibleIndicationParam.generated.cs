@@ -59,26 +59,26 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "color":
-					return new Fox.Core.Value(color);
+					return color;
 				case "emitInterval":
-					return new Fox.Core.Value(emitInterval);
+					return emitInterval;
 				case "speed":
-					return new Fox.Core.Value(speed);
+					return speed;
 				case "width":
-					return new Fox.Core.Value(width);
+					return width;
 				case "limitRange":
-					return new Fox.Core.Value(limitRange);
+					return limitRange;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -87,7 +87,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -96,24 +96,24 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "emitInterval":
-					this.emitInterval = value.GetValueAsFloat();
+					this.emitInterval = (float)value;
 					return;
 				case "speed":
-					this.speed = value.GetValueAsFloat();
+					this.speed = (float)value;
 					return;
 				case "width":
-					this.width = value.GetValueAsFloat();
+					this.width = (float)value;
 					return;
 				case "limitRange":
-					this.limitRange = value.GetValueAsFloat();
+					this.limitRange = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -121,7 +121,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -131,7 +131,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -141,7 +141,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -151,7 +151,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

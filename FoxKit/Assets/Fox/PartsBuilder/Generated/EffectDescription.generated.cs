@@ -99,67 +99,67 @@ namespace Fox.PartsBuilder
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "connectDestinationSkelNames":
-					return new Fox.Core.Value(connectDestinationSkelNames);
+					return connectDestinationSkelNames;
 				case "connectDestinationCnpNames":
-					return new Fox.Core.Value(connectDestinationCnpNames);
+					return connectDestinationCnpNames;
 				case "offsetSkelPositions":
-					return new Fox.Core.Value(offsetSkelPositions);
+					return offsetSkelPositions;
 				case "offsetCnpPositions":
-					return new Fox.Core.Value(offsetCnpPositions);
+					return offsetCnpPositions;
 				case "generalSkelParameters":
-					return new Fox.Core.Value(generalSkelParameters);
+					return generalSkelParameters;
 				case "generalCnpParameters":
-					return new Fox.Core.Value(generalCnpParameters);
+					return generalCnpParameters;
 				case "effectConnect":
-					return new Fox.Core.Value(effectConnect);
+					return effectConnect;
 				case "changeEffectConnectSetting":
-					return new Fox.Core.Value(changeEffectConnectSetting);
+					return changeEffectConnectSetting;
 				case "visibleModelWithEffect":
-					return new Fox.Core.Value(visibleModelWithEffect);
+					return visibleModelWithEffect;
 				case "createStartEffect":
-					return new Fox.Core.Value(createStartEffect);
+					return createStartEffect;
 				case "effectRandomSeed":
-					return new Fox.Core.Value(effectRandomSeed);
+					return effectRandomSeed;
 				case "effectKind":
-					return new Fox.Core.Value(effectKind);
+					return effectKind;
 				case "effectVariationName":
-					return new Fox.Core.Value(effectVariationName);
+					return effectVariationName;
 				case "effectFileFromVfxFileLoader":
-					return new Fox.Core.Value(effectFileFromVfxFileLoader);
+					return effectFileFromVfxFileLoader;
 				case "effectFileFromFilePtr":
-					return new Fox.Core.Value(effectFileFromFilePtr);
+					return effectFileFromFilePtr;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "connectDestinationSkelNames":
-					return new Fox.Core.Value(this.connectDestinationSkelNames[index]);
+					return this.connectDestinationSkelNames[index];
 				case "connectDestinationCnpNames":
-					return new Fox.Core.Value(this.connectDestinationCnpNames[index]);
+					return this.connectDestinationCnpNames[index];
 				case "offsetSkelPositions":
-					return new Fox.Core.Value(this.offsetSkelPositions[index]);
+					return this.offsetSkelPositions[index];
 				case "offsetCnpPositions":
-					return new Fox.Core.Value(this.offsetCnpPositions[index]);
+					return this.offsetCnpPositions[index];
 				case "generalSkelParameters":
-					return new Fox.Core.Value(this.generalSkelParameters[index]);
+					return this.generalSkelParameters[index];
 				case "generalCnpParameters":
-					return new Fox.Core.Value(this.generalCnpParameters[index]);
+					return this.generalCnpParameters[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -168,36 +168,36 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "effectConnect":
-					this.effectConnect = value.GetValueAsBool();
+					this.effectConnect = (bool)value;
 					return;
 				case "changeEffectConnectSetting":
-					this.changeEffectConnectSetting = value.GetValueAsBool();
+					this.changeEffectConnectSetting = (bool)value;
 					return;
 				case "visibleModelWithEffect":
-					this.visibleModelWithEffect = value.GetValueAsBool();
+					this.visibleModelWithEffect = (bool)value;
 					return;
 				case "createStartEffect":
-					this.createStartEffect = value.GetValueAsBool();
+					this.createStartEffect = (bool)value;
 					return;
 				case "effectRandomSeed":
-					this.effectRandomSeed = value.GetValueAsUInt32();
+					this.effectRandomSeed = (uint)value;
 					return;
 				case "effectKind":
-					this.effectKind = (EffectKind)value.GetValueAsInt32();
+					this.effectKind = (EffectKind)value;
 					return;
 				case "effectVariationName":
-					this.effectVariationName = value.GetValueAsString();
+					this.effectVariationName = (string)value;
 					return;
 				case "effectFileFromVfxFileLoader":
-					this.effectFileFromVfxFileLoader = value.GetValueAsString();
+					this.effectFileFromVfxFileLoader = (string)value;
 					return;
 				case "effectFileFromFilePtr":
-					this.effectFileFromFilePtr = value.GetValueAsFilePtr();
+					this.effectFileFromFilePtr = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -205,27 +205,27 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "connectDestinationSkelNames":
-					this.connectDestinationSkelNames[index] = value.GetValueAsString();
+					this.connectDestinationSkelNames[index] = (string)value;
 					return;
 				case "connectDestinationCnpNames":
-					this.connectDestinationCnpNames[index] = value.GetValueAsString();
+					this.connectDestinationCnpNames[index] = (string)value;
 					return;
 				case "offsetSkelPositions":
-					this.offsetSkelPositions[index] = value.GetValueAsVector3();
+					this.offsetSkelPositions[index] = (UnityEngine.Vector3)value;
 					return;
 				case "offsetCnpPositions":
-					this.offsetCnpPositions[index] = value.GetValueAsVector3();
+					this.offsetCnpPositions[index] = (UnityEngine.Vector3)value;
 					return;
 				case "generalSkelParameters":
-					this.generalSkelParameters[index] = value.GetValueAsVector4();
+					this.generalSkelParameters[index] = (UnityEngine.Vector4)value;
 					return;
 				case "generalCnpParameters":
-					this.generalCnpParameters[index] = value.GetValueAsVector4();
+					this.generalCnpParameters[index] = (UnityEngine.Vector4)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -233,33 +233,33 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "connectDestinationSkelNames":
 					while(this.connectDestinationSkelNames.Count <= index) { this.connectDestinationSkelNames.Add(default(string)); }
-					this.connectDestinationSkelNames[index] = value.GetValueAsString();
+					this.connectDestinationSkelNames[index] = (string)value;
 					return;
 				case "connectDestinationCnpNames":
 					while(this.connectDestinationCnpNames.Count <= index) { this.connectDestinationCnpNames.Add(default(string)); }
-					this.connectDestinationCnpNames[index] = value.GetValueAsString();
+					this.connectDestinationCnpNames[index] = (string)value;
 					return;
 				case "offsetSkelPositions":
 					while(this.offsetSkelPositions.Count <= index) { this.offsetSkelPositions.Add(default(UnityEngine.Vector3)); }
-					this.offsetSkelPositions[index] = value.GetValueAsVector3();
+					this.offsetSkelPositions[index] = (UnityEngine.Vector3)value;
 					return;
 				case "offsetCnpPositions":
 					while(this.offsetCnpPositions.Count <= index) { this.offsetCnpPositions.Add(default(UnityEngine.Vector3)); }
-					this.offsetCnpPositions[index] = value.GetValueAsVector3();
+					this.offsetCnpPositions[index] = (UnityEngine.Vector3)value;
 					return;
 				case "generalSkelParameters":
 					while(this.generalSkelParameters.Count <= index) { this.generalSkelParameters.Add(default(UnityEngine.Vector4)); }
-					this.generalSkelParameters[index] = value.GetValueAsVector4();
+					this.generalSkelParameters[index] = (UnityEngine.Vector4)value;
 					return;
 				case "generalCnpParameters":
 					while(this.generalCnpParameters.Count <= index) { this.generalCnpParameters.Add(default(UnityEngine.Vector4)); }
-					this.generalCnpParameters[index] = value.GetValueAsVector4();
+					this.generalCnpParameters[index] = (UnityEngine.Vector4)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -267,7 +267,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -277,7 +277,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

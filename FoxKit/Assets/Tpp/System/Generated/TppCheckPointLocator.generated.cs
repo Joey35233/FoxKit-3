@@ -47,20 +47,20 @@ namespace Tpp.System
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "checkPointId":
-					return new Fox.Core.Value(checkPointId);
+					return checkPointId;
 				case "usePlayerRotation":
-					return new Fox.Core.Value(usePlayerRotation);
+					return usePlayerRotation;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -69,7 +69,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -78,15 +78,15 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkPointId":
-					this.checkPointId = value.GetValueAsUInt16();
+					this.checkPointId = (ushort)value;
 					return;
 				case "usePlayerRotation":
-					this.usePlayerRotation = value.GetValueAsBool();
+					this.usePlayerRotation = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -94,7 +94,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -104,7 +104,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -114,7 +114,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -124,7 +124,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

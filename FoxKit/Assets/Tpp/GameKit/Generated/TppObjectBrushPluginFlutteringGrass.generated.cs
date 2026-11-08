@@ -55,24 +55,24 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "baseCycleSpeedRate":
-					return new Fox.Core.Value(baseCycleSpeedRate);
+					return baseCycleSpeedRate;
 				case "windAmplitude":
-					return new Fox.Core.Value(windAmplitude);
+					return windAmplitude;
 				case "windOffsetFactor":
-					return new Fox.Core.Value(windOffsetFactor);
+					return windOffsetFactor;
 				case "windDirYAxisFixZero":
-					return new Fox.Core.Value(windDirYAxisFixZero);
+					return windDirYAxisFixZero;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -81,7 +81,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -90,21 +90,21 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "baseCycleSpeedRate":
-					this.baseCycleSpeedRate = value.GetValueAsFloat();
+					this.baseCycleSpeedRate = (float)value;
 					return;
 				case "windAmplitude":
-					this.windAmplitude = value.GetValueAsFloat();
+					this.windAmplitude = (float)value;
 					return;
 				case "windOffsetFactor":
-					this.windOffsetFactor = value.GetValueAsFloat();
+					this.windOffsetFactor = (float)value;
 					return;
 				case "windDirYAxisFixZero":
-					this.windDirYAxisFixZero = value.GetValueAsBool();
+					this.windDirYAxisFixZero = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -112,7 +112,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -132,7 +132,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -142,7 +142,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

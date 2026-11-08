@@ -68,45 +68,45 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "blockMemorySize":
-					return new Fox.Core.Value(blockMemorySize);
+					return blockMemorySize;
 				case "sizeOrder":
-					return new Fox.Core.Value(sizeOrder);
+					return sizeOrder;
 				case "blockSizeInBytes":
-					return new Fox.Core.Value(blockSizeInBytes);
+					return blockSizeInBytes;
 				case "blockCount":
-					return new Fox.Core.Value(blockCount);
+					return blockCount;
 				case "block":
-					return new Fox.Core.Value(block);
+					return block;
 				case "relatedBlockGroups":
-					return new Fox.Core.Value(relatedBlockGroups);
+					return relatedBlockGroups;
 				case "prerequisiteBlockGroups":
-					return new Fox.Core.Value(prerequisiteBlockGroups);
+					return prerequisiteBlockGroups;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "block":
-					return new Fox.Core.Value(this.block[index]);
+					return this.block[index];
 				case "relatedBlockGroups":
-					return new Fox.Core.Value(this.relatedBlockGroups[index]);
+					return this.relatedBlockGroups[index];
 				case "prerequisiteBlockGroups":
-					return new Fox.Core.Value(this.prerequisiteBlockGroups[index]);
+					return this.prerequisiteBlockGroups[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -115,21 +115,21 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "blockMemorySize":
-					this.blockMemorySize = value.GetValueAsFloat();
+					this.blockMemorySize = (float)value;
 					return;
 				case "sizeOrder":
-					this.sizeOrder = (BlockGroupData_ByteOrder)value.GetValueAsInt32();
+					this.sizeOrder = (BlockGroupData_ByteOrder)value;
 					return;
 				case "blockSizeInBytes":
-					this.blockSizeInBytes = value.GetValueAsUInt32();
+					this.blockSizeInBytes = (uint)value;
 					return;
 				case "blockCount":
-					this.blockCount = value.GetValueAsUInt32();
+					this.blockCount = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -137,18 +137,18 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "block":
-					this.block[index] = value.GetValueAsPath();
+					this.block[index] = (Fox.Path)value;
 					return;
 				case "relatedBlockGroups":
-					this.relatedBlockGroups[index] = value.GetValueAsEntityLink();
+					this.relatedBlockGroups[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "prerequisiteBlockGroups":
-					this.prerequisiteBlockGroups[index] = value.GetValueAsEntityLink();
+					this.prerequisiteBlockGroups[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -156,21 +156,21 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "block":
 					while(this.block.Count <= index) { this.block.Add(default(Fox.Path)); }
-					this.block[index] = value.GetValueAsPath();
+					this.block[index] = (Fox.Path)value;
 					return;
 				case "relatedBlockGroups":
 					while(this.relatedBlockGroups.Count <= index) { this.relatedBlockGroups.Add(default(Fox.Core.EntityLink)); }
-					this.relatedBlockGroups[index] = value.GetValueAsEntityLink();
+					this.relatedBlockGroups[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "prerequisiteBlockGroups":
 					while(this.prerequisiteBlockGroups.Count <= index) { this.prerequisiteBlockGroups.Add(default(Fox.Core.EntityLink)); }
-					this.prerequisiteBlockGroups[index] = value.GetValueAsEntityLink();
+					this.prerequisiteBlockGroups[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -178,7 +178,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -188,7 +188,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

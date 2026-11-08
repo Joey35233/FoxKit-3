@@ -75,34 +75,34 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "rotationLimitLeftRight":
-					return new Fox.Core.Value(rotationLimitLeftRight);
+					return rotationLimitLeftRight;
 				case "rotationLimitUp":
-					return new Fox.Core.Value(rotationLimitUp);
+					return rotationLimitUp;
 				case "rotationLimitDown":
-					return new Fox.Core.Value(rotationLimitDown);
+					return rotationLimitDown;
 				case "rangeDiscovery":
-					return new Fox.Core.Value(rangeDiscovery);
+					return rangeDiscovery;
 				case "rangeLeftRightDiscovery":
-					return new Fox.Core.Value(rangeLeftRightDiscovery);
+					return rangeLeftRightDiscovery;
 				case "rangeUpDownDiscovery":
-					return new Fox.Core.Value(rangeUpDownDiscovery);
+					return rangeUpDownDiscovery;
 				case "rangeDim":
-					return new Fox.Core.Value(rangeDim);
+					return rangeDim;
 				case "rangeLeftRightDim":
-					return new Fox.Core.Value(rangeLeftRightDim);
+					return rangeLeftRightDim;
 				case "rangeUpDownDim":
-					return new Fox.Core.Value(rangeUpDownDim);
+					return rangeUpDownDim;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -111,7 +111,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -120,36 +120,36 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "rotationLimitLeftRight":
-					this.rotationLimitLeftRight = value.GetValueAsFloat();
+					this.rotationLimitLeftRight = (float)value;
 					return;
 				case "rotationLimitUp":
-					this.rotationLimitUp = value.GetValueAsFloat();
+					this.rotationLimitUp = (float)value;
 					return;
 				case "rotationLimitDown":
-					this.rotationLimitDown = value.GetValueAsFloat();
+					this.rotationLimitDown = (float)value;
 					return;
 				case "rangeDiscovery":
-					this.rangeDiscovery = value.GetValueAsFloat();
+					this.rangeDiscovery = (float)value;
 					return;
 				case "rangeLeftRightDiscovery":
-					this.rangeLeftRightDiscovery = value.GetValueAsFloat();
+					this.rangeLeftRightDiscovery = (float)value;
 					return;
 				case "rangeUpDownDiscovery":
-					this.rangeUpDownDiscovery = value.GetValueAsFloat();
+					this.rangeUpDownDiscovery = (float)value;
 					return;
 				case "rangeDim":
-					this.rangeDim = value.GetValueAsFloat();
+					this.rangeDim = (float)value;
 					return;
 				case "rangeLeftRightDim":
-					this.rangeLeftRightDim = value.GetValueAsFloat();
+					this.rangeLeftRightDim = (float)value;
 					return;
 				case "rangeUpDownDim":
-					this.rangeUpDownDim = value.GetValueAsFloat();
+					this.rangeUpDownDim = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -157,7 +157,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -167,7 +167,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -177,7 +177,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -187,7 +187,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

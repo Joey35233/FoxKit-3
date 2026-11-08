@@ -63,39 +63,39 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "debugDraw":
-					return new Fox.Core.Value(debugDraw);
+					return debugDraw;
 				case "debugDrawIndex":
-					return new Fox.Core.Value(debugDrawIndex);
+					return debugDrawIndex;
 				case "focusInSize":
-					return new Fox.Core.Value(focusInSize);
+					return focusInSize;
 				case "bokehPower":
-					return new Fox.Core.Value(bokehPower);
+					return bokehPower;
 				case "quality":
-					return new Fox.Core.Value(quality);
+					return quality;
 				case "targetLocators":
-					return new Fox.Core.Value(targetLocators);
+					return targetLocators;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "targetLocators":
-					return new Fox.Core.Value(this.targetLocators[index]);
+					return this.targetLocators[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -104,24 +104,24 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "debugDraw":
-					this.debugDraw = value.GetValueAsBool();
+					this.debugDraw = (bool)value;
 					return;
 				case "debugDrawIndex":
-					this.debugDrawIndex = value.GetValueAsUInt32();
+					this.debugDrawIndex = (uint)value;
 					return;
 				case "focusInSize":
-					this.focusInSize = value.GetValueAsFloat();
+					this.focusInSize = (float)value;
 					return;
 				case "bokehPower":
-					this.bokehPower = value.GetValueAsFloat();
+					this.bokehPower = (float)value;
 					return;
 				case "quality":
-					this.quality = value.GetValueAsInt32();
+					this.quality = (int)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -129,12 +129,12 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "targetLocators":
-					this.targetLocators[index] = value.GetValueAsEntityLink();
+					this.targetLocators[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -142,13 +142,13 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "targetLocators":
 					while(this.targetLocators.Count <= index) { this.targetLocators.Add(default(Fox.Core.EntityLink)); }
-					this.targetLocators[index] = value.GetValueAsEntityLink();
+					this.targetLocators[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -156,7 +156,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -166,7 +166,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

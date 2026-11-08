@@ -291,142 +291,142 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "stageName":
-					return new Fox.Core.Value(stageName);
+					return stageName;
 				case "useBaseDirectoryPathAndName":
-					return new Fox.Core.Value(useBaseDirectoryPathAndName);
+					return useBaseDirectoryPathAndName;
 				case "baseDirectoryPath":
-					return new Fox.Core.Value(baseDirectoryPath);
+					return baseDirectoryPath;
 				case "baseName":
-					return new Fox.Core.Value(baseName);
+					return baseName;
 				case "smallBlock1BaseDirectoryPath":
-					return new Fox.Core.Value(smallBlock1BaseDirectoryPath);
+					return smallBlock1BaseDirectoryPath;
 				case "smallBlock1BaseName":
-					return new Fox.Core.Value(smallBlock1BaseName);
+					return smallBlock1BaseName;
 				case "blockSizeX":
-					return new Fox.Core.Value(blockSizeX);
+					return blockSizeX;
 				case "blockSizeZ":
-					return new Fox.Core.Value(blockSizeZ);
+					return blockSizeZ;
 				case "countX":
-					return new Fox.Core.Value(countX);
+					return countX;
 				case "countZ":
-					return new Fox.Core.Value(countZ);
+					return countZ;
 				case "centerIndexX":
-					return new Fox.Core.Value(centerIndexX);
+					return centerIndexX;
 				case "centerIndexZ":
-					return new Fox.Core.Value(centerIndexZ);
+					return centerIndexZ;
 				case "blockSizeInBytes":
-					return new Fox.Core.Value(blockSizeInBytes);
+					return blockSizeInBytes;
 				case "smallBlock1CountX":
-					return new Fox.Core.Value(smallBlock1CountX);
+					return smallBlock1CountX;
 				case "smallBlock1CountZ":
-					return new Fox.Core.Value(smallBlock1CountZ);
+					return smallBlock1CountZ;
 				case "smallBlock1BlockSizeInBytes":
-					return new Fox.Core.Value(smallBlock1BlockSizeInBytes);
+					return smallBlock1BlockSizeInBytes;
 				case "blockMarginX":
-					return new Fox.Core.Value(blockMarginX);
+					return blockMarginX;
 				case "blockMarginZ":
-					return new Fox.Core.Value(blockMarginZ);
+					return blockMarginZ;
 				case "loadingDistanceX":
-					return new Fox.Core.Value(loadingDistanceX);
+					return loadingDistanceX;
 				case "loadingDistanceZ":
-					return new Fox.Core.Value(loadingDistanceZ);
+					return loadingDistanceZ;
 				case "commonBlockSizeInBytes":
-					return new Fox.Core.Value(commonBlockSizeInBytes);
+					return commonBlockSizeInBytes;
 				case "largeBlockCount0":
-					return new Fox.Core.Value(largeBlockCount0);
+					return largeBlockCount0;
 				case "largeBlockSizeInBytes0":
-					return new Fox.Core.Value(largeBlockSizeInBytes0);
+					return largeBlockSizeInBytes0;
 				case "largeBlockCount1":
-					return new Fox.Core.Value(largeBlockCount1);
+					return largeBlockCount1;
 				case "largeBlockSizeInBytes1":
-					return new Fox.Core.Value(largeBlockSizeInBytes1);
+					return largeBlockSizeInBytes1;
 				case "largeBlockCount2":
-					return new Fox.Core.Value(largeBlockCount2);
+					return largeBlockCount2;
 				case "largeBlockSizeInBytes2":
-					return new Fox.Core.Value(largeBlockSizeInBytes2);
+					return largeBlockSizeInBytes2;
 				case "largeBlockCount3":
-					return new Fox.Core.Value(largeBlockCount3);
+					return largeBlockCount3;
 				case "largeBlockSizeInBytes3":
-					return new Fox.Core.Value(largeBlockSizeInBytes3);
+					return largeBlockSizeInBytes3;
 				case "largeBlockLoadingMarginX":
-					return new Fox.Core.Value(largeBlockLoadingMarginX);
+					return largeBlockLoadingMarginX;
 				case "largeBlockLoadingMarginZ":
-					return new Fox.Core.Value(largeBlockLoadingMarginZ);
+					return largeBlockLoadingMarginZ;
 				case "stageBlockFile":
-					return new Fox.Core.Value(stageBlockFile);
+					return stageBlockFile;
 				case "lod0BaseDirectoryPath":
-					return new Fox.Core.Value(lod0BaseDirectoryPath);
+					return lod0BaseDirectoryPath;
 				case "lod0BaseName":
-					return new Fox.Core.Value(lod0BaseName);
+					return lod0BaseName;
 				case "lod0blockSizeInBytes":
-					return new Fox.Core.Value(lod0blockSizeInBytes);
+					return lod0blockSizeInBytes;
 				case "lod0blockSizeX":
-					return new Fox.Core.Value(lod0blockSizeX);
+					return lod0blockSizeX;
 				case "lod0blockSizeZ":
-					return new Fox.Core.Value(lod0blockSizeZ);
+					return lod0blockSizeZ;
 				case "lod0BlockCountX":
-					return new Fox.Core.Value(lod0BlockCountX);
+					return lod0BlockCountX;
 				case "lod0BlockCountZ":
-					return new Fox.Core.Value(lod0BlockCountZ);
+					return lod0BlockCountZ;
 				case "lod0LargeBlock0SizeInBytes":
-					return new Fox.Core.Value(lod0LargeBlock0SizeInBytes);
+					return lod0LargeBlock0SizeInBytes;
 				case "lod0LargeBlock0Count":
-					return new Fox.Core.Value(lod0LargeBlock0Count);
+					return lod0LargeBlock0Count;
 				case "lod0LargeBlock1SizeInBytes":
-					return new Fox.Core.Value(lod0LargeBlock1SizeInBytes);
+					return lod0LargeBlock1SizeInBytes;
 				case "lod0LargeBlock1Count":
-					return new Fox.Core.Value(lod0LargeBlock1Count);
+					return lod0LargeBlock1Count;
 				case "lod0LargeBlock2SizeInBytes":
-					return new Fox.Core.Value(lod0LargeBlock2SizeInBytes);
+					return lod0LargeBlock2SizeInBytes;
 				case "lod0LargeBlock2Count":
-					return new Fox.Core.Value(lod0LargeBlock2Count);
+					return lod0LargeBlock2Count;
 				case "lod0LargeBlock3SizeInBytes":
-					return new Fox.Core.Value(lod0LargeBlock3SizeInBytes);
+					return lod0LargeBlock3SizeInBytes;
 				case "lod0LargeBlock3Count":
-					return new Fox.Core.Value(lod0LargeBlock3Count);
+					return lod0LargeBlock3Count;
 				case "lod1BaseDirectoryPath":
-					return new Fox.Core.Value(lod1BaseDirectoryPath);
+					return lod1BaseDirectoryPath;
 				case "lod1BaseName":
-					return new Fox.Core.Value(lod1BaseName);
+					return lod1BaseName;
 				case "lod1blockSizeInBytes":
-					return new Fox.Core.Value(lod1blockSizeInBytes);
+					return lod1blockSizeInBytes;
 				case "lod1blockSizeX":
-					return new Fox.Core.Value(lod1blockSizeX);
+					return lod1blockSizeX;
 				case "lod1blockSizeZ":
-					return new Fox.Core.Value(lod1blockSizeZ);
+					return lod1blockSizeZ;
 				case "lod1BlockCountX":
-					return new Fox.Core.Value(lod1BlockCountX);
+					return lod1BlockCountX;
 				case "lod1BlockCountZ":
-					return new Fox.Core.Value(lod1BlockCountZ);
+					return lod1BlockCountZ;
 				case "lod1LargeBlock0SizeInBytes":
-					return new Fox.Core.Value(lod1LargeBlock0SizeInBytes);
+					return lod1LargeBlock0SizeInBytes;
 				case "lod1LargeBlock0Count":
-					return new Fox.Core.Value(lod1LargeBlock0Count);
+					return lod1LargeBlock0Count;
 				case "lod1LargeBlock1SizeInBytes":
-					return new Fox.Core.Value(lod1LargeBlock1SizeInBytes);
+					return lod1LargeBlock1SizeInBytes;
 				case "lod1LargeBlock1Count":
-					return new Fox.Core.Value(lod1LargeBlock1Count);
+					return lod1LargeBlock1Count;
 				case "lod1LargeBlock2SizeInBytes":
-					return new Fox.Core.Value(lod1LargeBlock2SizeInBytes);
+					return lod1LargeBlock2SizeInBytes;
 				case "lod1LargeBlock2Count":
-					return new Fox.Core.Value(lod1LargeBlock2Count);
+					return lod1LargeBlock2Count;
 				case "lod1LargeBlock3SizeInBytes":
-					return new Fox.Core.Value(lod1LargeBlock3SizeInBytes);
+					return lod1LargeBlock3SizeInBytes;
 				case "lod1LargeBlock3Count":
-					return new Fox.Core.Value(lod1LargeBlock3Count);
+					return lod1LargeBlock3Count;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -435,7 +435,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -444,198 +444,198 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "stageName":
-					this.stageName = value.GetValueAsString();
+					this.stageName = (string)value;
 					return;
 				case "useBaseDirectoryPathAndName":
-					this.useBaseDirectoryPathAndName = value.GetValueAsBool();
+					this.useBaseDirectoryPathAndName = (bool)value;
 					return;
 				case "baseDirectoryPath":
-					this.baseDirectoryPath = value.GetValueAsString();
+					this.baseDirectoryPath = (string)value;
 					return;
 				case "baseName":
-					this.baseName = value.GetValueAsString();
+					this.baseName = (string)value;
 					return;
 				case "smallBlock1BaseDirectoryPath":
-					this.smallBlock1BaseDirectoryPath = value.GetValueAsString();
+					this.smallBlock1BaseDirectoryPath = (string)value;
 					return;
 				case "smallBlock1BaseName":
-					this.smallBlock1BaseName = value.GetValueAsString();
+					this.smallBlock1BaseName = (string)value;
 					return;
 				case "blockSizeX":
-					this.blockSizeX = value.GetValueAsUInt32();
+					this.blockSizeX = (uint)value;
 					return;
 				case "blockSizeZ":
-					this.blockSizeZ = value.GetValueAsUInt32();
+					this.blockSizeZ = (uint)value;
 					return;
 				case "countX":
-					this.countX = value.GetValueAsUInt32();
+					this.countX = (uint)value;
 					return;
 				case "countZ":
-					this.countZ = value.GetValueAsUInt32();
+					this.countZ = (uint)value;
 					return;
 				case "centerIndexX":
-					this.centerIndexX = value.GetValueAsUInt32();
+					this.centerIndexX = (uint)value;
 					return;
 				case "centerIndexZ":
-					this.centerIndexZ = value.GetValueAsUInt32();
+					this.centerIndexZ = (uint)value;
 					return;
 				case "blockSizeInBytes":
-					this.blockSizeInBytes = value.GetValueAsUInt32();
+					this.blockSizeInBytes = (uint)value;
 					return;
 				case "smallBlock1CountX":
-					this.smallBlock1CountX = value.GetValueAsUInt32();
+					this.smallBlock1CountX = (uint)value;
 					return;
 				case "smallBlock1CountZ":
-					this.smallBlock1CountZ = value.GetValueAsUInt32();
+					this.smallBlock1CountZ = (uint)value;
 					return;
 				case "smallBlock1BlockSizeInBytes":
-					this.smallBlock1BlockSizeInBytes = value.GetValueAsUInt32();
+					this.smallBlock1BlockSizeInBytes = (uint)value;
 					return;
 				case "blockMarginX":
-					this.blockMarginX = value.GetValueAsUInt32();
+					this.blockMarginX = (uint)value;
 					return;
 				case "blockMarginZ":
-					this.blockMarginZ = value.GetValueAsUInt32();
+					this.blockMarginZ = (uint)value;
 					return;
 				case "loadingDistanceX":
-					this.loadingDistanceX = value.GetValueAsUInt32();
+					this.loadingDistanceX = (uint)value;
 					return;
 				case "loadingDistanceZ":
-					this.loadingDistanceZ = value.GetValueAsUInt32();
+					this.loadingDistanceZ = (uint)value;
 					return;
 				case "commonBlockSizeInBytes":
-					this.commonBlockSizeInBytes = value.GetValueAsUInt32();
+					this.commonBlockSizeInBytes = (uint)value;
 					return;
 				case "largeBlockCount0":
-					this.largeBlockCount0 = value.GetValueAsUInt32();
+					this.largeBlockCount0 = (uint)value;
 					return;
 				case "largeBlockSizeInBytes0":
-					this.largeBlockSizeInBytes0 = value.GetValueAsUInt32();
+					this.largeBlockSizeInBytes0 = (uint)value;
 					return;
 				case "largeBlockCount1":
-					this.largeBlockCount1 = value.GetValueAsUInt32();
+					this.largeBlockCount1 = (uint)value;
 					return;
 				case "largeBlockSizeInBytes1":
-					this.largeBlockSizeInBytes1 = value.GetValueAsUInt32();
+					this.largeBlockSizeInBytes1 = (uint)value;
 					return;
 				case "largeBlockCount2":
-					this.largeBlockCount2 = value.GetValueAsUInt32();
+					this.largeBlockCount2 = (uint)value;
 					return;
 				case "largeBlockSizeInBytes2":
-					this.largeBlockSizeInBytes2 = value.GetValueAsUInt32();
+					this.largeBlockSizeInBytes2 = (uint)value;
 					return;
 				case "largeBlockCount3":
-					this.largeBlockCount3 = value.GetValueAsUInt32();
+					this.largeBlockCount3 = (uint)value;
 					return;
 				case "largeBlockSizeInBytes3":
-					this.largeBlockSizeInBytes3 = value.GetValueAsUInt32();
+					this.largeBlockSizeInBytes3 = (uint)value;
 					return;
 				case "largeBlockLoadingMarginX":
-					this.largeBlockLoadingMarginX = value.GetValueAsUInt32();
+					this.largeBlockLoadingMarginX = (uint)value;
 					return;
 				case "largeBlockLoadingMarginZ":
-					this.largeBlockLoadingMarginZ = value.GetValueAsUInt32();
+					this.largeBlockLoadingMarginZ = (uint)value;
 					return;
 				case "stageBlockFile":
-					this.stageBlockFile = value.GetValueAsFilePtr();
+					this.stageBlockFile = (Fox.Core.FilePtr)value;
 					return;
 				case "lod0BaseDirectoryPath":
-					this.lod0BaseDirectoryPath = value.GetValueAsString();
+					this.lod0BaseDirectoryPath = (string)value;
 					return;
 				case "lod0BaseName":
-					this.lod0BaseName = value.GetValueAsString();
+					this.lod0BaseName = (string)value;
 					return;
 				case "lod0blockSizeInBytes":
-					this.lod0blockSizeInBytes = value.GetValueAsUInt32();
+					this.lod0blockSizeInBytes = (uint)value;
 					return;
 				case "lod0blockSizeX":
-					this.lod0blockSizeX = value.GetValueAsUInt8();
+					this.lod0blockSizeX = (byte)value;
 					return;
 				case "lod0blockSizeZ":
-					this.lod0blockSizeZ = value.GetValueAsUInt8();
+					this.lod0blockSizeZ = (byte)value;
 					return;
 				case "lod0BlockCountX":
-					this.lod0BlockCountX = value.GetValueAsUInt8();
+					this.lod0BlockCountX = (byte)value;
 					return;
 				case "lod0BlockCountZ":
-					this.lod0BlockCountZ = value.GetValueAsUInt8();
+					this.lod0BlockCountZ = (byte)value;
 					return;
 				case "lod0LargeBlock0SizeInBytes":
-					this.lod0LargeBlock0SizeInBytes = value.GetValueAsUInt32();
+					this.lod0LargeBlock0SizeInBytes = (uint)value;
 					return;
 				case "lod0LargeBlock0Count":
-					this.lod0LargeBlock0Count = value.GetValueAsUInt8();
+					this.lod0LargeBlock0Count = (byte)value;
 					return;
 				case "lod0LargeBlock1SizeInBytes":
-					this.lod0LargeBlock1SizeInBytes = value.GetValueAsUInt32();
+					this.lod0LargeBlock1SizeInBytes = (uint)value;
 					return;
 				case "lod0LargeBlock1Count":
-					this.lod0LargeBlock1Count = value.GetValueAsUInt8();
+					this.lod0LargeBlock1Count = (byte)value;
 					return;
 				case "lod0LargeBlock2SizeInBytes":
-					this.lod0LargeBlock2SizeInBytes = value.GetValueAsUInt32();
+					this.lod0LargeBlock2SizeInBytes = (uint)value;
 					return;
 				case "lod0LargeBlock2Count":
-					this.lod0LargeBlock2Count = value.GetValueAsUInt8();
+					this.lod0LargeBlock2Count = (byte)value;
 					return;
 				case "lod0LargeBlock3SizeInBytes":
-					this.lod0LargeBlock3SizeInBytes = value.GetValueAsUInt32();
+					this.lod0LargeBlock3SizeInBytes = (uint)value;
 					return;
 				case "lod0LargeBlock3Count":
-					this.lod0LargeBlock3Count = value.GetValueAsUInt8();
+					this.lod0LargeBlock3Count = (byte)value;
 					return;
 				case "lod1BaseDirectoryPath":
-					this.lod1BaseDirectoryPath = value.GetValueAsString();
+					this.lod1BaseDirectoryPath = (string)value;
 					return;
 				case "lod1BaseName":
-					this.lod1BaseName = value.GetValueAsString();
+					this.lod1BaseName = (string)value;
 					return;
 				case "lod1blockSizeInBytes":
-					this.lod1blockSizeInBytes = value.GetValueAsUInt32();
+					this.lod1blockSizeInBytes = (uint)value;
 					return;
 				case "lod1blockSizeX":
-					this.lod1blockSizeX = value.GetValueAsUInt8();
+					this.lod1blockSizeX = (byte)value;
 					return;
 				case "lod1blockSizeZ":
-					this.lod1blockSizeZ = value.GetValueAsUInt8();
+					this.lod1blockSizeZ = (byte)value;
 					return;
 				case "lod1BlockCountX":
-					this.lod1BlockCountX = value.GetValueAsUInt8();
+					this.lod1BlockCountX = (byte)value;
 					return;
 				case "lod1BlockCountZ":
-					this.lod1BlockCountZ = value.GetValueAsUInt8();
+					this.lod1BlockCountZ = (byte)value;
 					return;
 				case "lod1LargeBlock0SizeInBytes":
-					this.lod1LargeBlock0SizeInBytes = value.GetValueAsUInt32();
+					this.lod1LargeBlock0SizeInBytes = (uint)value;
 					return;
 				case "lod1LargeBlock0Count":
-					this.lod1LargeBlock0Count = value.GetValueAsUInt8();
+					this.lod1LargeBlock0Count = (byte)value;
 					return;
 				case "lod1LargeBlock1SizeInBytes":
-					this.lod1LargeBlock1SizeInBytes = value.GetValueAsUInt32();
+					this.lod1LargeBlock1SizeInBytes = (uint)value;
 					return;
 				case "lod1LargeBlock1Count":
-					this.lod1LargeBlock1Count = value.GetValueAsUInt8();
+					this.lod1LargeBlock1Count = (byte)value;
 					return;
 				case "lod1LargeBlock2SizeInBytes":
-					this.lod1LargeBlock2SizeInBytes = value.GetValueAsUInt32();
+					this.lod1LargeBlock2SizeInBytes = (uint)value;
 					return;
 				case "lod1LargeBlock2Count":
-					this.lod1LargeBlock2Count = value.GetValueAsUInt8();
+					this.lod1LargeBlock2Count = (byte)value;
 					return;
 				case "lod1LargeBlock3SizeInBytes":
-					this.lod1LargeBlock3SizeInBytes = value.GetValueAsUInt32();
+					this.lod1LargeBlock3SizeInBytes = (uint)value;
 					return;
 				case "lod1LargeBlock3Count":
-					this.lod1LargeBlock3Count = value.GetValueAsUInt8();
+					this.lod1LargeBlock3Count = (byte)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -643,7 +643,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -653,7 +653,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -663,7 +663,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -673,7 +673,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

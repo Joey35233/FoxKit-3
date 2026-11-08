@@ -47,33 +47,33 @@ namespace Fox.Ph
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "verts":
-					return new Fox.Core.Value(verts);
+					return verts;
 				case "polys":
-					return new Fox.Core.Value(polys);
+					return polys;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "verts":
-					return new Fox.Core.Value(this.verts[index]);
+					return this.verts[index];
 				case "polys":
-					return new Fox.Core.Value(this.polys[index]);
+					return this.polys[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -82,7 +82,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -92,15 +92,15 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "verts":
-					this.verts[index] = value.GetValueAsVector3();
+					this.verts[index] = (UnityEngine.Vector3)value;
 					return;
 				case "polys":
-					this.polys[index] = value.GetValueAsUInt32();
+					this.polys[index] = (uint)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -108,17 +108,17 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "verts":
 					while(this.verts.Count <= index) { this.verts.Add(default(UnityEngine.Vector3)); }
-					this.verts[index] = value.GetValueAsVector3();
+					this.verts[index] = (UnityEngine.Vector3)value;
 					return;
 				case "polys":
 					while(this.polys.Count <= index) { this.polys.Add(default(uint)); }
-					this.polys[index] = value.GetValueAsUInt32();
+					this.polys[index] = (uint)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -126,7 +126,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -136,7 +136,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

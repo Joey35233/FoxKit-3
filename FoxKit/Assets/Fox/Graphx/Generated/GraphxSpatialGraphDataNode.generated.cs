@@ -51,35 +51,35 @@ namespace Fox.Graphx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "position":
-					return new Fox.Core.Value(position);
+					return position;
 				case "inlinks":
-					return new Fox.Core.Value(inlinks);
+					return inlinks;
 				case "outlinks":
-					return new Fox.Core.Value(outlinks);
+					return outlinks;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "inlinks":
-					return new Fox.Core.Value(this.inlinks[index]);
+					return this.inlinks[index];
 				case "outlinks":
-					return new Fox.Core.Value(this.outlinks[index]);
+					return this.outlinks[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -88,12 +88,12 @@ namespace Fox.Graphx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "position":
-					this.position = value.GetValueAsVector3();
+					this.position = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -101,15 +101,15 @@ namespace Fox.Graphx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "inlinks":
-					this.inlinks[index] = value.GetValueAsEntityHandle();
+					this.inlinks[index] = (Fox.Core.Entity)value;
 					return;
 				case "outlinks":
-					this.outlinks[index] = value.GetValueAsEntityHandle();
+					this.outlinks[index] = (Fox.Core.Entity)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -117,17 +117,17 @@ namespace Fox.Graphx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "inlinks":
 					while(this.inlinks.Count <= index) { this.inlinks.Add(default(Fox.Core.Entity)); }
-					this.inlinks[index] = value.GetValueAsEntityHandle();
+					this.inlinks[index] = (Fox.Core.Entity)value;
 					return;
 				case "outlinks":
 					while(this.outlinks.Count <= index) { this.outlinks.Add(default(Fox.Core.Entity)); }
-					this.outlinks[index] = value.GetValueAsEntityHandle();
+					this.outlinks[index] = (Fox.Core.Entity)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -135,7 +135,7 @@ namespace Fox.Graphx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -145,7 +145,7 @@ namespace Fox.Graphx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

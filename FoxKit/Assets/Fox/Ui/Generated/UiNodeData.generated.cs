@@ -99,71 +99,71 @@ namespace Fox.Ui
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "inputEdges":
-					return new Fox.Core.Value(inputEdges);
+					return inputEdges;
 				case "outputEdges":
-					return new Fox.Core.Value(outputEdges);
+					return outputEdges;
 				case "inputPortCount":
-					return new Fox.Core.Value(inputPortCount);
+					return inputPortCount;
 				case "inputPortTypes":
-					return new Fox.Core.Value(inputPortTypes);
+					return inputPortTypes;
 				case "inputPropertyNames":
-					return new Fox.Core.Value(inputPropertyNames);
+					return inputPropertyNames;
 				case "inputPropertyTypes":
-					return new Fox.Core.Value(inputPropertyTypes);
+					return inputPropertyTypes;
 				case "outputPortCount":
-					return new Fox.Core.Value(outputPortCount);
+					return outputPortCount;
 				case "outputPortTypes":
-					return new Fox.Core.Value(outputPortTypes);
+					return outputPortTypes;
 				case "outputPropertyNames":
-					return new Fox.Core.Value(outputPropertyNames);
+					return outputPropertyNames;
 				case "outputPropertyTypes":
-					return new Fox.Core.Value(outputPropertyTypes);
+					return outputPropertyTypes;
 				case "xPosition":
-					return new Fox.Core.Value(xPosition);
+					return xPosition;
 				case "yPosition":
-					return new Fox.Core.Value(yPosition);
+					return yPosition;
 				case "category":
-					return new Fox.Core.Value(category);
+					return category;
 				case "type":
-					return new Fox.Core.Value(type);
+					return type;
 				case "nodeName":
-					return new Fox.Core.Value(nodeName);
+					return nodeName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				case "inputEdges":
-					return new Fox.Core.Value(this.inputEdges[index]);
+					return this.inputEdges[index];
 				case "outputEdges":
-					return new Fox.Core.Value(this.outputEdges[index]);
+					return this.outputEdges[index];
 				case "inputPortTypes":
-					return new Fox.Core.Value(this.inputPortTypes[index]);
+					return this.inputPortTypes[index];
 				case "inputPropertyNames":
-					return new Fox.Core.Value(this.inputPropertyNames[index]);
+					return this.inputPropertyNames[index];
 				case "inputPropertyTypes":
-					return new Fox.Core.Value(this.inputPropertyTypes[index]);
+					return this.inputPropertyTypes[index];
 				case "outputPortTypes":
-					return new Fox.Core.Value(this.outputPortTypes[index]);
+					return this.outputPortTypes[index];
 				case "outputPropertyNames":
-					return new Fox.Core.Value(this.outputPropertyNames[index]);
+					return this.outputPropertyNames[index];
 				case "outputPropertyTypes":
-					return new Fox.Core.Value(this.outputPropertyTypes[index]);
+					return this.outputPropertyTypes[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -172,30 +172,30 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "inputPortCount":
-					this.inputPortCount = value.GetValueAsUInt32();
+					this.inputPortCount = (uint)value;
 					return;
 				case "outputPortCount":
-					this.outputPortCount = value.GetValueAsUInt32();
+					this.outputPortCount = (uint)value;
 					return;
 				case "xPosition":
-					this.xPosition = value.GetValueAsFloat();
+					this.xPosition = (float)value;
 					return;
 				case "yPosition":
-					this.yPosition = value.GetValueAsFloat();
+					this.yPosition = (float)value;
 					return;
 				case "category":
-					this.category = value.GetValueAsInt32();
+					this.category = (int)value;
 					return;
 				case "type":
-					this.type = (UiNodeType)value.GetValueAsInt32();
+					this.type = (UiNodeType)value;
 					return;
 				case "nodeName":
-					this.nodeName = value.GetValueAsString();
+					this.nodeName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -203,33 +203,33 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "inputEdges":
-					this.inputEdges[index] = value.GetValueAsEntityLink();
+					this.inputEdges[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "outputEdges":
-					this.outputEdges[index] = value.GetValueAsEntityLink();
+					this.outputEdges[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "inputPortTypes":
-					this.inputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
+					this.inputPortTypes[index] = (UiNodeType)value;
 					return;
 				case "inputPropertyNames":
-					this.inputPropertyNames[index] = value.GetValueAsString();
+					this.inputPropertyNames[index] = (string)value;
 					return;
 				case "inputPropertyTypes":
-					this.inputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
+					this.inputPropertyTypes[index] = (UiNodePropType)value;
 					return;
 				case "outputPortTypes":
-					this.outputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
+					this.outputPortTypes[index] = (UiNodeType)value;
 					return;
 				case "outputPropertyNames":
-					this.outputPropertyNames[index] = value.GetValueAsString();
+					this.outputPropertyNames[index] = (string)value;
 					return;
 				case "outputPropertyTypes":
-					this.outputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
+					this.outputPropertyTypes[index] = (UiNodePropType)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -237,41 +237,41 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
 				case "inputEdges":
 					while(this.inputEdges.Count <= index) { this.inputEdges.Add(default(Fox.Core.EntityLink)); }
-					this.inputEdges[index] = value.GetValueAsEntityLink();
+					this.inputEdges[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "outputEdges":
 					while(this.outputEdges.Count <= index) { this.outputEdges.Add(default(Fox.Core.EntityLink)); }
-					this.outputEdges[index] = value.GetValueAsEntityLink();
+					this.outputEdges[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "inputPortTypes":
 					while(this.inputPortTypes.Count <= index) { this.inputPortTypes.Add(default(UiNodeType)); }
-					this.inputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
+					this.inputPortTypes[index] = (UiNodeType)value;
 					return;
 				case "inputPropertyNames":
 					while(this.inputPropertyNames.Count <= index) { this.inputPropertyNames.Add(default(string)); }
-					this.inputPropertyNames[index] = value.GetValueAsString();
+					this.inputPropertyNames[index] = (string)value;
 					return;
 				case "inputPropertyTypes":
 					while(this.inputPropertyTypes.Count <= index) { this.inputPropertyTypes.Add(default(UiNodePropType)); }
-					this.inputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
+					this.inputPropertyTypes[index] = (UiNodePropType)value;
 					return;
 				case "outputPortTypes":
 					while(this.outputPortTypes.Count <= index) { this.outputPortTypes.Add(default(UiNodeType)); }
-					this.outputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
+					this.outputPortTypes[index] = (UiNodeType)value;
 					return;
 				case "outputPropertyNames":
 					while(this.outputPropertyNames.Count <= index) { this.outputPropertyNames.Add(default(string)); }
-					this.outputPropertyNames[index] = value.GetValueAsString();
+					this.outputPropertyNames[index] = (string)value;
 					return;
 				case "outputPropertyTypes":
 					while(this.outputPropertyTypes.Count <= index) { this.outputPropertyTypes.Add(default(UiNodePropType)); }
-					this.outputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
+					this.outputPropertyTypes[index] = (UiNodePropType)value;
 					return;
 				default:
 					base.AddPropertyElement(propertyName, index, value);
@@ -279,7 +279,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -289,7 +289,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

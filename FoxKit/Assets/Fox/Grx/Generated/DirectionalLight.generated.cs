@@ -141,64 +141,64 @@ namespace Fox.Grx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "color":
-					return new Fox.Core.Value(color);
+					return color;
 				case "direction":
-					return new Fox.Core.Value(direction);
+					return direction;
 				case "shadowRange":
-					return new Fox.Core.Value(shadowRange);
+					return shadowRange;
 				case "shadowRangeExtra":
-					return new Fox.Core.Value(shadowRangeExtra);
+					return shadowRangeExtra;
 				case "hiResShadowRange":
-					return new Fox.Core.Value(hiResShadowRange);
+					return hiResShadowRange;
 				case "shadowProjectionRange":
-					return new Fox.Core.Value(shadowProjectionRange);
+					return shadowProjectionRange;
 				case "shadowFadeRange":
-					return new Fox.Core.Value(shadowFadeRange);
+					return shadowFadeRange;
 				case "selfShadowBias":
-					return new Fox.Core.Value(selfShadowBias);
+					return selfShadowBias;
 				case "temperature":
-					return new Fox.Core.Value(temperature);
+					return temperature;
 				case "colorDeflection":
-					return new Fox.Core.Value(colorDeflection);
+					return colorDeflection;
 				case "lux":
-					return new Fox.Core.Value(lux);
+					return lux;
 				case "lightSize":
-					return new Fox.Core.Value(lightSize);
+					return lightSize;
 				case "shadowMaskSpecular":
-					return new Fox.Core.Value(shadowMaskSpecular);
+					return shadowMaskSpecular;
 				case "shadowOffsetStartAngle":
-					return new Fox.Core.Value(shadowOffsetStartAngle);
+					return shadowOffsetStartAngle;
 				case "shadowOffsetEndAngle":
-					return new Fox.Core.Value(shadowOffsetEndAngle);
+					return shadowOffsetEndAngle;
 				case "diatanceFade_StartDistance":
-					return new Fox.Core.Value(diatanceFade_StartDistance);
+					return diatanceFade_StartDistance;
 				case "distanceFade_FadeoutRange":
-					return new Fox.Core.Value(distanceFade_FadeoutRange);
+					return distanceFade_FadeoutRange;
 				case "lightFlags":
-					return new Fox.Core.Value(lightFlags);
+					return lightFlags;
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return enable;
 				case "isCascadeBlend":
-					return new Fox.Core.Value(isCascadeBlend);
+					return isCascadeBlend;
 				case "castShadow":
-					return new Fox.Core.Value(castShadow);
+					return castShadow;
 				case "isBounced":
-					return new Fox.Core.Value(isBounced);
+					return isBounced;
 				case "showObject":
-					return new Fox.Core.Value(showObject);
+					return showObject;
 				case "enableDistanceFade":
-					return new Fox.Core.Value(enableDistanceFade);
+					return enableDistanceFade;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -207,7 +207,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -216,81 +216,81 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "direction":
-					this.direction = value.GetValueAsVector3();
+					this.direction = (UnityEngine.Vector3)value;
 					return;
 				case "shadowRange":
-					this.shadowRange = value.GetValueAsFloat();
+					this.shadowRange = (float)value;
 					return;
 				case "shadowRangeExtra":
-					this.shadowRangeExtra = value.GetValueAsFloat();
+					this.shadowRangeExtra = (float)value;
 					return;
 				case "hiResShadowRange":
-					this.hiResShadowRange = value.GetValueAsFloat();
+					this.hiResShadowRange = (float)value;
 					return;
 				case "shadowProjectionRange":
-					this.shadowProjectionRange = value.GetValueAsFloat();
+					this.shadowProjectionRange = (float)value;
 					return;
 				case "shadowFadeRange":
-					this.shadowFadeRange = value.GetValueAsFloat();
+					this.shadowFadeRange = (float)value;
 					return;
 				case "selfShadowBias":
-					this.selfShadowBias = value.GetValueAsFloat();
+					this.selfShadowBias = (float)value;
 					return;
 				case "temperature":
-					this.temperature = value.GetValueAsFloat();
+					this.temperature = (float)value;
 					return;
 				case "colorDeflection":
-					this.colorDeflection = value.GetValueAsFloat();
+					this.colorDeflection = (float)value;
 					return;
 				case "lux":
-					this.lux = value.GetValueAsFloat();
+					this.lux = (float)value;
 					return;
 				case "lightSize":
-					this.lightSize = value.GetValueAsFloat();
+					this.lightSize = (float)value;
 					return;
 				case "shadowMaskSpecular":
-					this.shadowMaskSpecular = value.GetValueAsFloat();
+					this.shadowMaskSpecular = (float)value;
 					return;
 				case "shadowOffsetStartAngle":
-					this.shadowOffsetStartAngle = value.GetValueAsFloat();
+					this.shadowOffsetStartAngle = (float)value;
 					return;
 				case "shadowOffsetEndAngle":
-					this.shadowOffsetEndAngle = value.GetValueAsFloat();
+					this.shadowOffsetEndAngle = (float)value;
 					return;
 				case "diatanceFade_StartDistance":
-					this.diatanceFade_StartDistance = value.GetValueAsFloat();
+					this.diatanceFade_StartDistance = (float)value;
 					return;
 				case "distanceFade_FadeoutRange":
-					this.distanceFade_FadeoutRange = value.GetValueAsFloat();
+					this.distanceFade_FadeoutRange = (float)value;
 					return;
 				case "lightFlags":
-					this.lightFlags = value.GetValueAsUInt32();
+					this.lightFlags = (uint)value;
 					return;
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "isCascadeBlend":
-					this.isCascadeBlend = value.GetValueAsBool();
+					this.isCascadeBlend = (bool)value;
 					return;
 				case "castShadow":
-					this.castShadow = value.GetValueAsBool();
+					this.castShadow = (bool)value;
 					return;
 				case "isBounced":
-					this.isBounced = value.GetValueAsBool();
+					this.isBounced = (bool)value;
 					return;
 				case "showObject":
-					this.showObject = value.GetValueAsBool();
+					this.showObject = (bool)value;
 					return;
 				case "enableDistanceFade":
-					this.enableDistanceFade = value.GetValueAsBool();
+					this.enableDistanceFade = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -298,7 +298,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -308,7 +308,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -318,7 +318,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -328,7 +328,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

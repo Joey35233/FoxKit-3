@@ -59,24 +59,24 @@ namespace Fox.Ph
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "axis":
-					return new Fox.Core.Value(axis);
+					return axis;
 				case "radius":
-					return new Fox.Core.Value(radius);
+					return radius;
 				case "heightMin":
-					return new Fox.Core.Value(heightMin);
+					return heightMin;
 				case "heightMax":
-					return new Fox.Core.Value(heightMax);
+					return heightMax;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -85,7 +85,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -94,21 +94,21 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "axis":
-					this.axis = value.GetValueAsQuat();
+					this.axis = (UnityEngine.Quaternion)value;
 					return;
 				case "radius":
-					this.radius = value.GetValueAsFloat();
+					this.radius = (float)value;
 					return;
 				case "heightMin":
-					this.heightMin = value.GetValueAsFloat();
+					this.heightMin = (float)value;
 					return;
 				case "heightMax":
-					this.heightMax = value.GetValueAsFloat();
+					this.heightMax = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -116,7 +116,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -126,7 +126,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -136,7 +136,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -146,7 +146,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

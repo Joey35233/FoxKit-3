@@ -71,32 +71,32 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					return new Fox.Core.Value(modelFile);
+					return modelFile;
 				case "geomFile":
-					return new Fox.Core.Value(geomFile);
+					return geomFile;
 				case "minSize":
-					return new Fox.Core.Value(minSize);
+					return minSize;
 				case "maxSize":
-					return new Fox.Core.Value(maxSize);
+					return maxSize;
 				case "lodFarSize":
-					return new Fox.Core.Value(lodFarSize);
+					return lodFarSize;
 				case "lodNearSize":
-					return new Fox.Core.Value(lodNearSize);
+					return lodNearSize;
 				case "drawRejectionLevel":
-					return new Fox.Core.Value(drawRejectionLevel);
+					return drawRejectionLevel;
 				case "isGeomActivity":
-					return new Fox.Core.Value(isGeomActivity);
+					return isGeomActivity;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
+		public override object GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -105,7 +105,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -114,33 +114,33 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					this.modelFile = value.GetValueAsFilePtr();
+					this.modelFile = (Fox.Core.FilePtr)value;
 					return;
 				case "geomFile":
-					this.geomFile = value.GetValueAsFilePtr();
+					this.geomFile = (Fox.Core.FilePtr)value;
 					return;
 				case "minSize":
-					this.minSize = value.GetValueAsFloat();
+					this.minSize = (float)value;
 					return;
 				case "maxSize":
-					this.maxSize = value.GetValueAsFloat();
+					this.maxSize = (float)value;
 					return;
 				case "lodFarSize":
-					this.lodFarSize = value.GetValueAsFloat();
+					this.lodFarSize = (float)value;
 					return;
 				case "lodNearSize":
-					this.lodNearSize = value.GetValueAsFloat();
+					this.lodNearSize = (float)value;
 					return;
 				case "drawRejectionLevel":
-					this.drawRejectionLevel = (DrawRejectionLevel)value.GetValueAsInt32();
+					this.drawRejectionLevel = (DrawRejectionLevel)value;
 					return;
 				case "isGeomActivity":
-					this.isGeomActivity = value.GetValueAsBool();
+					this.isGeomActivity = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -148,7 +148,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -158,7 +158,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, int index, object value)
 		{
 			switch (propertyName)
 			{
@@ -168,7 +168,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
@@ -178,7 +178,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void AddPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
