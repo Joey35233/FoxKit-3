@@ -12,13 +12,7 @@ using System.ComponentModel;
 
 namespace Tpp.Effect
 {
-	public enum TppPointLight_PackingGeneration : int
+	public enum TppFocusBokehFilter_BokehQuality : int
 	{
-		[Description("GENERATION_ALL")]
-		GENERATION_ALL = 0,
-		[Description("GENERATION_7")]
-		GENERATION_7 = 1,
-		[Description("GENERATION_8")]
-		GENERATION_8 = 2,
 	}
 }

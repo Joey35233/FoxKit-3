@@ -72,6 +72,10 @@ def generate_classes ():
     template = Template(template_file.read())
     definitions = load_definitions(definitions_path, extra_definitions_path)
 
+    # Read by PropertyInfo.get_enum_type_string to qualify enums from other namespaces
+    global enum_namespaces
+    enum_namespaces = {enum.name: enum.namespace for enum in load_enum_definitions(enums_path, extra_enums_path)}
+
     for class_name in definitions:
         if definitions[class_name].subentity:
             continue

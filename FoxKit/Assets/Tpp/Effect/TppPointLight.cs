@@ -12,8 +12,8 @@ namespace Tpp.Effect
         private partial bool enable_Get() => throw new CsSystem.NotImplementedException();
         private partial void enable_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial TppPointLight_PackingGeneration packingGeneration_Get() => throw new CsSystem.NotImplementedException();
-        private partial void packingGeneration_Set(TppPointLight_PackingGeneration value) => throw new CsSystem.NotImplementedException();
+        private partial Fox.Grx.PointLight_PackingGeneration packingGeneration_Get() => throw new CsSystem.NotImplementedException();
+        private partial void packingGeneration_Set(Fox.Grx.PointLight_PackingGeneration value) => throw new CsSystem.NotImplementedException();
 
         private partial bool castShadow_Get() => throw new CsSystem.NotImplementedException();
         private partial void castShadow_Set(bool value) => throw new CsSystem.NotImplementedException();

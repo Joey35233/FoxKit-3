@@ -42,7 +42,7 @@ namespace Fox.GameKit
 		private DecalArray_PolygonDataSource polygonDataSource;
 		
 		[UnityEngine.SerializeField]
-		private DecalArray_DrawRejectionLevel drawRejectionLevel;
+		private DrawRejectionLevel drawRejectionLevel;
 		
 		[UnityEngine.SerializeField]
 		private float drawRejectionDegree;
@@ -121,7 +121,7 @@ namespace Fox.GameKit
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("repeatV", Fox.Core.PropertyInfo.PropertyType.Float, 360, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("transparency", Fox.Core.PropertyInfo.PropertyType.Float, 364, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("polygonDataSource", Fox.Core.PropertyInfo.PropertyType.Int32, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(DecalArray_PolygonDataSource), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("drawRejectionLevel", Fox.Core.PropertyInfo.PropertyType.Int32, 372, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(DecalArray_DrawRejectionLevel), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("drawRejectionLevel", Fox.Core.PropertyInfo.PropertyType.Int32, 372, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(DrawRejectionLevel), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("drawRejectionDegree", Fox.Core.PropertyInfo.PropertyType.Float, 376, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("decalFlags", Fox.Core.PropertyInfo.PropertyType.UInt32, 380, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.None));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scales", Fox.Core.PropertyInfo.PropertyType.Vector3, 384, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
@@ -259,7 +259,7 @@ namespace Fox.GameKit
 					this.polygonDataSource = (DecalArray_PolygonDataSource)value;
 					return;
 				case "drawRejectionLevel":
-					this.drawRejectionLevel = (DecalArray_DrawRejectionLevel)value;
+					this.drawRejectionLevel = (DrawRejectionLevel)value;
 					return;
 				case "drawRejectionDegree":
 					this.drawRejectionDegree = (float)value;

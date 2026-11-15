@@ -103,6 +103,18 @@ class PropertyInfo:
 			return f'@{self.name}'
 		return self.name
 
+	def get_enum_type_string(self):
+		"""Gets the enum type name, qualified when the enum lives in a different namespace than the entity.
+
+		Returns:
+				The enum type string.
+
+		"""
+		enum_namespace = enum_namespaces[self.enum_type]
+		if enum_namespace == self.definitions[self.entity_name].namespace:
+			return self.enum_type
+		return f'{get_root_namespace(enum_namespace)}.{get_namespace_without_prefix(enum_namespace)}.{self.enum_type}'
+
 	def get_value_type_string(self):
 		"""Gets the formatted string of the value type.
 		
@@ -113,7 +125,7 @@ class PropertyInfo:
 		result = self.data_type_strings[self.data_type]
 
 		if self.enum_type:
-			result = f'{self.enum_type}'
+			result = self.get_enum_type_string()
 		if self.data_type == "EntityPtr":
 			result = f'{self.definitions[self.ptr_type].get_root_namespace()}.{self.definitions[self.ptr_type].get_namespace_without_prefix()}.{self.ptr_type}'
 		return result
@@ -220,7 +232,7 @@ class PropertyInfo:
 
 		enum_str = "null"
 		if self.enum_type:
-			enum_str = f'typeof({self.enum_type})'
+			enum_str = f'typeof({self.get_enum_type_string()})'
 		return f'classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("{self.name}", Fox.Core.PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, Fox.Core.PropertyInfo.ContainerType.{self.container}, {self.get_entity_ptr_type_string()}, {enum_str}, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.{"Accessor" if self.is_accessor_property() else "Field"}, {self.get_export_flags_string()}));'
 
 	def is_collection_property(self):

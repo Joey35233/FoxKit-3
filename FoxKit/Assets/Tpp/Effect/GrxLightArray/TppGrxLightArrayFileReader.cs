@@ -98,7 +98,7 @@ namespace Tpp.Effect
             lightProbe.enableRelatedLightSH = FlagUtils.GetFlag(localFlags, 3);
             lightProbe.enableOcclusionMode = FlagUtils.GetFlag(localFlags, 4);
 
-            lightProbe.ShapeType = (TppLightProbe.TppLightProbe_ShapeType)reader.ReadUInt16();
+            lightProbe.ShapeType = (TppLightProbe_ShapeType)reader.ReadUInt16();
 
             reader.Align(4);
 

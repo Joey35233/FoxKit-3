@@ -456,38 +456,6 @@
 		]
 	},
 	{
-		"name": "Decal_DrawRejectionLevel",
-		"namespace": "FoxGameKit",
-		"type": "switch",
-		"underlying_type": "int",
-		"values": [
-			{
-				"name": "LEVEL0(size:0.5m)",
-				"value": 0
-			},
-			{
-				"name": "LEVEL1(size:1m)",
-				"value": 1
-			},
-			{
-				"name": "LEVEL2(size:2m)",
-				"value": 2
-			},
-			{
-				"name": "LEVEL3(size:4m)",
-				"value": 3
-			},
-			{
-				"name": "LEVEL4(size:8m)",
-				"value": 4
-			},
-			{
-				"name": "NO_REJECT",
-				"value": 5
-			}
-		]
-	},
-	{
 		"name": "DecalArray_ProjectionMode",
 		"namespace": "FoxGameKit",
 		"type": "switch",
@@ -536,38 +504,6 @@
 			{
 				"name": "RECOIL_COLLISION_DATA",
 				"value": 1
-			}
-		]
-	},
-	{
-		"name": "DecalArray_DrawRejectionLevel",
-		"namespace": "FoxGameKit",
-		"type": "switch",
-		"underlying_type": "int",
-		"values": [
-			{
-				"name": "LEVEL0(size:0.5m)",
-				"value": 0
-			},
-			{
-				"name": "LEVEL1(size:1m)",
-				"value": 1
-			},
-			{
-				"name": "LEVEL2(size:2m)",
-				"value": 2
-			},
-			{
-				"name": "LEVEL3(size:4m)",
-				"value": 3
-			},
-			{
-				"name": "LEVEL4(size:8m)",
-				"value": 4
-			},
-			{
-				"name": "NO_REJECT",
-				"value": 5
 			}
 		]
 	},
@@ -1308,6 +1244,13 @@
 		]
 	},
 	{
+		"name": "TppFocusBokehFilter_BokehQuality",
+		"namespace": "TppEffect",
+		"type": "switch",
+		"underlying_type": "int",
+		"values": []
+	},
+	{
 		"name": "TppLensFlareShapeOffsetType",
 		"namespace": "TppEffect",
 		"type": "switch",
@@ -1600,46 +1543,6 @@
 			{
 				"name": "FIRE",
 				"value": 1
-			}
-		]
-	},
-	{
-		"name": "TppPointLight_PackingGeneration",
-		"namespace": "TppEffect",
-		"type": "switch",
-		"underlying_type": "int",
-		"values": [
-			{
-				"name": "GENERATION_ALL",
-				"value": 0
-			},
-			{
-				"name": "GENERATION_7",
-				"value": 1
-			},
-			{
-				"name": "GENERATION_8",
-				"value": 2
-			}
-		]
-	},
-	{
-		"name": "TppSpotLight_PackingGeneration",
-		"namespace": "TppEffect",
-		"type": "switch",
-		"underlying_type": "int",
-		"values": [
-			{
-				"name": "GENERATION_ALL",
-				"value": 0
-			},
-			{
-				"name": "GENERATION_7",
-				"value": 1
-			},
-			{
-				"name": "GENERATION_8",
-				"value": 2
 			}
 		]
 	},
@@ -2232,46 +2135,6 @@
 			{
 				"name": "PRIM_RECT",
 				"value": 1
-			}
-		]
-	},
-	{
-		"name": "CollisionFreeShape_Category",
-		"namespace": "Geox",
-		"type": "switch",
-		"underlying_type": "int",
-		"values": [
-			{
-				"name": "CATEGORY_ALLL",
-				"value": 0
-			},
-			{
-				"name": "CATEGORY_CHARA",
-				"value": 1
-			},
-			{
-				"name": "CATEGORY_RECOIL",
-				"value": 2
-			}
-		]
-	},
-	{
-		"name": "CollisionPyraidFreeShape_Category",
-		"namespace": "Geox",
-		"type": "switch",
-		"underlying_type": "int",
-		"values": [
-			{
-				"name": "CATEGORY_ALLL",
-				"value": 0
-			},
-			{
-				"name": "CATEGORY_CHARA",
-				"value": 1
-			},
-			{
-				"name": "CATEGORY_RECOIL",
-				"value": 2
 			}
 		]
 	},

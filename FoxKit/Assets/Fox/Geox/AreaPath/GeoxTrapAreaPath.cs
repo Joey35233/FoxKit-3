@@ -109,40 +109,8 @@ namespace Fox.Geox
             }
         }
 
-        private static readonly Color Color = Color.red;
+        public float Height => height;
+
         public override Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
-
-        public void DrawGizmos(bool isSelected)
-        {
-            if (Nodes.Count < 0)
-                return;
-            
-            Gizmos.color = isSelected ? Color.white : Color;
-            
-            float minHeight = Nodes[0].transform.position.y;
-            for (int i = 1; i < Nodes.Count; i++)
-            {
-                float y = Nodes[i].transform.position.y;
-                if (y < minHeight)
-                    minHeight = y;
-            }
-
-            foreach (GraphxSpatialGraphDataEdge edgePtr in Edges)
-            {
-                GraphxSpatialGraphDataEdge edge = edgePtr;
-
-                Vector3 prevNodePos = edge.PrevNode.transform.position;
-                Vector3 nextNodePos = edge.NextNode.transform.position;
-
-                Gizmos.DrawLine(new Vector3(prevNodePos.x, minHeight, prevNodePos.z), new Vector3(nextNodePos.x, minHeight, nextNodePos.z));
-                Gizmos.DrawLine(new Vector3(prevNodePos.x, minHeight + height, prevNodePos.z), new Vector3(nextNodePos.x, minHeight + height, nextNodePos.z));
-
-                Gizmos.DrawLine(new Vector3(nextNodePos.x, minHeight, nextNodePos.z), new Vector3(nextNodePos.x, minHeight + height, nextNodePos.z));
-            }
-        }
-
-        public new void OnDrawGizmos() => DrawGizmos(false);
-
-        public new void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

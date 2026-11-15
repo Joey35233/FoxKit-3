@@ -63,7 +63,7 @@ namespace Fox.Ui
 		private UnityEngine.Color initColor;
 		
 		[UnityEngine.SerializeField]
-		private int initBlendType;
+		private UiModelNodeElementBlend initBlendType;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -98,7 +98,7 @@ namespace Fox.Ui
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("initRotQuat", Fox.Core.PropertyInfo.PropertyType.Quat, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("initTranslate", Fox.Core.PropertyInfo.PropertyType.Vector3, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("initColor", Fox.Core.PropertyInfo.PropertyType.Color, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("initBlendType", Fox.Core.PropertyInfo.PropertyType.Int32, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("initBlendType", Fox.Core.PropertyInfo.PropertyType.Int32, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(UiModelNodeElementBlend), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable | Fox.Core.PropertyInfo.PropertyExport.Writable));
 
 			ClassInfoInitialized = true;
 		}
@@ -212,7 +212,7 @@ namespace Fox.Ui
 					this.initColor = (UnityEngine.Color)value;
 					return;
 				case "initBlendType":
-					this.initBlendType = (int)value;
+					this.initBlendType = (UiModelNodeElementBlend)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);

@@ -18,7 +18,7 @@ namespace Fox.Geox
 	{
 		// Properties
 		[UnityEngine.SerializeField]
-		private CollisionPyraidFreeShape_Category collisionCategory;
+		private CollisionPrimitive_Category collisionCategory;
 		
 		[UnityEngine.SerializeField]
 		private string collisionMaterial;
@@ -47,7 +47,7 @@ namespace Fox.Geox
 		{
 			if (Fox.Core.TransformData.ClassInfoInitialized)
 				classInfo = new Fox.Core.EntityInfo("GeoxCollisionPyraidFreeShape", typeof(GeoxCollisionPyraidFreeShape), Fox.Core.TransformData.ClassInfo, 368, "Geox", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionCategory", Fox.Core.PropertyInfo.PropertyType.Int32, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(CollisionPyraidFreeShape_Category), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionCategory", Fox.Core.PropertyInfo.PropertyType.Int32, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, typeof(CollisionPrimitive_Category), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionMaterial", Fox.Core.PropertyInfo.PropertyType.String, 392, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.Readable));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionAttributeNames", Fox.Core.PropertyInfo.PropertyType.String, 400, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("points", Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 5, Fox.Core.PropertyInfo.ContainerType.StaticArray, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field, Fox.Core.PropertyInfo.PropertyExport.ReadableInEditor | Fox.Core.PropertyInfo.PropertyExport.WritableInEditor));
@@ -99,7 +99,7 @@ namespace Fox.Geox
 			switch (propertyName)
 			{
 				case "collisionCategory":
-					this.collisionCategory = (CollisionPyraidFreeShape_Category)value;
+					this.collisionCategory = (CollisionPrimitive_Category)value;
 					return;
 				case "collisionMaterial":
 					this.collisionMaterial = (string)value;
