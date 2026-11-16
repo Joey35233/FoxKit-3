@@ -1,6 +1,6 @@
-FoxKit/Assets/FoxKit/FoxKitSettings.asset
-FoxKit/.vsconfig
 .claude
 .codex
 .codex-attachments
 .DS_Store
+.vscode
+FoxKit/.vsconfig
