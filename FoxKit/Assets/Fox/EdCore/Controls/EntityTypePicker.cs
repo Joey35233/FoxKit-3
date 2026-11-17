@@ -38,7 +38,9 @@ namespace Fox.EdCore
             private readonly IList<EntityInfo> allItems = new List<EntityInfo>();
             private readonly List<EntityInfo> filteredItems = new();
 
+            [NonSerialized]
             public Type baseType;
+            [NonSerialized]
             public EntityInfo returnValue;
 
             public void Draw()

@@ -34,6 +34,9 @@
 # Visual Studio cache directory
 .vs/
 
+# VS Code workspace settings
+.vscode/
+
 # Gradle cache directory
 .gradle/
 
@@ -142,6 +145,7 @@ crashlytics-build.properties
 
 # User specific
 **/.idea/**/workspace.xml
+**/.idea/**/indexLayout.xml
 **/.idea/**/tasks.xml
 **/.idea/shelf/*
 **/.idea/dictionaries

@@ -3,7 +3,7 @@ using static Tpp.Effect.TppFootPrint;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppFootPrintLocator")]
+    [UnityEngine.AddComponentMenu("TppEffect/TppFootPrintLocator")]
     public class TppFootPrintLocator : MonoBehaviour
     {
         [field: SerializeField]

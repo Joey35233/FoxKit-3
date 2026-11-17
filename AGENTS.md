@@ -8,7 +8,7 @@
 
 ## Build, Test, and Development Commands
 
-Use Unity **6000.0.47f1**, as recorded in `ProjectVersion.txt`. Open `FoxKit/` through Unity Hub, allow package resolution and compilation, then configure local asset paths through **FoxKit > Settings**. Exercise import/export workflows through the **FoxKit** menu.
+Use Unity **6000.6.9f1**, as recorded in `ProjectVersion.txt`. Open `FoxKit/` through Unity Hub, allow package resolution and compilation, then configure local asset paths through **FoxKit > Settings**. Exercise import/export workflows through the **FoxKit** menu.
 
 From the repository root, with `UNITY_EDITOR` set to the Unity executable:
 

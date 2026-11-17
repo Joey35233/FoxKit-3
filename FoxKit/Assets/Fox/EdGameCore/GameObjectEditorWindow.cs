@@ -502,8 +502,7 @@ namespace Tpp.EdGameCore
             }
 
             var existingLocators = FindObjectsByType<Fox.GameCore.GameObjectLocator>(
-                FindObjectsInactive.Include, 
-                FindObjectsSortMode.None
+                FindObjectsInactive.Include
             );
 
             // Filter locators that match the current type and are in the active scene
@@ -635,7 +634,7 @@ namespace Tpp.EdGameCore
         private Fox.GameCore.GameObject CreateOrUpdateGameObject(UnityEngine.SceneManagement.Scene scene, GameObjectEditorInfo info)
         {
             Fox.GameCore.GameObject[] existingGameObjects =
-                FindObjectsByType<Fox.GameCore.GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                FindObjectsByType<Fox.GameCore.GameObject>(FindObjectsInactive.Include);
 
             Fox.GameCore.GameObject gameObject = null;
             foreach (var existingObject in existingGameObjects)
@@ -724,8 +723,7 @@ namespace Tpp.EdGameCore
         private void CleanupExistingLocators(UnityEngine.SceneManagement.Scene scene)
         {
             var existingGameObjectLocators = FindObjectsByType<Fox.GameCore.GameObjectLocator>(
-                FindObjectsInactive.Include, 
-                FindObjectsSortMode.None
+                FindObjectsInactive.Include
             );
 
             List<Fox.GameCore.GameObjectLocator> locatorsToCleanup = new List<Fox.GameCore.GameObjectLocator>();

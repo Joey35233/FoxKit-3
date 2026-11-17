@@ -2,7 +2,7 @@
 
 namespace Tpp.GameCore
 {
-    [UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppCollectionLocator")]
+    [UnityEngine.AddComponentMenu("TppGameCore/TppCollectionLocator")]
     public partial class TppCollectionLocator : MonoBehaviour
     {
         [field: SerializeField]

@@ -112,16 +112,33 @@ namespace Fox.Core
 
         private List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport, out CreateDataSetResult result)
         {
-            Entity[] entities = UnityEngine.Object.FindObjectsByType<Entity>(FindObjectsSortMode.InstanceID);
+            GameObject[] roots = sceneToExport.GetRootGameObjects();
+            Array.Sort(roots, (left, right) => left.transform.GetSiblingIndex().CompareTo(right.transform.GetSiblingIndex()));
             List<Entity> writeableEntities = new();
-            foreach (Entity entity in entities)
+            foreach (GameObject root in roots)
             {
-                if (entity.ShouldWriteToFox2() && !PrefabUtility.IsPartOfAnyPrefab(entity) && entity.gameObject.scene == sceneToExport)
-                    writeableEntities.Add(entity);
+                GetEntitiesInChildren(root.transform, writeableEntities);
             }
 
             result = CreateDataSet(writeableEntities);
             return writeableEntities;
+        }
+
+        private static void GetEntitiesInChildren(Transform transform, List<Entity> entities)
+        {
+            if (!transform.gameObject.activeInHierarchy)
+                return;
+
+            foreach (Entity entity in transform.GetComponents<Entity>())
+            {
+                if (entity.ShouldWriteToFox2() && !PrefabUtility.IsPartOfAnyPrefab(entity) && (entity.hideFlags & HideFlags.DontSave) == 0)
+                    entities.Add(entity);
+            }
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                GetEntitiesInChildren(transform.GetChild(i), entities);
+            }
         }
 
         enum CreateDataSetResult

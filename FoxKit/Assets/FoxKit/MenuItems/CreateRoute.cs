@@ -28,7 +28,7 @@ namespace FoxKit.MenuItems
         private static string GenerateUniqueRouteName()
         {
             HashSet<string> used = new();
-            foreach (GsRouteData route in UnityEngine.Object.FindObjectsByType<GsRouteData>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (GsRouteData route in UnityEngine.Object.FindObjectsByType<GsRouteData>(FindObjectsInactive.Include))
                 used.Add(route.name);
 
             int index = 0;

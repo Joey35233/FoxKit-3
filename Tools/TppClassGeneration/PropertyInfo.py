@@ -203,7 +203,7 @@ class PropertyInfo:
 	def is_hiding_existing(self):
 		"""UnityEngine.MonoBehaviours redefine multiple properties used by Fox including `name`, `transform`, etc."""
 
-		if self.name == "name" or self.name == "transform" or self.name == "light" or self.name == "tag" or self.name == "enabled":
+		if self.name == "name" or self.name == "transform" or self.name == "tag" or self.name == "enabled":
 			return True
 		
 		return False

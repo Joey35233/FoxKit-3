@@ -210,7 +210,7 @@ namespace Fox.Graphx
             var newNode = Undo.AddComponent(newNodeGo, nodeType) as Fox.Graphx.GraphxSpatialGraphDataNode;
 
             HashSet<string> usedNames = new();
-            foreach (UnityEngine.Object entity in FindObjectsByType(nodeType, FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (UnityEngine.Object entity in FindObjectsByType(nodeType, FindObjectsInactive.Include))
                 usedNames.Add(entity.name);
             newNodeGo.name = newNode.GenerateUniqueName(nodeType, usedNames);
 
@@ -228,7 +228,7 @@ namespace Fox.Graphx
             var edge = Undo.AddComponent(newEdgeGo, GetEdgeType()) as GraphxSpatialGraphDataEdge;
 
             HashSet<string> usedNames = new();
-            foreach (UnityEngine.Object entity in FindObjectsByType(edgeType, FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (UnityEngine.Object entity in FindObjectsByType(edgeType, FindObjectsInactive.Include))
                 usedNames.Add(entity.name);
             edge.name = edge.GenerateUniqueName(edgeType, usedNames);
 

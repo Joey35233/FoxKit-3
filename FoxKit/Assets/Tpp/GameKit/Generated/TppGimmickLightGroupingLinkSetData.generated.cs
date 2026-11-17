@@ -24,7 +24,7 @@ namespace Tpp.GameKit
 		private List<string> gimmickNameList = new List<string>();
 		
 		[UnityEngine.SerializeField]
-		private new Fox.Core.EntityLink light;
+		private Fox.Core.EntityLink light;
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

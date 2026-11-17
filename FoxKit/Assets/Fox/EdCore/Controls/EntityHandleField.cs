@@ -73,7 +73,7 @@ namespace Fox.EdCore
             string copyBuffer = EditorGUIUtility.systemCopyBuffer;
             if (copyBuffer.StartsWith("FoxObj: "))
             {
-                if (Int32.TryParse(copyBuffer.Substring(8), out int instanceID) && EditorUtility.InstanceIDToObject(instanceID) is Entity entity)
+                if (UInt64.TryParse(copyBuffer[8..], out ulong entityId) && EditorUtility.EntityIdToObject(EntityId.FromULong(entityId)) is Entity entity)
                 {
                     value = entity;
                 }

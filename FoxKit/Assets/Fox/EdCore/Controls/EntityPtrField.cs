@@ -82,7 +82,7 @@ namespace Fox.EdCore
             EntityLabel = new Label();
             Header.Add(EntityLabel);
 
-            CopyButton = new Button(() => EditorGUIUtility.systemCopyBuffer = $"FoxObj: {value.GetInstanceID().ToString()}");
+            CopyButton = new Button(() => EditorGUIUtility.systemCopyBuffer = $"FoxObj: {EntityId.ToULong(value.GetEntityId())}");
             CopyButton.text = "Copy";
             CopyButton.AddToClassList(copyButtonUssClassName);
             Header.Add(CopyButton);
